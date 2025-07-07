@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Chat Modal -->
+<div id="cp-chat-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel cp-modal-panel-large">
+        <button id="cp-chat-close-btn" class="cp-modal-close-btn">×</button>
+        <div class="cp-modal-content">
+             <script defer src="https://minnit.chat/js/embed.js"></script>
+             <minnit-chat data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&nickname=" data-style="width:100%;height:100%;"></minnit-chat>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="cp-settings-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-settings-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>Settings</h2>
+        <div class="cp-setting-item">
+            <label for="cp-setting-color">App Appearance</label>
+            <input type="color" id="cp-setting-color" value="#6A5AE0">
+        </div>
+        <div class="cp-setting-item">
+            <label for="cp-setting-font-family">Font Family</label>
+            <select id="cp-setting-font-family">
+                <option value="'Inter', sans-serif">Inter (Default)</option>
+                <option value="'Poppins', sans-serif">Poppins</option>
+                <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                <option value="Arial, sans-serif">Arial</option>
+            </select>
+        </div>
+        <div class="cp-setting-item">
+            <label for="cp-setting-font-size">Font Size</label>
+            <select id="cp-setting-font-size">
+                <option value="14px">Small</option>
+                <option value="16px">Normal</option>
+                <option value="18px">Large</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Guide Modal -->
+<div id="cp-guide-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>App Guide</h2>
+        <div class="cp-guide-content">
+            <div class="cp-guide-item">
+                <h5><i class="fas fa-stream"></i> Categories</h5>
+                <p>Select a category from the top tabs to browse specific types of projects.</p>
+            </div>
+            <div class="cp-guide-item">
+                <h5><i class="fas fa-search"></i> Search & Filter</h5>
+                <p>Use the search bar to find projects by name. Click on any tag below a project to see others with the same tag.</p>
+            </div>
+            <div class="cp-guide-item">
+                <h5><i class="fas fa-sort-amount-down"></i> Sort</h5>
+                <p>Tap the <i class="fas fa-filter"></i> icon in the header to sort the current list by date or name.</p>
+            </div>
+             <div class="cp-guide-item">
+                <h5><i class="fas fa-link"></i> Project Actions</h5>
+                <p>Tap "View Project" or "Read More" to open the project link. For some categories, you can tap the <i class="fas fa-copy"></i> icon to copy the link.</p>
+            </div>
+            <div class="cp-guide-item">
+                <h5><i class="fas fa-compass"></i> Bottom Navigation</h5>
+                <p>Use the bottom bar for quick access to Learn (<i class="fas fa-graduation-cap"></i>), Chat (<i class="fas fa-comments"></i>), News (<i class="fas fa-newspaper"></i>), and Settings (<i class="fas fa-cog"></i>).</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="cp-app-container">
+    <main class="cp-main-content">
+        <header class="cp-header">
+            <h1 class="cp-title">Crypto Projects</h1>
+            <div class="cp-header-actions">
+                <i class="fas fa-question-circle" id="cp-guide-btn" title="App Guide"></i>
+                <div class="cp-sort-container">
+                    <select id="cp-sort-select">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                    <i class="fas fa-filter" id="cp-filter-icon"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="cp-source-tabs-wrapper">
+            <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
+        </div>
+        
+        <div class="cp-filter-bar">
+            <div class="cp-search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="cp-search-input" placeholder="Search projects...">
+            </div>
+            <div id="cp-active-filter-container" style="display: none;">
+                 <span id="cp-active-filter-tag"></span>
+                 <button id="cp-clear-filter-btn">×</button>
+            </div>
+        </div>
+
+        <div id="cp-list-body" class="cp-list-body"></div>
+        <div id="cp-feedback-message" style="display: none;"></div>
+        <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
+            <button id="cp-load-more-btn">Load More</button>
+        </div>
+    </main>
+
+    <nav class="cp-bottom-nav">
+        <a href="#" class="cp-nav-item" id="cp-nav-learn">
+            <i class="fas fa-graduation-cap"></i>
+        </a>
+        <a href="#" class="cp-nav-item" id="cp-nav-chat">
+            <i class="fas fa-comments"></i>
+        </a>
+        <a href="#" class="cp-nav-item-main" onclick="document.getElementById('cp-search-input').focus(); return false;">
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="#" class="cp-nav-item" id="cp-nav-news">
+            <i class="fas fa-newspaper"></i>
+        </a>
+        <a href="#" class="cp-nav-item" id="cp-nav-settings">
+            <i class="fas fa-cog"></i>
+        </a>
+    </nav>
+</div>
+
+<style>
+:root {
+    --cp-bg: #F4F6FC;
+    --cp-card-bg: #FFFFFF;
+    --cp-primary-text: #171725;
+    --cp-secondary-text: #92929D;
+    --cp-purple: #6A5AE0;
+    --cp-font-family: 'Inter', sans-serif;
+    --cp-radius: 16px;
+    --cp-shadow: 0 10px 25px -5px rgba(23, 23, 37, 0.05);
+    --cp-light-bg: #e9eef7; 
+}
+html { font-size: 16px; }
+body {
+    background-color: var(--cp-bg);
+    font-family: var(--cp-font-family);
+    margin: 0;
+    color: var(--cp-primary-text);
+}
+.cp-app-container { max-width: 480px; margin: 0 auto; background-color: var(--cp-bg); min-height: 100vh; position: relative; padding-bottom: 100px; }
+.cp-main-content { padding: 20px; }
+.cp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.cp-title { font-size: 1.75rem; font-weight: 700; margin: 0; }
+.cp-header-actions { display: flex; align-items: center; gap: 8px; }
+#cp-guide-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
+#cp-guide-btn:hover { color: var(--cp-purple); }
+.cp-sort-container { position: relative; display: flex; align-items: center; }
+#cp-sort-select { position: absolute; top: 0; right: 0; opacity: 0; width: 36px; height: 36px; cursor: pointer; }
+#cp-filter-icon { font-size: 1.2rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; }
+
+.cp-source-tabs-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-bottom: 20px;
+    background-color: var(--cp-light-bg);
+    padding: 5px;
+    border-radius: 14px;
+}
+.cp-source-tabs-wrapper::-webkit-scrollbar { display: none; }
+.cp-source-tabs { display: flex; gap: 5px; white-space: nowrap; }
+.cp-source-tab {
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    color: var(--cp-secondary-text);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.cp-source-tab.active {
+    background: var(--cp-card-bg);
+    color: var(--cp-primary-text);
+    font-weight: 600;
+    box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1);
+}
+
+.cp-filter-bar { margin-bottom: 25px; }
+.cp-search-wrapper { position: relative; }
+#cp-search-input { width: 100%; padding: 14px 14px 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
+.cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
+#cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-purple); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
+#cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
+.cp-list-body { display: grid; gap: 20px; }
+.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 15px; }
+.cp-card-header { display: flex; align-items: center; gap: 15px; }
+.cp-card-icon { width: 50px; height: 50px; border-radius: 12px; background-color: var(--cp-light-purple); display: flex; align-items: center; justify-content: center; color: var(--cp-purple); font-size: 1.5rem; flex-shrink: 0; }
+.cp-card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 4px 0; }
+.cp-card-date { font-size: 0.85rem; color: var(--cp-secondary-text); }
+.cp-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+.cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-purple); color: var(--cp-purple); }
+.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); }
+.cp-view-btn { flex-grow: 1; text-align: center; padding: 12px; background: var(--cp-purple); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
+.cp-view-btn:hover { opacity: 0.9; }
+.cp-copy-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid #E2E2EA; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
+.cp-copy-btn:hover { background-color: var(--cp-bg); color: var(--cp-purple); }
+.cp-copy-btn:disabled { cursor: default; }
+.cp-feedback-message, .cp-pagination-container { text-align: center; padding: 40px 20px; }
+.cp-feedback-message { color: var(--cp-secondary-text); }
+.cp-feedback-message i { font-size: 2em; margin-bottom: 15px; display: block; }
+#cp-load-more-btn { padding: 12px 30px; border: none; background: var(--cp-purple); color: white; font-weight: 600; border-radius: 12px; cursor: pointer; font-size: 1rem; }
+.cp-bottom-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 440px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1000; }
+.cp-nav-item, .cp-nav-item-main { text-decoration: none; color: var(--cp-secondary-text); font-size: 1.5rem; position: relative; padding: 10px; cursor: pointer; }
+.cp-nav-item.active { color: var(--cp-purple); }
+.cp-nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background-color: var(--cp-purple); border-radius: 50%; }
+.cp-nav-item-main { width: 60px; height: 60px; background: var(--cp-purple); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -35px; box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4); border: 4px solid var(--cp-bg); }
+.cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1100; }
+.cp-modal-panel { background: var(--cp-card-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box;}
+.cp-modal-panel-large { max-width: 95%; height: 80%; }
+.cp-modal-content { height: 100%; }
+.cp-modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--cp-secondary-text); cursor: pointer; z-index: 10;}
+.cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--cp-bg); }
+.cp-setting-item select, .cp-setting-item input[type="color"] { border: 1px solid #ddd; padding: 5px; border-radius: 6px; }
+.cp-setting-item input[type="color"] { width: 40px; height: 30px; }
+.cp-guide-content { margin-top: 20px; }
+.cp-guide-item { padding: 15px 0; border-top: 1px solid var(--cp-bg); }
+.cp-guide-item:first-child { border-top: none; padding-top: 0;}
+.cp-guide-item h5 { margin: 0 0 8px 0; font-size: 1rem; color: var(--cp-primary-text); display: flex; align-items: center; }
+.cp-guide-item h5 i { margin-right: 10px; color: var(--cp-purple); width: 20px; text-align: center; }
+.cp-guide-item p { margin: 0; font-size: 0.9rem; color: var(--cp-secondary-text); line-height: 1.5; padding-left: 30px; }
+.cp-guide-item p i { font-size: 0.9em; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const sourceTabsContainer = document.getElementById('cp-source-tabs');
+    const searchInput = document.getElementById('cp-search-input');
+    const sortSelect = document.getElementById('cp-sort-select');
+    const listBody = document.getElementById('cp-list-body');
+    const feedbackMessage = document.getElementById('cp-feedback-message');
+    const paginationContainer = document.getElementById('cp-pagination-container');
+    const loadMoreBtn = document.getElementById('cp-load-more-btn');
+    const activeFilterContainer = document.getElementById('cp-active-filter-container');
+    const activeFilterTag = document.getElementById('cp-active-filter-tag');
+    const clearFilterBtn = document.getElementById('cp-clear-filter-btn');
+
+    // Modals
+    const chatModal = document.getElementById('cp-chat-modal');
+    const settingsModal = document.getElementById('cp-settings-modal');
+    const guideModal = document.getElementById('cp-guide-modal');
+    const guideBtn = document.getElementById('cp-guide-btn');
+
+    // Bottom Nav Buttons
+    const navItems = document.querySelectorAll('.cp-nav-item');
+    const navLearn = document.getElementById('cp-nav-learn');
+    const navChat = document.getElementById('cp-nav-chat');
+    const navNews = document.getElementById('cp-nav-news');
+    const navSettings = document.getElementById('cp-nav-settings');
+    
+    // Config & State
+    const NEWS_SOURCE = { name: "News & Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" };
+    const LEARN_SOURCE = { name: "Learn", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" };
+    const SOURCE_CONFIG = [
+        { name: "Earning", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
+        { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
+        { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
+        { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" }
+    ];
+    let dataCache = {}, allProjects = [], displayedProjects = [];
+    let currentPage = 1, projectsPerPage = 10;
+    let activeTag = null, searchDebounceTimer;
+
+    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => { const script = document.createElement('script'); window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); }; script.src = `${url}&callback=${callbackName}`; script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); }; document.body.appendChild(script); });
+
+    const processEntries = (entries, source) => (entries || []).map((entry) => { const name = entry.title.$t.trim(); const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); const iconClass = source ? `fas ${source.icon}` : 'fas fa-shield-alt'; return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t), iconClass, sourceName: source.name }; });
+
+    function renderListItems(projects, append = false) {
+        if (!append) listBody.innerHTML = '';
+        hideFeedback();
+        if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
+        const fragment = document.createDocumentFragment();
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'cp-card';
+            const tagsHTML = project.tags.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
+            const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            const isInformational = project.sourceName === 'News & Codes' || project.sourceName === 'Learn';
+            const buttonText = isInformational ? 'Read More' : 'View Project';
+            const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
+
+            card.innerHTML = `
+                <div class="cp-card-header"><div class="cp-card-icon"><i class="${project.iconClass}"></i></div><div><h3 class="cp-card-title">${project.name}</h3><p class="cp-card-date">Added: ${formattedDate}</p></div></div>
+                <div class="cp-card-tags">${tagsHTML}</div>
+                <div class="cp-card-actions">
+                    <a href="${project.url}" target="_blank" class="cp-view-btn">${buttonText}</a>
+                    ${copyButtonHTML}
+                </div>`;
+            fragment.appendChild(card);
+        });
+        listBody.appendChild(fragment);
+    }
+    
+    function applyFiltersAndSort(isNewData = false) {
+        if (isNewData) currentPage = 1;
+        let projects = [...allProjects];
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const sortOrder = sortSelect.value;
+        if (activeTag) { projects = projects.filter(p => p.tags.includes(activeTag)); activeFilterTag.textContent = activeTag; activeFilterContainer.style.display = 'inline-flex'; } else { activeFilterContainer.style.display = 'none'; }
+        if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
+        switch (sortOrder) { case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; case 'date-desc': projects.sort((a, b) => b.publishedDate - a.publishedDate); break; }
+        displayedProjects = projects;
+        const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
+        renderListItems(paginatedProjects, false);
+        paginationContainer.style.display = displayedProjects.length > paginatedProjects.length ? 'block' : 'none';
+    }
+
+    const loadSourceData = async (source) => {
+        listBody.innerHTML = ''; showFeedback(`Loading ${source.name} Projects...`, 'fa-spinner fa-spin');
+        let projects;
+        if (dataCache[source.url]) { projects = dataCache[source.url]; } 
+        else {
+            try { const callbackName = `cpJsonpCallback_${source.url.replace(/[^a-zA-Z0-9]/g, '')}`; const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName); projects = processEntries(data.feed.entry, source); dataCache[source.url] = projects; } 
+            catch (error) { showFeedback('Could not load projects.', 'fa-exclamation-triangle'); return; }
+        }
+        allProjects = projects; applyFiltersAndSort(true);
+    };
+    
+    function renderSourceTabs() {
+        sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
+    }
+
+    const showFeedback = (message, iconClass) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
+    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
+    const applySetting = (key, value) => { const prop = `--cp-${key.replace('font-size', 'base-font-size').replace('font-family', 'font-family').replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
+    const loadSettings = () => { const color = localStorage.getItem('cp-setting-color') || '#6A5AE0'; const fontFamily = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; const fontSize = localStorage.getItem('cp-setting-font-size') || '16px'; applySetting('color', color); applySetting('font-family', fontFamily); applySetting('font-size', fontSize); document.getElementById('cp-setting-color').value = color; document.getElementById('cp-setting-font-family').value = fontFamily; document.getElementById('cp-setting-font-size').value = fontSize; };
+
+    function init() {
+        loadSettings();
+        renderSourceTabs();
+        
+        // --- Centralized Navigation Logic ---
+        sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                navItems.forEach(i => i.classList.remove('active'));
+                sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                e.currentTarget.classList.add('active');
+                const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
+                if (source) loadSourceData(source);
+            });
+        });
+
+        const setupBottomNavLink = (element, action) => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                element.classList.add('active');
+                action();
+            });
+        };
+
+        setupBottomNavLink(navLearn, () => loadSourceData(LEARN_SOURCE));
+        setupBottomNavLink(navNews, () => loadSourceData(NEWS_SOURCE));
+        setupBottomNavLink(navChat, () => { chatModal.style.display = 'flex'; });
+        setupBottomNavLink(navSettings, () => { settingsModal.style.display = 'flex'; });
+
+
+        // --- Other Event Listeners ---
+        searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); });
+        sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
+        loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage * projectsPerPage) { paginationContainer.style.display = 'none'; } });
+        clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
+
+        listBody.addEventListener('click', (e) => {
+            if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); return; }
+            const copyBtn = e.target.closest('.cp-copy-btn');
+            if (copyBtn) {
+                navigator.clipboard.writeText(copyBtn.dataset.url).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i>'; copyBtn.disabled = true;
+                    setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy"></i>'; copyBtn.disabled = false; }, 1500);
+                }).catch(err => { console.error('Failed to copy: ', err); alert('Failed to copy link.'); });
+            }
+        });
+
+        guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
+        [chatModal, settingsModal, guideModal].forEach(modal => {
+            modal.querySelector('.cp-modal-close-btn').addEventListener('click', () => { modal.style.display = 'none'; });
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+        });
+
+        // --- Initial Load ---
+        sourceTabsContainer.querySelector('.cp-source-tab')?.click();
+    }
+    init();
+});
+</script>
+
+</body>
+</html>
