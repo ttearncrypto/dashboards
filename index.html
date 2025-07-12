@@ -1,5 +1,13 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Projects Dashboard</title>
+    <meta name="description" content="A dynamic dashboard to explore, search, and filter various crypto projects, airdrops, news, and investment opportunities.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
 
 <!-- Settings Modal -->
 <div id="ts-settings-modal" class="ts-settings-modal-overlay" style="display: none;">
@@ -32,7 +40,7 @@
             <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts Guide:</h3>
             <ul class="ts-shortcut-list">
                 <li><span>/</span> Focus the search bar</li>
-                <li><span>Esc</span> Clear search focus</li>
+                <li><span>Esc</span> Clear search or close modal</li>
                 <li><span>j</span> or <span>↓</span> Navigate down the list</li>
                 <li><span>k</span> or <span>↑</span> Navigate up the list</li>
                 <li><span>Enter</span> Open selected project</li>
@@ -52,7 +60,7 @@
         <nav id="ts-sidebar-nav" class="ts-sidebar-nav">
             <!-- Navigation links are dynamically inserted here -->
         </nav>
-        <div id="ts-settings-open-btn" class="ts-sidebar-footer" title="Settings">
+        <div id="ts-settings-open-btn" class="ts-sidebar-footer" title="Settings & Guide">
             <i class="fas fa-cog"></i>
         </div>
     </aside>
@@ -143,9 +151,14 @@
     --ts-base-font-size: 16px;
 }
 
+body {
+    margin: 0;
+    background-color: var(--ts-main-bg);
+}
+
 .ts-table-dashboard-container {
     display: flex;
-    min-height: 800px;
+    min-height: 100vh;
     background-color: var(--ts-main-bg);
     font-family: var(--ts-font-family);
     font-size: var(--ts-base-font-size);
@@ -234,12 +247,12 @@
 .ts-cat-tab.ts-active { color: var(--ts-accent-color); font-weight: 600; border-bottom-color: var(--ts-accent-color); }
 
 /* --- Controls Bar --- */
-.ts-controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; }
-.ts-search-wrapper { position: relative; flex-grow: 1; max-width: 400px; }
+.ts-controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap; }
+.ts-search-wrapper { position: relative; flex-grow: 1; min-width: 250px; max-width: 400px; }
 .ts-search-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ts-secondary-text); }
 #ts-search-input { width: 100%; padding: 10px 15px 10px 40px; border-radius: var(--ts-radius); border: 1px solid var(--ts-border-color); background-color: var(--ts-content-bg); color: var(--ts-primary-text); }
 #ts-search-input:focus { outline: none; border-color: var(--ts-accent-color); box-shadow: 0 0 0 3px var(--ts-accent-light); }
-.ts-filter-actions { display: flex; align-items: center; gap: 15px; }
+.ts-filter-actions { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
 .ts-sort-wrapper, .ts-view-options-wrapper { display: flex; align-items: center; border: 1px solid var(--ts-border-color); border-radius: var(--ts-radius); padding: 0 10px; background-color: var(--ts-content-bg); }
 .ts-sort-wrapper i, .ts-view-options-wrapper i { color: var(--ts-secondary-text); margin-right: 8px; }
 #ts-sort-select, #ts-items-per-page { height: 38px; border: none; background: none; outline: none; cursor: pointer; color: var(--ts-primary-text); }
@@ -277,7 +290,7 @@
 .ts-feedback-message i { font-size: 2em; margin-bottom: 15px; display: block; }
 
 /* --- Settings Modal & Guide --- */
-.ts-settings-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.ts-settings-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; }
 .ts-settings-modal-panel { background: var(--ts-content-bg); color: var(--ts-primary-text); padding: 30px 40px; border-radius: var(--ts-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 500px; position: relative; }
 .ts-settings-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 2em; color: var(--ts-secondary-text); cursor: pointer; }
 .ts-settings-modal-panel h2 { margin-top: 0; margin-bottom: 30px; }
@@ -290,7 +303,6 @@
 .ts-shortcut-list { list-style: none; padding: 0; }
 .ts-shortcut-list li { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
 .ts-shortcut-list span { background: var(--ts-main-bg); border: 1px solid var(--ts-border-color); padding: 2px 8px; border-radius: 4px; font-family: monospace; min-width: 20px; text-align: center; }
-
 </style>
 
 <script type="text/javascript">
@@ -304,8 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontFamilySelect = document.getElementById('ts-font-family-select');
     const fontSizeSelect = document.getElementById('ts-font-size-select');
     const shareButton = document.getElementById('ts-share-button');
-
-    // Other elements
     const sidebarNav = document.getElementById('ts-sidebar-nav');
     const mainTitle = document.getElementById('ts-main-title');
     const categoryTabsContainer = document.getElementById('ts-category-filter-tabs');
@@ -319,15 +329,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration & State ---
     const SOURCE_CONFIG = [
         { name: "Earning Projects", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
-        { name: "Investments Projects", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
+        { name: "Investment Projects", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
         { name: "Casinos Directory", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
         { name: "Crypto Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" },
-        { name: "News & Daily Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" }
+        { name: "Learning Academy", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" },
+        { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" },
+        { name: "Online Tools", icon: "fa-tools", url: "https://tontuftools.blogspot.com" },
+        { name: "Profit Networks", icon: "fa-sitemap", url: "https://networksradar.blogspot.com" },
+        { name: "App Store", icon: "fa-store-alt", url: "https://ttappstore.blogspot.com" },
+        { name: "Money Articles", icon: "fa-file-invoice-dollar", url: "https://growwithguidance.blogspot.com" }
     ];
     let dataCache = {}, currentSourceUrl = null, currentProjects = [], activeCategory = 'All';
     let searchDebounceTimer, currentPage = 1, projectsPerPage = parseInt(itemsPerPageSelect.value, 10);
 
-    // --- Settings Logic ---
+    // --- Functions ---
     const applySetting = (key, value) => {
         document.documentElement.style.setProperty(`--ts-${key}`, value);
         localStorage.setItem(`ts-setting-${key}`, value);
@@ -336,57 +351,197 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadSettings = () => {
         const fontFamily = localStorage.getItem('ts-setting-font-family') || 'Inter, sans-serif';
         const fontSize = localStorage.getItem('ts-setting-base-font-size') || '16px';
-
         applySetting('font-family', fontFamily);
         applySetting('base-font-size', fontSize);
-
         fontFamilySelect.value = fontFamily;
         fontSizeSelect.value = fontSize;
     };
+
+    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        window[callbackName] = (data) => {
+            delete window[callbackName];
+            script.remove();
+            resolve(data);
+        };
+        script.src = `${url}&callback=${callbackName}`;
+        script.onerror = (err) => {
+            delete window[callbackName];
+            script.remove();
+            reject(err);
+        };
+        document.body.appendChild(script);
+    });
+
+    const processEntries = (entries) => (entries || []).map(entry => {
+        const link = (entry.link.find(l => l.rel === 'alternate') || {}).href;
+        const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http"));
+        return {
+            id: entry.id.$t,
+            name: entry.title.$t.trim(),
+            url: link,
+            tags: tags.length > 0 ? tags : ['General'],
+            publishedDate: new Date(entry.published.$t),
+        };
+    }).filter(p => p.url);
+
+    const showFeedback = (message, iconClass = 'fa-info-circle') => {
+        listBody.innerHTML = '';
+        paginationContainer.style.display = 'none';
+        feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`;
+        feedbackMessage.style.display = 'flex';
+    };
+
+    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
     
-    // --- Data Fetching & UI Rendering ---
-    function renderListItems(projects) {
+    const renderListItems = (projects) => {
         listBody.innerHTML = '';
         if (projects.length === 0) return;
         hideFeedback();
         const fragment = document.createDocumentFragment();
-        projects.forEach((project, index) => {
+        projects.forEach((project) => {
             const item = document.createElement('div');
             item.className = 'ts-list-item';
-            item.tabIndex = 0; // Make item focusable
-            
+            item.tabIndex = 0;
             const tagsHTML = project.tags.map(tag => `<span class="ts-tag" data-tag="${tag}">${tag}</span>`).join('');
-            
             item.innerHTML = `
-                <div class="ts-col-name" data-label="Project">
-                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-project-name-link">${project.name}</a>
-                </div>
-                <div class="ts-col-tags" data-label="Categories"><div class="ts-project-tags">${tagsHTML}</div></div>
-                <div class="ts-col-date" data-label="Date"><span class="ts-project-date">${project.publishedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span></div>
-                <div class="ts-col-action" data-label="Action"><a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-visit-button">View Project</a></div>
+                <div class="ts-col-name"><a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-project-name-link">${project.name}</a></div>
+                <div class="ts-col-tags"><div class="ts-project-tags">${tagsHTML}</div></div>
+                <div class="ts-col-date"><span class="ts-project-date">${project.publishedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span></div>
+                <div class="ts-col-action"><a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-visit-button">View Project</a></div>
             `;
             fragment.appendChild(item);
         });
         listBody.appendChild(fragment);
-    }
+    };
+
+    const renderSidebar = () => {
+        sidebarNav.innerHTML = SOURCE_CONFIG.map(source => 
+            `<a href="#" class="ts-sidebar-link" data-url="${source.url}" data-name="${source.name}" title="${source.name}"><i class="fas ${source.icon}"></i></a>`
+        ).join('');
+    };
+
+    const populateCategoryTabs = (projects) => {
+        const sortedCategories = [...new Set(projects.flatMap(p => p.tags))].sort();
+        let tabsHTML = `<button class="ts-cat-tab ts-active" data-category="All">All (${projects.length})</button>`;
+        tabsHTML += sortedCategories.map(cat => {
+            const count = projects.filter(p => p.tags.includes(cat)).length;
+            return `<button class="ts-cat-tab" data-category="${cat}">${cat} (${count})</button>`;
+        }).join('');
+        categoryTabsContainer.innerHTML = tabsHTML;
+        activeCategory = 'All';
+    };
+
+    const renderPagination = (totalItems) => {
+        const totalPages = Math.ceil(totalItems / projectsPerPage);
+        paginationContainer.innerHTML = '';
+        paginationContainer.style.display = totalPages > 1 ? 'flex' : 'none';
+        if (totalPages <= 1) return;
+        let paginationHTML = `<button class="ts-pagination-button" id="ts-prev-page" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`;
+        const pageNumbersContainer = document.createElement('div');
+        pageNumbersContainer.className = 'ts-page-numbers';
+        const pagesToShow = new Set([1, totalPages, currentPage, currentPage - 1, currentPage + 1].filter(p => p > 0 && p <= totalPages));
+        let lastPage = 0;
+        Array.from(pagesToShow).sort((a,b) => a - b).forEach(page => {
+            if (lastPage !== 0 && page > lastPage + 1) {
+                pageNumbersContainer.innerHTML += '<span class="ts-pagination-ellipsis">...</span>';
+            }
+            pageNumbersContainer.innerHTML += `<button class="ts-page-number ${page === currentPage ? 'ts-active' : ''}" data-page="${page}">${page}</button>`;
+            lastPage = page;
+        });
+        paginationHTML += pageNumbersContainer.outerHTML;
+        paginationHTML += `<button class="ts-pagination-button" id="ts-next-page" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+        paginationContainer.innerHTML = paginationHTML;
+    };
     
-    // --- Keyboard Navigation ---
+    const applyFiltersAndSort = () => {
+        let projects = [...currentProjects];
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (activeCategory !== 'All') projects = projects.filter(p => p.tags.includes(activeCategory));
+        if (searchTerm) projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm) || p.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+        
+        const sortOrder = sortSelect.value;
+        projects.sort((a, b) => {
+            switch (sortOrder) {
+                case 'name-asc': return a.name.localeCompare(b.name);
+                case 'name-desc': return b.name.localeCompare(a.name);
+                case 'date-asc': return a.publishedDate - b.publishedDate;
+                case 'date-desc':
+                default: return b.publishedDate - a.publishedDate;
+            }
+        });
+        
+        if (projects.length === 0) {
+            showFeedback('No projects found matching your criteria.', 'fa-search-minus');
+            return;
+        }
+        renderPagination(projects.length);
+        const paginatedProjects = projects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
+        renderListItems(paginatedProjects);
+    };
+
+    const loadSourceData = async (url, name) => {
+        if (currentSourceUrl === url) return;
+        currentSourceUrl = url;
+        currentPage = 1;
+        mainTitle.textContent = name;
+        categoryTabsContainer.innerHTML = '';
+        showFeedback('Loading projects...', 'fa-spinner fa-spin');
+        
+        if (dataCache[url]) {
+            currentProjects = dataCache[url];
+        } else {
+            try {
+                const callbackName = `tsJsonpCallback_${Date.now()}`;
+                const data = await fetchJsonp(`${url}/feeds/posts/summary?alt=json-in-script&max-results=500`, callbackName);
+                currentProjects = processEntries(data.feed.entry);
+                dataCache[url] = currentProjects;
+            } catch (error) {
+                console.error(`Failed to load source: ${name}`, error);
+                showFeedback('Could not load projects. Please try again later.', 'fa-exclamation-triangle');
+                return;
+            }
+        }
+        populateCategoryTabs(currentProjects);
+        applyFiltersAndSort();
+    };
+    
+    const handleFilterChange = () => {
+        currentPage = 1;
+        applyFiltersAndSort();
+    };
+
+    const handlePaginationClick = (e) => {
+        const target = e.target.closest('button');
+        if (!target) return;
+        const totalItems = (activeCategory === 'All' ? currentProjects : currentProjects.filter(p => p.tags.includes(activeCategory))).length;
+        const totalPages = Math.ceil(totalItems / projectsPerPage);
+        
+        if (target.id === 'ts-next-page' && currentPage < totalPages) currentPage++;
+        else if (target.id === 'ts-prev-page' && currentPage > 1) currentPage--;
+        else if (target.matches('.ts-page-number')) currentPage = parseInt(target.dataset.page, 10);
+        else return;
+        
+        applyFiltersAndSort();
+    };
+
     const handleKeyboardNavigation = (e) => {
         const activeEl = document.activeElement;
         const isInputFocused = ['INPUT', 'SELECT', 'TEXTAREA'].includes(activeEl.tagName);
+        const isModalOpen = settingsModal.style.display === 'flex';
 
-        if (e.key === '/' && !isInputFocused) {
+        if (e.key === 'Escape') {
+            if (isModalOpen) settingsModal.style.display = 'none';
+            else activeEl.blur();
+        }
+        if (e.key === '/' && !isInputFocused && !isModalOpen) {
             e.preventDefault();
             searchInput.focus();
         }
-        if (e.key === 'Escape' && isInputFocused) {
-            activeEl.blur();
-        }
-
         if (isInputFocused && activeEl !== searchInput) return;
 
         const items = Array.from(listBody.querySelectorAll('.ts-list-item'));
-        if (items.length === 0) return;
+        if (items.length === 0 || isModalOpen) return;
 
         let currentIndex = items.findIndex(item => item === activeEl);
         
@@ -405,78 +560,89 @@ document.addEventListener('DOMContentLoaded', () => {
                     items[currentIndex].querySelector('.ts-visit-button').click();
                 }
                 break;
-            case 'n': if(!isInputFocused) document.getElementById('ts-next-page')?.click(); break;
-            case 'p': if(!isInputFocused) document.getElementById('ts-prev-page')?.click(); break;
+            case 'n': if (!isInputFocused) document.getElementById('ts-next-page')?.click(); break;
+            case 'p': if (!isInputFocused) document.getElementById('ts-prev-page')?.click(); break;
         }
     };
-
+    
     // --- Initialization ---
-    function init() {
+    const init = () => {
         loadSettings();
         renderSidebar();
 
         // Event Listeners
         document.addEventListener('keydown', handleKeyboardNavigation);
-        
         sidebarToggleBtn.addEventListener('click', () => {
             mainContainer.classList.toggle('ts-sidebar-shrunk');
             const isShrunk = mainContainer.classList.contains('ts-sidebar-shrunk');
-            const icon = sidebarToggleBtn.querySelector('i');
-            if (isShrunk) {
-                icon.classList.remove('fa-angle-double-left');
-                icon.classList.add('fa-angle-double-right');
-                sidebarToggleBtn.title = "Expand Sidebar";
-            } else {
-                icon.classList.remove('fa-angle-double-right');
-                icon.classList.add('fa-angle-double-left');
-                sidebarToggleBtn.title = "Shrink Sidebar";
-            }
+            sidebarToggleBtn.querySelector('i').className = isShrunk ? 'fas fa-angle-double-right' : 'fas fa-angle-double-left';
+            sidebarToggleBtn.title = isShrunk ? "Expand Sidebar" : "Shrink Sidebar";
         });
-
         settingsOpenBtn.addEventListener('click', () => settingsModal.style.display = 'flex');
         settingsCloseBtn.addEventListener('click', () => settingsModal.style.display = 'none');
         settingsModal.addEventListener('click', (e) => {
             if (e.target === settingsModal) settingsModal.style.display = 'none';
         });
-        
         fontFamilySelect.addEventListener('change', (e) => applySetting('font-family', e.target.value));
         fontSizeSelect.addEventListener('change', (e) => applySetting('base-font-size', e.target.value));
         
-        shareButton.addEventListener('click', async () => { /* ... (unchanged) ... */ });
+        shareButton.addEventListener('click', async () => {
+            const shareData = { title: `Crypto Dashboard: ${mainTitle.textContent}`, text: `Check out these projects on the Crypto Dashboard!`, url: window.location.href };
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Share API not supported. Page URL copied to clipboard!');
+                }
+            } catch (err) { console.error("Share failed:", err); }
+        });
 
-        // Existing Listeners
-        sidebarNav.addEventListener('click', (e) => { /* ... (unchanged) ... */ });
-        categoryTabsContainer.addEventListener('click', (e) => { /* ... (unchanged) ... */ });
-        listBody.addEventListener('click', (e) => { /* ... (unchanged) ... */ });
-        sortSelect.addEventListener('change', applyFiltersAndSort);
-        itemsPerPageSelect.addEventListener('change', (e) => { /* ... (unchanged) ... */ });
-        searchInput.addEventListener('input', () => { /* ... (unchanged) ... */ });
+        sidebarNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const link = e.target.closest('.ts-sidebar-link');
+            if (!link || link.classList.contains('ts-active')) return;
+            document.querySelectorAll('.ts-sidebar-link.ts-active').forEach(l => l.classList.remove('ts-active'));
+            link.classList.add('ts-active');
+            loadSourceData(link.dataset.url, link.dataset.name);
+        });
+        
+        categoryTabsContainer.addEventListener('click', (e) => {
+            const tab = e.target.closest('.ts-cat-tab');
+            if (!tab || tab.classList.contains('ts-active')) return;
+            document.querySelectorAll('.ts-cat-tab.ts-active').forEach(t => t.classList.remove('ts-active'));
+            tab.classList.add('ts-active');
+            activeCategory = tab.dataset.category;
+            handleFilterChange();
+        });
+
+        listBody.addEventListener('click', (e) => {
+            const tagEl = e.target.closest('.ts-tag');
+            if (tagEl) {
+                const tagName = tagEl.dataset.tag;
+                const correspondingTab = categoryTabsContainer.querySelector(`.ts-cat-tab[data-category="${tagName}"]`);
+                if (correspondingTab) correspondingTab.click();
+            }
+        });
+
+        sortSelect.addEventListener('change', handleFilterChange);
+        itemsPerPageSelect.addEventListener('change', (e) => {
+            projectsPerPage = parseInt(e.target.value, 10);
+            handleFilterChange();
+        });
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(handleFilterChange, 300);
+        });
         paginationContainer.addEventListener('click', handlePaginationClick);
 
+        // Initial load
         document.querySelector('.ts-sidebar-link').click();
-    }
+    };
 
-    // --- CORE & UNCHANGED FUNCTIONS ---
-    var fetchJsonp, processEntries, showFeedback, hideFeedback, renderSidebar, populateCategoryTabs, renderPagination, applyFiltersAndSort, loadSourceData, handleFilterChange, handlePaginationClick;
-    fetchJsonp = function(url, callbackName) { return new Promise((resolve, reject) => { window[callbackName] = (data) => { resolve(data); cleanup(); }; const script = document.createElement('script'); script.src = `${url}&callback=${callbackName}`; script.onerror = (err) => reject(err); const cleanup = () => { delete window[callbackName]; script.remove(); }; document.body.appendChild(script); }); }
-    processEntries = function(entries) { return entries.map(entry => { const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); return { id: entry.id.$t, name: entry.title.$t.trim(), url: link, tags: tags.length > 0 ? tags : ['General'], publishedDate: new Date(entry.published.$t), }; }).filter(p => p.url); }
-    showFeedback = function(message, iconClass = 'fa-info-circle') { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`; feedbackMessage.style.display = 'flex'; }
-    hideFeedback = function() { feedbackMessage.style.display = 'none'; }
-    renderSidebar = function() { sidebarNav.innerHTML = SOURCE_CONFIG.map(source => `<a href="#" class="ts-sidebar-link" data-url="${source.url}" data-name="${source.name}" title="${source.name}"><i class="fas ${source.icon}"></i></a>`).join(''); }
-    populateCategoryTabs = function(projects) { const sortedCategories = [...new Set(projects.flatMap(p => p.tags))].sort(); let tabsHTML = `<button class="ts-cat-tab ts-active" data-category="All">All</button>`; tabsHTML += sortedCategories.map(cat => `<button class="ts-cat-tab" data-category="${cat}">${cat}</button>`).join(''); categoryTabsContainer.innerHTML = tabsHTML; activeCategory = 'All'; }
-    renderPagination = function(totalItems) { const totalPages = Math.ceil(totalItems / projectsPerPage); paginationContainer.innerHTML = ''; paginationContainer.style.display = totalPages > 1 ? 'flex' : 'none'; if (totalPages <= 1) return; let paginationHTML = `<button class="ts-pagination-button" id="ts-prev-page" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`; const pageNumbersContainer = document.createElement('div'); pageNumbersContainer.className = 'ts-page-numbers'; const pagesToShow = new Set(); pagesToShow.add(1); pagesToShow.add(totalPages); pagesToShow.add(currentPage); if (currentPage > 1) pagesToShow.add(currentPage - 1); if (currentPage < totalPages) pagesToShow.add(currentPage + 1); let lastPage = 0; Array.from(pagesToShow).sort((a,b) => a - b).forEach(page => { if (lastPage !== 0 && page > lastPage + 1) { const ellipsis = document.createElement('span'); ellipsis.className = 'ts-pagination-ellipsis'; ellipsis.textContent = '...'; pageNumbersContainer.appendChild(ellipsis); } const pageButton = document.createElement('button'); pageButton.className = `ts-page-number ${page === currentPage ? 'ts-active' : ''}`; pageButton.dataset.page = page; pageButton.textContent = page; pageNumbersContainer.appendChild(pageButton); lastPage = page; }); paginationHTML += pageNumbersContainer.outerHTML; paginationHTML += `<button class="ts-pagination-button" id="ts-next-page" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`; paginationContainer.innerHTML = paginationHTML; }
-    applyFiltersAndSort = function() { let projects = [...currentProjects]; const searchTerm = searchInput.value.toLowerCase().trim(); const sortOrder = sortSelect.value; if (activeCategory !== 'All') { projects = projects.filter(p => p.tags.includes(activeCategory)); } if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm) || p.tags.some(tag => tag.toLowerCase().includes(searchTerm))); } switch (sortOrder) { case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; case 'date-desc': projects.sort((a, b) => b.publishedDate - a.publishedDate); break; case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; } if (projects.length === 0) { showFeedback('No projects found matching your criteria.', 'fa-search-minus'); return; } renderPagination(projects.length); const startIndex = (currentPage - 1) * projectsPerPage; const endIndex = startIndex + projectsPerPage; const paginatedProjects = projects.slice(startIndex, endIndex); renderListItems(paginatedProjects); }
-    loadSourceData = async function(url, name) { if (currentSourceUrl === url) return; currentSourceUrl = url; currentPage = 1; mainTitle.textContent = name; categoryTabsContainer.innerHTML = ''; showFeedback('Loading projects...', 'fa-spinner fa-spin'); if (dataCache[url]) { currentProjects = dataCache[url]; populateCategoryTabs(currentProjects); applyFiltersAndSort(); return; } try { const callbackName = `tsJsonpCallback_${url.replace(/[^a-zA-Z0-9]/g, '')}`; const data = await fetchJsonp(`${url}/feeds/posts/summary?alt=json-in-script&max-results=500`, callbackName); const projects = processEntries(data.feed.entry || []); dataCache[url] = projects; currentProjects = projects; populateCategoryTabs(currentProjects); applyFiltersAndSort(); } catch (error) { console.error(`Failed to load source: ${name}`, error); showFeedback('Could not load projects. Please try again later.', 'fa-exclamation-triangle'); } }
-    handleFilterChange = function() { currentPage = 1; applyFiltersAndSort(); }
-    handlePaginationClick = function(e) { const target = e.target; const totalPages = Math.ceil(currentProjects.length / projectsPerPage); if (target.id === 'ts-next-page' && currentPage < totalPages) { currentPage++; } else if (target.id === 'ts-prev-page' && currentPage > 1) { currentPage--; } else if (target.matches('.ts-page-number')) { currentPage = parseInt(target.dataset.page, 10); } else { return; } applyFiltersAndSort(); }
-    sidebarNav.addEventListener('click', (e) => { e.preventDefault(); const link = e.target.closest('.ts-sidebar-link'); if (!link || link.classList.contains('ts-active')) return; document.querySelectorAll('.ts-sidebar-link.ts-active').forEach(l => l.classList.remove('ts-active')); link.classList.add('ts-active'); loadSourceData(link.dataset.url, link.dataset.name); });
-    categoryTabsContainer.addEventListener('click', (e) => { const tab = e.target.closest('.ts-cat-tab'); if (!tab || tab.classList.contains('ts-active')) return; document.querySelectorAll('.ts-cat-tab.ts-active').forEach(t => t.classList.remove('ts-active')); tab.classList.add('ts-active'); activeCategory = tab.dataset.category; handleFilterChange(); });
-    listBody.addEventListener('click', (e) => { const tagEl = e.target.closest('.ts-tag'); if (!tagEl) return; const tagName = tagEl.dataset.tag; const correspondingTab = categoryTabsContainer.querySelector(`.ts-cat-tab[data-category="${tagName}"]`); if (correspondingTab) correspondingTab.click(); });
-    itemsPerPageSelect.addEventListener('change', (e) => { projectsPerPage = parseInt(e.target.value, 10); handleFilterChange(); });
-    searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(handleFilterChange, 300); });
-    paginationContainer.addEventListener('click', handlePaginationClick);
-    shareButton.addEventListener('click', async () => { const shareData = { title: `Crypto Dashboard: ${mainTitle.textContent}`, text: `Check out these projects on the Crypto Dashboard!`, url: window.location.href }; try { if (navigator.share) { await navigator.share(shareData); } else { alert('Web Share API not supported. Feature coming soon!'); } } catch (err) { console.error("Share failed:", err); } });
-    
     init();
 });
 </script>
+
+</body>
+</html>
