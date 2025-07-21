@@ -2,14 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
+    <meta name="description" content="Your one-stop dashboard for discovering the latest crypto earning projects, investment opportunities, airdrops, news, and more. Curated by the TTEarnCrypto community.">
+    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet">
+    <meta name="author" content="F9XR, TTEarnCrypto">
+    <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" type="image/png">
 </head>
 <body>
+
+<!-- ===== MODALS ===== -->
+<div id="cp-network-error-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <div class="cp-modal-content cp-network-error-content">
+            <i class="fas fa-wifi"></i>
+            <h2>Connection Error</h2>
+            <p>You are not connected to the internet. Please check your connection and try again.</p>
+        </div>
+    </div>
+</div>
 
 <!-- Chat Modal -->
 <div id="cp-chat-modal" class="cp-modal-overlay" style="display: none;">
@@ -21,6 +43,21 @@
         </div>
     </div>
 </div>
+
+<!-- About Modal -->
+<div id="cp-about-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
+        <div class="cp-about-content">
+            <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-about-logo">
+            <h3>iCryptos Dashboard</h3>
+            <p>Version 2.3</p>
+            <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
+            <p>Powered by <strong>TTEarnCrypto</strong>.</p>
+        </div>
+    </div>
+</div>
+
 
 <!-- Settings Modal -->
 <div id="cp-settings-modal" class="cp-modal-overlay" style="display: none;">
@@ -55,37 +92,28 @@
 <div id="cp-guide-modal" class="cp-modal-overlay" style="display: none;">
     <div class="cp-modal-panel">
         <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
-        <h2>App Guide</h2>
+        <h2>App Guide:</h2>
         <div class="cp-guide-content">
-            <div class="cp-guide-item">
-                <h5><i class="fas fa-stream"></i> Categories</h5>
-                <p>Select a category from the top tabs to browse specific types of projects.</p>
-            </div>
-            <div class="cp-guide-item">
-                <h5><i class="fas fa-search"></i> Search & Filter</h5>
-                <p>Use the search bar to find projects by name. Click on any tag below a project to see others with the same tag.</p>
-            </div>
-            <div class="cp-guide-item">
-                <h5><i class="fas fa-sort-amount-down"></i> Sort</h5>
-                <p>Tap the <i class="fas fa-filter"></i> icon in the header to sort the current list by date or name.</p>
-            </div>
-             <div class="cp-guide-item">
-                <h5><i class="fas fa-link"></i> Project Actions</h5>
-                <p>Tap "View Project" or "Read More" to open the project link. For some categories, you can tap the <i class="fas fa-copy"></i> icon to copy the link.</p>
-            </div>
-            <div class="cp-guide-item">
-                <h5><i class="fas fa-compass"></i> Bottom Navigation</h5>
-                <p>Use the bottom bar for quick access to Learn (<i class="fas fa-graduation-cap"></i>), Chat (<i class="fas fa-comments"></i>), News (<i class="fas fa-newspaper"></i>), and Settings (<i class="fas fa-cog"></i>).</p>
-            </div>
+            <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories</h5><p>Select a category from the top tabs to browse specific types of projects.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar to find projects by name. Click on any tag to filter.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-redo"></i> Reload</h5><p>On mobile, swipe down from the top of the list to refresh the content.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-link"></i> Project Actions</h5><p>Tap "View Project" to open the project link. Tap the <i class="fas fa-copy"></i> icon to copy the link.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-compass"></i> Bottom Navigation</h5><p>Use the bottom bar for quick access to Learn, Chat, News, and Settings.</p></div>
         </div>
     </div>
 </div>
 
 
 <div class="cp-app-container">
+    <div id="cp-pull-to-refresh-indicator" class="cp-pull-to-refresh-indicator">
+        <i class="fas fa-arrow-down"></i>
+    </div>
     <main class="cp-main-content">
         <header class="cp-header">
-            <h1 class="cp-title">Crypto Projects</h1>
+            <div class="cp-header-title-group">
+                <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-app-logo">
+                <h1 class="cp-title">iCryptos</h1>
+            </div>
             <div class="cp-header-actions">
                 <i class="fas fa-question-circle" id="cp-guide-btn" title="App Guide"></i>
                 <div class="cp-sort-container">
@@ -100,14 +128,26 @@
             </div>
         </header>
 
+        
+
         <div class="cp-source-tabs-wrapper">
             <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
         </div>
         
+        <!-- Banner Slider -->
+        <div class="cp-banner-slider-wrapper" id="cp-banner-slider-wrapper">
+            <div class="cp-banner-slider" id="cp-banner-slider">
+                <!-- Banners will be injected by JS -->
+            </div>
+            <div class="cp-banner-dots" id="cp-banner-dots"></div>
+        </div>
+        
         <div class="cp-filter-bar">
+            <!-- Search Bar with Clear Button -->
             <div class="cp-search-wrapper">
                 <i class="fas fa-search"></i>
                 <input type="text" id="cp-search-input" placeholder="Search projects...">
+                <button id="cp-search-clear-btn" style="display: none;" title="Clear Search">×</button>
             </div>
             <div id="cp-active-filter-container" style="display: none;">
                  <span id="cp-active-filter-tag"></span>
@@ -120,24 +160,53 @@
         <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
             <button id="cp-load-more-btn">Load More</button>
         </div>
+        
+
+
+        <br>
+        <section class="cp-info-section" id="cp-whats-new-section">
+            <h2>What's New?</h2>
+            <ul>
+                <li>Version 2.3: Added search clear button and auto scroll-to-top.</li>
+                <li>Fully adaptive banner slider for all image sizes.</li>
+                <li>UI enhancements and performance improvements.</li>
+                <li>Features section is now at the bottom and fully interactive.</li>
+            </ul>
+            <div class="cp-info-actions">
+                <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send Feedback / Report Bugs</a>
+                <button id="cp-about-btn" class="cp-info-link"><i class="fas fa-info-circle"></i> About This App</button>
+            </div>
+        </section>
+
+        <section class="cp-info-section" id="cp-social-section">
+            <h2>Follow Us</h2>
+            <div class="cp-social-icons">
+                <a href="https://t.me/CxO1NVTowno2Y2E1" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://facebook.com/groups/ttearncrypto" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://discord.gg/D6hAEEumtx" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://bento.me/ttearncrypto" target="_blank" title="Other Socials"><i class="fas fa-link"></i></a>
+            </div>
+        </section>
+        
+
+<div class="cp-features-grid">
+            <a href="#" id="feature-latest" class="cp-feature-card"><i class="fas fa-bolt"></i><span>Latest Projects</span></a>
+            <a href="#" id="feature-filter" class="cp-feature-card"><i class="fas fa-tags"></i><span>Filter & Search</span></a>
+            <a href="#" id="feature-customize" class="cp-feature-card"><i class="fas fa-palette"></i><span>Customize</span></a>
+            <a href="#" id="feature-mobile" class="cp-feature-card"><i class="fas fa-question-circle"></i><span>App Guide</span></a>
+        </div>
     </main>
 
+    <footer class="cp-footer">
+        With Love ❤,<br>from F9XR
+    </footer>
+
     <nav class="cp-bottom-nav">
-        <a href="#" class="cp-nav-item" id="cp-nav-learn">
-            <i class="fas fa-graduation-cap"></i>
-        </a>
-        <a href="#" class="cp-nav-item" id="cp-nav-chat">
-            <i class="fas fa-comments"></i>
-        </a>
-        <a href="#" class="cp-nav-item-main" onclick="document.getElementById('cp-search-input').focus(); return false;">
-            <i class="fas fa-search"></i>
-        </a>
-        <a href="#" class="cp-nav-item" id="cp-nav-news">
-            <i class="fas fa-newspaper"></i>
-        </a>
-        <a href="#" class="cp-nav-item" id="cp-nav-settings">
-            <i class="fas fa-cog"></i>
-        </a>
+        <a href="#" class="cp-nav-item" id="cp-nav-learn"><i class="fas fa-graduation-cap"></i></a>
+        <a href="#" class="cp-nav-item" id="cp-nav-chat"><i class="fas fa-comments"></i></a>
+        <a href="#" class="cp-nav-item-main" onclick="document.getElementById('cp-search-input').focus(); return false;"><i class="fas fa-search"></i></a>
+        <a href="#" class="cp-nav-item" id="cp-nav-news"><i class="fas fa-newspaper"></i></a>
+        <a href="#" class="cp-nav-item" id="cp-nav-settings"><i class="fas fa-cog"></i></a>
     </nav>
 </div>
 
@@ -151,18 +220,19 @@
     --cp-font-family: 'Inter', sans-serif;
     --cp-radius: 16px;
     --cp-shadow: 0 10px 25px -5px rgba(23, 23, 37, 0.05);
-    --cp-light-bg: #e9eef7; 
+    --cp-light-bg: #e9eef7;
+    --cp-red: #E74C3C;
+    --cp-green: #2ECC71;
+    --cp-blue: #3498DB;
+    --cp-footer-text: #BCC1D1;
 }
-html { font-size: 16px; }
-body {
-    background-color: var(--cp-bg);
-    font-family: var(--cp-font-family);
-    margin: 0;
-    color: var(--cp-primary-text);
-}
-.cp-app-container { max-width: 480px; margin: 0 auto; background-color: var(--cp-bg); min-height: 100vh; position: relative; padding-bottom: 100px; }
-.cp-main-content { padding: 20px; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margin: 0; color: var(--cp-primary-text); -webkit-tap-highlight-color: transparent; }
+.cp-app-container { max-width: 480px; margin: 0 auto; background-color: var(--cp-bg); min-height: 100vh; position: relative; padding-bottom: 120px; }
+.cp-main-content { padding: 20px; position: relative; z-index: 1; transition: transform 0.3s ease; }
 .cp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.cp-header-title-group { display: flex; align-items: center; gap: 12px; }
+.cp-app-logo { width: 40px; height: 40px; }
 .cp-title { font-size: 1.75rem; font-weight: 700; margin: 0; }
 .cp-header-actions { display: flex; align-items: center; gap: 8px; }
 #cp-guide-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
@@ -171,73 +241,116 @@ body {
 #cp-sort-select { position: absolute; top: 0; right: 0; opacity: 0; width: 36px; height: 36px; cursor: pointer; }
 #cp-filter-icon { font-size: 1.2rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; }
 
-.cp-source-tabs-wrapper {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    margin-bottom: 20px;
+/* Banner Slider */
+.cp-banner-slider-wrapper { 
+    position: relative; 
+    margin-bottom: 20px; 
+    border-radius: var(--cp-radius); 
+    overflow: hidden; 
+    box-shadow: var(--cp-shadow); 
     background-color: var(--cp-light-bg);
-    padding: 5px;
-    border-radius: 14px;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.cp-banner-slider { display: flex; transition: transform 0.5s ease-in-out; }
+.cp-banner-slide { width: 100%; flex-shrink: 0; }
+.cp-banner-slide img { 
+    display: block; 
+    width: 100%; 
+    height: auto; 
+    max-width: 100%;
+}
+.cp-banner-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; padding: 5px; background: rgba(0,0,0,0.2); border-radius: 10px; }
+.cp-banner-dot { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); cursor: pointer; transition: all 0.3s; }
+.cp-banner-dot.active { background-color: white; transform: scale(1.2); }
+
+
+/* Features */
+.cp-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0; }
+.cp-feature-card { background: var(--cp-card-bg); border-radius: 12px; padding: 20px 10px; text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--cp-primary-text); box-shadow: var(--cp-shadow); text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.cp-feature-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px -5px rgba(23, 23, 37, 0.1); }
+.cp-feature-card i { display: block; margin-bottom: 8px; font-size: 1.5rem; color: var(--cp-purple); }
+
+.cp-source-tabs-wrapper { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; margin-bottom: 20px; background-color: var(--cp-light-bg); padding: 5px; border-radius: 14px; }
 .cp-source-tabs-wrapper::-webkit-scrollbar { display: none; }
 .cp-source-tabs { display: flex; gap: 5px; white-space: nowrap; }
-.cp-source-tab {
-    padding: 8px 16px;
-    border: none;
-    background-color: transparent;
-    color: var(--cp-secondary-text);
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.cp-source-tab.active {
-    background: var(--cp-card-bg);
-    color: var(--cp-primary-text);
-    font-weight: 600;
-    box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1);
-}
-
+.cp-source-tab { padding: 8px 16px; border: none; background-color: transparent; color: var(--cp-secondary-text); border-radius: 10px; font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
+.cp-source-tab.active { background: var(--cp-card-bg); color: var(--cp-primary-text); font-weight: 600; box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1); }
 .cp-filter-bar { margin-bottom: 25px; }
 .cp-search-wrapper { position: relative; }
-#cp-search-input { width: 100%; padding: 14px 14px 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
+#cp-search-input { width: 100%; padding: 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
 .cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
-#cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-purple); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
+/* Search Clear Button */
+#cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
+#cp-search-clear-btn:hover { color: var(--cp-primary-text); }
+
+#cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-bg); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
 .cp-list-body { display: grid; gap: 20px; }
-.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 15px; }
+
+/* Card Styling */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 15px; animation: fadeIn 0.5s ease-out forwards; }
+.cp-card.is-inactive { opacity: 0.7; background-color: #fcfcfc; }
 .cp-card-header { display: flex; align-items: center; gap: 15px; }
-.cp-card-icon { width: 50px; height: 50px; border-radius: 12px; background-color: var(--cp-light-purple); display: flex; align-items: center; justify-content: center; color: var(--cp-purple); font-size: 1.5rem; flex-shrink: 0; }
+.cp-card-icon { width: 50px; height: 50px; border-radius: 12px; background-color: var(--cp-light-bg); display: flex; align-items: center; justify-content: center; color: var(--cp-purple); font-size: 1.5rem; flex-shrink: 0; }
+.cp-card-title-section { flex-grow: 1; }
 .cp-card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 4px 0; }
 .cp-card-date { font-size: 0.85rem; color: var(--cp-secondary-text); }
+.cp-card-wallet { font-size: 0.8rem; font-weight: 500; color: var(--cp-secondary-text); padding: 4px 8px; border-radius: 6px; background-color: var(--cp-light-bg); display: inline-block; margin-top: 8px; }
+.cp-card-wallet.faucetpay { background-color: #e6f7ff; color: #1890ff; }
+.cp-card-wallet.cwallet { background-color: #e6fffb; color: #13c2c2; }
 .cp-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
-.cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-purple); color: var(--cp-purple); }
-.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); }
+.cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-bg); color: var(--cp-purple); }
+.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); align-items: center; flex-wrap: wrap; }
 .cp-view-btn { flex-grow: 1; text-align: center; padding: 12px; background: var(--cp-purple); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
 .cp-view-btn:hover { opacity: 0.9; }
+.cp-view-btn:disabled { background: #B0B0C0; cursor: not-allowed; }
 .cp-copy-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid #E2E2EA; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
 .cp-copy-btn:hover { background-color: var(--cp-bg); color: var(--cp-purple); }
 .cp-copy-btn:disabled { cursor: default; }
+.cp-not-active-btn { width: 100%; text-align: center; padding: 10px; background: var(--cp-red); color: white; border-radius: 12px; font-weight: 600; font-size: 0.9rem; border: none; margin-bottom: 10px; order: -1; }
+
+/* Skeleton Loader */
+@keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
+.cp-skeleton-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); }
+.skeleton { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: shimmer 1s linear infinite; }
+.cp-skeleton-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.cp-skeleton-icon { width: 50px; height: 50px; border-radius: 12px; }
+.cp-skeleton-title-group { flex-grow: 1; }
+.cp-skeleton-line { height: 1.1rem; border-radius: 4px; margin-bottom: 8px; }
+.cp-skeleton-line.short { width: 40%; height: 0.85rem; margin-bottom: 0; }
+.cp-skeleton-tag { width: 60px; height: 26px; border-radius: 8px; }
+.cp-skeleton-tags { display: flex; gap: 8px; margin-bottom: 25px; }
+.cp-skeleton-button { height: 45px; border-radius: 12px; }
+
 .cp-feedback-message, .cp-pagination-container { text-align: center; padding: 40px 20px; }
 .cp-feedback-message { color: var(--cp-secondary-text); }
 .cp-feedback-message i { font-size: 2em; margin-bottom: 15px; display: block; }
 #cp-load-more-btn { padding: 12px 30px; border: none; background: var(--cp-purple); color: white; font-weight: 600; border-radius: 12px; cursor: pointer; font-size: 1rem; }
+
+/* Bottom Nav */
 .cp-bottom-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 440px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1000; }
 .cp-nav-item, .cp-nav-item-main { text-decoration: none; color: var(--cp-secondary-text); font-size: 1.5rem; position: relative; padding: 10px; cursor: pointer; }
 .cp-nav-item.active { color: var(--cp-purple); }
 .cp-nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background-color: var(--cp-purple); border-radius: 50%; }
 .cp-nav-item-main { width: 60px; height: 60px; background: var(--cp-purple); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -35px; box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4); border: 4px solid var(--cp-bg); }
-.cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1100; }
-.cp-modal-panel { background: var(--cp-card-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box;}
+
+/* Modals */
+@keyframes modal-pop-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1100; transition: opacity 0.3s ease; }
+.cp-modal-panel { background: var(--cp-card-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box; animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
 .cp-modal-panel-large { max-width: 95%; height: 80%; }
 .cp-modal-content { height: 100%; }
 .cp-modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--cp-secondary-text); cursor: pointer; z-index: 10;}
 .cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--cp-bg); }
+.cp-setting-item:first-child { border-top: none; }
 .cp-setting-item select, .cp-setting-item input[type="color"] { border: 1px solid #ddd; padding: 5px; border-radius: 6px; }
-.cp-setting-item input[type="color"] { width: 40px; height: 30px; }
+.cp-setting-item input[type="color"] { width: 40px; height: 30px; padding: 2px; }
+.cp-about-content { text-align: center; }
+.cp-about-logo { width: 80px; height: 80px; margin-bottom: 15px; }
+.cp-about-content h3 { margin-bottom: 5px; }
+.cp-about-content .cp-about-description { margin: 15px 0; line-height: 1.6; }
 .cp-guide-content { margin-top: 20px; }
 .cp-guide-item { padding: 15px 0; border-top: 1px solid var(--cp-bg); }
 .cp-guide-item:first-child { border-top: none; padding-top: 0;}
@@ -245,13 +358,46 @@ body {
 .cp-guide-item h5 i { margin-right: 10px; color: var(--cp-purple); width: 20px; text-align: center; }
 .cp-guide-item p { margin: 0; font-size: 0.9rem; color: var(--cp-secondary-text); line-height: 1.5; padding-left: 30px; }
 .cp-guide-item p i { font-size: 0.9em; }
+
+/* Network Error Modal */
+.cp-network-error-content { text-align: center; }
+.cp-network-error-content i { font-size: 3rem; color: var(--cp-red); margin-bottom: 20px; }
+.cp-network-error-content h2 { margin-top: 0; }
+
+/* Pull to refresh */
+.cp-pull-to-refresh-indicator { position: absolute; top: 0; left: 0; right: 0; text-align: center; padding: 10px; background: var(--cp-light-bg); z-index: 0; transform: translateY(-100%); transition: transform 0.3s; font-size: 1.2rem; color: var(--cp-purple); }
+.cp-pull-to-refresh-indicator .fa-spinner, .cp-pull-to-refresh-indicator .fa-sync-alt { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* New Sections */
+.cp-info-section { background-color: var(--cp-card-bg); padding: 20px; border-radius: var(--cp-radius); margin-bottom: 25px; box-shadow: var(--cp-shadow); }
+.cp-info-section h2 { margin-top: 0; font-size: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--cp-bg); margin-bottom: 15px; }
+.cp-info-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--cp-secondary-text); line-height: 1.6; font-size: 0.9rem; }
+.cp-info-actions { display: flex; flex-direction: column; gap: 10px; }
+.cp-info-link { background-color: var(--cp-light-bg); color: var(--cp-primary-text); padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 500; text-align: center; border: none; font-family: inherit; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.cp-info-link:hover { background-color: #dce3f2; }
+.cp-social-icons { display: flex; justify-content: center; gap: 20px; padding: 10px 0; }
+.cp-social-icons a { color: var(--cp-secondary-text); font-size: 2rem; transition: color 0.2s ease, transform 0.2s ease; }
+.cp-social-icons a:hover { color: var(--cp-purple); transform: scale(1.1); }
+
+/* Footer - IMPROVED */
+.cp-footer { 
+    padding: 20px; 
+    text-align: center; 
+    font-size: 1.25rem; /* Further Increased size */
+    font-weight: 600;  /* Bolder */
+    color: var(--cp-secondary-text); 
+    line-height: 1.6; 
+}
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
+    // === DOM Elements ===
+    const appContainer = document.querySelector('.cp-app-container');
     const sourceTabsContainer = document.getElementById('cp-source-tabs');
     const searchInput = document.getElementById('cp-search-input');
+    const searchClearBtn = document.getElementById('cp-search-clear-btn');
     const sortSelect = document.getElementById('cp-sort-select');
     const listBody = document.getElementById('cp-list-body');
     const feedbackMessage = document.getElementById('cp-feedback-message');
@@ -260,21 +406,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeFilterContainer = document.getElementById('cp-active-filter-container');
     const activeFilterTag = document.getElementById('cp-active-filter-tag');
     const clearFilterBtn = document.getElementById('cp-clear-filter-btn');
+    const bannerSliderWrapper = document.getElementById('cp-banner-slider-wrapper');
+    const bannerSlider = document.getElementById('cp-banner-slider');
+    const bannerDots = document.getElementById('cp-banner-dots');
 
-    // Modals
+    // === Modals ===
     const chatModal = document.getElementById('cp-chat-modal');
     const settingsModal = document.getElementById('cp-settings-modal');
     const guideModal = document.getElementById('cp-guide-modal');
+    const aboutModal = document.getElementById('cp-about-modal');
+    const networkErrorModal = document.getElementById('cp-network-error-modal');
+    
+    // === Buttons ===
     const guideBtn = document.getElementById('cp-guide-btn');
-
-    // Bottom Nav Buttons
+    const aboutBtn = document.getElementById('cp-about-btn');
     const navItems = document.querySelectorAll('.cp-nav-item');
     const navLearn = document.getElementById('cp-nav-learn');
     const navChat = document.getElementById('cp-nav-chat');
     const navNews = document.getElementById('cp-nav-news');
     const navSettings = document.getElementById('cp-nav-settings');
     
-    // Config & State
+    // === Config & State ===
     const NEWS_SOURCE = { name: "News & Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" };
     const LEARN_SOURCE = { name: "Learn", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" };
     const SOURCE_CONFIG = [
@@ -283,23 +435,77 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
         { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" }
     ];
-    let dataCache = {}, allProjects = [], displayedProjects = [];
+    const BANNERS = [
+        { img: 'https://i.imgur.com/7qPyMe2_d.webp?maxwidth=520&shape=thumb&fidelity=high', url: '#' },
+        { img: 'https://i.imgur.com/Qrd6ERS.jpeg', url: '#' },
+        { img: 'https://i.imgur.com/UmgaqgB.jpeg', url: '#' },
+    ];
+    let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
     let currentPage = 1, projectsPerPage = 10;
-    let activeTag = null, searchDebounceTimer;
+    let activeTag = null, searchDebounceTimer, bannerInterval;
 
-    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => { const script = document.createElement('script'); window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); }; script.src = `${url}&callback=${callbackName}`; script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); }; document.body.appendChild(script); });
+    // === Main Functions ===
+    
+    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+        if (!navigator.onLine) {
+            handleNetworkChange();
+            return reject(new Error('No internet connection'));
+        }
+        const script = document.createElement('script'); 
+        window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); }; 
+        script.src = `${url}&callback=${callbackName}`; 
+        script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); }; 
+        document.body.appendChild(script); 
+    });
 
-    const processEntries = (entries, source) => (entries || []).map((entry) => { const name = entry.title.$t.trim(); const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); const iconClass = source ? `fas ${source.icon}` : 'fas fa-shield-alt'; return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t), iconClass, sourceName: source.name }; });
+    const processEntries = (entries, source) => (entries || []).map((entry) => { 
+        const name = entry.title.$t.trim(); 
+        const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; 
+        const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); 
+        const iconClass = source ? `fas ${source.icon}` : 'fas fa-shield-alt'; 
+        return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t), iconClass, sourceName: source.name }; 
+    });
+
+    function renderSkeletonLoaders() {
+        listBody.innerHTML = '';
+        const skeletonHTML = `
+            <div class="cp-skeleton-card">
+                <div class="cp-skeleton-header">
+                    <div class="cp-skeleton-icon skeleton"></div>
+                    <div class="cp-skeleton-title-group">
+                        <div class="cp-skeleton-line skeleton"></div>
+                        <div class="cp-skeleton-line short skeleton"></div>
+                    </div>
+                </div>
+                <div class="cp-skeleton-tags">
+                    <div class="cp-skeleton-tag skeleton"></div>
+                    <div class="cp-skeleton-tag skeleton"></div>
+                </div>
+                <div class="cp-skeleton-button skeleton"></div>
+            </div>`;
+        for (let i = 0; i < 5; i++) {
+            listBody.innerHTML += skeletonHTML;
+        }
+    }
 
     function renderListItems(projects, append = false) {
         if (!append) listBody.innerHTML = '';
         hideFeedback();
         if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
+        
         const fragment = document.createDocumentFragment();
         projects.forEach(project => {
             const card = document.createElement('div');
-            card.className = 'cp-card';
-            const tagsHTML = project.tags.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
+            const isInactive = project.tags.includes('NotActive');
+            card.className = `cp-card ${isInactive ? 'is-inactive' : ''}`;
+
+            let walletType = 'Direct Wallet';
+            let walletClass = 'direct-wallet';
+            if (project.tags.includes('FaucetPay')) { walletType = 'FaucetPay'; walletClass = 'faucetpay'; }
+            else if (project.tags.includes('Cwallet')) { walletType = 'Cwallet'; walletClass = 'cwallet'; }
+
+            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive');
+            const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
             const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             
             const isInformational = project.sourceName === 'News & Codes' || project.sourceName === 'Learn';
@@ -307,10 +513,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
 
             card.innerHTML = `
-                <div class="cp-card-header"><div class="cp-card-icon"><i class="${project.iconClass}"></i></div><div><h3 class="cp-card-title">${project.name}</h3><p class="cp-card-date">Added: ${formattedDate}</p></div></div>
+                <div class="cp-card-header">
+                    <div class="cp-card-icon"><i class="${project.iconClass}"></i></div>
+                    <div class="cp-card-title-section">
+                        <h3 class="cp-card-title">${project.name}</h3>
+                        <p class="cp-card-date">Added: ${formattedDate}</p>
+                    </div>
+                </div>
+                <div>
+                     <span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span>
+                </div>
                 <div class="cp-card-tags">${tagsHTML}</div>
                 <div class="cp-card-actions">
-                    <a href="${project.url}" target="_blank" class="cp-view-btn">${buttonText}</a>
+                    ${isInactive ? '<button class="cp-not-active-btn" disabled>Status: Not Active</button>' : ''}
+                    <a href="${project.url}" target="_blank" class="cp-view-btn" ${isInactive ? 'disabled' : ''}>${buttonText}</a>
                     ${copyButtonHTML}
                 </div>`;
             fragment.appendChild(card);
@@ -323,42 +539,219 @@ document.addEventListener('DOMContentLoaded', () => {
         let projects = [...allProjects];
         const searchTerm = searchInput.value.toLowerCase().trim();
         const sortOrder = sortSelect.value;
-        if (activeTag) { projects = projects.filter(p => p.tags.includes(activeTag)); activeFilterTag.textContent = activeTag; activeFilterContainer.style.display = 'inline-flex'; } else { activeFilterContainer.style.display = 'none'; }
+
+        if (activeTag) { 
+            projects = projects.filter(p => p.tags.includes(activeTag)); 
+            activeFilterTag.textContent = activeTag; 
+            activeFilterContainer.style.display = 'inline-flex'; 
+        } else { 
+            activeFilterContainer.style.display = 'none'; 
+        }
         if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
-        switch (sortOrder) { case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; case 'date-desc': projects.sort((a, b) => b.publishedDate - a.publishedDate); break; }
+
+        switch (sortOrder) { 
+            case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; 
+            case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; 
+            case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; 
+            case 'date-desc': projects.sort((a, b) => b.publishedDate - a.publishedDate); break; 
+        }
+        
         displayedProjects = projects;
         const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
         renderListItems(paginatedProjects, false);
         paginationContainer.style.display = displayedProjects.length > paginatedProjects.length ? 'block' : 'none';
     }
 
-    const loadSourceData = async (source) => {
-        listBody.innerHTML = ''; showFeedback(`Loading ${source.name} Projects...`, 'fa-spinner fa-spin');
+    const loadSourceData = async (source, forceReload = false) => {
+        currentSource = source;
+        listBody.innerHTML = ''; 
+        renderSkeletonLoaders();
+        hideFeedback();
+        
         let projects;
-        if (dataCache[source.url]) { projects = dataCache[source.url]; } 
-        else {
-            try { const callbackName = `cpJsonpCallback_${source.url.replace(/[^a-zA-Z0-9]/g, '')}`; const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName); projects = processEntries(data.feed.entry, source); dataCache[source.url] = projects; } 
-            catch (error) { showFeedback('Could not load projects.', 'fa-exclamation-triangle'); return; }
+        if (dataCache[source.url] && !forceReload) { 
+            projects = dataCache[source.url]; 
+        } else {
+            try { 
+                const callbackName = `cpJsonpCallback_${Date.now()}`; 
+                const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName); 
+                projects = processEntries(data.feed.entry, source); 
+                dataCache[source.url] = projects; 
+            } catch (error) { 
+                console.error("Fetch Error:", error);
+                if (!navigator.onLine) {
+                    showFeedback('You are offline. Please check your connection.', 'fa-wifi');
+                } else {
+                    showFeedback('Could not load projects. Please try again.', 'fa-exclamation-triangle');
+                }
+                return; 
+            }
         }
-        allProjects = projects; applyFiltersAndSort(true);
+        allProjects = projects; 
+        applyFiltersAndSort(true);
     };
     
     function renderSourceTabs() {
         sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
     }
 
+    // === Banners - Adaptive height ===
+    function setupBanners() {
+        bannerSlider.innerHTML = BANNERS.map(banner => `
+            <a href="${banner.url}" target="_blank" class="cp-banner-slide">
+                <img src="${banner.img}" alt="Promotional Banner">
+            </a>
+        `).join('');
+
+        bannerDots.innerHTML = BANNERS.map((_, i) => `<div class="cp-banner-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></div>`).join('');
+        
+        let currentSlide = 0;
+        const slides = bannerSlider.children;
+        const dots = bannerDots.children;
+        const images = bannerSlider.querySelectorAll('img');
+
+        const setSliderHeight = (img) => {
+            if (!img || !img.naturalWidth || !img.naturalHeight) return;
+            const sliderWidth = bannerSliderWrapper.offsetWidth;
+            const aspectRatio = img.naturalHeight / img.naturalWidth;
+            const newHeight = sliderWidth * aspectRatio;
+            bannerSliderWrapper.style.height = `${newHeight}px`;
+        };
+        
+        images.forEach((img, index) => {
+            if (img.complete) {
+                if (index === 0) setSliderHeight(img);
+            } else {
+                img.onload = () => {
+                    if (index === 0) setSliderHeight(img);
+                };
+            }
+        });
+
+        function showSlide(index) {
+            bannerSlider.style.transform = `translateX(-${index * 100}%)`;
+            [...dots].forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            
+            const activeImage = images[index];
+            setSliderHeight(activeImage);
+            
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        bannerDots.addEventListener('click', e => {
+            if (e.target.matches('.cp-banner-dot')) {
+                const slideIndex = parseInt(e.target.dataset.slide, 10);
+                showSlide(slideIndex);
+                resetBannerInterval();
+            }
+        });
+
+        function resetBannerInterval() {
+            clearInterval(bannerInterval);
+            bannerInterval = setInterval(nextSlide, 5000);
+        }
+        
+        resetBannerInterval();
+        
+        window.addEventListener('resize', () => {
+             const activeImage = images[currentSlide];
+             setSliderHeight(activeImage);
+        });
+    }
+    
+    // === Helpers & Utilities ===
     const showFeedback = (message, iconClass) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
     const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
     const applySetting = (key, value) => { const prop = `--cp-${key.replace('font-size', 'base-font-size').replace('font-family', 'font-family').replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
     const loadSettings = () => { const color = localStorage.getItem('cp-setting-color') || '#6A5AE0'; const fontFamily = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; const fontSize = localStorage.getItem('cp-setting-font-size') || '16px'; applySetting('color', color); applySetting('font-family', fontFamily); applySetting('font-size', fontSize); document.getElementById('cp-setting-color').value = color; document.getElementById('cp-setting-font-family').value = fontFamily; document.getElementById('cp-setting-font-size').value = fontSize; };
 
+    // === Network & Pull-to-Refresh ===
+    function handleNetworkChange() {
+        if (navigator.onLine) {
+            networkErrorModal.style.display = 'none';
+        } else {
+            networkErrorModal.style.display = 'flex';
+        }
+    }
+
+    function setupPullToRefresh() {
+        let startY = 0;
+        let isPulling = false;
+        const pullThreshold = 80;
+        const indicator = document.getElementById('cp-pull-to-refresh-indicator');
+        const mainContent = document.querySelector('.cp-main-content');
+
+        const resetIndicator = () => {
+            indicator.style.transition = 'transform 0.3s ease';
+            indicator.style.transform = 'translateY(-100%)';
+            mainContent.style.transition = 'transform 0.3s ease';
+            mainContent.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`;
+            }, 300);
+        };
+
+        appContainer.addEventListener('touchstart', e => {
+            if (window.scrollY === 0) {
+                startY = e.touches[0].pageY;
+                isPulling = true;
+                indicator.style.transition = 'transform 0s';
+                mainContent.style.transition = 'transform 0s';
+            }
+        }, { passive: true });
+
+        appContainer.addEventListener('touchmove', e => {
+            if (!isPulling || !e.touches[0]) return;
+            const pullDistance = e.touches[0].pageY - startY;
+            if (pullDistance > 0) {
+                e.preventDefault();
+                const translateValue = Math.min(pullDistance * 0.5, pullThreshold * 1.2);
+                indicator.style.transform = `translateY(${translateValue - indicator.offsetHeight}px)`;
+                mainContent.style.transform = `translateY(${translateValue}px)`;
+
+                if (pullDistance > pullThreshold) {
+                    indicator.innerHTML = `<i class="fas fa-sync-alt fa-spin"></i>`;
+                } else {
+                    indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`;
+                }
+            }
+        }, { passive: false });
+
+        appContainer.addEventListener('touchend', e => {
+            if (!isPulling) return;
+            isPulling = false;
+            const pullDistance = e.changedTouches[0].pageY - startY;
+
+            if (pullDistance > pullThreshold) {
+                indicator.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+                if (currentSource) {
+                    loadSourceData(currentSource, true).finally(resetIndicator);
+                } else {
+                    setTimeout(resetIndicator, 500);
+                }
+            } else {
+                resetIndicator();
+            }
+        });
+    }
+
+    // === Initialization ===
     function init() {
         loadSettings();
         renderSourceTabs();
+        setupBanners();
+        setupPullToRefresh();
         
         // --- Centralized Navigation Logic ---
         sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => {
             tab.addEventListener('click', (e) => {
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
                 navItems.forEach(i => i.classList.remove('active'));
                 sourceTabsContainer.querySelector('.active')?.classList.remove('active');
                 e.currentTarget.classList.add('active');
@@ -367,24 +760,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const setupBottomNavLink = (element, action) => {
+        const setupBottomNavLink = (element, action, isModal = false) => {
             element.addEventListener('click', (e) => {
                 e.preventDefault();
-                navItems.forEach(i => i.classList.remove('active'));
-                sourceTabsContainer.querySelector('.active')?.classList.remove('active');
-                element.classList.add('active');
+                if (!isModal) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                    navItems.forEach(i => i.classList.remove('active'));
+                    element.classList.add('active');
+                }
                 action();
             });
         };
 
         setupBottomNavLink(navLearn, () => loadSourceData(LEARN_SOURCE));
         setupBottomNavLink(navNews, () => loadSourceData(NEWS_SOURCE));
-        setupBottomNavLink(navChat, () => { chatModal.style.display = 'flex'; });
-        setupBottomNavLink(navSettings, () => { settingsModal.style.display = 'flex'; });
-
+        setupBottomNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
+        setupBottomNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
 
         // --- Other Event Listeners ---
-        searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); });
+        searchInput.addEventListener('input', () => { 
+            searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
+            clearTimeout(searchDebounceTimer); 
+            searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); 
+        });
+        
+        searchClearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            applyFiltersAndSort(true);
+            searchClearBtn.style.display = 'none';
+            searchInput.focus();
+        });
+
         sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
         loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage * projectsPerPage) { paginationContainer.style.display = 'none'; } });
         clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
@@ -400,15 +807,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        document.querySelector('.cp-features-grid').addEventListener('click', e => {
+            e.preventDefault();
+            const featureCard = e.target.closest('.cp-feature-card');
+            if (!featureCard) return;
+
+            switch (featureCard.id) {
+                case 'feature-latest':
+                    sortSelect.value = 'date-desc';
+                    sortSelect.dispatchEvent(new Event('change'));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    break;
+                case 'feature-filter':
+                    searchInput.focus();
+                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    break;
+                case 'feature-customize':
+                    settingsModal.style.display = 'flex';
+                    break;
+                case 'feature-mobile':
+                    guideModal.style.display = 'flex';
+                    break;
+            }
+        });
+
         guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
-        [chatModal, settingsModal, guideModal].forEach(modal => {
+        aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
+        
+        [chatModal, settingsModal, guideModal, aboutModal].forEach(modal => {
             modal.querySelector('.cp-modal-close-btn').addEventListener('click', () => { modal.style.display = 'none'; });
             modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
         });
+        
+        document.getElementById('cp-setting-color').addEventListener('input', e => applySetting('color', e.target.value));
+        document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
+        document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
+        
+        window.addEventListener('online', handleNetworkChange);
+        window.addEventListener('offline', handleNetworkChange);
+        handleNetworkChange();
 
-        // --- Initial Load ---
         sourceTabsContainer.querySelector('.cp-source-tab')?.click();
     }
+    
     init();
 });
 </script>
