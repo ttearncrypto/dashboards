@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
     <meta name="description" content="Your one-stop dashboard for discovering the latest crypto earning projects, investment opportunities, airdrops, news, and more. Curated by the TTEarnCrypto community.">
-    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet">
+    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet, binance, payeer, paypal">
     <meta name="author" content="F9XR, TTEarnCrypto">
     <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/">
 
@@ -21,20 +21,6 @@
     <link rel="icon" href="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" type="image/png">
     
     
-    <!-- Brevo Conversations {literal} -->
-<script>
-    (function(d, w, c) {
-        w.BrevoConversationsID = '6620dfaabdd1d25a8a70fa0c';
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
-        var s = d.createElement('script');
-        s.async = true;
-        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-        if (d.head) d.head.appendChild(s);
-    })(document, window, 'BrevoConversations');
-</script>
-<!-- /Brevo Conversations {/literal} -->
 </head>
 <body>
 
@@ -66,8 +52,8 @@
         <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
         <div class="cp-about-content">
             <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-about-logo">
-            <h3>iCryptos Dashboard</h3>
-            <p>Version 2.3</p>
+            <h3>F9XR's iCryptos Dashboard</h3>
+            <p>Version 2.4</p>
             <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
             <p>Powered by <strong>TTEarnCrypto</strong>.</p>
         </div>
@@ -110,11 +96,26 @@
         <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
         <h2>App Guide:</h2>
         <div class="cp-guide-content">
+            <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Claim List</h5><p>Click the bookmark icon on any project to save it to your "Claim List". Access your list from the <i class="fas fa-tasks"></i> icon in the header to add notes and track your progress.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories</h5><p>Select a category from the top tabs to browse specific types of projects.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar to find projects by name. Click on any tag to filter.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar and wallet dropdown to find projects. Click on any tag to filter.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-share-alt"></i> Share & Copy</h5><p>Use the <i class="fas fa-share-alt"></i> icon to share a project, or the <i class="fas fa-copy"></i> icon to copy its link.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-redo"></i> Reload</h5><p>On mobile, swipe down from the top of the list to refresh the content.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-link"></i> Project Actions</h5><p>Tap "View Project" to open the project link. Tap the <i class="fas fa-copy"></i> icon to copy the link.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-compass"></i> Bottom Navigation</h5><p>Use the bottom bar for quick access to Learn, Chat, News, and Settings.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-compass"></i> Bottom Navigation</h5><p>Use the bottom bar for quick access to Chat, News, Settings, and more.</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- Claim List Modal -->
+<div id="cp-claim-list-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel cp-modal-panel-large">
+        <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>My Claim List</h2>
+        <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
+            <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any project to save it here. You can add notes to track your claims!</p>
+        </div>
+        <div id="cp-claim-list-content" class="cp-claim-list-content">
+            <!-- Saved items will be injected here by JS -->
         </div>
     </div>
 </div>
@@ -131,6 +132,7 @@
                 <h1 class="cp-title">iCryptos</h1>
             </div>
             <div class="cp-header-actions">
+                <i class="fas fa-tasks" id="cp-claim-list-btn" title="Claim List"></i>
                 <i class="fas fa-question-circle" id="cp-guide-btn" title="App Guide"></i>
                 <div class="cp-sort-container">
                     <select id="cp-sort-select">
@@ -143,8 +145,15 @@
                 </div>
             </div>
         </header>
-
         
+        <!-- Announcements Section -->
+        <section class="cp-announcement-section" id="cp-announcement-section">
+            <div class="cp-announcement-content">
+                <i class="fas fa-bullhorn"></i>
+                <p id="cp-announcement-text">Welcome to iCryptos v2.4! You can now save projects to a "Claim List" and add notes!</p>
+            </div>
+            <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
+        </section>
 
         <div class="cp-source-tabs-wrapper">
             <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
@@ -165,6 +174,20 @@
                 <input type="text" id="cp-search-input" placeholder="Search projects...">
                 <button id="cp-search-clear-btn" style="display: none;" title="Clear Search">×</button>
             </div>
+             <!-- Wallet Filter -->
+            <div class="cp-wallet-filter-wrapper">
+                <i class="fas fa-wallet"></i>
+                <select id="cp-wallet-select">
+                    <option value="all">All Wallets</option>
+                    <option value="Binance">Binance</option>
+                    <option value="Paytm">Paytm</option>
+                    <option value="FaucetPay">FaucetPay</option>
+                    <option value="Cwallet">Cwallet</option>
+                    <option value="Payeer">Payeer</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="Direct Wallet">Direct Wallet</option>
+                </select>
+            </div>
             <div id="cp-active-filter-container" style="display: none;">
                  <span id="cp-active-filter-tag"></span>
                  <button id="cp-clear-filter-btn">×</button>
@@ -183,10 +206,9 @@
         <section class="cp-info-section" id="cp-whats-new-section">
             <h2>What's New?</h2>
             <ul>
-                <li>Version 2.3: Added search clear button and auto scroll-to-top.</li>
-                <li>Fully adaptive banner slider for all image sizes.</li>
-                <li>UI enhancements and performance improvements.</li>
-                <li>Features section is now at the bottom and fully interactive.</li>
+                <li>Version 2.4: Added Claim List (Todo) feature, Global Tags section, and Wallet filtering.</li>
+                <li>Added project Share button and dismissible Announcements.</li>
+                <li>UI enhancements for filtering and actions.</li>
             </ul>
             <div class="cp-info-actions">
                 <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send Feedback / Report Bugs</a>
@@ -204,13 +226,21 @@
             </div>
         </section>
         
-
-<div class="cp-features-grid">
+        <div class="cp-features-grid">
             <a href="#" id="feature-latest" class="cp-feature-card"><i class="fas fa-bolt"></i><span>Latest Projects</span></a>
             <a href="#" id="feature-filter" class="cp-feature-card"><i class="fas fa-tags"></i><span>Filter & Search</span></a>
             <a href="#" id="feature-customize" class="cp-feature-card"><i class="fas fa-palette"></i><span>Customize</span></a>
             <a href="#" id="feature-mobile" class="cp-feature-card"><i class="fas fa-question-circle"></i><span>App Guide</span></a>
         </div>
+
+        <!-- Tags Section -->
+        <section class="cp-info-section" id="cp-all-tags-section">
+            <h2>Tags</h2>
+            <div id="cp-all-tags-container" class="cp-all-tags-container">
+                <!-- Tags will be injected by JS -->
+                <p class="cp-secondary-text">Loading tags...</p>
+            </div>
+        </section>
     </main>
 
     <footer class="cp-footer">
@@ -251,34 +281,28 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-app-logo { width: 40px; height: 40px; }
 .cp-title { font-size: 1.75rem; font-weight: 700; margin: 0; }
 .cp-header-actions { display: flex; align-items: center; gap: 8px; }
-#cp-guide-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
-#cp-guide-btn:hover { color: var(--cp-purple); }
+#cp-guide-btn, #cp-claim-list-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
+#cp-guide-btn:hover, #cp-claim-list-btn:hover { color: var(--cp-purple); }
 .cp-sort-container { position: relative; display: flex; align-items: center; }
 #cp-sort-select { position: absolute; top: 0; right: 0; opacity: 0; width: 36px; height: 36px; cursor: pointer; }
 #cp-filter-icon { font-size: 1.2rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; }
 
+/* Announcement Section */
+.cp-announcement-section { background: linear-gradient(45deg, var(--cp-purple), #8a7dff); color: white; padding: 12px 40px 12px 20px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; position: relative; box-shadow: 0 5px 15px rgba(106, 90, 224, 0.3); }
+.cp-announcement-content { display: flex; align-items: center; gap: 15px; }
+.cp-announcement-content i { font-size: 1.5rem; }
+.cp-announcement-content p { margin: 0; font-weight: 500; line-height: 1.4; font-size: 0.9rem; }
+.cp-announcement-close-btn { position: absolute; top: 50%; right: 5px; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 5px; }
+.cp-announcement-close-btn:hover { color: white; }
+
 /* Banner Slider */
-.cp-banner-slider-wrapper { 
-    position: relative; 
-    margin-bottom: 20px; 
-    border-radius: var(--cp-radius); 
-    overflow: hidden; 
-    box-shadow: var(--cp-shadow); 
-    background-color: var(--cp-light-bg);
-    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.cp-banner-slider-wrapper { position: relative; margin-bottom: 20px; border-radius: var(--cp-radius); overflow: hidden; box-shadow: var(--cp-shadow); background-color: var(--cp-light-bg); transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 .cp-banner-slider { display: flex; transition: transform 0.5s ease-in-out; }
 .cp-banner-slide { width: 100%; flex-shrink: 0; }
-.cp-banner-slide img { 
-    display: block; 
-    width: 100%; 
-    height: auto; 
-    max-width: 100%;
-}
+.cp-banner-slide img { display: block; width: 100%; height: auto; max-width: 100%; }
 .cp-banner-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; padding: 5px; background: rgba(0,0,0,0.2); border-radius: 10px; }
 .cp-banner-dot { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); cursor: pointer; transition: all 0.3s; }
 .cp-banner-dot.active { background-color: white; transform: scale(1.2); }
-
 
 /* Features */
 .cp-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0; }
@@ -291,13 +315,16 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-source-tabs { display: flex; gap: 5px; white-space: nowrap; }
 .cp-source-tab { padding: 8px 16px; border: none; background-color: transparent; color: var(--cp-secondary-text); border-radius: 10px; font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
 .cp-source-tab.active { background: var(--cp-card-bg); color: var(--cp-primary-text); font-weight: 600; box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1); }
-.cp-filter-bar { margin-bottom: 25px; }
-.cp-search-wrapper { position: relative; }
-#cp-search-input { width: 100%; padding: 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
+.cp-filter-bar { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; margin-bottom: 25px; }
+.cp-search-wrapper { position: relative; flex-grow: 1; }
+#cp-search-input { width: 100%; padding: 14px 45px 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
 .cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
-/* Search Clear Button */
 #cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
 #cp-search-clear-btn:hover { color: var(--cp-primary-text); }
+/* Wallet Filter */
+.cp-wallet-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; }
+.cp-wallet-filter-wrapper .fa-wallet { color: var(--cp-secondary-text); margin-right: 10px; }
+#cp-wallet-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
 
 #cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-bg); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
@@ -315,16 +342,24 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-card-wallet { font-size: 0.8rem; font-weight: 500; color: var(--cp-secondary-text); padding: 4px 8px; border-radius: 6px; background-color: var(--cp-light-bg); display: inline-block; margin-top: 8px; }
 .cp-card-wallet.faucetpay { background-color: #e6f7ff; color: #1890ff; }
 .cp-card-wallet.cwallet { background-color: #e6fffb; color: #13c2c2; }
+.cp-card-wallet.binance { background-color: #f0b90b26; color: #b48909; }
+.cp-card-wallet.paytm { background-color: #00b9f126; color: #008ac4; }
+.cp-card-wallet.payeer { background-color: #007bff26; color: #0056b3; }
+.cp-card-wallet.paypal { background-color: #00308726; color: #003087; }
+.cp-card-wallet.direct-wallet { background-color: #e9eef7; color: #5a6ac0; }
+
 .cp-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+.cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; border: none; font-family: inherit; }
 .cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-bg); color: var(--cp-purple); }
-.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); align-items: center; flex-wrap: wrap; }
+.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); align-items: center; flex-wrap: wrap; justify-content: space-between;}
 .cp-view-btn { flex-grow: 1; text-align: center; padding: 12px; background: var(--cp-purple); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
 .cp-view-btn:hover { opacity: 0.9; }
 .cp-view-btn:disabled { background: #B0B0C0; cursor: not-allowed; }
-.cp-copy-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid #E2E2EA; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
-.cp-copy-btn:hover { background-color: var(--cp-bg); color: var(--cp-purple); }
+.cp-card-action-buttons { display: flex; gap: 10px; }
+.cp-copy-btn, .cp-share-btn, .cp-save-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid #E2E2EA; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
+.cp-copy-btn:hover, .cp-share-btn:hover, .cp-save-btn:hover { background-color: var(--cp-bg); color: var(--cp-purple); }
 .cp-copy-btn:disabled { cursor: default; }
+.cp-save-btn i.fas.fa-bookmark { color: var(--cp-purple); }
 .cp-not-active-btn { width: 100%; text-align: center; padding: 10px; background: var(--cp-red); color: white; border-radius: 12px; font-weight: 600; font-size: 0.9rem; border: none; margin-bottom: 10px; order: -1; }
 
 /* Skeleton Loader */
@@ -375,6 +410,17 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-guide-item p { margin: 0; font-size: 0.9rem; color: var(--cp-secondary-text); line-height: 1.5; padding-left: 30px; }
 .cp-guide-item p i { font-size: 0.9em; }
 
+/* Claim List Modal Styles */
+#cp-claim-list-guide { background-color: var(--cp-light-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; color: var(--cp-primary-text); }
+#cp-claim-list-guide i { color: var(--cp-purple); }
+.cp-claim-list-content { height: calc(100% - 80px); overflow-y: auto; }
+.cp-claim-item { background: #fff; border: 1px solid var(--cp-bg); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+.cp-claim-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.cp-claim-item-title { margin: 0; font-size: 1.1rem; }
+.cp-claim-item-remove-btn { background: none; border: none; font-size: 1.5rem; color: var(--cp-red); cursor: pointer; }
+.cp-claim-item-link { display: inline-block; margin-bottom: 15px; font-size: 0.9rem; color: var(--cp-purple); }
+.cp-claim-item-notes { width: 100%; min-height: 60px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; resize: vertical; }
+
 /* Network Error Modal */
 .cp-network-error-content { text-align: center; }
 .cp-network-error-content i { font-size: 3rem; color: var(--cp-red); margin-bottom: 20px; }
@@ -395,16 +441,10 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-social-icons { display: flex; justify-content: center; gap: 20px; padding: 10px 0; }
 .cp-social-icons a { color: var(--cp-secondary-text); font-size: 2rem; transition: color 0.2s ease, transform 0.2s ease; }
 .cp-social-icons a:hover { color: var(--cp-purple); transform: scale(1.1); }
+.cp-all-tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* Footer - IMPROVED */
-.cp-footer { 
-    padding: 20px; 
-    text-align: center; 
-    font-size: 1.25rem; /* Further Increased size */
-    font-weight: 600;  /* Bolder */
-    color: var(--cp-secondary-text); 
-    line-height: 1.6; 
-}
+.cp-footer { padding: 20px; text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--cp-secondary-text); line-height: 1.6; }
 </style>
 
 <script>
@@ -415,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('cp-search-input');
     const searchClearBtn = document.getElementById('cp-search-clear-btn');
     const sortSelect = document.getElementById('cp-sort-select');
+    const walletSelect = document.getElementById('cp-wallet-select');
     const listBody = document.getElementById('cp-list-body');
     const feedbackMessage = document.getElementById('cp-feedback-message');
     const paginationContainer = document.getElementById('cp-pagination-container');
@@ -425,17 +466,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const bannerSliderWrapper = document.getElementById('cp-banner-slider-wrapper');
     const bannerSlider = document.getElementById('cp-banner-slider');
     const bannerDots = document.getElementById('cp-banner-dots');
+    const allTagsSection = document.getElementById('cp-all-tags-section');
 
     // === Modals ===
     const chatModal = document.getElementById('cp-chat-modal');
     const settingsModal = document.getElementById('cp-settings-modal');
     const guideModal = document.getElementById('cp-guide-modal');
     const aboutModal = document.getElementById('cp-about-modal');
+    const claimListModal = document.getElementById('cp-claim-list-modal');
     const networkErrorModal = document.getElementById('cp-network-error-modal');
     
     // === Buttons ===
     const guideBtn = document.getElementById('cp-guide-btn');
     const aboutBtn = document.getElementById('cp-about-btn');
+    const claimListBtn = document.getElementById('cp-claim-list-btn');
     const navItems = document.querySelectorAll('.cp-nav-item');
     const navLearn = document.getElementById('cp-nav-learn');
     const navChat = document.getElementById('cp-nav-chat');
@@ -456,9 +500,60 @@ document.addEventListener('DOMContentLoaded', () => {
         { img: 'https://i.imgur.com/Qrd6ERS.jpeg', url: '#' },
         { img: 'https://i.imgur.com/UmgaqgB.jpeg', url: '#' },
     ];
+    const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'Payeer', 'Paypal'];
     let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
     let currentPage = 1, projectsPerPage = 10;
     let activeTag = null, searchDebounceTimer, bannerInterval;
+
+    // === Claim List (Todo) Logic ===
+    const CLAIM_LIST_KEY = 'cp-claimList';
+    const CLAIM_GUIDE_SEEN_KEY = 'cp-claimGuideSeen';
+
+    const getClaimList = () => JSON.parse(localStorage.getItem(CLAIM_LIST_KEY)) || [];
+    const saveClaimList = (list) => localStorage.setItem(CLAIM_LIST_KEY, JSON.stringify(list));
+    
+    function addToClaimList(project) {
+        const list = getClaimList();
+        if (!list.some(p => p.id === project.id)) {
+            list.unshift({ id: project.id, name: project.name, url: project.url, notes: '' });
+            saveClaimList(list);
+        }
+    }
+
+    function removeFromClaimList(projectId) {
+        saveClaimList(getClaimList().filter(p => p.id !== projectId));
+    }
+    
+    function updateClaimNote(projectId, notes) {
+        const list = getClaimList();
+        const item = list.find(p => p.id === projectId);
+        if (item) {
+            item.notes = notes;
+            saveClaimList(list);
+        }
+    }
+    
+    function renderClaimList() {
+        const contentEl = document.getElementById('cp-claim-list-content');
+        const list = getClaimList();
+        
+        if (list.length === 0) {
+            contentEl.innerHTML = `<div class="cp-feedback-message"><i class="far fa-folder-open"></i><p>Your claim list is empty.</p></div>`;
+            return;
+        }
+
+        contentEl.innerHTML = list.map(item => `
+            <div class="cp-claim-item" data-id="${item.id}">
+                <div class="cp-claim-item-header">
+                    <h4 class="cp-claim-item-title">${item.name}</h4>
+                    <button class="cp-claim-item-remove-btn" title="Remove from list">×</button>
+                </div>
+                <a href="${item.url}" target="_blank" class="cp-claim-item-link">View Project</a>
+                <textarea class="cp-claim-item-notes" placeholder="Add your notes here...">${item.notes}</textarea>
+            </div>
+        `).join('');
+    }
+
 
     // === Main Functions ===
     
@@ -484,24 +579,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderSkeletonLoaders() {
         listBody.innerHTML = '';
-        const skeletonHTML = `
-            <div class="cp-skeleton-card">
-                <div class="cp-skeleton-header">
-                    <div class="cp-skeleton-icon skeleton"></div>
-                    <div class="cp-skeleton-title-group">
-                        <div class="cp-skeleton-line skeleton"></div>
-                        <div class="cp-skeleton-line short skeleton"></div>
-                    </div>
-                </div>
-                <div class="cp-skeleton-tags">
-                    <div class="cp-skeleton-tag skeleton"></div>
-                    <div class="cp-skeleton-tag skeleton"></div>
-                </div>
-                <div class="cp-skeleton-button skeleton"></div>
-            </div>`;
-        for (let i = 0; i < 5; i++) {
-            listBody.innerHTML += skeletonHTML;
-        }
+        const skeletonHTML = `<div class="cp-skeleton-card"><div class="cp-skeleton-header"><div class="cp-skeleton-icon skeleton"></div><div class="cp-skeleton-title-group"><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line short skeleton"></div></div></div><div class="cp-skeleton-tags"><div class="cp-skeleton-tag skeleton"></div><div class="cp-skeleton-tag skeleton"></div></div><div class="cp-skeleton-button skeleton"></div></div>`;
+        for (let i = 0; i < 5; i++) listBody.innerHTML += skeletonHTML;
     }
 
     function renderListItems(projects, append = false) {
@@ -510,6 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
         
         const fragment = document.createDocumentFragment();
+        const claimList = getClaimList();
+
         projects.forEach(project => {
             const card = document.createElement('div');
             const isInactive = project.tags.includes('NotActive');
@@ -517,16 +598,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let walletType = 'Direct Wallet';
             let walletClass = 'direct-wallet';
-            if (project.tags.includes('FaucetPay')) { walletType = 'FaucetPay'; walletClass = 'faucetpay'; }
-            else if (project.tags.includes('Cwallet')) { walletType = 'Cwallet'; walletClass = 'cwallet'; }
+            for (const w of WALLETS) {
+                if (project.tags.includes(w)) {
+                    walletType = w;
+                    walletClass = w.toLowerCase();
+                    break;
+                }
+            }
 
-            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive');
+            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
             const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
             const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             
             const isInformational = project.sourceName === 'News & Codes' || project.sourceName === 'Learn';
             const buttonText = isInformational ? 'Read More' : 'View Project';
             const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
+            const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
+            
+            const isSaved = claimList.some(item => item.id === project.id);
+            const saveButtonHTML = `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>`;
 
             card.innerHTML = `
                 <div class="cp-card-header">
@@ -536,14 +626,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="cp-card-date">Added: ${formattedDate}</p>
                     </div>
                 </div>
-                <div>
-                     <span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span>
-                </div>
-                <div class="cp-card-tags">${tagsHTML}</div>
+                <div><span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span></div>
+                ${tagsHTML.length > 0 ? `<div class="cp-card-tags">${tagsHTML}</div>` : ''}
                 <div class="cp-card-actions">
                     ${isInactive ? '<button class="cp-not-active-btn" disabled>Status: Not Active</button>' : ''}
                     <a href="${project.url}" target="_blank" class="cp-view-btn" ${isInactive ? 'disabled' : ''}>${buttonText}</a>
-                    ${copyButtonHTML}
+                    <div class="cp-card-action-buttons">
+                        ${!isInformational ? shareButtonHTML : ''}
+                        ${copyButtonHTML}
+                        ${!isInformational ? saveButtonHTML : ''}
+                    </div>
                 </div>`;
             fragment.appendChild(card);
         });
@@ -555,6 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let projects = [...allProjects];
         const searchTerm = searchInput.value.toLowerCase().trim();
         const sortOrder = sortSelect.value;
+        const selectedWallet = walletSelect.value;
 
         if (activeTag) { 
             projects = projects.filter(p => p.tags.includes(activeTag)); 
@@ -564,12 +657,20 @@ document.addEventListener('DOMContentLoaded', () => {
             activeFilterContainer.style.display = 'none'; 
         }
         if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
+        
+        if (selectedWallet !== 'all') {
+            if (selectedWallet === 'Direct Wallet') {
+                projects = projects.filter(p => !WALLETS.some(w => p.tags.includes(w)));
+            } else {
+                projects = projects.filter(p => p.tags.includes(selectedWallet));
+            }
+        }
 
         switch (sortOrder) { 
             case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; 
             case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; 
             case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; 
-            case 'date-desc': projects.sort((a, b) => b.publishedDate - a.publishedDate); break; 
+            default: projects.sort((a, b) => b.publishedDate - a.publishedDate); break; 
         }
         
         displayedProjects = projects;
@@ -595,11 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dataCache[source.url] = projects; 
             } catch (error) { 
                 console.error("Fetch Error:", error);
-                if (!navigator.onLine) {
-                    showFeedback('You are offline. Please check your connection.', 'fa-wifi');
-                } else {
-                    showFeedback('Could not load projects. Please try again.', 'fa-exclamation-triangle');
-                }
+                showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
                 return; 
             }
         }
@@ -611,249 +708,128 @@ document.addEventListener('DOMContentLoaded', () => {
         sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
     }
 
-    // === Banners - Adaptive height ===
     function setupBanners() {
-        bannerSlider.innerHTML = BANNERS.map(banner => `
-            <a href="${banner.url}" target="_blank" class="cp-banner-slide">
-                <img src="${banner.img}" alt="Promotional Banner">
-            </a>
-        `).join('');
-
+        if (BANNERS.length === 0) { bannerSliderWrapper.style.display = 'none'; return; }
+        bannerSlider.innerHTML = BANNERS.map(b => `<a href="${b.url}" target="_blank" class="cp-banner-slide"><img src="${b.img}" alt="Promotional Banner"></a>`).join('');
         bannerDots.innerHTML = BANNERS.map((_, i) => `<div class="cp-banner-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></div>`).join('');
         
         let currentSlide = 0;
-        const slides = bannerSlider.children;
-        const dots = bannerDots.children;
-        const images = bannerSlider.querySelectorAll('img');
+        const slides = bannerSlider.children, dots = bannerDots.children, images = bannerSlider.querySelectorAll('img');
 
-        const setSliderHeight = (img) => {
-            if (!img || !img.naturalWidth || !img.naturalHeight) return;
-            const sliderWidth = bannerSliderWrapper.offsetWidth;
-            const aspectRatio = img.naturalHeight / img.naturalWidth;
-            const newHeight = sliderWidth * aspectRatio;
-            bannerSliderWrapper.style.height = `${newHeight}px`;
-        };
-        
-        images.forEach((img, index) => {
-            if (img.complete) {
-                if (index === 0) setSliderHeight(img);
-            } else {
-                img.onload = () => {
-                    if (index === 0) setSliderHeight(img);
-                };
-            }
-        });
-
-        function showSlide(index) {
-            bannerSlider.style.transform = `translateX(-${index * 100}%)`;
-            [...dots].forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            
-            const activeImage = images[index];
-            setSliderHeight(activeImage);
-            
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        bannerDots.addEventListener('click', e => {
-            if (e.target.matches('.cp-banner-dot')) {
-                const slideIndex = parseInt(e.target.dataset.slide, 10);
-                showSlide(slideIndex);
-                resetBannerInterval();
-            }
-        });
-
-        function resetBannerInterval() {
-            clearInterval(bannerInterval);
-            bannerInterval = setInterval(nextSlide, 5000);
-        }
-        
+        const setSliderHeight = (img) => { if (!img || !img.naturalWidth) return; bannerSliderWrapper.style.height = `${bannerSliderWrapper.offsetWidth * (img.naturalHeight / img.naturalWidth)}px`; };
+        images.forEach((img, i) => { if (img.complete) { if(i===0) setSliderHeight(img); } else { img.onload = () => { if(i===0) setSliderHeight(img); }; } });
+        const showSlide = i => { bannerSlider.style.transform = `translateX(-${i*100}%)`; [...dots].forEach(d=>d.classList.remove('active')); dots[i].classList.add('active'); setSliderHeight(images[i]); currentSlide=i; };
+        const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
+        const resetBannerInterval = () => { clearInterval(bannerInterval); bannerInterval = setInterval(nextSlide, 5000); };
+        bannerDots.addEventListener('click', e => { if (e.target.matches('.cp-banner-dot')) { showSlide(parseInt(e.target.dataset.slide)); resetBannerInterval(); } });
+        window.addEventListener('resize', () => setSliderHeight(images[currentSlide]));
         resetBannerInterval();
-        
-        window.addEventListener('resize', () => {
-             const activeImage = images[currentSlide];
-             setSliderHeight(activeImage);
-        });
     }
     
-    // === Helpers & Utilities ===
-    const showFeedback = (message, iconClass) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
-    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
-    const applySetting = (key, value) => { const prop = `--cp-${key.replace('font-size', 'base-font-size').replace('font-family', 'font-family').replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
-    const loadSettings = () => { const color = localStorage.getItem('cp-setting-color') || '#6A5AE0'; const fontFamily = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; const fontSize = localStorage.getItem('cp-setting-font-size') || '16px'; applySetting('color', color); applySetting('font-family', fontFamily); applySetting('font-size', fontSize); document.getElementById('cp-setting-color').value = color; document.getElementById('cp-setting-font-family').value = fontFamily; document.getElementById('cp-setting-font-size').value = fontSize; };
-
-    // === Network & Pull-to-Refresh ===
-    function handleNetworkChange() {
-        if (navigator.onLine) {
-            networkErrorModal.style.display = 'none';
-        } else {
-            networkErrorModal.style.display = 'flex';
-        }
+    function renderAllTags() {
+        const container = document.getElementById('cp-all-tags-container');
+        const tags = new Set();
+        const excluded = [...WALLETS, 'NotActive'];
+        Object.values(dataCache).flat().forEach(p => p.tags.forEach(t => { if (!excluded.includes(t)) tags.add(t); }));
+        const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b));
+        container.innerHTML = sorted.length > 0 ? sorted.map(t => `<button class="cp-tag" data-tag="${t}">${t}</button>`).join('') : '<p class="cp-secondary-text">No tags to display yet.</p>';
     }
 
-    function setupPullToRefresh() {
-        let startY = 0;
-        let isPulling = false;
-        const pullThreshold = 80;
-        const indicator = document.getElementById('cp-pull-to-refresh-indicator');
-        const mainContent = document.querySelector('.cp-main-content');
-
-        const resetIndicator = () => {
-            indicator.style.transition = 'transform 0.3s ease';
-            indicator.style.transform = 'translateY(-100%)';
-            mainContent.style.transition = 'transform 0.3s ease';
-            mainContent.style.transform = 'translateY(0)';
-            setTimeout(() => {
-                indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`;
-            }, 300);
-        };
-
-        appContainer.addEventListener('touchstart', e => {
-            if (window.scrollY === 0) {
-                startY = e.touches[0].pageY;
-                isPulling = true;
-                indicator.style.transition = 'transform 0s';
-                mainContent.style.transition = 'transform 0s';
-            }
-        }, { passive: true });
-
-        appContainer.addEventListener('touchmove', e => {
-            if (!isPulling || !e.touches[0]) return;
-            const pullDistance = e.touches[0].pageY - startY;
-            if (pullDistance > 0) {
-                e.preventDefault();
-                const translateValue = Math.min(pullDistance * 0.5, pullThreshold * 1.2);
-                indicator.style.transform = `translateY(${translateValue - indicator.offsetHeight}px)`;
-                mainContent.style.transform = `translateY(${translateValue}px)`;
-
-                if (pullDistance > pullThreshold) {
-                    indicator.innerHTML = `<i class="fas fa-sync-alt fa-spin"></i>`;
-                } else {
-                    indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`;
-                }
-            }
-        }, { passive: false });
-
-        appContainer.addEventListener('touchend', e => {
-            if (!isPulling) return;
-            isPulling = false;
-            const pullDistance = e.changedTouches[0].pageY - startY;
-
-            if (pullDistance > pullThreshold) {
-                indicator.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
-                if (currentSource) {
-                    loadSourceData(currentSource, true).finally(resetIndicator);
-                } else {
-                    setTimeout(resetIndicator, 500);
-                }
-            } else {
-                resetIndicator();
+    async function fetchAllSourcesForTags() {
+        const all = [...SOURCE_CONFIG, NEWS_SOURCE, LEARN_SOURCE];
+        const promises = all.map(async (source) => {
+            if (!dataCache[source.url]) {
+                try {
+                    const cb = `cb_bg_${Date.now()}_${Math.random().toString(36).substr(2,5)}`;
+                    const d = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, cb);
+                    dataCache[source.url] = processEntries(d.feed.entry, source);
+                } catch (e) { console.warn(`Could not pre-fetch ${source.name}`); }
             }
         });
+        await Promise.all(promises);
+        renderAllTags();
+    }
+    
+    const showFeedback = (message, icon) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
+    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
+    const applySetting = (key, value) => { const prop = `--cp-${key.replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
+    const loadSettings = () => { applySetting('color', localStorage.getItem('cp-setting-color') || '#6A5AE0'); applySetting('font-family', localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"); applySetting('font-size', localStorage.getItem('cp-setting-font-size') || '16px'); document.getElementById('cp-setting-color').value = localStorage.getItem('cp-setting-color') || '#6A5AE0'; document.getElementById('cp-setting-font-family').value = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; document.getElementById('cp-setting-font-size').value = localStorage.getItem('cp-setting-font-size') || '16px'; };
+
+    function handleNetworkChange() { networkErrorModal.style.display = navigator.onLine ? 'none' : 'flex'; }
+
+    function setupPullToRefresh() {
+        let startY=0, isPulling=false; const threshold=80, indicator=document.getElementById('cp-pull-to-refresh-indicator'), main=document.querySelector('.cp-main-content');
+        const reset = () => { indicator.style.transition = 'transform 0.3s'; indicator.style.transform = 'translateY(-100%)'; main.style.transition = 'transform 0.3s'; main.style.transform = 'translateY(0)'; setTimeout(() => indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`, 300); };
+        appContainer.addEventListener('touchstart', e => { if (window.scrollY===0) { startY = e.touches[0].pageY; isPulling=true; indicator.style.transition='transform 0s'; main.style.transition='transform 0s';}}, {passive:true});
+        appContainer.addEventListener('touchmove', e => { if (!isPulling || !e.touches[0]) return; const dist=e.touches[0].pageY-startY; if (dist > 0) { e.preventDefault(); const val=Math.min(dist*0.5, threshold*1.2); indicator.style.transform=`translateY(${val - indicator.offsetHeight}px)`; main.style.transform=`translateY(${val}px)`; indicator.innerHTML = `<i class="fas ${dist > threshold ? 'fa-sync-alt fa-spin' : 'fa-arrow-down'}"></i>`; }}, {passive:false});
+        appContainer.addEventListener('touchend', e => { if (!isPulling) return; isPulling=false; if ((e.changedTouches[0].pageY-startY) > threshold) { indicator.innerHTML=`<i class="fas fa-spinner fa-spin"></i>`; if (currentSource) { loadSourceData(currentSource, true).finally(reset); } else { setTimeout(reset, 500); }} else { reset(); }});
     }
 
-    // === Initialization ===
     function init() {
         loadSettings();
         renderSourceTabs();
         setupBanners();
         setupPullToRefresh();
-        
-        // --- Centralized Navigation Logic ---
-        sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
-                navItems.forEach(i => i.classList.remove('active'));
-                sourceTabsContainer.querySelector('.active')?.classList.remove('active');
-                e.currentTarget.classList.add('active');
-                const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
-                if (source) loadSourceData(source);
-            });
-        });
+        fetchAllSourcesForTags(); // Pre-fetch all data for tag cloud
 
-        const setupBottomNavLink = (element, action, isModal = false) => {
-            element.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (!isModal) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
-                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
-                    navItems.forEach(i => i.classList.remove('active'));
-                    element.classList.add('active');
-                }
-                action();
-            });
-        };
+        sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navItems.forEach(i => i.classList.remove('active'));
+            sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+            e.currentTarget.classList.add('active');
+            const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
+            if (source) loadSourceData(source);
+        }));
 
-        setupBottomNavLink(navLearn, () => loadSourceData(LEARN_SOURCE));
-        setupBottomNavLink(navNews, () => loadSourceData(NEWS_SOURCE));
-        setupBottomNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
-        setupBottomNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
+        const setupNavLink = (el, action, isModal=false) => el.addEventListener('click', (e) => { e.preventDefault(); if (!isModal) { window.scrollTo({ top: 0, behavior: 'smooth' }); sourceTabsContainer.querySelector('.active')?.classList.remove('active'); navItems.forEach(i=>i.classList.remove('active')); el.classList.add('active'); } action(); });
+        setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE));
+        setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE));
+        setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
+        setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
 
-        // --- Other Event Listeners ---
-        searchInput.addEventListener('input', () => { 
-            searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
-            clearTimeout(searchDebounceTimer); 
-            searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); 
-        });
-        
-        searchClearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            applyFiltersAndSort(true);
-            searchClearBtn.style.display = 'none';
-            searchInput.focus();
-        });
-
+        searchInput.addEventListener('input', () => { searchClearBtn.style.display=searchInput.value.length > 0?'block':'none'; clearTimeout(searchDebounceTimer); searchDebounceTimer=setTimeout(() => applyFiltersAndSort(true), 300); });
+        searchClearBtn.addEventListener('click', () => { searchInput.value=''; applyFiltersAndSort(true); searchClearBtn.style.display='none'; searchInput.focus(); });
         sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
-        loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage * projectsPerPage) { paginationContainer.style.display = 'none'; } });
+        walletSelect.addEventListener('change', () => applyFiltersAndSort(true));
+        loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage-1)*projectsPerPage, currentPage*projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage*projectsPerPage) { paginationContainer.style.display='none'; } });
         clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
 
         listBody.addEventListener('click', (e) => {
-            if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); return; }
+            const tagBtn = e.target.closest('.cp-tag');
+            if (tagBtn) { activeTag = tagBtn.dataset.tag; applyFiltersAndSort(true); return; }
             const copyBtn = e.target.closest('.cp-copy-btn');
-            if (copyBtn) {
-                navigator.clipboard.writeText(copyBtn.dataset.url).then(() => {
-                    copyBtn.innerHTML = '<i class="fas fa-check"></i>'; copyBtn.disabled = true;
-                    setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy"></i>'; copyBtn.disabled = false; }, 1500);
-                }).catch(err => { console.error('Failed to copy: ', err); alert('Failed to copy link.'); });
-            }
+            if (copyBtn) { navigator.clipboard.writeText(copyBtn.dataset.url).then(() => { copyBtn.innerHTML='<i class="fas fa-check"></i>'; copyBtn.disabled=true; setTimeout(() => { copyBtn.innerHTML='<i class="fas fa-copy"></i>'; copyBtn.disabled=false; }, 1500); }); return; }
+            const shareBtn = e.target.closest('.cp-share-btn');
+            if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
+            const saveBtn = e.target.closest('.cp-save-btn');
+            if (saveBtn) { const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url }; const i=saveBtn.querySelector('i'); if (getClaimList().some(item=>item.id===p.id)) { removeFromClaimList(p.id); i.className='far fa-bookmark'; saveBtn.title='Add to Claim List'; } else { addToClaimList(p); i.className='fas fa-bookmark'; saveBtn.title='Remove from Claim List'; } return; }
         });
+        
+        allTagsSection.addEventListener('click', e => { if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
 
         document.querySelector('.cp-features-grid').addEventListener('click', e => {
-            e.preventDefault();
-            const featureCard = e.target.closest('.cp-feature-card');
-            if (!featureCard) return;
-
-            switch (featureCard.id) {
-                case 'feature-latest':
-                    sortSelect.value = 'date-desc';
-                    sortSelect.dispatchEvent(new Event('change'));
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    break;
-                case 'feature-filter':
-                    searchInput.focus();
-                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    break;
-                case 'feature-customize':
-                    settingsModal.style.display = 'flex';
-                    break;
-                case 'feature-mobile':
-                    guideModal.style.display = 'flex';
-                    break;
+            e.preventDefault(); const card = e.target.closest('.cp-feature-card'); if (!card) return;
+            switch (card.id) {
+                case 'feature-latest': sortSelect.value = 'date-desc'; sortSelect.dispatchEvent(new Event('change')); window.scrollTo({top:0,behavior:'smooth'}); break;
+                case 'feature-filter': searchInput.focus(); searchInput.scrollIntoView({ behavior:'smooth', block:'center' }); break;
+                case 'feature-customize': settingsModal.style.display = 'flex'; break;
+                case 'feature-mobile': guideModal.style.display = 'flex'; break;
             }
         });
 
         guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
         aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
-        
-        [chatModal, settingsModal, guideModal, aboutModal].forEach(modal => {
-            modal.querySelector('.cp-modal-close-btn').addEventListener('click', () => { modal.style.display = 'none'; });
-            modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
-        });
+        claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; if (!localStorage.getItem(CLAIM_GUIDE_SEEN_KEY)) { document.getElementById('cp-claim-list-guide').style.display = 'block'; localStorage.setItem(CLAIM_GUIDE_SEEN_KEY, 'true'); } else { document.getElementById('cp-claim-list-guide').style.display = 'none'; } });
+
+        [chatModal, settingsModal, guideModal, aboutModal, claimListModal].forEach(m => { m.querySelector('.cp-modal-close-btn').addEventListener('click', () => { m.style.display='none'; }); m.addEventListener('click', e => { if(e.target===m) m.style.display='none'; }); });
+
+        claimListModal.addEventListener('click', e => { if (e.target.matches('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className='far fa-bookmark'; cardBtn.title='Add to Claim List'; }} });
+        claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
+
+        const annSection = document.getElementById('cp-announcement-section');
+        const annID = 'announcement_v2.4';
+        if (localStorage.getItem('closedAnnouncement') === annID) annSection.style.display = 'none';
+        document.getElementById('cp-announcement-close-btn').addEventListener('click', () => { annSection.style.display = 'none'; localStorage.setItem('closedAnnouncement', annID); });
         
         document.getElementById('cp-setting-color').addEventListener('input', e => applySetting('color', e.target.value));
         document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
