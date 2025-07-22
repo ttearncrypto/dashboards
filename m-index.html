@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
+    <title>F9XR's iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
     <meta name="description" content="Your one-stop dashboard for discovering the latest crypto earning projects, investment opportunities, airdrops, news, and more. Curated by the TTEarnCrypto community.">
     <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet, binance, payeer, paypal">
     <meta name="author" content="F9XR, TTEarnCrypto">
@@ -53,7 +53,7 @@
         <div class="cp-about-content">
             <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-about-logo">
             <h3>F9XR's iCryptos Dashboard</h3>
-            <p>Version 2.4</p>
+            <p>Version 2.6</p>
             <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
             <p>Powered by <strong>TTEarnCrypto</strong>.</p>
         </div>
@@ -87,6 +87,10 @@
                 <option value="18px">Large</option>
             </select>
         </div>
+        <!-- Clear Cache Button -->
+        <div style="border-top: 1px solid var(--cp-border-color); padding-top: 15px; margin-top: 15px;">
+            <button id="cp-clear-cache-btn" class="cp-info-link"><i class="fas fa-trash-alt"></i> Clear App Cache</button>
+        </div>
     </div>
 </div>
 
@@ -96,7 +100,7 @@
         <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
         <h2>App Guide:</h2>
         <div class="cp-guide-content">
-            <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Claim List</h5><p>Click the bookmark icon on any project to save it to your "Claim List". Access your list from the <i class="fas fa-tasks"></i> icon in the header to add notes and track your progress.</p></div>
+            <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Claim List</h5><p>Click the bookmark icon on any project to save it. You can add notes and set a "Next Claim" date to track your progress.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories</h5><p>Select a category from the top tabs to browse specific types of projects.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar and wallet dropdown to find projects. Click on any tag to filter.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-share-alt"></i> Share & Copy</h5><p>Use the <i class="fas fa-share-alt"></i> icon to share a project, or the <i class="fas fa-copy"></i> icon to copy its link.</p></div>
@@ -112,7 +116,7 @@
         <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
         <h2>My Claim List</h2>
         <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
-            <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any project to save it here. You can add notes to track your claims!</p>
+            <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any project to save it here. You can add notes and set claim dates!</p>
         </div>
         <div id="cp-claim-list-content" class="cp-claim-list-content">
             <!-- Saved items will be injected here by JS -->
@@ -150,9 +154,18 @@
         <section class="cp-announcement-section" id="cp-announcement-section">
             <div class="cp-announcement-content">
                 <i class="fas fa-bullhorn"></i>
-                <p id="cp-announcement-text">Welcome to iCryptos v2.4! You can now save projects to a "Claim List" and add notes!</p>
+                <p id="cp-announcement-text">Welcome to iCryptos v2.6! Enjoy the new horizontal calendar view!</p>
             </div>
             <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
+        </section>
+
+        <!-- NEW Date Picker -->
+        <section class="cp-date-picker-section">
+            <div class="cp-date-picker-wrapper" id="cp-date-picker-wrapper">
+                <div class="cp-date-picker" id="cp-date-picker">
+                    <!-- Dates will be injected by JS -->
+                </div>
+            </div>
         </section>
 
         <div class="cp-source-tabs-wrapper">
@@ -199,16 +212,12 @@
         <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
             <button id="cp-load-more-btn">Load More</button>
         </div>
-        
 
-
-        <br>
         <section class="cp-info-section" id="cp-whats-new-section">
             <h2>What's New?</h2>
             <ul>
-                <li>Version 2.4: Added Claim List (Todo) feature, Global Tags section, and Wallet filtering.</li>
-                <li>Added project Share button and dismissible Announcements.</li>
-                <li>UI enhancements for filtering and actions.</li>
+                <li>Version 2.6: Modern horizontal calendar view implemented!</li>
+                <li>Version 2.5: Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
             </ul>
             <div class="cp-info-actions">
                 <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send Feedback / Report Bugs</a>
@@ -235,9 +244,8 @@
 
         <!-- Tags Section -->
         <section class="cp-info-section" id="cp-all-tags-section">
-            <h2>Tags</h2>
+            <h2 id="cp-tags-header">Global Tags <i class="fas fa-chevron-down cp-chevron"></i></h2>
             <div id="cp-all-tags-container" class="cp-all-tags-container">
-                <!-- Tags will be injected by JS -->
                 <p class="cp-secondary-text">Loading tags...</p>
             </div>
         </section>
@@ -258,19 +266,19 @@
 
 <style>
 :root {
-    --cp-bg: #F4F6FC;
+    --cp-bg: #F8F9FE;
     --cp-card-bg: #FFFFFF;
     --cp-primary-text: #171725;
-    --cp-secondary-text: #92929D;
+    --cp-secondary-text: #8A8A9E;
     --cp-purple: #6A5AE0;
     --cp-font-family: 'Inter', sans-serif;
-    --cp-radius: 16px;
-    --cp-shadow: 0 10px 25px -5px rgba(23, 23, 37, 0.05);
-    --cp-light-bg: #e9eef7;
+    --cp-radius: 18px;
+    --cp-shadow: 0 8px 25px -10px rgba(23, 23, 37, 0.08);
+    --cp-light-bg: #EFF2F9;
+    --cp-border-color: #EAEBF2;
     --cp-red: #E74C3C;
     --cp-green: #2ECC71;
     --cp-blue: #3498DB;
-    --cp-footer-text: #BCC1D1;
 }
 html { font-size: 16px; scroll-behavior: smooth; }
 body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margin: 0; color: var(--cp-primary-text); -webkit-tap-highlight-color: transparent; }
@@ -295,6 +303,58 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-announcement-close-btn { position: absolute; top: 50%; right: 5px; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 5px; }
 .cp-announcement-close-btn:hover { color: white; }
 
+/* Horizontal Date Picker */
+.cp-date-picker-section {
+    margin-bottom: 20px;
+}
+.cp-date-picker-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+.cp-date-picker-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.cp-date-picker {
+    display: flex;
+    gap: 12px;
+    padding: 5px 0;
+    white-space: nowrap;
+}
+.cp-date-item {
+    flex-shrink: 0;
+    width: 65px;
+    height: 80px;
+    background-color: var(--cp-card-bg);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--cp-border-color);
+}
+.cp-date-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--cp-shadow);
+}
+.cp-date-item.active {
+    background-color: var(--cp-purple);
+    color: white;
+    border-color: var(--cp-purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px -5px rgba(106, 90, 224, 0.4);
+}
+.cp-date-day {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.cp-date-month {
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
+
 /* Banner Slider */
 .cp-banner-slider-wrapper { position: relative; margin-bottom: 20px; border-radius: var(--cp-radius); overflow: hidden; box-shadow: var(--cp-shadow); background-color: var(--cp-light-bg); transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 .cp-banner-slider { display: flex; transition: transform 0.5s ease-in-out; }
@@ -317,12 +377,13 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-source-tab.active { background: var(--cp-card-bg); color: var(--cp-primary-text); font-weight: 600; box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1); }
 .cp-filter-bar { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; margin-bottom: 25px; }
 .cp-search-wrapper { position: relative; flex-grow: 1; }
-#cp-search-input { width: 100%; padding: 14px 45px 14px 45px; border-radius: 12px; border: none; background-color: var(--cp-card-bg); box-shadow: var(--cp-shadow); font-size: 0.95rem; box-sizing: border-box; }
+#cp-search-input { width: 100%; padding: 14px 45px 14px 45px; border-radius: 12px; border: 1px solid var(--cp-border-color); background-color: var(--cp-card-bg); font-size: 0.95rem; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s; }
+#cp-search-input:focus { border-color: var(--cp-purple); box-shadow: 0 0 0 3px rgba(106, 90, 224, 0.2); outline: none; }
 .cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
 #cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
 #cp-search-clear-btn:hover { color: var(--cp-primary-text); }
 /* Wallet Filter */
-.cp-wallet-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; }
+.cp-wallet-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
 .cp-wallet-filter-wrapper .fa-wallet { color: var(--cp-secondary-text); margin-right: 10px; }
 #cp-wallet-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
 
@@ -330,9 +391,23 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
 .cp-list-body { display: grid; gap: 20px; }
 
-/* Card Styling */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 15px; animation: fadeIn 0.5s ease-out forwards; }
+/* Card Styling & Animation */
+.cp-card { 
+    background-color: var(--cp-card-bg); 
+    border-radius: var(--cp-radius); 
+    padding: 20px; 
+    box-shadow: var(--cp-shadow); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.cp-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 .cp-card.is-inactive { opacity: 0.7; background-color: #fcfcfc; }
 .cp-card-header { display: flex; align-items: center; gap: 15px; }
 .cp-card-icon { width: 50px; height: 50px; border-radius: 12px; background-color: var(--cp-light-bg); display: flex; align-items: center; justify-content: center; color: var(--cp-purple); font-size: 1.5rem; flex-shrink: 0; }
@@ -346,18 +421,18 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-card-wallet.paytm { background-color: #00b9f126; color: #008ac4; }
 .cp-card-wallet.payeer { background-color: #007bff26; color: #0056b3; }
 .cp-card-wallet.paypal { background-color: #00308726; color: #003087; }
-.cp-card-wallet.direct-wallet { background-color: #e9eef7; color: #5a6ac0; }
+.cp-card-wallet.direct-wallet { background-color: var(--cp-light-bg); color: var(--cp-purple); }
 
 .cp-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; border: none; font-family: inherit; }
 .cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-bg); color: var(--cp-purple); }
-.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-bg); align-items: center; flex-wrap: wrap; justify-content: space-between;}
+.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-border-color); align-items: center; flex-wrap: wrap; justify-content: space-between;}
 .cp-view-btn { flex-grow: 1; text-align: center; padding: 12px; background: var(--cp-purple); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
 .cp-view-btn:hover { opacity: 0.9; }
 .cp-view-btn:disabled { background: #B0B0C0; cursor: not-allowed; }
 .cp-card-action-buttons { display: flex; gap: 10px; }
-.cp-copy-btn, .cp-share-btn, .cp-save-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid #E2E2EA; border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
-.cp-copy-btn:hover, .cp-share-btn:hover, .cp-save-btn:hover { background-color: var(--cp-bg); color: var(--cp-purple); }
+.cp-copy-btn, .cp-share-btn, .cp-save-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid var(--cp-border-color); border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
+.cp-copy-btn:hover, .cp-share-btn:hover, .cp-save-btn:hover { background-color: var(--cp-light-bg); color: var(--cp-purple); }
 .cp-copy-btn:disabled { cursor: default; }
 .cp-save-btn i.fas.fa-bookmark { color: var(--cp-purple); }
 .cp-not-active-btn { width: 100%; text-align: center; padding: 10px; background: var(--cp-red); color: white; border-radius: 12px; font-weight: 600; font-size: 0.9rem; border: none; margin-bottom: 10px; order: -1; }
@@ -381,20 +456,21 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 #cp-load-more-btn { padding: 12px 30px; border: none; background: var(--cp-purple); color: white; font-weight: 600; border-radius: 12px; cursor: pointer; font-size: 1rem; }
 
 /* Bottom Nav */
-.cp-bottom-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 440px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1000; }
-.cp-nav-item, .cp-nav-item-main { text-decoration: none; color: var(--cp-secondary-text); font-size: 1.5rem; position: relative; padding: 10px; cursor: pointer; }
+.cp-bottom-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 440px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1000; border: 1px solid rgba(234, 235, 242, 0.8); }
+.cp-nav-item, .cp-nav-item-main { text-decoration: none; color: var(--cp-secondary-text); font-size: 1.5rem; position: relative; padding: 10px; cursor: pointer; transition: color 0.2s ease; }
+.cp-nav-item:hover { color: var(--cp-purple); }
 .cp-nav-item.active { color: var(--cp-purple); }
-.cp-nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background-color: var(--cp-purple); border-radius: 50%; }
-.cp-nav-item-main { width: 60px; height: 60px; background: var(--cp-purple); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -35px; box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4); border: 4px solid var(--cp-bg); }
+.cp-nav-item-main { width: 60px; height: 60px; background: var(--cp-purple); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -35px; box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4); border: 4px solid var(--cp-bg); transition: transform 0.2s ease; }
+.cp-nav-item-main:hover { transform: scale(1.05); }
 
 /* Modals */
 @keyframes modal-pop-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 .cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1100; transition: opacity 0.3s ease; }
-.cp-modal-panel { background: var(--cp-card-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box; animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.cp-modal-panel { background: var(--cp-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box; animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
 .cp-modal-panel-large { max-width: 95%; height: 80%; }
 .cp-modal-content { height: 100%; }
 .cp-modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--cp-secondary-text); cursor: pointer; z-index: 10;}
-.cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--cp-bg); }
+.cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--cp-border-color); }
 .cp-setting-item:first-child { border-top: none; }
 .cp-setting-item select, .cp-setting-item input[type="color"] { border: 1px solid #ddd; padding: 5px; border-radius: 6px; }
 .cp-setting-item input[type="color"] { width: 40px; height: 30px; padding: 2px; }
@@ -403,7 +479,7 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-about-content h3 { margin-bottom: 5px; }
 .cp-about-content .cp-about-description { margin: 15px 0; line-height: 1.6; }
 .cp-guide-content { margin-top: 20px; }
-.cp-guide-item { padding: 15px 0; border-top: 1px solid var(--cp-bg); }
+.cp-guide-item { padding: 15px 0; border-top: 1px solid var(--cp-border-color); }
 .cp-guide-item:first-child { border-top: none; padding-top: 0;}
 .cp-guide-item h5 { margin: 0 0 8px 0; font-size: 1rem; color: var(--cp-primary-text); display: flex; align-items: center; }
 .cp-guide-item h5 i { margin-right: 10px; color: var(--cp-purple); width: 20px; text-align: center; }
@@ -414,12 +490,17 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 #cp-claim-list-guide { background-color: var(--cp-light-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; color: var(--cp-primary-text); }
 #cp-claim-list-guide i { color: var(--cp-purple); }
 .cp-claim-list-content { height: calc(100% - 80px); overflow-y: auto; }
-.cp-claim-item { background: #fff; border: 1px solid var(--cp-bg); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-.cp-claim-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.cp-claim-item-title { margin: 0; font-size: 1.1rem; }
-.cp-claim-item-remove-btn { background: none; border: none; font-size: 1.5rem; color: var(--cp-red); cursor: pointer; }
-.cp-claim-item-link { display: inline-block; margin-bottom: 15px; font-size: 0.9rem; color: var(--cp-purple); }
+.cp-claim-item { background: #fff; border: 1px solid var(--cp-border-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;}
+.cp-claim-item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;}
+.cp-claim-item-title { margin: 0; font-size: 1.1rem; flex-grow: 1;}
+.cp-claim-item-remove-btn { background: none; border: none; font-size: 1.2rem; color: var(--cp-secondary-text); cursor: pointer; padding: 5px; line-height: 1; transition: color 0.2s ease; }
+.cp-claim-item-remove-btn:hover { color: var(--cp-red); }
+.cp-claim-item-link { font-size: 0.9rem; color: var(--cp-purple); text-decoration: none; }
+.cp-claim-item-link:hover { text-decoration: underline; }
 .cp-claim-item-notes { width: 100%; min-height: 60px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; resize: vertical; }
+.cp-claim-item-date-picker { display: flex; align-items: center; gap: 10px; background-color: var(--cp-light-bg); padding: 8px 12px; border-radius: 8px;}
+.cp-claim-item-date-picker label { font-size: 0.9rem; font-weight: 500; color: var(--cp-secondary-text); }
+.cp-claim-item-date-picker input { flex-grow: 1; border: 1px solid #ddd; padding: 5px; border-radius: 6px; font-family: inherit; }
 
 /* Network Error Modal */
 .cp-network-error-content { text-align: center; }
@@ -431,9 +512,9 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-pull-to-refresh-indicator .fa-spinner, .cp-pull-to-refresh-indicator .fa-sync-alt { animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* New Sections */
+/* Info Sections */
 .cp-info-section { background-color: var(--cp-card-bg); padding: 20px; border-radius: var(--cp-radius); margin-bottom: 25px; box-shadow: var(--cp-shadow); }
-.cp-info-section h2 { margin-top: 0; font-size: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--cp-bg); margin-bottom: 15px; }
+.cp-info-section h2 { margin-top: 0; font-size: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--cp-border-color); margin-bottom: 15px; }
 .cp-info-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--cp-secondary-text); line-height: 1.6; font-size: 0.9rem; }
 .cp-info-actions { display: flex; flex-direction: column; gap: 10px; }
 .cp-info-link { background-color: var(--cp-light-bg); color: var(--cp-primary-text); padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 500; text-align: center; border: none; font-family: inherit; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
@@ -441,10 +522,14 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-social-icons { display: flex; justify-content: center; gap: 20px; padding: 10px 0; }
 .cp-social-icons a { color: var(--cp-secondary-text); font-size: 2rem; transition: color 0.2s ease, transform 0.2s ease; }
 .cp-social-icons a:hover { color: var(--cp-purple); transform: scale(1.1); }
-.cp-all-tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
+#cp-all-tags-section h2 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+#cp-all-tags-section .cp-chevron { transition: transform 0.3s ease; }
+#cp-all-tags-container { transition: max-height 0.4s ease-out, opacity 0.4s ease-out; overflow: hidden; max-height: 1000px; opacity: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;}
+#cp-all-tags-section.collapsed .cp-chevron { transform: rotate(-90deg); }
+#cp-all-tags-section.collapsed #cp-all-tags-container { max-height: 0; opacity: 0; margin-top: 0; }
 
-/* Footer - IMPROVED */
-.cp-footer { padding: 20px; text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--cp-secondary-text); line-height: 1.6; }
+/* Footer */
+.cp-footer { padding: 20px; text-align: center; font-size: 1rem; font-weight: 500; color: var(--cp-secondary-text); line-height: 1.6; }
 </style>
 
 <script>
@@ -480,6 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const guideBtn = document.getElementById('cp-guide-btn');
     const aboutBtn = document.getElementById('cp-about-btn');
     const claimListBtn = document.getElementById('cp-claim-list-btn');
+    const clearCacheBtn = document.getElementById('cp-clear-cache-btn');
     const navItems = document.querySelectorAll('.cp-nav-item');
     const navLearn = document.getElementById('cp-nav-learn');
     const navChat = document.getElementById('cp-nav-chat');
@@ -515,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addToClaimList(project) {
         const list = getClaimList();
         if (!list.some(p => p.id === project.id)) {
-            list.unshift({ id: project.id, name: project.name, url: project.url, notes: '' });
+            list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '' });
             saveClaimList(list);
         }
     }
@@ -527,10 +613,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateClaimNote(projectId, notes) {
         const list = getClaimList();
         const item = list.find(p => p.id === projectId);
-        if (item) {
-            item.notes = notes;
-            saveClaimList(list);
-        }
+        if (item) { item.notes = notes; saveClaimList(list); }
+    }
+
+    function updateClaimDate(projectId, date) {
+        const list = getClaimList();
+        const item = list.find(p => p.id === projectId);
+        if (item) { item.claimDate = date; saveClaimList(list); }
     }
     
     function renderClaimList() {
@@ -546,14 +635,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="cp-claim-item" data-id="${item.id}">
                 <div class="cp-claim-item-header">
                     <h4 class="cp-claim-item-title">${item.name}</h4>
-                    <button class="cp-claim-item-remove-btn" title="Remove from list">×</button>
+                    <button class="cp-claim-item-remove-btn" title="Remove from list"><i class="fas fa-trash-alt"></i></button>
                 </div>
                 <a href="${item.url}" target="_blank" class="cp-claim-item-link">View Project</a>
-                <textarea class="cp-claim-item-notes" placeholder="Add your notes here...">${item.notes}</textarea>
+                <textarea class="cp-claim-item-notes" placeholder="Add your notes here...">${item.notes || ''}</textarea>
+                 <div class="cp-claim-item-date-picker">
+                    <label for="claim-date-${item.id}">Next Claim:</label>
+                    <input type="date" id="claim-date-${item.id}" value="${item.claimDate || ''}">
+                </div>
             </div>
         `).join('');
     }
-
 
     // === Main Functions ===
     
@@ -582,6 +674,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const skeletonHTML = `<div class="cp-skeleton-card"><div class="cp-skeleton-header"><div class="cp-skeleton-icon skeleton"></div><div class="cp-skeleton-title-group"><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line short skeleton"></div></div></div><div class="cp-skeleton-tags"><div class="cp-skeleton-tag skeleton"></div><div class="cp-skeleton-tag skeleton"></div></div><div class="cp-skeleton-button skeleton"></div></div>`;
         for (let i = 0; i < 5; i++) listBody.innerHTML += skeletonHTML;
     }
+    
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px', threshold: 0.1 });
+
 
     function renderListItems(projects, append = false) {
         if (!append) listBody.innerHTML = '';
@@ -638,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>`;
             fragment.appendChild(card);
+            cardObserver.observe(card);
         });
         listBody.appendChild(fragment);
     }
@@ -702,6 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         allProjects = projects; 
         applyFiltersAndSort(true);
+        renderSourceSpecificTags(allProjects);
     };
     
     function renderSourceTabs() {
@@ -726,29 +830,64 @@ document.addEventListener('DOMContentLoaded', () => {
         resetBannerInterval();
     }
     
-    function renderAllTags() {
+    function renderSourceSpecificTags(projects) {
         const container = document.getElementById('cp-all-tags-container');
+        const tagsHeader = document.querySelector('#cp-all-tags-section h2');
+    
+        if (!currentSource || !projects) {
+            allTagsSection.style.display = 'none';
+            return;
+        }
+        
+        allTagsSection.style.display = 'block';
+        tagsHeader.childNodes[0].nodeValue = `Tags for ${currentSource.name} `;
+
         const tags = new Set();
         const excluded = [...WALLETS, 'NotActive'];
-        Object.values(dataCache).flat().forEach(p => p.tags.forEach(t => { if (!excluded.includes(t)) tags.add(t); }));
+        projects.forEach(p => p.tags.forEach(t => { if (!excluded.includes(t)) tags.add(t); }));
+        
         const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b));
-        container.innerHTML = sorted.length > 0 ? sorted.map(t => `<button class="cp-tag" data-tag="${t}">${t}</button>`).join('') : '<p class="cp-secondary-text">No tags to display yet.</p>';
+        
+        if (sorted.length > 0) {
+            container.innerHTML = sorted.map(t => `<button class="cp-tag" data-tag="${t}">${t}</button>`).join('');
+        } else {
+            container.innerHTML = `<p class="cp-secondary-text">No specific tags for this source.</p>`;
+        }
     }
 
-    async function fetchAllSourcesForTags() {
-        const all = [...SOURCE_CONFIG, NEWS_SOURCE, LEARN_SOURCE];
-        const promises = all.map(async (source) => {
-            if (!dataCache[source.url]) {
-                try {
-                    const cb = `cb_bg_${Date.now()}_${Math.random().toString(36).substr(2,5)}`;
-                    const d = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, cb);
-                    dataCache[source.url] = processEntries(d.feed.entry, source);
-                } catch (e) { console.warn(`Could not pre-fetch ${source.name}`); }
-            }
-        });
-        await Promise.all(promises);
-        renderAllTags();
-    }
+    // === Horizontal Date Picker Logic ===
+    const renderDatePicker = () => {
+        const picker = document.getElementById('cp-date-picker');
+        if (!picker) return;
+
+        let content = '';
+        const today = new Date();
+        const startDate = new Date();
+        startDate.setDate(today.getDate() - 10); // Show dates from 10 days ago
+        const endDate = new Date();
+        endDate.setDate(today.getDate() + 20); // To 20 days in the future
+
+        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+            const day = d.getDate();
+            const month = d.toLocaleDateString('en-US', { month: 'short' });
+            const isToday = d.toDateString() === today.toDateString();
+
+            content += `
+                <div class="cp-date-item ${isToday ? 'active' : ''}" data-date="${d.toISOString()}">
+                    <span class="cp-date-day">${day}</span>
+                    <span class="cp-date-month">${month}</span>
+                </div>
+            `;
+        }
+        picker.innerHTML = content;
+
+        const activeItem = picker.querySelector('.active');
+        if (activeItem) {
+            setTimeout(() => {
+                activeItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }, 100);
+        }
+    };
     
     const showFeedback = (message, icon) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
     const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
@@ -770,7 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSourceTabs();
         setupBanners();
         setupPullToRefresh();
-        fetchAllSourcesForTags(); // Pre-fetch all data for tag cloud
+        renderDatePicker(); // Replaced the old calendar function
 
         sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -802,9 +941,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const shareBtn = e.target.closest('.cp-share-btn');
             if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
             const saveBtn = e.target.closest('.cp-save-btn');
-            if (saveBtn) { const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url }; const i=saveBtn.querySelector('i'); if (getClaimList().some(item=>item.id===p.id)) { removeFromClaimList(p.id); i.className='far fa-bookmark'; saveBtn.title='Add to Claim List'; } else { addToClaimList(p); i.className='fas fa-bookmark'; saveBtn.title='Remove from Claim List'; } return; }
+            if (saveBtn) {
+                const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url };
+                const i = saveBtn.querySelector('i');
+                if (getClaimList().some(item => item.id === p.id)) {
+                    removeFromClaimList(p.id);
+                    i.className = 'far fa-bookmark';
+                    saveBtn.title = 'Add to Claim List';
+                } else {
+                    addToClaimList(p);
+                    i.className = 'fas fa-bookmark';
+                    saveBtn.title = 'Remove from Claim List';
+                    renderClaimList();
+                    claimListModal.style.display = 'flex';
+                }
+                return;
+            }
         });
         
+        document.getElementById('cp-tags-header').addEventListener('click', () => {
+            allTagsSection.classList.toggle('collapsed');
+        });
+
         allTagsSection.addEventListener('click', e => { if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
 
         document.querySelector('.cp-features-grid').addEventListener('click', e => {
@@ -816,18 +974,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'feature-mobile': guideModal.style.display = 'flex'; break;
             }
         });
-
+        
         guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
         aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
         claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; if (!localStorage.getItem(CLAIM_GUIDE_SEEN_KEY)) { document.getElementById('cp-claim-list-guide').style.display = 'block'; localStorage.setItem(CLAIM_GUIDE_SEEN_KEY, 'true'); } else { document.getElementById('cp-claim-list-guide').style.display = 'none'; } });
 
         [chatModal, settingsModal, guideModal, aboutModal, claimListModal].forEach(m => { m.querySelector('.cp-modal-close-btn').addEventListener('click', () => { m.style.display='none'; }); m.addEventListener('click', e => { if(e.target===m) m.style.display='none'; }); });
 
-        claimListModal.addEventListener('click', e => { if (e.target.matches('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className='far fa-bookmark'; cardBtn.title='Add to Claim List'; }} });
+        claimListModal.addEventListener('click', e => { if (e.target.closest('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className='far fa-bookmark'; cardBtn.title='Add to Claim List'; }} });
         claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
+        claimListModal.addEventListener('change', e => { if (e.target.matches('input[type="date"]')) { const id = e.target.closest('.cp-claim-item').dataset.id; updateClaimDate(id, e.target.value); } });
 
         const annSection = document.getElementById('cp-announcement-section');
-        const annID = 'announcement_v2.4';
+        const annID = 'announcement_v2.6';
         if (localStorage.getItem('closedAnnouncement') === annID) annSection.style.display = 'none';
         document.getElementById('cp-announcement-close-btn').addEventListener('click', () => { annSection.style.display = 'none'; localStorage.setItem('closedAnnouncement', annID); });
         
@@ -835,6 +994,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
         document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
         
+        clearCacheBtn.addEventListener('click', () => {
+            dataCache = {}; 
+            const originalHTML = clearCacheBtn.innerHTML;
+            clearCacheBtn.innerHTML = '<i class="fas fa-check"></i> Cache Cleared!';
+            clearCacheBtn.disabled = true;
+
+            setTimeout(() => {
+                settingsModal.style.display = 'none';
+                clearCacheBtn.innerHTML = originalHTML;
+                clearCacheBtn.disabled = false;
+            }, 1500);
+        });
+
         window.addEventListener('online', handleNetworkChange);
         window.addEventListener('offline', handleNetworkChange);
         handleNetworkChange();
