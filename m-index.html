@@ -51,9 +51,9 @@
     <div class="cp-modal-panel">
         <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
         <div class="cp-about-content">
-            <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-about-logo">
+            <img src="https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png" alt="App Logo" class="cp-about-logo">
             <h3>F9XR's iCryptos Dashboard</h3>
-            <p>Version 2.6</p>
+            <p>Version 2.5</p>
             <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
             <p>Powered by <strong>TTEarnCrypto</strong>.</p>
         </div>
@@ -132,7 +132,7 @@
     <main class="cp-main-content">
         <header class="cp-header">
             <div class="cp-header-title-group">
-                <img src="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" alt="App Logo" class="cp-app-logo">
+                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="App Logo" class="cp-app-logo">
                 <h1 class="cp-title">iCryptos</h1>
             </div>
             <div class="cp-header-actions">
@@ -154,7 +154,7 @@
         <section class="cp-announcement-section" id="cp-announcement-section">
             <div class="cp-announcement-content">
                 <i class="fas fa-bullhorn"></i>
-                <p id="cp-announcement-text">Welcome to iCryptos v2.6! Enjoy the new horizontal calendar view!</p>
+                <p id="cp-announcement-text">Welcome to iCryptos v2.5! Enjoy the new horizontal calendar view!</p>
             </div>
             <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
         </section>
@@ -168,7 +168,7 @@
             </div>
         </section>
 
-        <div class="cp-source-tabs-wrapper">
+        <div class="cp-source-tabs-wrapper" id="cp-source-tabs-wrapper">
             <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
         </div>
         
@@ -201,6 +201,15 @@
                     <option value="Direct Wallet">Direct Wallet</option>
                 </select>
             </div>
+             <!-- NEW: Projects Per Page Filter -->
+            <div class="cp-per-page-filter-wrapper">
+                <i class="fas fa-list-ol"></i>
+                <select id="cp-per-page-select">
+                    <option value="10">10 / page</option>
+                    <option value="25">25 / page</option>
+                    <option value="50">50 / page</option>
+                </select>
+            </div>
             <div id="cp-active-filter-container" style="display: none;">
                  <span id="cp-active-filter-tag"></span>
                  <button id="cp-clear-filter-btn">×</button>
@@ -214,10 +223,10 @@
         </div>
 
         <section class="cp-info-section" id="cp-whats-new-section">
-            <h2>What's New?</h2>
+            <h2>What's New in v2.5?</h2>
             <ul>
-                <li>Version 2.6: Modern horizontal calendar view implemented!</li>
-                <li>Version 2.5: Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
+                <li>Modern horizontal calendar view implemented!</li>
+                <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
             </ul>
             <div class="cp-info-actions">
                 <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send Feedback / Report Bugs</a>
@@ -286,7 +295,15 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-main-content { padding: 20px; position: relative; z-index: 1; transition: transform 0.3s ease; }
 .cp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .cp-header-title-group { display: flex; align-items: center; gap: 12px; }
-.cp-app-logo { width: 40px; height: 40px; }
+/* IMPROVED Logo Style */
+.cp-app-logo { 
+    width: 45px; 
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid var(--cp-card-bg);
+}
 .cp-title { font-size: 1.75rem; font-weight: 700; margin: 0; }
 .cp-header-actions { display: flex; align-items: center; gap: 8px; }
 #cp-guide-btn, #cp-claim-list-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
@@ -382,10 +399,10 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
 #cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
 #cp-search-clear-btn:hover { color: var(--cp-primary-text); }
-/* Wallet Filter */
-.cp-wallet-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
-.cp-wallet-filter-wrapper .fa-wallet { color: var(--cp-secondary-text); margin-right: 10px; }
-#cp-wallet-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
+/* Wallet & Per Page Filter */
+.cp-wallet-filter-wrapper, .cp-per-page-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
+.cp-wallet-filter-wrapper .fa-wallet, .cp-per-page-filter-wrapper .fa-list-ol { color: var(--cp-secondary-text); margin-right: 10px; }
+#cp-wallet-select, #cp-per-page-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
 
 #cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-bg); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
@@ -475,7 +492,7 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-setting-item select, .cp-setting-item input[type="color"] { border: 1px solid #ddd; padding: 5px; border-radius: 6px; }
 .cp-setting-item input[type="color"] { width: 40px; height: 30px; padding: 2px; }
 .cp-about-content { text-align: center; }
-.cp-about-logo { width: 80px; height: 80px; margin-bottom: 15px; }
+.cp-about-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; object-fit: cover;}
 .cp-about-content h3 { margin-bottom: 5px; }
 .cp-about-content .cp-about-description { margin: 15px 0; line-height: 1.6; }
 .cp-guide-content { margin-top: 20px; }
@@ -528,8 +545,15 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 #cp-all-tags-section.collapsed .cp-chevron { transform: rotate(-90deg); }
 #cp-all-tags-section.collapsed #cp-all-tags-container { max-height: 0; opacity: 0; margin-top: 0; }
 
-/* Footer */
-.cp-footer { padding: 20px; text-align: center; font-size: 1rem; font-weight: 500; color: var(--cp-secondary-text); line-height: 1.6; }
+/* IMPROVED Footer */
+.cp-footer { 
+    padding: 20px; 
+    text-align: center; 
+    font-size: 1.1rem; /* Made bigger */
+    font-weight: 500; 
+    color: var(--cp-secondary-text); 
+    line-height: 1.7; /* Improved line spacing */
+}
 </style>
 
 <script>
@@ -537,10 +561,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // === DOM Elements ===
     const appContainer = document.querySelector('.cp-app-container');
     const sourceTabsContainer = document.getElementById('cp-source-tabs');
+    const sourceTabsWrapper = document.getElementById('cp-source-tabs-wrapper');
     const searchInput = document.getElementById('cp-search-input');
     const searchClearBtn = document.getElementById('cp-search-clear-btn');
     const sortSelect = document.getElementById('cp-sort-select');
     const walletSelect = document.getElementById('cp-wallet-select');
+    const walletFilterWrapper = document.querySelector('.cp-wallet-filter-wrapper');
+    const perPageSelect = document.getElementById('cp-per-page-select');
     const listBody = document.getElementById('cp-list-body');
     const feedbackMessage = document.getElementById('cp-feedback-message');
     const paginationContainer = document.getElementById('cp-pagination-container');
@@ -697,6 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             const isInactive = project.tags.includes('NotActive');
             card.className = `cp-card ${isInactive ? 'is-inactive' : ''}`;
+            
+            const isInformational = project.sourceName === NEWS_SOURCE.name || project.sourceName === LEARN_SOURCE.name;
 
             let walletType = 'Direct Wallet';
             let walletClass = 'direct-wallet';
@@ -712,13 +741,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
             const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             
-            const isInformational = project.sourceName === 'News & Codes' || project.sourceName === 'Learn';
             const buttonText = isInformational ? 'Read More' : 'View Project';
             const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
             const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
             
             const isSaved = claimList.some(item => item.id === project.id);
-            const saveButtonHTML = `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>`;
+            const saveButtonHTML = !isInformational ? `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>` : '';
 
             card.innerHTML = `
                 <div class="cp-card-header">
@@ -728,15 +756,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="cp-card-date">Added: ${formattedDate}</p>
                     </div>
                 </div>
-                <div><span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span></div>
+                ${!isInformational ? `<div><span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span></div>` : ''}
                 ${tagsHTML.length > 0 ? `<div class="cp-card-tags">${tagsHTML}</div>` : ''}
                 <div class="cp-card-actions">
                     ${isInactive ? '<button class="cp-not-active-btn" disabled>Status: Not Active</button>' : ''}
                     <a href="${project.url}" target="_blank" class="cp-view-btn" ${isInactive ? 'disabled' : ''}>${buttonText}</a>
                     <div class="cp-card-action-buttons">
-                        ${!isInformational ? shareButtonHTML : ''}
+                        ${shareButtonHTML}
                         ${copyButtonHTML}
-                        ${!isInformational ? saveButtonHTML : ''}
+                        ${saveButtonHTML}
                     </div>
                 </div>`;
             fragment.appendChild(card);
@@ -811,6 +839,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderSourceTabs() {
         sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
     }
+
+    // Helper to adjust UI based on the selected source
+    const updateLayoutForSource = (source) => {
+        const isInformational = source.name === NEWS_SOURCE.name || source.name === LEARN_SOURCE.name;
+        walletFilterWrapper.style.display = isInformational ? 'none' : 'flex';
+        // Auto-scroll to the content area
+        setTimeout(() => {
+            sourceTabsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    };
 
     function setupBanners() {
         if (BANNERS.length === 0) { bannerSliderWrapper.style.display = 'none'; return; }
@@ -909,22 +947,43 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSourceTabs();
         setupBanners();
         setupPullToRefresh();
-        renderDatePicker(); // Replaced the old calendar function
+        renderDatePicker();
 
         sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             navItems.forEach(i => i.classList.remove('active'));
             sourceTabsContainer.querySelector('.active')?.classList.remove('active');
             e.currentTarget.classList.add('active');
             const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
-            if (source) loadSourceData(source);
+            if (source) {
+                loadSourceData(source);
+                updateLayoutForSource(source);
+            }
         }));
 
-        const setupNavLink = (el, action, isModal=false) => el.addEventListener('click', (e) => { e.preventDefault(); if (!isModal) { window.scrollTo({ top: 0, behavior: 'smooth' }); sourceTabsContainer.querySelector('.active')?.classList.remove('active'); navItems.forEach(i=>i.classList.remove('active')); el.classList.add('active'); } action(); });
-        setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE));
-        setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE));
+        const setupNavLink = (el, action, isModal = false, source = null) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!isModal) {
+                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                    navItems.forEach(i => i.classList.remove('active'));
+                    el.classList.add('active');
+                    if (source) {
+                        updateLayoutForSource(source);
+                    }
+                }
+                action();
+            });
+        };
+
+        setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE), false, LEARN_SOURCE);
+        setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE), false, NEWS_SOURCE);
         setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
         setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
+
+        perPageSelect.addEventListener('change', () => {
+            projectsPerPage = parseInt(perPageSelect.value, 10);
+            applyFiltersAndSort(true);
+        });
 
         searchInput.addEventListener('input', () => { searchClearBtn.style.display=searchInput.value.length > 0?'block':'none'; clearTimeout(searchDebounceTimer); searchDebounceTimer=setTimeout(() => applyFiltersAndSort(true), 300); });
         searchClearBtn.addEventListener('click', () => { searchInput.value=''; applyFiltersAndSort(true); searchClearBtn.style.display='none'; searchInput.focus(); });
