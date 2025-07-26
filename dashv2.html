@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCryptos - Crypto Dashboard</title>
+    <meta name="description" content="A modern crypto dashboard for earning projects, airdrops, and more.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== MODALS (Adapted from old dashboard) ===== -->
+<div id="cp-network-error-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <div class="cp-modal-content cp-network-error-content">
+            <i class="fas fa-wifi"></i>
+            <h2>Connection Error</h2>
+            <p>You are not connected to the internet. Please check your connection and try again.</p>
+        </div>
+    </div>
+</div>
+<div id="cp-chat-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel cp-modal-panel-large">
+        <button id="cp-chat-close-btn" class="cp-modal-close-btn">×</button>
+        <div class="cp-modal-content">
+             <script defer src="https://minnit.chat/js/embed.js"></script>
+             <minnit-chat data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&nickname=" data-style="width:100%;height:100%;"></minnit-chat>
+        </div>
+    </div>
+</div>
+<div id="cp-about-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
+        <div class="cp-about-content">
+            <img src="https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png" alt="App Logo" class="cp-about-logo">
+            <h3>F9XR's iCryptos Dashboard</h3>
+            <p>Version 3.0 (Desktop)</p>
+            <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
+            <p>Powered by <strong>TTEarnCrypto</strong>.</p>
+        </div>
+    </div>
+</div>
+<div id="cp-settings-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-settings-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>Settings</h2>
+        <div class="cp-setting-item">
+            <label for="cp-setting-font-family">Font Family</label>
+            <select id="cp-setting-font-family">
+                <option value="'Inter', sans-serif">Inter (Default)</option>
+                <option value="'Poppins', sans-serif">Poppins</option>
+                <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                <option value="Arial, sans-serif">Arial</option>
+            </select>
+        </div>
+        <div class="cp-setting-item">
+            <label for="cp-setting-font-size">Font Size</label>
+            <select id="cp-setting-font-size">
+                <option value="14px">Small</option>
+                <option value="16px">Normal</option>
+                <option value="18px">Large</option>
+            </select>
+        </div>
+        <div style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 15px;">
+            <button id="cp-clear-cache-btn" class="cp-info-link"><i class="fas fa-trash-alt"></i> Clear App Cache</button>
+        </div>
+    </div>
+</div>
+<div id="cp-guide-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel">
+        <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>App Guide:</h2>
+        <div class="cp-guide-content">
+            <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Bookmarks</h5><p>Click the bookmark icon on any project to save it. Access your list from the sidebar.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories</h5><p>Select a category from the tabs above the list to browse specific project types.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the controls above the list to search, sort, and filter by wallet.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-cog"></i> Settings</h5><p>Open settings from the sidebar to change fonts or clear the cache.</p></div>
+        </div>
+    </div>
+</div>
+<div id="cp-claim-list-modal" class="cp-modal-overlay" style="display: none;">
+    <div class="cp-modal-panel cp-modal-panel-large">
+        <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
+        <h2>My Bookmarks</h2>
+        <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
+            <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any project to save it here. You can add notes and set claim dates!</p>
+        </div>
+        <div id="cp-claim-list-content" class="cp-claim-list-content"></div>
+    </div>
+</div>
+
+<div class="dashboard-container">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#8A6DFF"/><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="white"/></svg>
+                iCryptos
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="#"><i class="fas fa-th-large"></i> Overview</a></li>
+                <li id="cp-claim-list-btn"><a href="#"><i class="far fa-bookmark"></i> Bookmarks</a></li>
+                <li id="cp-nav-chat"><a href="#"><i class="fas fa-comments"></i> Chat</a></li>
+                <li id="cp-guide-btn"><a href="#"><i class="fas fa-question-circle"></i> Help/Guide</a></li>
+                <li id="cp-about-btn"><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                <li id="cp-nav-settings"><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+            <h1>Dashboard Overview</h1>
+            <div class="header-actions">
+                 <div id="cp-active-filter-container" style="display: none;">
+                    <span id="cp-active-filter-tag"></span>
+                    <button id="cp-clear-filter-btn">×</button>
+                </div>
+                <button class="deposit-btn" id="load-more-btn-header" style="display: none;">Load More</button>
+            </div>
+        </header>
+
+        <!-- Onboarding/Static Info -->
+        <section class="onboarding-actions">
+            <h2 class="section-title">Welcome to iCryptos Dashboard</h2>
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon" style="color: #2ECC71;"><i class="fas fa-rocket"></i></div>
+                    <h3>Explore Projects</h3>
+                    <p>Use the tabs and filters below to discover the latest crypto earning projects and airdrops.</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon" style="color: #F1C40F;"><i class="far fa-bookmark"></i></div>
+                    <h3>Bookmark & Track</h3>
+                    <p>Save interesting projects to your personal bookmark list for easy tracking and management.</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon" style="color: #8A6DFF;"><i class="fas fa-users"></i></div>
+                    <h3>Join the Community</h3>
+                    <p>Connect with other users in the chat, share tips, and stay updated with the latest news.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="main-layout-grid">
+            <!-- Crypto List -->
+            <section class="crypto-list-section">
+                <nav class="crypto-tabs" id="cp-source-tabs"></nav>
+
+                <!-- Filter Controls -->
+                <div class="filter-controls">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="cp-search-input" placeholder="Search projects...">
+                    </div>
+                    <select id="cp-sort-select">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                    <select id="cp-wallet-select">
+                        <option value="all">All Wallets</option>
+                        <option value="Binance">Binance</option>
+                        <option value="Paytm">Paytm</option>
+                        <option value="FaucetPay">FaucetPay</option>
+                        <option value="Cwallet">Cwallet</option>
+                        <option value="Payeer">Payeer</option>
+                        <option value="Paypal">Paypal</option>
+                        <option value="Direct Wallet">Direct Wallet</option>
+                    </select>
+                </div>
+
+                <div class="crypto-list" id="cp-list-body-wrapper">
+                    <div class="crypto-list-header">
+                        <span>#</span>
+                        <span>Project Name</span>
+                        <span>Wallet/Date</span>
+                        <span>Tags</span>
+                        <span>Actions</span>
+                    </div>
+                    <div id="cp-list-body">
+                        <!-- JS will inject items here -->
+                    </div>
+                </div>
+                 <div id="cp-feedback-message" style="display: none; padding: 2rem; text-align: center;"></div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<style>
+:root {
+    --bg-main: #0D0D1A;
+    --bg-card: #181825;
+    --bg-input: #232336;
+    --text-primary: #F5F5F7;
+    --text-secondary: #8A8A9E;
+    --accent-primary: #8A6DFF;
+    --border-color: #2C2C41;
+    --color-profit: #2ECC71;
+    --color-loss: #E74C3C;
+    --font-family: 'Inter', sans-serif;
+    --sidebar-width: 250px;
+}
+/* Base and Reset Styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+    background-color: #333;
+    background-image: radial-gradient(circle at top left, #4a3f7a, #0D0D1A 40%);
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+/* Main Layout Container */
+.dashboard-container { display: flex; width: 100%; max-width: 1600px; height: 95vh; min-height: 800px; background-color: var(--bg-main); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid var(--border-color); }
+
+/* Sidebar */
+.sidebar { width: var(--sidebar-width); background-color: var(--bg-card); padding: 1.5rem; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; }
+.sidebar-header { margin-bottom: 2.5rem; }
+.logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav li { margin-bottom: 0.5rem; cursor: pointer; }
+.sidebar-nav a { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: all 0.2s ease-in-out; }
+.sidebar-nav a i { width: 20px; text-align: center; font-size: 1rem; }
+.sidebar-nav li.active a, .sidebar-nav li:hover a { background-color: var(--accent-primary); color: var(--text-primary); }
+
+/* Main Content */
+.main-content { flex: 1; padding: 1.5rem 2.5rem; overflow-y: auto; }
+.main-content::-webkit-scrollbar { width: 8px; }
+.main-content::-webkit-scrollbar-track { background: transparent; }
+.main-content::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+.main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.main-header h1 { font-size: 1.8rem; }
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+.deposit-btn { background-color: var(--accent-primary); color: var(--text-primary); border: none; padding: 0.7rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+.deposit-btn:hover { opacity: 0.9; }
+
+/* Onboarding */
+.onboarding-actions { margin-bottom: 2.5rem; }
+.section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; }
+.actions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.action-card { background-color: var(--bg-card); border-radius: 12px; padding: 1.5rem; }
+.action-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.action-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+.action-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
+
+/* Crypto List Section */
+.crypto-list-section { background-color: var(--bg-card); border-radius: 12px; padding: 1.5rem; }
+.crypto-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1rem; }
+.crypto-tabs a { padding: 0.5rem 0.2rem 1rem 0.2rem; text-decoration: none; color: var(--text-secondary); font-weight: 500; position: relative; transition: color 0.2s; cursor: pointer; }
+.crypto-tabs a.active, .crypto-tabs a:hover { color: var(--text-primary); }
+.crypto-tabs a.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background-color: var(--accent-primary); border-radius: 2px; }
+
+/* Filter Controls */
+.filter-controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.search-bar { position: relative; flex-grow: 1; }
+.search-bar i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
+.search-bar input, .filter-controls select { background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.7rem 1rem; color: var(--text-primary); font-family: inherit; transition: all 0.2s; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+.search-bar input { padding-left: 2.5rem; width: 100%; }
+.filter-controls select { cursor: pointer; padding-right: 2rem; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238A8A9E' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.7rem top 50%; background-size: 0.85em auto; }
+.search-bar input:focus, .filter-controls select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(138, 109, 255, 0.3); }
+
+/* Crypto List */
+#cp-list-body-wrapper { display: flex; flex-direction: column; }
+.crypto-list-header { display: grid; grid-template-columns: 40px 2fr 1.5fr 1.5fr 1fr; align-items: center; gap: 1rem; padding: 0 1rem 1rem 1rem; color: var(--text-secondary); font-weight: 500; border-bottom: 1px solid var(--border-color); }
+.crypto-list-item { display: grid; grid-template-columns: 40px 2fr 1.5fr 1.5fr 1fr; align-items: center; gap: 1rem; padding: 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+.crypto-list-item.visible { opacity: 1; transform: translateY(0); }
+.crypto-list-item:last-child { border-bottom: none; }
+.cp-tag { display: inline-block; background-color: var(--bg-input); color: var(--text-secondary); padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; border: none; font-family: inherit; margin: 2px; }
+.cp-tag:hover, .cp-tag.active { background-color: var(--accent-primary); color: var(--text-primary); }
+.list-actions { display: flex; gap: 0.5rem; }
+.list-action-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.list-action-btn:hover, .list-action-btn.saved { background-color: var(--accent-primary); border-color: var(--accent-primary); color: var(--text-primary); }
+.list-action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.view-btn { flex-grow: 1; text-align: center; padding: 6px 10px; background: var(--bg-input); color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.2s ease; border: 1px solid var(--border-color); font-size: 0.85rem; }
+.view-btn:hover { background-color: var(--accent-primary); border-color: var(--accent-primary); }
+#cp-active-filter-container { display: flex; align-items: center; gap: 8px; background-color: var(--bg-input); color: var(--accent-primary); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
+#cp-clear-filter-btn { background: none; border: none; color: var(--accent-primary); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
+
+/* Modal Styles (Adapted) */
+@keyframes modal-pop-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 1100; transition: opacity 0.3s ease; }
+.cp-modal-panel { background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); width: 90%; max-width: 500px; position: relative; box-sizing: border-box; animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; color: var(--text-primary); }
+.cp-modal-panel-large { max-width: 800px; height: 80%; }
+.cp-modal-content { height: 100%; }
+.cp-modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--text-secondary); cursor: pointer; z-index: 10;}
+.cp-modal-panel h2 { margin-bottom: 20px; }
+.cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--border-color); }
+.cp-setting-item:first-of-type { border-top: none; }
+.cp-setting-item select { background-color: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 6px; padding: 8px; }
+.cp-info-link { background-color: var(--bg-input); color: var(--text-primary); padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 500; text-align: center; border: none; font-family: inherit; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.cp-info-link:hover { background-color: var(--accent-primary); }
+.cp-about-content { text-align: center; }
+.cp-about-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; object-fit: cover;}
+.cp-about-content .cp-about-description { margin: 15px 0; line-height: 1.6; }
+.cp-guide-item { padding: 15px 0; border-top: 1px solid var(--border-color); }
+.cp-guide-item:first-of-type { border-top: none; padding-top: 0;}
+.cp-guide-item h5 i { margin-right: 10px; color: var(--accent-primary); }
+#cp-claim-list-content { height: calc(100% - 80px); overflow-y: auto; padding-right: 10px; }
+#cp-claim-list-content::-webkit-scrollbar { width: 6px; }
+#cp-claim-list-content::-webkit-scrollbar-thumb { background: var(--border-color); }
+.cp-claim-item { background: var(--bg-main); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;}
+.cp-claim-item-notes, .cp-claim-item-date-picker input { background-color: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; font-family: inherit; }
+.cp-network-error-content i { color: var(--color-loss); }
+
+/* Skeleton Loader */
+@keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
+.skeleton { background: #2a2a3f; background-image: linear-gradient(to right, #2a2a3f 0%, #3c3c54 20%, #2a2a3f 40%, #2a2a3f 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: shimmer 1s linear infinite; }
+.cp-skeleton-item { display: grid; grid-template-columns: 40px 2fr 1.5fr 1.5fr 1fr; gap: 1rem; padding: 1rem; width: 100%;}
+.cp-skeleton-line { height: 20px; border-radius: 4px; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // === DOM Elements (Updated for new layout) ===
+    const sourceTabsContainer = document.getElementById('cp-source-tabs');
+    const searchInput = document.getElementById('cp-search-input');
+    const sortSelect = document.getElementById('cp-sort-select');
+    const walletSelect = document.getElementById('cp-wallet-select');
+    const listBody = document.getElementById('cp-list-body');
+    const feedbackMessage = document.getElementById('cp-feedback-message');
+    const loadMoreBtnHeader = document.getElementById('load-more-btn-header');
+    const activeFilterContainer = document.getElementById('cp-active-filter-container');
+    const activeFilterTag = document.getElementById('cp-active-filter-tag');
+    const clearFilterBtn = document.getElementById('cp-clear-filter-btn');
+
+    // Modals
+    const chatModal = document.getElementById('cp-chat-modal');
+    const settingsModal = document.getElementById('cp-settings-modal');
+    const guideModal = document.getElementById('cp-guide-modal');
+    const aboutModal = document.getElementById('cp-about-modal');
+    const claimListModal = document.getElementById('cp-claim-list-modal');
+    const networkErrorModal = document.getElementById('cp-network-error-modal');
+    
+    // Buttons (from sidebar and modals)
+    const guideBtn = document.getElementById('cp-guide-btn');
+    const aboutBtn = document.getElementById('cp-about-btn');
+    const claimListBtn = document.getElementById('cp-claim-list-btn');
+    const clearCacheBtn = document.getElementById('cp-clear-cache-btn');
+    const navChat = document.getElementById('cp-nav-chat');
+    const navSettings = document.getElementById('cp-nav-settings');
+    
+    // === Config & State ===
+    const SOURCE_CONFIG = [
+        { name: "Earning", url: "https://ttearncrypto.blogspot.com" },
+        { name: "Investments", url: "https://freecryptoradar.blogspot.com" },
+        { name: "Casinos", url: "https://freecryptoshop.blogspot.com" },
+        { name: "Airdrops", url: "https://ttairdropcentral.blogspot.com" }
+    ];
+    const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'Payeer', 'Paypal'];
+    let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
+    let currentPage = 1, projectsPerPage = 15; // Increased for desktop
+    let activeTag = null, searchDebounceTimer;
+
+    // === Claim List (Bookmarks) Logic ===
+    const CLAIM_LIST_KEY = 'cp-claimList';
+    const getClaimList = () => JSON.parse(localStorage.getItem(CLAIM_LIST_KEY)) || [];
+    const saveClaimList = (list) => localStorage.setItem(CLAIM_LIST_KEY, JSON.stringify(list));
+    const addToClaimList = (project) => {
+        const list = getClaimList();
+        if (!list.some(p => p.id === project.id)) {
+            list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '' });
+            saveClaimList(list);
+        }
+    };
+    const removeFromClaimList = (projectId) => saveClaimList(getClaimList().filter(p => p.id !== projectId));
+    const updateClaimNote = (projectId, notes) => { const list = getClaimList(); const item = list.find(p => p.id === projectId); if (item) { item.notes = notes; saveClaimList(list); } };
+    const updateClaimDate = (projectId, date) => { const list = getClaimList(); const item = list.find(p => p.id === projectId); if (item) { item.claimDate = date; saveClaimList(list); } };
+    function renderClaimList() {
+        const contentEl = document.getElementById('cp-claim-list-content');
+        const list = getClaimList();
+        if (list.length === 0) {
+            contentEl.innerHTML = `<div style="text-align: center; padding: 2rem;"><i class="far fa-folder-open" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Your bookmark list is empty.</p></div>`;
+            return;
+        }
+        contentEl.innerHTML = list.map(item => `
+            <div class="cp-claim-item" data-id="${item.id}">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                    <h4 style="margin: 0; font-size: 1.1rem; flex-grow: 1;">${item.name}</h4>
+                    <button class="list-action-btn" title="Remove from list"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <a href="${item.url}" target="_blank" style="color: var(--accent-primary);">View Project</a>
+                <textarea class="cp-claim-item-notes" placeholder="Add your notes here...">${item.notes || ''}</textarea>
+                 <div class="cp-claim-item-date-picker" style="display: flex; align-items: center; gap: 10px;">
+                    <label for="claim-date-${item.id}">Next Claim:</label>
+                    <input type="date" id="claim-date-${item.id}" value="${item.claimDate || ''}" style="flex-grow: 1;">
+                </div>
+            </div>`).join('');
+    }
+
+    // === Main Functions ===
+    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+        if (!navigator.onLine) { handleNetworkChange(); return reject(new Error('No internet connection')); }
+        const script = document.createElement('script'); 
+        window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); }; 
+        script.src = `${url}&callback=${callbackName}`; 
+        script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); }; 
+        document.body.appendChild(script); 
+    });
+
+    const processEntries = (entries) => (entries || []).map((entry) => { 
+        const name = entry.title.$t.trim(); 
+        const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; 
+        const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); 
+        return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t) }; 
+    });
+
+    function renderSkeletonLoaders() {
+        listBody.innerHTML = '';
+        const skeletonHTML = `<div class="cp-skeleton-item"><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line skeleton"></div></div>`;
+        for (let i = 0; i < 8; i++) listBody.innerHTML += skeletonHTML;
+    }
+    
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { rootMargin: '0px', threshold: 0.1 });
+
+    function renderListItems(projects, append = false) {
+        if (!append) listBody.innerHTML = '';
+        hideFeedback();
+        if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
+        
+        const fragment = document.createDocumentFragment();
+        const claimList = getClaimList();
+
+        projects.forEach((project, index) => {
+            const item = document.createElement('div');
+            item.className = 'crypto-list-item';
+            
+            let walletType = 'Direct Wallet';
+            for (const w of WALLETS) { if (project.tags.includes(w)) { walletType = w; break; } }
+            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
+            const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
+            const isSaved = claimList.some(p => p.id === project.id);
+            const formattedDate = project.publishedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+            item.innerHTML = `
+                <span>#${(currentPage - 1) * projectsPerPage + index + 1}</span>
+                <span class="token-info">${project.name}</span>
+                <span>${walletType} <br><small style="color: var(--text-secondary);">${formattedDate}</small></span>
+                <td><div class="tags-container">${tagsHTML}</div></td>
+                <td class="list-actions">
+                    <a href="${project.url}" target="_blank" class="view-btn">View</a>
+                    <button class="list-action-btn cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>
+                    <button class="list-action-btn cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>
+                    <button class="list-action-btn cp-save-btn ${isSaved ? 'saved' : ''}" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="Bookmark"><i class="far fa-bookmark"></i></button>
+                </td>
+            `;
+            fragment.appendChild(item);
+            cardObserver.observe(item);
+        });
+        listBody.appendChild(fragment);
+    }
+    
+    function applyFiltersAndSort(isNewData = false) {
+        if (isNewData) currentPage = 1;
+        let projects = [...allProjects];
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const sortOrder = sortSelect.value;
+        const selectedWallet = walletSelect.value;
+
+        if (activeTag) { projects = projects.filter(p => p.tags.includes(activeTag)); activeFilterTag.textContent = activeTag; activeFilterContainer.style.display = 'inline-flex'; } else { activeFilterContainer.style.display = 'none'; }
+        if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
+        
+        if (selectedWallet !== 'all') {
+            if (selectedWallet === 'Direct Wallet') projects = projects.filter(p => !WALLETS.some(w => p.tags.includes(w)));
+            else projects = projects.filter(p => p.tags.includes(selectedWallet));
+        }
+
+        switch (sortOrder) { 
+            case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; 
+            case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; 
+            case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; 
+            default: projects.sort((a, b) => b.publishedDate - a.publishedDate); break; 
+        }
+        
+        displayedProjects = projects;
+        const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
+        renderListItems(paginatedProjects, false);
+        loadMoreBtnHeader.style.display = displayedProjects.length > paginatedProjects.length ? 'block' : 'none';
+    }
+
+    const loadSourceData = async (source, forceReload = false) => {
+        currentSource = source;
+        renderSkeletonLoaders();
+        hideFeedback();
+        
+        let projects;
+        if (dataCache[source.url] && !forceReload) { 
+            projects = dataCache[source.url]; 
+        } else {
+            try { 
+                const callbackName = `cpJsonpCallback_${Date.now()}`; 
+                const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName); 
+                projects = processEntries(data.feed.entry); 
+                dataCache[source.url] = projects; 
+            } catch (error) { 
+                console.error("Fetch Error:", error);
+                showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
+                return; 
+            }
+        }
+        allProjects = projects; 
+        applyFiltersAndSort(true);
+    };
+    
+    function renderSourceTabs() {
+        sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<a href="#" data-url="${source.url}">${source.name}</a>`).join('');
+    }
+
+    const showFeedback = (message, icon) => { listBody.innerHTML = ''; loadMoreBtnHeader.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
+    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
+    const applySetting = (key, value) => { const prop = `--cp-${key}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
+    const loadSettings = () => { applySetting('font-family', localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"); applySetting('font-size', localStorage.getItem('cp-setting-font-size') || '16px'); document.getElementById('cp-setting-font-family').value = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; document.getElementById('cp-setting-font-size').value = localStorage.getItem('cp-setting-font-size') || '16px'; };
+    function handleNetworkChange() { networkErrorModal.style.display = navigator.onLine ? 'none' : 'flex'; }
+
+    function init() {
+        loadSettings();
+        renderSourceTabs();
+
+        sourceTabsContainer.querySelectorAll('a').forEach(tab => tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+            e.currentTarget.classList.add('active');
+            const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
+            if (source) loadSourceData(source);
+        }));
+        
+        // Event listeners
+        searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer=setTimeout(() => applyFiltersAndSort(true), 300); });
+        sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
+        walletSelect.addEventListener('change', () => applyFiltersAndSort(true));
+        loadMoreBtnHeader.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage-1)*projectsPerPage, currentPage*projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage*projectsPerPage) { loadMoreBtnHeader.style.display='none'; } });
+        clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
+
+        listBody.addEventListener('click', (e) => {
+            const tagBtn = e.target.closest('.cp-tag');
+            if (tagBtn) { activeTag = tagBtn.dataset.tag; applyFiltersAndSort(true); return; }
+            const copyBtn = e.target.closest('.cp-copy-btn');
+            if (copyBtn) { navigator.clipboard.writeText(copyBtn.dataset.url).then(() => { copyBtn.innerHTML='<i class="fas fa-check"></i>'; copyBtn.disabled=true; setTimeout(() => { copyBtn.innerHTML='<i class="fas fa-copy"></i>'; copyBtn.disabled=false; }, 1500); }); return; }
+            const shareBtn = e.target.closest('.cp-share-btn');
+            if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
+            const saveBtn = e.target.closest('.cp-save-btn');
+            if (saveBtn) {
+                const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url };
+                if (getClaimList().some(item => item.id === p.id)) { removeFromClaimList(p.id); saveBtn.classList.remove('saved'); } 
+                else { addToClaimList(p); saveBtn.classList.add('saved'); }
+                return;
+            }
+        });
+
+        // Sidebar and Modal Triggers
+        guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
+        aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
+        claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; });
+        navChat.addEventListener('click', () => { chatModal.style.display = 'flex'; });
+        navSettings.addEventListener('click', () => { settingsModal.style.display = 'flex'; });
+
+        [chatModal, settingsModal, guideModal, aboutModal, claimListModal, networkErrorModal].forEach(m => { 
+            m.querySelector('.cp-modal-close-btn')?.addEventListener('click', () => { m.style.display='none'; }); 
+            m.addEventListener('click', e => { if(e.target===m) m.style.display='none'; }); 
+        });
+
+        claimListModal.addEventListener('click', e => { if (e.target.closest('.list-action-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) cardBtn.classList.remove('saved'); }});
+        claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
+        claimListModal.addEventListener('change', e => { if (e.target.matches('input[type="date"]')) { updateClaimDate(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
+
+        document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
+        document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
+        clearCacheBtn.addEventListener('click', () => { dataCache = {}; clearCacheBtn.innerHTML = '<i class="fas fa-check"></i> Cleared!'; setTimeout(() => { clearCacheBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Clear App Cache'; }, 1500); });
+
+        window.addEventListener('online', handleNetworkChange);
+        window.addEventListener('offline', handleNetworkChange);
+        handleNetworkChange();
+
+        // Initial Load
+        sourceTabsContainer.querySelector('a')?.click();
+    }
+    
+    init();
+});
+</script>
+
+</body>
+</html>
