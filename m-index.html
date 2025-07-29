@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>F9XR's iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
     <meta name="description" content="Your one-stop dashboard for discovering the latest crypto earning projects, investment opportunities, airdrops, news, and more. Curated by the TTEarnCrypto community.">
-    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet, binance, payeer, paypal">
+    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet, binance, payeer, paypal, faucet, mining, gaming, airdrop">
     <meta name="author" content="F9XR, TTEarnCrypto">
     <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/">
 
@@ -53,7 +53,7 @@
         <div class="cp-about-content">
             <img src="https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png" alt="App Logo" class="cp-about-logo">
             <h3>F9XR's iCryptos Dashboard</h3>
-            <p>Version 2.5</p>
+            <p>Version 2.6</p>
             <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
             <p>Powered by <strong>TTEarnCrypto</strong>.</p>
         </div>
@@ -101,7 +101,7 @@
         <h2>App Guide:</h2>
         <div class="cp-guide-content">
             <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Claim List</h5><p>Click the bookmark icon on any project to save it. You can add notes and set a "Next Claim" date to track your progress.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories</h5><p>Select a category from the top tabs to browse specific types of projects.</p></div>
+            <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories & Wallets</h5><p>Use the dropdown menus to filter projects by category or supported wallet.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar and wallet dropdown to find projects. Click on any tag to filter.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-share-alt"></i> Share & Copy</h5><p>Use the <i class="fas fa-share-alt"></i> icon to share a project, or the <i class="fas fa-copy"></i> icon to copy its link.</p></div>
             <div class="cp-guide-item"><h5><i class="fas fa-redo"></i> Reload</h5><p>On mobile, swipe down from the top of the list to refresh the content.</p></div>
@@ -154,7 +154,7 @@
         <section class="cp-announcement-section" id="cp-announcement-section">
             <div class="cp-announcement-content">
                 <i class="fas fa-bullhorn"></i>
-                <p id="cp-announcement-text">Welcome to iCryptos v2.5! Enjoy the new horizontal calendar view!</p>
+                <p id="cp-announcement-text">Welcome to iCryptos v2.6! You can now filter projects by Category!</p>
             </div>
             <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
         </section>
@@ -201,7 +201,25 @@
                     <option value="Direct Wallet">Direct Wallet</option>
                 </select>
             </div>
-             <!-- NEW: Projects Per Page Filter -->
+             <!-- NEW: Category Filter -->
+            <div class="cp-category-filter-wrapper">
+                <i class="fas fa-layer-group"></i>
+                <select id="cp-category-select">
+                    <option value="all">All Categories</option>
+                    <option value="Faucet">Faucet</option>
+                    <option value="MultiFaucet">MultiFaucet</option>
+                    <option value="AutoFaucet">AutoFaucet</option>
+                    <option value="Mining">Mining</option>
+                    <option value="Investment">Investment</option>
+                    <option value="TestNetFaucet">TestNetFaucet</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Airdrop">Airdrop</option>
+                    <option value="TelegramBot">TelegramBot</option>
+                    <option value="Investing">Investing</option>
+                    <option value="Other Projects">Other Projects</option>
+                </select>
+            </div>
+             <!-- Projects Per Page Filter -->
             <div class="cp-per-page-filter-wrapper">
                 <i class="fas fa-list-ol"></i>
                 <select id="cp-per-page-select">
@@ -223,8 +241,9 @@
         </div>
 
         <section class="cp-info-section" id="cp-whats-new-section">
-            <h2>What's New in v2.5?</h2>
+            <h2>What's New in v2.6?</h2>
             <ul>
+                <li><strong>NEW:</strong> Filter projects by Category using the new dropdown menu!</li>
                 <li>Modern horizontal calendar view implemented!</li>
                 <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
             </ul>
@@ -399,10 +418,10 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
 #cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
 #cp-search-clear-btn:hover { color: var(--cp-primary-text); }
-/* Wallet & Per Page Filter */
-.cp-wallet-filter-wrapper, .cp-per-page-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
-.cp-wallet-filter-wrapper .fa-wallet, .cp-per-page-filter-wrapper .fa-list-ol { color: var(--cp-secondary-text); margin-right: 10px; }
-#cp-wallet-select, #cp-per-page-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
+/* Wallet, Category & Per Page Filter */
+.cp-wallet-filter-wrapper, .cp-category-filter-wrapper, .cp-per-page-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
+.cp-wallet-filter-wrapper .fa-wallet, .cp-category-filter-wrapper .fa-layer-group, .cp-per-page-filter-wrapper .fa-list-ol { color: var(--cp-secondary-text); margin-right: 10px; }
+#cp-wallet-select, #cp-category-select, #cp-per-page-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
 
 #cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-bg); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
@@ -566,7 +585,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchClearBtn = document.getElementById('cp-search-clear-btn');
     const sortSelect = document.getElementById('cp-sort-select');
     const walletSelect = document.getElementById('cp-wallet-select');
+    const categorySelect = document.getElementById('cp-category-select'); // NEW
     const walletFilterWrapper = document.querySelector('.cp-wallet-filter-wrapper');
+    const categoryFilterWrapper = document.querySelector('.cp-category-filter-wrapper'); // NEW
     const perPageSelect = document.getElementById('cp-per-page-select');
     const listBody = document.getElementById('cp-list-body');
     const feedbackMessage = document.getElementById('cp-feedback-message');
@@ -613,6 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { img: 'https://i.imgur.com/Qrd6ERS.jpeg', url: '#' },
         { img: 'https://i.imgur.com/UmgaqgB.jpeg', url: '#' },
     ];
+    // This array is used for display logic, 'Direct Wallet' is handled as a special case.
     const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'Payeer', 'Paypal'];
     let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
     let currentPage = 1, projectsPerPage = 10;
@@ -779,6 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = searchInput.value.toLowerCase().trim();
         const sortOrder = sortSelect.value;
         const selectedWallet = walletSelect.value;
+        const selectedCategory = categorySelect.value; // NEW
 
         if (activeTag) { 
             projects = projects.filter(p => p.tags.includes(activeTag)); 
@@ -795,6 +818,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 projects = projects.filter(p => p.tags.includes(selectedWallet));
             }
+        }
+        
+        // NEW: Filter by category
+        if (selectedCategory !== 'all') {
+            projects = projects.filter(p => p.tags.some(tag => tag.toLowerCase() === selectedCategory.toLowerCase()));
         }
 
         switch (sortOrder) { 
@@ -843,7 +871,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to adjust UI based on the selected source
     const updateLayoutForSource = (source) => {
         const isInformational = source.name === NEWS_SOURCE.name || source.name === LEARN_SOURCE.name;
-        walletFilterWrapper.style.display = isInformational ? 'none' : 'flex';
+        const showFilters = !isInformational;
+        walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
+        categoryFilterWrapper.style.display = showFilters ? 'flex' : 'none'; // NEW
+        
         // Auto-scroll to the content area
         setTimeout(() => {
             sourceTabsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -880,9 +911,12 @@ document.addEventListener('DOMContentLoaded', () => {
         allTagsSection.style.display = 'block';
         tagsHeader.childNodes[0].nodeValue = `Tags for ${currentSource.name} `;
 
+        const categories = [...categorySelect.options].map(opt => opt.value.toLowerCase());
         const tags = new Set();
-        const excluded = [...WALLETS, 'NotActive'];
-        projects.forEach(p => p.tags.forEach(t => { if (!excluded.includes(t)) tags.add(t); }));
+        const excluded = [...WALLETS, 'NotActive', ...categories];
+        projects.forEach(p => p.tags.forEach(t => { 
+            if (!excluded.includes(t) && !excluded.includes(t.toLowerCase())) tags.add(t); 
+        }));
         
         const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b));
         
@@ -989,6 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchClearBtn.addEventListener('click', () => { searchInput.value=''; applyFiltersAndSort(true); searchClearBtn.style.display='none'; searchInput.focus(); });
         sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
         walletSelect.addEventListener('change', () => applyFiltersAndSort(true));
+        categorySelect.addEventListener('change', () => applyFiltersAndSort(true)); // NEW
         loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage-1)*projectsPerPage, currentPage*projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage*projectsPerPage) { paginationContainer.style.display='none'; } });
         clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
 
