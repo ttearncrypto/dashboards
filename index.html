@@ -13,12 +13,12 @@
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="TTEarnCrypto - Your Flagship Crypto Earning Dashboard">
     <meta property="og:description" content="Stop guessing. Start Earning. Discover verified crypto airdrops, investments, and more with our curated dashboards.">
-    <meta property="og:image" content="https://i.ibb.co/zWTwqX/L/i-Cryptos-min.jpg">
+    <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     <meta property="og:url" content="https://ttearncrypto.github.io/dashboards">
     <meta property="og:type" content="website">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/zWTwqX/L/i-Cryptos-min.jpg">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,221 +32,157 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F8F8F8;
-        }
-        .btn-primary-gradient {
-            @apply px-10 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105;
-        }
-        .btn-secondary-outline {
-            @apply px-10 py-4 rounded-xl font-bold text-lg bg-white/80 backdrop-blur-sm border-2 border-gray-800 text-gray-800 shadow-lg transition-all duration-300 hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105;
-        }
-        .filter-btn {
-            @apply px-4 py-2 rounded-full text-sm font-medium border transition-colors;
-        }
-        .filter-btn.active {
-            @apply bg-black text-white border-black;
-        }
-        .filter-btn:not(.active) {
-            @apply bg-white text-gray-600 border-gray-300 hover:border-black;
-        }
-        .partner-logo {
-            @apply grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #F8F8F8; }
+        .btn-primary-gradient { @apply px-10 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105; }
+        .btn-secondary-outline { @apply px-10 py-4 rounded-xl font-bold text-lg bg-white/80 backdrop-blur-sm border-2 border-gray-800 text-gray-800 shadow-lg transition-all duration-300 hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105; }
+        .filter-btn { @apply px-4 py-2 rounded-full text-sm font-medium border transition-colors; }
+        .filter-btn.active { @apply bg-black text-white border-black; }
+        .filter-btn:not(.active) { @apply bg-white text-gray-600 border-gray-300 hover:border-black; }
+        .partner-logo { @apply grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100; }
+        .kbd { @apply inline-block px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 border border-gray-300 rounded-md; }
+        .custom-hr { border: 0; height: 2px; width: 8rem; margin: 0 auto; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(128, 128, 128, 0.75), rgba(0, 0, 0, 0)); }
     </style>
+    
+    <!-- SEO Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TTEarnCrypto",
+      "url": "https://ttearncrypto.github.io/dashboards",
+      "logo": "https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg",
+      "sameAs": [ "https://twitter.com/ttearncrypto", "https://github.com/ttearncrypto" ]
+    }
+    </script>
 </head>
 <body class="text-gray-900">
 
-    <!-- Header -->
+    <!-- =================================================================== -->
+    <!-- HEADER                                                              -->
+    <!-- =================================================================== -->
     <header class="fixed top-0 left-0 right-0 z-50 p-4 bg-transparent">
         <div class="container mx-auto">
             <div class="flex items-center w-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg p-2">
-                <a href="#" class="flex items-center gap-2 flex-shrink-0 pr-4"><img src="https://i.ibb.co/zWTwqX/L/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-11 h-11 rounded-full border-2 border-white"><span class="font-bold text-xl hidden sm:block">TTEarnCrypto</span></a>
-                <div class="flex-grow flex items-center gap-3 border-l border-r border-gray-200 px-4"><i class="fas fa-search text-gray-400"></i><input type="text" id="header-search" placeholder="Search & filter dashboards..." class="w-full bg-transparent focus:outline-none text-gray-700 placeholder-gray-400 hidden md:block"></div>
+                <a href="#" class="flex items-center gap-2 flex-shrink-0 pr-4"><img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-11 h-11 rounded-full border-2 border-white"><span class="font-bold text-xl hidden sm:block">TTEarnCrypto</span><button id="beta-tag" class="bg-yellow-200 text-yellow-800 text-xs font-bold px-2 py-0.5 rounded-full ml-2">Beta</button></a>
+                <div class="flex-grow flex items-center gap-3 border-l border-r border-gray-200 px-4"><i class="fas fa-search text-gray-400"></i><input type="text" id="header-search" placeholder="Search dashboards..." class="w-full bg-transparent focus:outline-none text-gray-700 placeholder-gray-400 hidden md:block"></div>
                 <nav class="hidden lg:flex items-center gap-2 px-4"><a href="#dashboards" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Dashboards</a><span class="text-gray-300">|</span><a href="#resources-hub" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Resources</a><span class="text-gray-300">|</span><a href="#community" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Community</a></nav>
-                <div class="relative ml-2" data-dropdown><button class="w-11 h-11 flex items-center justify-center border border-gray-300 rounded-full text-gray-600 hover:border-black hover:text-black transition-colors" data-dropdown-button><i class="fas fa-layer-group"></i></button><div class="absolute right-0 mt-3 w-60 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu><div class="lg:hidden"><a href="#dashboards" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Dashboards</a><a href="#resources-hub" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Resources</a><a href="#community" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Community</a><div class="border-t border-gray-200 my-1"></div></div><p class="px-5 pt-3 pb-1 text-xs text-gray-400 font-semibold uppercase">Versions</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">PC Dashboard (Flagship)</a><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Mobile Dashboard</a><a href="#dashboards" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Older Versions</a></div></div>
+                <div class="flex items-center">
+                    <button id="shortcuts-toggle" class="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-black" title="Keyboard Shortcuts (?)"><i class="fas fa-keyboard"></i></button>
+                    <div class="relative ml-2" data-dropdown><button class="w-11 h-11 flex items-center justify-center border border-gray-300 rounded-full text-gray-600 hover:border-black hover:text-black transition-colors" data-dropdown-button><i class="fas fa-layer-group"></i></button><div class="absolute right-0 mt-3 w-64 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu><div class="lg:hidden"><a href="#dashboards" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Dashboards</a><a href="#resources-hub" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Resources</a><a href="#community" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Community</a><div class="border-t border-gray-200 my-1"></div></div><p class="px-5 pt-3 pb-1 text-xs text-gray-400 font-semibold uppercase">Versions</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">PC Dashboard (Flagship)</a><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Mobile Dashboard</a><a href="https://example.com/download" target="_blank" class="block px-5 py-3 text-blue-600 hover:bg-gray-100 font-medium">Download App (Beta) <i class="fas fa-download ml-1"></i></a><a href="#dashboards" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Older Versions</a></div></div>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- =================================================================== -->
+        <!-- HERO SECTION                                                        -->
+        <!-- =================================================================== -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-            <!-- Spline 3D Background -->
-            <div class="absolute top-0 left-0 w-full h-full z-0">
-                <iframe src='https://my.spline.design/aspektacularbolt-m1DSmhIpFGqPWayh4FwNAzvD/' frameborder='0' width='100%' height='100%' class="pointer-events-none"></iframe>
-            </div>
-            <!-- Overlay -->
-            <div class="absolute top-0 left-0 w-full h-full bg-black/10 z-10"></div>
-            
+            <div class="absolute top-0 left-0 w-full h-full z-0"><iframe src='https://my.spline.design/aspektacularbolt-m1DSmhIpFGqPWayh4FwNAzvD/' frameborder='0' width='100%' height='100%'></iframe></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-white/50 to-transparent z-10"></div>
             <div class="relative z-20 container mx-auto px-6">
-                <div class="max-w-5xl mx-auto">
-                    <div class="flex justify-center items-center gap-3 mb-4">
-                        <h1 class="text-6xl md:text-8xl font-extrabold leading-tight text-white drop-shadow-2xl">Crypto Earning, Simplified.</h1>
-                        <span class="bg-yellow-200 text-yellow-800 text-sm font-bold px-3 py-1 rounded-full self-start mt-4">Beta</span>
-                    </div>
-                    <p class="max-w-3xl mx-auto text-xl text-gray-200 mb-12 drop-shadow-lg">
-                        Tired of the crypto chaos? The iCryptos Dashboard is your flagship hub for discovering verified earning opportunities without the noise. We consolidate the latest airdrops, investments, and earning sites so you can act decisively and maximize your gains.
-                    </p>
+                <div class="max-w-5xl mx-auto bg-white/70 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50">
+                    <h1 class="text-6xl md:text-8xl font-extrabold leading-tight text-gray-900">Crypto Earning, Simplified.</h1>
+                    <p class="max-w-3xl mx-auto text-xl text-gray-600 my-8">Tired of the crypto chaos? The iCryptos Dashboard is your flagship hub for discovering verified earning opportunities without the noise. We consolidate the latest airdrops, investments, and earning sites so you can act decisively and maximize your gains.</p>
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
-                        <div class="relative" data-dropdown>
-                            <button class="btn-primary-gradient" data-dropdown-button>Dashboards <i class="fas fa-chevron-down text-sm ml-2"></i></button>
-                            <div class="absolute left-0 mt-3 w-60 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu>
-                                <a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">PC Dashboard</a>
-                                <a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Mobile Dashboard</a>
-                                <div class="border-t border-gray-200 my-1"></div>
-                                <a href="#dashboards" class="block px-5 py-4 text-gray-500 hover:bg-gray-100 font-medium">Older Versions</a>
-                            </div>
-                        </div>
+                        <div class="relative" data-dropdown><button class="btn-primary-gradient" data-dropdown-button>Dashboards <i class="fas fa-chevron-down text-sm ml-2"></i></button><div class="absolute left-0 mt-3 w-64 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">PC Dashboard</a><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Mobile Dashboard</a><div class="border-t border-gray-200 my-1"></div><a href="https://example.com/download" target="_blank" class="block px-5 py-4 text-blue-600 hover:bg-gray-100 font-semibold">Download App (Beta) <i class="fas fa-download ml-2"></i></a><a href="#dashboards" class="block px-5 py-4 text-gray-500 hover:bg-gray-100 font-medium">Older Versions</a></div></div>
                         <a href="#resources-hub" class="btn-secondary-outline">Crypto Resources Hub</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Statistics Section -->
-        <section id="stats" class="py-16 bg-white"><div class="container mx-auto px-6"><div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="250">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Vetted Opportunities</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="15000">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Active Users</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="10">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Supported Networks</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="4">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Live Dashboards</p></div></div></div></section>
+        <!-- =================================================================== -->
+        <!-- STATISTICS SECTION                                                  -->
+        <!-- =================================================================== -->
+        <section id="stats" class="py-20 bg-white"><div class="container mx-auto px-6"><div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="250">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Vetted Opportunities</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="15000">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Active Users</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="10">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Supported Networks</p></div><div><h3 class="text-4xl md:text-5xl font-bold mb-2" data-count="4">0</h3><p class="text-gray-500 uppercase tracking-wider text-sm">Live Dashboards</p></div></div></div></section>
 
-        <!-- Features Section -->
-        <section id="why" class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold mb-4">Your Unfair Advantage in Crypto</h2>
-                <p class="text-gray-600 mb-12 max-w-2xl mx-auto">We provide the tools and information you need to act faster and smarter than the rest of the market.</p>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                        <div class="text-4xl text-purple-600 mb-4"><i class="fas fa-filter-circle-dollar"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Curated Alpha, Not Noise</h3>
-                        <p class="text-gray-600">Our team vets every opportunity for legitimacy and potential, delivering only the highest-quality airdrops and earning strategies directly to you.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                        <div class="text-4xl text-blue-600 mb-4"><i class="fas fa-bolt"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Act Faster Than the Market</h3>
-                        <p class="text-gray-600">Get instant access to new opportunities and step-by-step guides you need to make informed decisions before the crowd catches on.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                        <div class="text-4xl text-green-600 mb-4"><i class="fas fa-shield-halved"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Navigate with Confidence</h3>
-                        <p class="text-gray-600">Our comprehensive resource hub and community provide the support you need to navigate the crypto world safely and profitably.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Video Section -->
-        <section id="featured-video" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-4">See It In Action</h2>
-                <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Watch our latest video to get a walkthrough of our tools and discover new earning opportunities.</p>
-                <div class="max-w-4xl mx-auto bg-gray-900 p-4 rounded-2xl shadow-2xl">
-                    <iframe id="odysee-iframe" class="w-full aspect-video rounded-lg" src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partners Section -->
-        <section id="partners" class="py-12"><div class="container mx-auto px-6"><h4 class="text-center text-gray-500 font-semibold uppercase tracking-widest mb-8">Trusted By The Community</h4><div class="flex justify-center items-center gap-12 md:gap-16 flex-wrap"><img src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-400.svg" alt="Partner 1" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-400.svg" alt="Partner 2" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-400.svg" alt="Partner 3" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-400.svg" alt="Partner 4" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-400.svg" alt="Partner 5" class="h-8 md:h-10 partner-logo"></div></div></section>
-
-        <!-- Dashboards Section -->
-        <section id="dashboards" class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-4xl font-bold text-center mb-4">Choose Your Dashboard</h2><p class="text-center text-gray-600 mb-10">Search or filter our dashboards to find the perfect tool for your needs.</p><div class="flex flex-col md:flex-row gap-4 mb-8"><div class="relative flex-grow"><input type="text" id="dashboard-search" placeholder="Search by name..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black"><i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i></div><div id="filter-buttons" class="flex items-center gap-2 flex-wrap"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="pc">PC</button><button class="filter-btn" data-filter="mobile">Mobile</button><button class="filter-btn" data-filter="earning">Earning</button><button class="filter-btn" data-filter="airdrops">Airdrops</button></div></div>
-            <div id="dashboard-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="PC Dashboard v2" data-tags="pc flagship earning"><div class="text-3xl text-black mb-4"><i class="fas fa-desktop"></i></div><h3 class="text-xl font-semibold mb-2">PC Dashboard v2 (Flagship)</h3><p class="text-gray-600 mb-6 flex-grow">Our most powerful desktop experience, recommended for all serious users on PC.</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div>
-                <div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="F9XR Dashboard" data-tags="pc airdrops earning"><div class="text-3xl text-black mb-4"><i class="fas fa-rocket"></i></div><h3 class="text-xl font-semibold mb-2">F9XR Dashboard</h3><p class="text-gray-600 mb-6 flex-grow">An alternative all-in-one dashboard for airdrops, investments, and insights.</p><a href="https://f9xrdashboard.blogspot.com/" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div>
-                <div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="Mobile Dashboard" data-tags="mobile earning"><div class="text-3xl text-black mb-4"><i class="fas fa-mobile-alt"></i></div><h3 class="text-xl font-semibold mb-2">Mobile Dashboard</h3><p class="text-gray-600 mb-6 flex-grow">Access key earning opportunities on the go. Optimized for a seamless mobile experience.</p><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div>
-                <div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="PC Dashboard v1" data-tags="pc earning legacy"><div class="text-3xl text-black mb-4"><i class="fas fa-history"></i></div><h3 class="text-xl font-semibold mb-2">PC Dashboard v1</h3><p class="text-gray-600 mb-6 flex-grow">The original classic. A simple, lightweight, and straightforward interface.</p><a href="https://ttearncrypto.github.io/dashboards/" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div>
-            </div>
-        </div></section>
-
-        <!-- Resources Hub Section -->
-        <section id="resources-hub" class="py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-bold text-center mb-16">📚 Crypto Resources Hub</h2><h3 class="text-2xl font-semibold text-center mb-8">Directory & Listing Sites</h3><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"><a href="https://ttearncrypto.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-compass text-xl w-8 text-center"></i> <span>TTEarnCrypto Main</span></a><a href="https://ttappstore.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-store text-xl w-8 text-center"></i> <span>TTAppStore</span></a><a href="https://ttairdropcentral.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-parachute-box text-xl w-8 text-center"></i> <span>TTAirdropCentral</span></a><a href="https://freecryptoradar.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-broadcast-tower text-xl w-8 text-center"></i> <span>FreeCryptoRadar</span></a><a href="https://cryptoradarnews.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-newspaper text-xl w-8 text-center"></i> <span>CryptoRadarNews</span></a><a href="https://freecryptoshopping.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-shopping-cart text-xl w-8 text-center"></i> <span>FreeCryptoShopping</span></a></div><h3 class="text-2xl font-semibold text-center mb-8">✍️ Blog Contributions</h3><div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8"><a href="https://tontufcs.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-feather-alt mr-2"></i> TontuFCS Blog</h4><p class="text-sm text-gray-600">Insights on crypto and decentralized finance from our contributors.</p></a><a href="https://growwithguidance.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-seedling mr-2"></i> Grow With Guidance</h4><p class="text-sm text-gray-600">Strategies and tips for growing your crypto portfolio effectively.</p></a><a href="https://adviceofai.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-robot mr-2"></i> Advice of AI</h4><p class="text-sm text-gray-600">Exploring AI-powered analysis and crypto market predictions.</p></a></div></div></section>
+        <!-- =================================================================== -->
+        <!-- FEATURES SECTION                                                    -->
+        <!-- =================================================================== -->
+        <section id="why" class="py-24"><div class="container mx-auto px-6"><h2 class="text-5xl font-bold text-center mb-16">Supercharge Your Crypto Workflow</h2><div class="grid md:grid-cols-2 gap-8"><div class="relative p-8 rounded-2xl bg-gradient-to-br from-orange-50 to-white border border-gray-200 overflow-hidden"><span class="inline-block px-3 py-1 text-sm bg-orange-100 text-orange-800 rounded-full mb-4">Curated Alpha</span><h3 class="text-3xl font-bold mb-4">Save Hours with Vetted Opportunities</h3><p class="text-gray-600 mb-6">Reduce manual work searching for legitimate airdrops and earning sites. Our team vets every opportunity, freeing up time for what matters most.</p><a href="#dashboards" class="font-semibold text-orange-700 hover:underline">Get Started <i class="fas fa-arrow-right text-xs"></i></a><svg class="absolute -bottom-12 -right-12 w-48 h-48 text-orange-100 opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M64.6,-22.8C73.2,1.8,62.5,31.7,42.4,49.2C22.3,66.7,-7.2,71.8,-32.1,60.8C-57,49.8,-77.3,22.7,-78,-5.5C-78.7,-33.7,-59.8,-63,-36.8,-70.7C-13.8,-78.4,-6.9,-64.5,9.5,-52.3C25.9,-40.1,56,-27.5,64.6,-22.8Z" transform="translate(100 100)" /></svg></div><div class="relative p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white border border-gray-200 overflow-hidden"><span class="inline-block px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full mb-4">Real-Time Data</span><h3 class="text-3xl font-bold mb-4">Act Faster Than the Market</h3><p class="text-gray-600 mb-6">Bring your strategy together with our dashboards, instant updates, and step-by-step guides—no more missing out on timely opportunities.</p><a href="#dashboards" class="font-semibold text-blue-700 hover:underline">Try It Now <i class="fas fa-arrow-right text-xs"></i></a><svg class="absolute -bottom-12 -right-12 w-48 h-48 text-blue-100 opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M47.3,-24.3C57.5,-2.9,59.3,23.4,47.3,42.5C35.3,61.6,9.5,73.5,-16.4,69.5C-42.3,65.5,-68.3,45.6,-75.7,21.3C-83.1,-3,-71.9,-31.6,-54.2,-46.3C-36.5,-61,-11.3,-61.8,9.7,-54.6C30.8,-47.4,47.3,-24.3,47.3,-24.3Z" transform="translate(100 100)" /></svg></div><div class="relative p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-gray-200 overflow-hidden"><span class="inline-block px-3 py-1 text-sm bg-purple-100 text-purple-800 rounded-full mb-4">Unified Hub</span><h3 class="text-3xl font-bold mb-4">Connect with Your Favorite Resources</h3><p class="text-gray-600 mb-6">Integrate our data with your workflow. We connect you to exchanges, wallets, and educational content to keep your journey efficient and informed.</p><a href="#resources-hub" class="font-semibold text-purple-700 hover:underline">Explore Resources <i class="fas fa-arrow-right text-xs"></i></a><svg class="absolute -bottom-12 -right-12 w-48 h-48 text-purple-100 opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M48.4,-33.5C59.9,-16.8,64.4,9.3,58.4,30.3C52.4,51.3,35.9,67.2,16.5,71.2C-2.8,75.2,-25,67.3,-41.8,51.8C-58.6,36.3,-70.1,13.2,-67.9,-8.6C-65.7,-30.5,-50,-51.1,-31.9,-59.8C-13.8,-68.5,-6.9,-65.4,6.9,-58.5C20.8,-51.6,41,-41.9,48.4,-33.5Z" transform="translate(100 100)" /></svg></div><div class="relative p-8 rounded-2xl bg-gradient-to-br from-green-50 to-white border border-gray-200 overflow-hidden"><span class="inline-block px-3 py-1 text-sm bg-green-100 text-green-800 rounded-full mb-4">Community Support</span><h3 class="text-3xl font-bold mb-4">Navigate with Confidence</h3><p class="text-gray-600 mb-6">Why risk it alone? Our community provides the support you need. From beginner questions to expert insights, we empower you to navigate crypto safely.</p><a href="#community" class="font-semibold text-green-700 hover:underline">Join Us <i class="fas fa-arrow-right text-xs"></i></a><svg class="absolute -bottom-12 -right-12 w-48 h-48 text-green-100 opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M47.1,-48.5C58.8,-35.1,64.6,-17.5,63.2,-1.2C61.8,15.1,53.2,30.2,41,43.8C28.8,57.4,12.9,69.5,-4.4,72.2C-21.7,74.9,-43.3,68.2,-57.2,53.4C-71.1,38.6,-77.1,15.7,-72.7,-5.4C-68.2,-26.5,-53.2,-45.8,-35.9,-56.3C-18.6,-66.8,-9.3,-68.5,3.3,-65.2C15.9,-61.9,35.3,-61.9,47.1,-48.5Z" transform="translate(100 100)" /></svg></div></div></div></section>
         
-        <!-- Community Section -->
-        <section id="community" class="py-20 bg-white"><div class="container mx-auto px-6 text-center"><h2 class="text-4xl font-bold mb-4">🌍 Join Our Community</h2><p class="text-gray-600 mb-8 max-w-xl mx-auto">Connect with thousands of fellow crypto enthusiasts. Get support, share alpha, and grow with us.</p><div class="flex justify-center gap-6 text-3xl"><a href="https://discord.gg/D6hAEEumtx" target="_blank" class="text-gray-500 hover:text-[#5865F2] transition-colors" title="Discord"><i class="fab fa-discord"></i></a><a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="text-gray-500 hover:text-[#0088cc] transition-colors" title="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="https://twitter.com/ttearncrypto" target="_blank" class="text-gray-500 hover:text-[#1DA1F2] transition-colors" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://www.facebook.com/groups/ttearncrypto" target="_blank" class="text-gray-500 hover:text-[#1877F2] transition-colors" title="Facebook Group"><i class="fab fa-facebook"></i></a><a href="https://bento.me/ttearncrypto" target="_blank" class="text-gray-500 hover:text-black transition-colors" title="Bento"><i class="fas fa-link"></i></a></div></div></section>
+        <!-- =================================================================== -->
+        <!-- VIDEO & PARTNERS SECTION                                            -->
+        <!-- =================================================================== -->
+        <section id="featured-video" class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-4xl font-bold text-center mb-4">See It In Action</h2><p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Watch our latest video to get a walkthrough of our tools and discover new earning opportunities.</p><div class="max-w-4xl mx-auto bg-gray-900 p-4 rounded-2xl shadow-2xl"><iframe id="odysee-iframe" class="w-full aspect-video rounded-lg" src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" allowfullscreen></iframe></div></div></section>
+        <section id="partners" class="py-12 bg-white"><div class="container mx-auto px-6"><h4 class="text-center text-gray-500 font-semibold uppercase tracking-widest mb-8">Trusted By The Community</h4><div class="flex justify-center items-center gap-12 md:gap-16 flex-wrap"><img src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-400.svg" alt="Partner 1" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-400.svg" alt="Partner 2" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-400.svg" alt="Partner 3" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-400.svg" alt="Partner 4" class="h-8 md:h-10 partner-logo"><img src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-400.svg" alt="Partner 5" class="h-8 md:h-10 partner-logo"></div></div></section>
+        
+        <!-- Other sections are minimized for brevity but remain in the code -->
+        <section id="dashboards" class="py-20"><div class="container mx-auto px-6"><h2 class="text-4xl font-bold text-center mb-4">Choose Your Dashboard</h2><p class="text-center text-gray-600 mb-10">Search or filter our dashboards to find the perfect tool for your needs.</p><div class="flex flex-col md:flex-row gap-4 mb-8"><div class="relative flex-grow"><input type="text" id="dashboard-search" placeholder="Search by name..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black"><i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i></div><div id="filter-buttons" class="flex items-center gap-2 flex-wrap"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="pc">PC</button><button class="filter-btn" data-filter="mobile">Mobile</button><button class="filter-btn" data-filter="earning">Earning</button><button class="filter-btn" data-filter="airdrops">Airdrops</button></div></div><div id="dashboard-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="PC Dashboard v2" data-tags="pc flagship earning"><div class="text-3xl text-black mb-4"><i class="fas fa-desktop"></i></div><h3 class="text-xl font-semibold mb-2">PC Dashboard v2 (Flagship)</h3><p class="text-gray-600 mb-6 flex-grow">Our most powerful desktop experience, recommended for all serious users on PC.</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div><div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="F9XR Dashboard" data-tags="pc airdrops earning"><div class="text-3xl text-black mb-4"><i class="fas fa-rocket"></i></div><h3 class="text-xl font-semibold mb-2">F9XR Dashboard</h3><p class="text-gray-600 mb-6 flex-grow">An alternative all-in-one dashboard for airdrops, investments, and insights.</p><a href="https://f9xrdashboard.blogspot.com/" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div><div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="Mobile Dashboard" data-tags="mobile earning"><div class="text-3xl text-black mb-4"><i class="fas fa-mobile-alt"></i></div><h3 class="text-xl font-semibold mb-2">Mobile Dashboard</h3><p class="text-gray-600 mb-6 flex-grow">Access key earning opportunities on the go. Optimized for a seamless mobile experience.</p><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div><div class="dashboard-card flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300" data-title="PC Dashboard v1" data-tags="pc earning legacy"><div class="text-3xl text-black mb-4"><i class="fas fa-history"></i></div><h3 class="text-xl font-semibold mb-2">PC Dashboard v1</h3><p class="text-gray-600 mb-6 flex-grow">The original classic. A simple, lightweight, and straightforward interface.</p><a href="https://ttearncrypto.github.io/dashboards/" target="_blank" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a></div></div></div></section>
+        <section id="resources-hub" class="py-24 bg-white"><div class="container mx-auto px-6"><h2 class="text-5xl font-bold text-center mb-16">📚 Crypto Resources Hub</h2><h3 class="text-2xl font-semibold text-center mb-8">Directory & Listing Sites</h3><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"><a href="https://ttearncrypto.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-compass text-xl w-8 text-center"></i> <span>TTEarnCrypto Main</span></a><a href="https://ttappstore.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-store text-xl w-8 text-center"></i> <span>TTAppStore</span></a><a href="https://ttairdropcentral.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-parachute-box text-xl w-8 text-center"></i> <span>TTAirdropCentral</span></a><a href="https://freecryptoradar.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-broadcast-tower text-xl w-8 text-center"></i> <span>FreeCryptoRadar</span></a><a href="https://cryptoradarnews.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-newspaper text-xl w-8 text-center"></i> <span>CryptoRadarNews</span></a><a href="https://freecryptoshopping.blogspot.com/" target="_blank" class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><i class="fas fa-shopping-cart text-xl w-8 text-center"></i> <span>FreeCryptoShopping</span></a></div><h3 class="text-2xl font-semibold text-center mb-8">✍️ Blog Contributions</h3><div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8"><a href="https://tontufcs.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-feather-alt mr-2"></i> TontuFCS Blog</h4><p class="text-sm text-gray-600">Insights on crypto and decentralized finance from our contributors.</p></a><a href="https://growwithguidance.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-seedling mr-2"></i> Grow With Guidance</h4><p class="text-sm text-gray-600">Strategies and tips for growing your crypto portfolio effectively.</p></a><a href="https://adviceofai.blogspot.com/" target="_blank" class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-black transition-colors"><h4 class="font-semibold mb-2"><i class="fas fa-robot mr-2"></i> Advice of AI</h4><p class="text-sm text-gray-600">Exploring AI-powered analysis and crypto market predictions.</p></a></div></div></section>
+        <section id="community" class="py-20"><div class="container mx-auto px-6 text-center"><h2 class="text-4xl font-bold mb-4">🌍 Join Our Community</h2><p class="text-gray-600 mb-8 max-w-xl mx-auto">Connect with thousands of fellow crypto enthusiasts. Get support, share alpha, and grow with us.</p><div class="flex justify-center gap-6 text-3xl"><a href="https://discord.gg/D6hAEEumtx" target="_blank" class="text-gray-500 hover:text-[#5865F2] transition-colors" title="Discord"><i class="fab fa-discord"></i></a><a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="text-gray-500 hover:text-[#0088cc] transition-colors" title="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="https://twitter.com/ttearncrypto" target="_blank" class="text-gray-500 hover:text-[#1DA1F2] transition-colors" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://www.facebook.com/groups/ttearncrypto" target="_blank" class="text-gray-500 hover:text-[#1877F2] transition-colors" title="Facebook Group"><i class="fab fa-facebook"></i></a><a href="https://bento.me/ttearncrypto" target="_blank" class="text-gray-500 hover:text-black transition-colors" title="Bento"><i class="fas fa-link"></i></a></div></div></section>
+        <div class="py-4"><script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script><gecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,solana,cardano,dogecoin,shiba-inu" currency="usd" background-color="#ffffff" locale="en" font-color="#000000"></gecko-coin-price-marquee-widget></div>
+        <section id="testimonials" class="py-24 bg-white"><div class="container mx-auto px-6"><h2 class="text-5xl font-bold text-center mb-4">Loved by the Community</h2><p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Don't just take our word for it. Here's what our users are saying about our dashboards and resources.</p><div class="grid md:grid-cols-3 gap-8 text-center"><div class="bg-gray-50 p-8 rounded-xl border border-gray-200"><div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-700 italic mb-6">"Finally, a single place for legit airdrops. TTEarnCrypto's flagship dashboard saved me countless hours of research and helped me find gems I would've missed."</p><div class="flex items-center justify-center gap-4"><img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar"><div class="text-left"><p class="font-semibold">Alex Johnson</p><p class="text-sm text-gray-500">Crypto Enthusiast</p></div></div></div><div class="bg-gray-50 p-8 rounded-xl border border-gray-200"><div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-700 italic mb-6">"The mobile dashboard is a game-changer for me. I can check for new opportunities on the go. The UI is clean, fast, and incredibly easy to use."</p><div class="flex items-center justify-center gap-4"><img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Avatar"><div class="text-left"><p class="font-semibold">Sarah Lee</p><p class="text-sm text-gray-500">DeFi Degen</p></div></div></div><div class="bg-gray-50 p-8 rounded-xl border border-gray-200"><div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-700 italic mb-6">"The resource hub alone is worth its weight in gold. As someone new to crypto, having all these vetted links and blogs in one place is invaluable."</p><div class="flex items-center justify-center gap-4"><img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/86.jpg" alt="User Avatar"><div class="text-left"><p class="font-semibold">Mike Chen</p><p class="text-sm text-gray-500">New Investor</p></div></div></div></div></div></section>
+        <section id="market-tools" class="py-24"><div class="container mx-auto px-6"><h2 class="text-5xl font-bold text-center mb-4">Live Market Tools</h2><p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Get a real-time overview of the market with our integrated tools, powered by CoinGecko.</p><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-2"><h3 class="text-2xl font-bold mb-4">Top 100 Coin Heatmap</h3><div class="rounded-2xl overflow-hidden border border-gray-200"><script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script><gecko-coin-heatmap-widget locale="en" dark-mode="false" top="100"></gecko-coin-heatmap-widget></div></div><div><h3 class="text-2xl font-bold mb-4">Price Converter</h3><script src="https://widgets.coingecko.com/gecko-coin-converter-widget.js"></script><gecko-coin-converter-widget locale="en" dark-mode="false" outlined="true" initial-currency="usd"></gecko-coin-converter-widget></div></div></div></section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400"><div class="container mx-auto px-6 py-16"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"><div><a href="#" class="flex items-center gap-3 mb-4"><img src="https://i.ibb.co/zWTwqX/L/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-10 h-10 rounded-full"><span class="font-bold text-xl text-white">TTEarnCrypto</span></a><p class="text-sm mb-6">Providing the best tools and resources for the crypto community.</p><div class="flex gap-4 text-xl"><a href="https://twitter.com/ttearncrypto" target="_blank" class="hover:text-white transition-colors" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://discord.gg/D6hAEEumtx" target="_blank" class="hover:text-white transition-colors" title="Discord"><i class="fab fa-discord"></i></a><a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="hover:text-white transition-colors" title="Telegram"><i class="fab fa-telegram-plane"></i></a><a href="https://bento.me/ttearncrypto" target="_blank" class="hover:text-white transition-colors" title="Bento"><i class="fas fa-link"></i></a></div></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Quick Links</h4><ul class="space-y-3"><li><a href="#hero" class="hover:text-white transition-colors">Home</a></li><li><a href="#dashboards" class="hover:text-white transition-colors">Dashboards</a></li><li><a href="#featured-video" class="hover:text-white transition-colors">Featured Video</a></li><li><a href="#community" class="hover:text-white transition-colors">Community</a></li></ul></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Resources</h4><ul class="space-y-3"><li><a href="https://ttairdropcentral.blogspot.com/" target="_blank" class="hover:text-white transition-colors">Airdrop Central</a></li><li><a href="https://cryptoradarnews.blogspot.com/" target="_blank" class="hover:text-white transition-colors">Crypto News</a></li><li><a href="#resources-hub" class="hover:text-white transition-colors">All Resources</a></li><li><a href="https://github.com/ttearncrypto" target="_blank" class="hover:text-white transition-colors">GitHub</a></li></ul></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Stay Updated</h4><iframe width="100%" height="305" src="https://1d71c02a.sibforms.com/serve/MUIFABwpI4Hy1DIYrWsh2h0zUvvc4oNE3RvBKbaBs9ymHl7bBJUPX-d-5eDnKZD-MOG9gnQyfYTA8UIXSs_Lzd74_jEn4rqUphrOsNIO0Bi6-vzESsjeXQ8frYmhkApgnD80biiZlF9KKxljL8lmlCXOlzJECfkBoBVOPPpaKLbVt_fKr7f6WY81uTraO9mdy1_9H0J3T6fAe8OY" frameborder="0" scrolling="auto" allowfullscreen style="display: block; width:100%; max-width: 540px; border-radius: 8px;"></iframe></div></div><div class="text-center text-xs mt-16 pt-8 border-t border-gray-800"><p class="mb-4 max-w-4xl mx-auto"><strong>Disclaimer:</strong> The information provided on this website does not constitute investment advice. All activities are subject to high market risk. Please invest cautiously and at your own risk. TTEarnCrypto is not responsible for any losses.</p><p>&copy; 2024 TTEarnCrypto. All Rights Reserved. Project is open source on <a href="http://github.com/ttearncrypto" target="_blank" class="underline hover:text-white">GitHub</a>.</p></div></div></footer>
+    <!-- =================================================================== -->
+    <!-- FOOTER                                                              -->
+    <!-- =================================================================== -->
+    <footer>
+        <div class="container mx-auto px-6 pt-20 pb-10"><div id="subscribe" class="text-center"><h2 class="text-4xl font-bold mb-3">Subscribe to our newsletter</h2><p class="text-gray-600 mb-8">Get the latest airdrops, dashboard updates, and earning opportunities delivered to your inbox.</p><div class="max-w-xl mx-auto"><iframe width="100%" height="400" src="https://1d71c02a.sibforms.com/serve/MUIFABwpI4Hy1DIYrWsh2h0zUvvc4oNE3RvBKbaBs9ymHl7bBJUPX-d-5eDnKZD-MOG9gnQyfYTA8UIXSs_Lzd74_jEn4rqUphrOsNIO0Bi6-vzESsjeXQ8frYmhkApgnD80biiZlF9KKxljL8lmlCXOlzJECfkBoBVOPPpaKLbVt_fKr7f6WY81uTraO9mdy1_9H0J3T6fAe8OY" frameborder="0" scrolling="auto" allowfullscreen style="display: block; width:100%; max-width: 540px; border-radius: 8px; margin: 0 auto;"></iframe></div></div></div>
+        <div class="bg-black text-gray-400 mt-20 rounded-t-3xl"><div class="container mx-auto px-8 py-16"><div class="relative bg-gray-900 p-10 rounded-2xl -mt-40 mb-16 flex flex-col md:flex-row items-center justify-between overflow-hidden"><div class="relative z-10 text-center md:text-left"><h3 class="text-3xl font-bold text-white mb-2">Explore Our Flagship Dashboard</h3><p class="text-gray-300">Get the ultimate unfair advantage in crypto.</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" class="mt-6 inline-block bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">Get started</a></div><div class="absolute -right-20 -bottom-20 z-0"><svg width="350" height="350" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" /><stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" /></linearGradient></defs><path fill="url(#globeGradient)" d="M48.8,-63.9C60.9,-51.7,66.8,-33.5,69.9,-15.1C73,3.3,73.4,21.8,65.6,36.5C57.8,51.2,41.9,62.1,25.4,69.5C8.9,76.9,-8.1,80.8,-24.8,76.6C-41.5,72.4,-57.8,60.1,-67.2,44.7C-76.6,29.3,-78.9,10.7,-75.4,-6.2C-71.9,-23,-62.5,-38.1,-50,-50.2C-37.5,-62.3,-21.8,-71.4,-4.1,-70.2C13.6,-69.1,27.1,-67.9,37.8,-67.9C48.5,-67.9,48.8,-63.9,48.8,-63.9Z" transform="translate(100 100) scale(0.9)" opacity="0.2" /></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm"><div><a href="#" class="flex items-center gap-3 mb-4"><img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-8 h-8 rounded-full"><span class="font-bold text-lg text-white">TTEarnCrypto</span></a><p class="pr-8">Providing the best tools and resources for the crypto community.</p></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Quick links</h4><ul class="space-y-3"><li><a href="#hero" class="hover:text-white transition-colors">Home</a></li><li><a href="#dashboards" class="hover:text-white transition-colors">Dashboards</a></li><li><a href="#featured-video" class="hover:text-white transition-colors">Featured Video</a></li><li><a href="#partners" class="hover:text-white transition-colors">Partners</a></li></ul></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Social</h4><ul class="space-y-3"><li><a href="https://twitter.com/ttearncrypto" target="_blank" class="hover:text-white transition-colors">Twitter</a></li><li><a href="https://discord.gg/D6hAEEumtx" target="_blank" class="hover:text-white transition-colors">Discord</a></li><li><a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="hover:text-white transition-colors">Telegram</a></li><li><a href="https://bento.me/ttearncrypto" target="_blank" class="hover:text-white transition-colors">Bento</a></li></ul></div><div><h4 class="font-semibold text-white tracking-wider uppercase mb-4">Legal</h4><ul class="space-y-3"><li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li><li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li></ul></div></div><div class="text-center text-xs mt-16 pt-8 border-t border-gray-800"><p class="mb-4 max-w-4xl mx-auto"><strong>IMPORTANT DISCLAIMER:</strong> All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.</p><p>&copy; 2024 TTEarnCrypto. All Rights Reserved. Project is open source on <a href="http://github.com/ttearncrypto" target="_blank" class="underline hover:text-white">GitHub</a>.</p></div></div></div>
+    </footer>
+    <div class="relative overflow-hidden mt-1"><div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200%] h-40 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 opacity-50 blur-3xl"></div><div class="relative z-10 bg-black h-48 rounded-t-3xl flex items-center justify-center overflow-hidden"><h2 class="text-white font-extrabold text-[180px] sm:text-[250px] md:text-[300px] transform translate-y-1/4 select-none">F9XR</h2></div></div>
+
+    <!-- Back to Top Button -->
+    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg transition-opacity opacity-0 pointer-events-none"><i class="fas fa-arrow-up"></i></a>
+    
+    <!-- Modals -->
+    <div id="shortcuts-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden"><div class="bg-white rounded-lg shadow-2xl w-full max-w-md" id="shortcuts-modal-content"><div class="flex items-center justify-between p-4 border-b"><h3 class="text-lg font-semibold"><i class="fas fa-keyboard mr-2"></i>Keyboard Shortcuts</h3><button id="shortcuts-close" class="text-gray-500 hover:text-black text-2xl">&times;</button></div><div class="p-6"><ul class="space-y-3 text-gray-700"><li class="flex items-center justify-between"><p>Open this guide</p><kbd class="kbd">?</kbd></li><li class="flex items-center justify-between"><p>Focus on search bar</p><kbd class="kbd">S</kbd></li><li class="flex items-center justify-between"><p>Open Dashboards dropdown</p><kbd class="kbd">D</kbd></li><li class="flex items-center justify-between"><p>Scroll to Resources</p><kbd class="kbd">R</kbd></li><li class="flex items-center justify-between"><p>Scroll to Community</p><kbd class="kbd">C</kbd></li><li class="flex items-center justify-between"><p>Close this guide</p><kbd class="kbd">Esc</kbd></li></ul></div></div></div>
+    <div id="beta-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden"><div class="bg-white rounded-lg shadow-2xl w-full max-w-md"><div class="flex items-center justify-between p-4 border-b"><h3 class="text-lg font-semibold"><i class="fas fa-flask mr-2 text-yellow-500"></i>Beta Notice</h3><button id="beta-modal-close" class="text-gray-500 hover:text-black text-2xl">&times;</button></div><div class="p-6"><p class="text-gray-700">This project is currently in Beta. This means we are actively developing and improving our features. While we strive for a smooth experience, you may occasionally encounter bugs or changes. We appreciate your feedback during this phase!</p></div></div></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Dropdown Menu Logic
-            document.addEventListener('click', e => {
-                const isDropdownButton = e.target.matches("[data-dropdown-button]") || e.target.closest("[data-dropdown-button]");
-                if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
-                let currentDropdown;
-                if (isDropdownButton) {
-                    currentDropdown = e.target.closest("[data-dropdown]");
-                    currentDropdown.querySelector('[data-dropdown-menu]').classList.toggle("hidden");
-                }
-                document.querySelectorAll("[data-dropdown-menu]").forEach(menu => {
-                    if (menu.closest("[data-dropdown]") === currentDropdown) return;
-                    menu.classList.add("hidden");
-                });
-            });
-
+            document.addEventListener('click', e => { const isDropdownButton = e.target.matches("[data-dropdown-button]") || e.target.closest("[data-dropdown-button]"); if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return; let currentDropdown; if (isDropdownButton) { currentDropdown = e.target.closest("[data-dropdown]"); currentDropdown.querySelector('[data-dropdown-menu]').classList.toggle("hidden"); } document.querySelectorAll("[data-dropdown-menu]").forEach(menu => { if (menu.closest("[data-dropdown]") === currentDropdown) return; menu.classList.add("hidden"); }); });
+            
             // Dashboard Filter Logic
-            const searchInput = document.getElementById('dashboard-search');
-            const headerSearchInput = document.getElementById('header-search');
-            const dashboardSection = document.getElementById('dashboards');
-            const filterBtnsContainer = document.getElementById('filter-buttons');
-            const dashboardCards = document.querySelectorAll('.dashboard-card');
-            let currentFilter = 'all';
-            function filterDashboards() {
-                const searchTerm = searchInput.value.toLowerCase();
-                dashboardCards.forEach(card => {
-                    const title = card.dataset.title.toLowerCase();
-                    const tags = card.dataset.tags.split(' ');
-                    const matchesSearch = title.includes(searchTerm);
-                    const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
-                    if (matchesSearch && matchesFilter) { card.style.display = 'flex'; } else { card.style.display = 'none'; }
-                });
-            }
-            [searchInput, headerSearchInput].forEach(input => {
-                input.addEventListener('input', e => {
-                    const searchTerm = e.target.value;
-                    searchInput.value = searchTerm;
-                    headerSearchInput.value = searchTerm;
-                    filterDashboards();
-                });
-            });
-            headerSearchInput.addEventListener('focus', () => {
-                dashboardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setTimeout(() => searchInput.focus(), 500);
-            });
-            filterBtnsContainer.addEventListener('click', e => {
-                if (e.target.tagName === 'BUTTON') {
-                    filterBtnsContainer.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
-                    currentFilter = e.target.dataset.filter;
-                    filterDashboards();
-                }
-            });
-
+            const searchInput = document.getElementById('dashboard-search'); const headerSearchInput = document.getElementById('header-search'); const dashboardSection = document.getElementById('dashboards'); const filterBtnsContainer = document.getElementById('filter-buttons'); const dashboardCards = document.querySelectorAll('.dashboard-card'); let currentFilter = 'all';
+            function filterDashboards() { const searchTerm = searchInput.value.toLowerCase(); dashboardCards.forEach(card => { const title = card.dataset.title.toLowerCase(); const tags = card.dataset.tags.split(' '); const matchesSearch = title.includes(searchTerm); const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter); if (matchesSearch && matchesFilter) { card.style.display = 'flex'; } else { card.style.display = 'none'; } }); }
+            [searchInput, headerSearchInput].forEach(input => { input.addEventListener('input', e => { const searchTerm = e.target.value; searchInput.value = searchTerm; headerSearchInput.value = searchTerm; filterDashboards(); }); });
+            headerSearchInput.addEventListener('focus', () => { dashboardSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => searchInput.focus(), 500); });
+            filterBtnsContainer.addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { filterBtnsContainer.querySelector('.active').classList.remove('active'); e.target.classList.add('active'); currentFilter = e.target.dataset.filter; filterDashboards(); } });
+            
             // Statistics Counter Animation
-            const statsSection = document.getElementById('stats');
-            const counters = statsSection.querySelectorAll('[data-count]');
-            const animationDuration = 2000;
+            const statsSection = document.getElementById('stats'); const counters = statsSection.querySelectorAll('[data-count]'); const animationDuration = 2000;
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        counters.forEach(counter => {
-                            const target = +counter.dataset.count;
-                            let current = 0;
-                            const increment = target / (animationDuration / 16);
-                            const updateCount = () => {
-                                current += increment;
-                                if (current < target) {
-                                    counter.innerText = Math.ceil(current).toLocaleString();
-                                    requestAnimationFrame(updateCount);
-                                } else { counter.innerText = target.toLocaleString(); }
-                            };
-                            updateCount();
-                        });
+                        counters.forEach(counter => { const target = +counter.dataset.count; let current = 0; const increment = target / (animationDuration / 16); const updateCount = () => { if (current < target) { current += increment; counter.innerText = Math.ceil(current).toLocaleString(); requestAnimationFrame(updateCount); } else { counter.innerText = target.toLocaleString(); } }; updateCount(); });
                         observer.unobserve(statsSection);
                     }
                 });
             }, { threshold: 0.5 });
             observer.observe(statsSection);
+            
+            // Back to Top Button Logic
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => { if (window.scrollY > window.innerHeight) { backToTopBtn.classList.remove('opacity-0', 'pointer-events-none'); } else { backToTopBtn.classList.add('opacity-0', 'pointer-events-none'); } });
+            
+            // Modal Logic (Shortcuts & Beta)
+            const shortcutsModal = document.getElementById('shortcuts-modal'); const shortcutsToggle = document.getElementById('shortcuts-toggle'); const shortcutsClose = document.getElementById('shortcuts-close');
+            const betaModal = document.getElementById('beta-modal'); const betaTag = document.getElementById('beta-tag'); const betaModalClose = document.getElementById('beta-modal-close');
+            
+            const openModal = (modal) => modal.classList.remove('hidden'); const closeModal = (modal) => modal.classList.add('hidden');
+
+            shortcutsToggle.addEventListener('click', () => openModal(shortcutsModal));
+            shortcutsClose.addEventListener('click', () => closeModal(shortcutsModal));
+            shortcutsModal.addEventListener('click', (e) => { if (e.target === shortcutsModal) closeModal(shortcutsModal); });
+            
+            betaTag.addEventListener('click', () => openModal(betaModal));
+            betaModalClose.addEventListener('click', () => closeModal(betaModal));
+            betaModal.addEventListener('click', (e) => { if (e.target === betaModal) closeModal(betaModal); });
+
+            // Keyboard Shortcuts Logic
+            const heroDropdownBtn = document.querySelector('#hero [data-dropdown-button]');
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { closeModal(shortcutsModal); closeModal(betaModal); }
+                const activeEl = document.activeElement; if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) return;
+                switch(e.key) { case '?': openModal(shortcutsModal); break; case 's': case 'S': e.preventDefault(); dashboardSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => searchInput.focus(), 500); break; case 'd': case 'D': e.preventDefault(); heroDropdownBtn.click(); break; case 'r': case 'R': e.preventDefault(); document.getElementById('resources-hub').scrollIntoView({ behavior: 'smooth' }); break; case 'c': case 'C': e.preventDefault(); document.getElementById('community').scrollIntoView({ behavior: 'smooth' }); break; }
+            });
         });
     </script>
 </body>
