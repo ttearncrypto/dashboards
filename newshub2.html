@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tontuf News Hub | Dashboard</title>
+    
+    <!-- FONT AWESOME for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sidebar-bg: #212529;
+            --sidebar-text: #adb5bd;
+            --sidebar-text-hover: #ffffff;
+            --sidebar-active-bg: #343a40;
+            --main-bg: #f8f9fa;
+            --card-border: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--main-bg);
+            color: var(--text-primary);
+        }
+        
+        body.modal-open { overflow: hidden; }
+
+        .app-container { display: flex; height: 100vh; }
+
+        /* --- LEFT SIDEBAR (DARK THEME) --- */
+        .left-sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            color: var(--sidebar-text);
+            transition: margin-left 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo { font-family: 'Times New Roman', Times, serif; font-size: 1.75rem; font-weight: 700; margin-bottom: 2.5rem; color: var(--sidebar-text-hover); border-bottom: 1px solid #495057; padding-bottom: 1rem; }
+        .nav-links { list-style: none; }
+        .nav-links a { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem; text-decoration: none; color: var(--sidebar-text); font-weight: 500; border-radius: 8px; transition: all 0.2s; margin-bottom: 0.5rem; }
+        .nav-links a:hover { background-color: #2c3136; color: var(--sidebar-text-hover); }
+        .nav-links a.active { background-color: var(--sidebar-active-bg); color: var(--sidebar-text-hover); font-weight: 600; }
+        .nav-links i { width: 20px; text-align: center; font-size: 1.1rem; }
+        .user-profile { margin-top: auto; padding-top: 1rem; border-top: 1px solid #495057; display: flex; align-items: center; gap: 0.75rem; }
+        .user-profile img { width: 40px; height: 40px; border-radius: 50%; }
+        .user-profile .name { font-weight: 600; color: var(--sidebar-text-hover); }
+        .user-profile .email { font-size: 0.8rem; }
+        .user-profile .fa-chevron-right { margin-left: auto; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content-wrapper { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background-color: #ffffff; border-bottom: 1px solid var(--card-border); flex-wrap: wrap; gap: 1rem; }
+        .top-bar .welcome-message .greeting { font-size: 1.5rem; font-weight: 600; }
+        .top-bar .welcome-message .sub-greeting { color: var(--text-secondary); }
+        .top-bar-actions { display: flex; align-items: center; gap: 1rem; }
+        .search-bar { display: flex; align-items: center; gap: 0.5rem; background-color: var(--main-bg); padding: 0.6rem 1rem; border-radius: 8px; width: 350px; }
+        .search-bar input { border: none; outline: none; background: transparent; width: 100%; font-size: 1rem; }
+        .action-btn, .sort-select { background-color: #fff; color: var(--text-primary); padding: 0.75rem; border: 1px solid var(--card-border); border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* Kanban Board */
+        .kanban-board { display: flex; gap: 1.5rem; padding: 2rem; overflow-x: auto; flex-grow: 1; }
+        .kanban-column { width: 360px; flex-shrink: 0; display: flex; flex-direction: column; }
+        .column-header { font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-secondary); }
+        .column-header span { color: var(--text-primary); }
+        .column-cards { display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; padding-right: 0.5rem; flex-grow: 1; }
+        
+        /* Article Cards */
+        .article-card { background-color: white; border-radius: 12px; padding: 1rem; border: 1px solid var(--card-border); cursor: pointer; transition: box-shadow 0.2s; display: block; /* For search filtering */ }
+        .article-card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.07); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .category-tag { padding: 0.25rem 0.75rem; border-radius: 16px; font-size: 0.8rem; font-weight: 500; }
+        .bookmark-btn { background: none; border: none; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; gap: 0.4rem; font-weight: 500; }
+        .bookmark-btn.bookmarked { color: #ffc107; }
+        .card-title { font-weight: 600; margin-bottom: 0.75rem; font-size: 1.05rem; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .article-tags .tag { background-color: #e9ecef; color: var(--text-secondary); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--card-border); padding-top: 0.75rem; margin-top: 0.75rem; }
+        .source-info { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+        .source-info i { color: #6c757d; }
+        
+        /* --- MODAL --- */
+        .modal-overlay { z-index:2000; display:none; position:fixed; top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center; }
+        .modal-container { background:white;width:90%;max-width:800px;max-height:90vh;border-radius:8px;display:flex;flex-direction:column; }
+        .modal-header { display:flex;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--card-border); }
+        .modal-header h2 { font-size:1.5rem; }
+        .modal-close-btn { font-size:1.5rem;background:none;border:none;cursor:pointer; }
+        .modal-content { overflow-y:auto;padding:1.5rem; }
+        .modal-footer { padding:1rem 1.5rem;text-align:right;border-top:1px solid var(--card-border); }
+        .modal-footer a { text-decoration:none;background:var(--text-primary);color:white;padding:0.6rem 1.2rem;border-radius:8px; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+        @media (max-width: 1200px) {
+            .top-bar-actions { flex-grow: 1; justify-content: flex-end; }
+            .search-bar { width: 250px; }
+        }
+
+        @media (max-width: 992px) {
+            .app-container { flex-direction: column; height: auto; }
+            .left-sidebar { position: fixed; z-index: 1000; height: 100%; margin-left: -280px; }
+            .left-sidebar.open { margin-left: 0; }
+            .main-content-wrapper { width: 100%; }
+            .top-bar { position: relative; }
+            .menu-toggle { display: block; position: absolute; left: 1.5rem; }
+            .top-bar .welcome-message { margin-left: 40px; }
+            .kanban-board { flex-direction: column; overflow-x: hidden; padding: 1.5rem; }
+            .kanban-column { width: 100%; }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar { flex-direction: column; align-items: stretch; gap: 1.5rem; }
+            .top-bar .welcome-message { margin-left: 0; text-align: center; }
+            .menu-toggle { top: 1.5rem; }
+            .top-bar-actions { flex-direction: column; }
+            .search-bar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <nav class="left-sidebar" id="left-sidebar">
+            <div class="logo">The Tontuf Star</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active" id="dashboard-link"><i class="fa-solid fa-table-columns"></i><span>Dashboard</span></a></li>
+                <li><a href="#" id="bookmarks-link"><i class="fa-solid fa-bookmark"></i><span>Bookmarks</span></a></li>
+            </ul>
+            <div style="flex-grow: 1;"></div>
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/40?u=f9xr" alt="User">
+                <div>
+                    <div class="name">F9XR Team</div>
+                    <div class="email">contact@f9xr.team</div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content-wrapper">
+            <header class="top-bar">
+                <button class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="welcome-message">
+                    <div class="greeting">Welcome, F9XR Team</div>
+                    <div class="sub-greeting">Here is your news overview for today.</div>
+                </div>
+                <div class="top-bar-actions">
+                    <select id="sort-select" class="sort-select">
+                        <option value="newest">Sort: Newest</option>
+                        <option value="oldest">Sort: Oldest</option>
+                    </select>
+                    <button id="refresh-btn" class="action-btn"><i class="fa-solid fa-sync"></i> Refresh</button>
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="search-input" placeholder="Search by news title...">
+                    </div>
+                </div>
+            </header>
+            <main class="kanban-board" id="kanban-board"></main>
+        </div>
+    </div>
+    
+    <!-- MODAL -->
+    <div id="article-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header"><h2 id="modal-title"></h2><button id="modal-close-btn">&times;</button></div>
+            <div id="modal-content" class="modal-content"></div>
+            <div class="modal-footer"><a href="#" id="modal-original-link" target="_blank" rel="noopener noreferrer">Read on Original Site</a></div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const FEEDS_CONFIG = [
+            { name: "Sports", url: "https://tontufsports-news.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(239, 68, 68, 0.1)", tagColor: "#ef4444" },
+            { name: "Finance", url: "https://tontufmoney-news.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(34, 197, 94, 0.1)", tagColor: "#22c55e" },
+            { name: "Politics", url: "https://tontufpolitics-news.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(59, 130, 246, 0.1)", tagColor: "#3b82f6" },
+            { name: "Technology", url: "https://tontuftechies.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(20, 184, 166, 0.1)", tagColor: "#14b8a6" },
+            { name: "Automotive", url: "https://tontufvehicles.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(107, 114, 128, 0.1)", tagColor: "#6b7280" },
+            { name: "Cryptocurrency", url: "https://cryptoradarnews.blogspot.com/feeds/posts/default?alt=rss", color: "rgba(249, 115, 22, 0.1)", tagColor: "#f97316" }
+        ];
+        const RSS_PROXY_URL = "https://api.rss2json.com/v1/api.json?rss_url=";
+        let masterArticleList = [], bookmarkedGuids = [];
+
+        const kanbanBoard = document.getElementById('kanban-board');
+        const searchInput = document.getElementById('search-input');
+        const dashboardLink = document.getElementById('dashboard-link');
+        const bookmarksLink = document.getElementById('bookmarks-link');
+        const sortSelect = document.getElementById('sort-select');
+        const refreshBtn = document.getElementById('refresh-btn');
+        const modal = document.getElementById('article-modal');
+        const menuToggle = document.getElementById('menu-toggle');
+        const leftSidebar = document.getElementById('left-sidebar');
+
+        async function init() {
+            loadBookmarks();
+            setupEventListeners();
+            await refreshFeeds();
+        }
+
+        function setupEventListeners() {
+            dashboardLink.addEventListener('click', (e) => { e.preventDefault(); setActiveView('dashboard'); renderDashboard(); });
+            bookmarksLink.addEventListener('click', (e) => { e.preventDefault(); setActiveView('bookmarks'); renderBookmarks(); });
+            searchInput.addEventListener('input', debounce(handleSearch, 300));
+            sortSelect.addEventListener('change', handleSortChange);
+            refreshBtn.addEventListener('click', refreshFeeds);
+            kanbanBoard.addEventListener('click', handleCardClick);
+            modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('#modal-close-btn')) closeArticleModal(); });
+            menuToggle.addEventListener('click', () => leftSidebar.classList.toggle('open'));
+        }
+        
+        async function refreshFeeds() {
+            setLoadingState(true);
+            const fetchPromises = FEEDS_CONFIG.map(feed => 
+                fetch(RSS_PROXY_URL + encodeURIComponent(feed.url))
+                .then(res => res.ok ? res.json() : Promise.reject())
+                .then(data => data.status === 'ok' ? data.items.map(item => ({...item, category: feed.name, config: feed, sourceName: data.feed.title })) : [])
+                .catch(() => [])
+            );
+            masterArticleList = (await Promise.all(fetchPromises)).flat();
+            setLoadingState(false);
+            
+            // Re-render the current view
+            if (dashboardLink.classList.contains('active')) {
+                renderDashboard();
+            } else {
+                renderBookmarks();
+            }
+        }
+
+        function renderDashboard() {
+            kanbanBoard.innerHTML = '';
+            const articlesByCategory = groupByCategory(masterArticleList);
+            
+            FEEDS_CONFIG.forEach(config => {
+                const column = createColumn(config.name, config.color);
+                const cardsContainer = column.querySelector('.column-cards');
+                const articles = sortArticles(articlesByCategory[config.name] || []);
+                
+                column.querySelector('.column-count').textContent = articles.length;
+                if(articles.length > 0) {
+                    articles.forEach(article => cardsContainer.appendChild(createArticleCard(article)));
+                } else {
+                    cardsContainer.innerHTML = `<p style="font-size:0.9rem; color:var(--text-secondary); padding: 1rem;">No articles found.</p>`;
+                }
+                kanbanBoard.appendChild(column);
+            });
+        }
+        
+        function renderBookmarks() {
+            kanbanBoard.innerHTML = '';
+            const bookmarkedArticles = masterArticleList.filter(a => bookmarkedGuids.includes(a.guid));
+            const sortedBookmarks = sortArticles(bookmarkedArticles);
+            const column = createColumn('Bookmarks');
+            const cardsContainer = column.querySelector('.column-cards');
+            column.querySelector('.column-count').textContent = sortedBookmarks.length;
+
+            if (sortedBookmarks.length > 0) {
+                sortedBookmarks.forEach(article => cardsContainer.appendChild(createArticleCard(article)));
+            } else {
+                 cardsContainer.innerHTML = `<p style="font-size:0.9rem; color:var(--text-secondary); padding: 1rem;">No bookmarked articles.</p>`;
+            }
+            kanbanBoard.appendChild(column);
+        }
+
+        function createColumn(title) {
+            const columnEl = document.createElement('div');
+            columnEl.className = 'kanban-column';
+            columnEl.innerHTML = `
+                <div class="column-header"><span>${title}</span> (<span class="column-count">0</span>)</div>
+                <div class="column-cards"></div>`;
+            return columnEl;
+        }
+
+        function createArticleCard(article) {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            card.dataset.guid = article.guid;
+            card.style.background = article.config.color;
+            
+            const isBookmarked = bookmarkedGuids.includes(article.guid);
+            const sourceName = article.sourceName || "Unknown Source";
+            const formattedDate = new Date(article.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            
+            // Create tags HTML
+            let tagsHTML = '';
+            if (article.categories && article.categories.length > 0) {
+                tagsHTML = `<div class="article-tags">` + 
+                    article.categories.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('') +
+                `</div>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="category-tag" style="background-color: ${article.config.tagColor}; color: white;">${article.category}</span>
+                    <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark"><i class="fa-solid fa-bookmark"></i> Bookmark</button>
+                </div>
+                <h4 class="card-title">${article.title}</h4>
+                ${tagsHTML}
+                <div class="card-footer">
+                    <div class="source-info" title="${sourceName}">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>${sourceName.substring(0, 20)}...</span>
+                    </div>
+                    <span>${formattedDate}</span>
+                </div>
+            `;
+            return card;
+        }
+
+        function handleCardClick(event) {
+            const bookmarkBtn = event.target.closest('.bookmark-btn');
+            const card = event.target.closest('.article-card');
+
+            if (bookmarkBtn) {
+                toggleBookmark(card.dataset.guid, bookmarkBtn);
+            } else if (card) {
+                openArticleModal(card.dataset.guid);
+            }
+        }
+        
+        function handleSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            document.querySelectorAll('.article-card').forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+            });
+            updateAllColumnCount();
+        }
+        
+        function handleSortChange() {
+             if (dashboardLink.classList.contains('active')) {
+                renderDashboard();
+            } else {
+                renderBookmarks();
+            }
+        }
+
+        function sortArticles(articles) {
+            const sortValue = sortSelect.value;
+            return [...articles].sort((a, b) => {
+                if (sortValue === 'oldest') {
+                    return new Date(a.pubDate) - new Date(b.pubDate);
+                }
+                return new Date(b.pubDate) - new Date(a.pubDate); // newest
+            });
+        }
+        
+        function groupByCategory(articles) {
+            return articles.reduce((acc, article) => {
+                (acc[article.category] = acc[article.category] || []).push(article);
+                return acc;
+            }, {});
+        }
+        
+        function setActiveView(view) {
+            dashboardLink.classList.toggle('active', view === 'dashboard');
+            bookmarksLink.classList.toggle('active', view === 'bookmarks');
+            if(leftSidebar.classList.contains('open')) leftSidebar.classList.remove('open');
+        }
+
+        function loadBookmarks() { bookmarkedGuids = JSON.parse(localStorage.getItem('tontufNewsBookmarks')) || []; }
+        function toggleBookmark(guid, button) {
+            const index = bookmarkedGuids.indexOf(guid);
+            if (index > -1) bookmarkedGuids.splice(index, 1);
+            else bookmarkedGuids.push(guid);
+            localStorage.setItem('tontufNewsBookmarks', JSON.stringify(bookmarkedGuids));
+            button.classList.toggle('bookmarked');
+            if (bookmarksLink.classList.contains('active')) renderBookmarks();
+        }
+        
+        function openArticleModal(guid) {
+            const article = masterArticleList.find(a => a.guid === guid);
+            if (!article) return;
+            document.getElementById('modal-title').textContent = article.title;
+            document.getElementById('modal-content').innerHTML = article.content;
+            document.getElementById('modal-original-link').href = article.link;
+            modal.style.display = 'flex';
+            document.body.classList.add('modal-open');
+        }
+
+        function closeArticleModal() {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+        
+        function setLoadingState(isLoading) {
+            const refreshIcon = refreshBtn.querySelector('i');
+            if (isLoading) {
+                refreshIcon.classList.add('fa-spin');
+                refreshBtn.disabled = true;
+            } else {
+                refreshIcon.classList.remove('fa-spin');
+                refreshBtn.disabled = false;
+            }
+        }
+
+        function updateAllColumnCount() {
+            document.querySelectorAll('.kanban-column').forEach(column => {
+                const visibleCards = column.querySelectorAll('.article-card[style*="display: block"]').length;
+                column.querySelector('.column-count').textContent = visibleCards;
+            });
+        }
+        
+        function debounce(func, delay) { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => { func.apply(this, args); }, delay); }; }
+        
+        init();
+    });
+    </script>
+
+</body>
+</html>
