@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tontuf News Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --header-color: #000;
+            --border-color: #ddd;
+            --shadow-color: rgba(0,0,0,0.05);
+            --shadow-hover-color: rgba(0,0,0,0.1);
+            --bookmark-color: #eab308;
+        }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--primary-bg); color: var(--text-color); margin: 0; line-height: 1.6; }
+        body.modal-open { overflow: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--header-color); }
+        .main-header { background-color: var(--card-bg); text-align: center; padding: 1.5rem 1rem; border-bottom: 3px double var(--header-color); }
+        .main-header h1 { margin: 0; font-size: 3rem; }
+        .main-header p { margin: 0; font-style: italic; color: #555; }
+        .main-footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--border-color); font-size: 0.9em; }
+        .sticky-header { position: sticky; top: 0; z-index: 1000; background-color: var(--card-bg); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .category-navigation { display: flex; padding: 0.5rem 1rem; border-bottom: 1px solid var(--border-color); overflow-x: auto; white-space: nowrap; }
+        .category-navigation a { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; margin-right: 0.5rem; text-decoration: none; color: var(--header-color); font-weight: 500; border-radius: 4px; transition: background-color 0.3s ease, color 0.3s ease; cursor: pointer; border: 1px solid transparent; }
+        .category-navigation a.active { background-color: var(--header-color); color: var(--card-bg); }
+        .controls-bar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding: 0.75rem 1rem; background-color: #f9f9f9; }
+        .search-container { flex-grow: 1; min-width: 200px; }
+        .search-container input { width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 1em; }
+        .filter-container, .layout-toggle { display: flex; gap: 0.5rem; align-items: center; }
+        .filter-container select, .layout-toggle button { padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; background-color: white; cursor: pointer; }
+        .layout-toggle button.active { background-color: var(--header-color); color: var(--card-bg); }
+        .news-container { padding: 1.5rem; max-width: 1600px; margin: 0 auto; }
+        .news-container.grid-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+        .news-container.list-view { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .article-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-top: 5px solid; display: flex; flex-direction: column; box-shadow: 0 2px 5px var(--shadow-color); transition: transform 0.2s ease, box-shadow 0.2s ease; animation: fadeIn 0.5s ease-in-out; position: relative; }
+        .article-card:hover { transform: translateY(-5px); box-shadow: 0 4px 10px var(--shadow-hover-color); }
+        .article-card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .article-card h3 { margin: 0 0 0.5rem 0; font-size: 1.4em; cursor: pointer; }
+        .article-card h3:hover { text-decoration: underline; }
+        .article-card .meta-info { font-size: 0.8em; color: #777; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.75rem; }
+        .article-card .meta-info .category-tag { font-weight: bold; padding: 2px 6px; border-radius: 4px; color: white; }
+        .article-card .excerpt { flex-grow: 1; margin-bottom: 1rem; font-size: 0.95em; }
+        .article-actions { position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; }
+        .article-actions button { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: #aaa; transition: color 0.2s ease; padding: 0.25rem; }
+        .bookmark-btn { position: absolute; top: -5px; left: 1rem; background-color: var(--card-bg); border: 1px solid var(--border-color); border-top: none; padding: 0.3rem 0.6rem; border-radius: 0 0 4px 4px; }
+        .bookmark-btn.bookmarked { color: var(--bookmark-color); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #load-more-container { text-align: center; padding: 1rem; }
+        #load-more-btn { background-color: var(--header-color); color: var(--card-bg); padding: 0.75rem 2rem; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; }
+        .status-indicator, .error-message { text-align: center; padding: 4rem 1rem; grid-column: 1 / -1; }
+        .skeleton { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .skeleton .skeleton-text { height: 1em; background-color: #ccc; border-radius: 4px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; display: none; align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+        .modal-overlay.visible { display: flex; }
+        .modal-container { background: var(--card-bg); width: 90%; max-width: 800px; max-height: 90vh; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .modal-header h2 { font-size: 1.5em; margin: 0; line-height: 1.3; }
+        .modal-close-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; color: #888; }
+        .modal-content { overflow-y: auto; padding: 1.5rem; }
+        .modal-content .meta-info { margin-bottom: 1.5rem; font-size: 0.9em; }
+        .modal-content img { max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 1rem; }
+        .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); text-align: right; }
+        .modal-footer a { text-decoration: none; background-color: var(--header-color); color: var(--card-bg); padding: 0.5rem 1rem; border-radius: 4px; }
+        @media (max-width: 768px) {
+            .main-header h1 { font-size: 2.2rem; }
+            .controls-bar { flex-direction: column; align-items: stretch; }
+            .news-container { padding: 1rem; }
+            .news-container.grid-view { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Tontuf News Hub</h1>
+        <p>Your Daily Digest from Across the Web</p>
+    </header>
+
+    <div class="sticky-header">
+        <nav id="category-nav" class="category-navigation"></nav>
+        <div class="controls-bar">
+            <div class="search-container"> <input type="search" id="search-input" placeholder="Search articles..."> </div>
+            <div class="filter-container">
+                <select id="sort-select">
+                    <option value="newest">Sort: Newest First</option> <option value="oldest">Sort: Oldest First</option> <option value="category">Sort: By Category</option>
+                </select>
+                <select id="date-filter-select">
+                    <option value="all">Date: All Time</option> <option value="today">Date: Today</option> <option value="week">Date: This Week</option> <option value="month">Date: This Month</option>
+                </select>
+            </div>
+            <div id="layout-toggle" class="layout-toggle">
+                <button id="grid-view-btn" class="active" title="Grid View"><i class="fas fa-th-large"></i></button> <button id="list-view-btn" title="List View"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <main id="news-container" class="news-container grid-view"></main>
+    <div id="load-more-container" style="display: none;"><button id="load-more-btn">Load More</button></div>
+    <footer class="main-footer"><p>&copy; 2025 Tontuf News Hub. All Rights Reserved.</p></footer>
+
+    <!-- Article Reader Modal -->
+    <div id="article-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+            </div>
+            <div id="modal-content" class="modal-content"></div>
+            <div class="modal-footer">
+                <a href="#" id="modal-original-link" target="_blank" rel="noopener noreferrer">Read on Original Site</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const FEEDS_CONFIG = [ { name: "Sports", url: "https://tontufsports-news.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-futbol", color: "#ef4444" }, { name: "Finance", url: "https://tontufmoney-news.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-arrow-trend-up", color: "#22c55e" }, { name: "Politics", url: "https://tontufpolitics-news.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-landmark", color: "#3b82f6" }, { name: "Cryptocurrency", url: "https://cryptoradarnews.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-brands fa-bitcoin", color: "#f97316" }, { name: "Technology", url: "https://tontuftechies.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-microchip", color: "#14b8a6" }, { name: "Automotive", url: "https://tontufvehicles.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-car", color: "#6b7280" }, { name: "Education/Jobs", url: "https://tontufsb-news.blogspot.com/feeds/posts/default?alt=rss", icon: "fa-solid fa-user-tie", color: "#8b5cf6" } ];
+        const RSS_PROXY_URL = "https://api.rss2json.com/v1/api.json?rss_url=";
+        const ARTICLES_PER_PAGE = 12;
+        let masterArticleList = [], displayedArticles = [], bookmarkedGuids = [], currentPage = 1;
+
+        const newsContainer = document.getElementById('news-container');
+        const categoryNav = document.getElementById('category-nav');
+        const searchInput = document.getElementById('search-input'), sortSelect = document.getElementById('sort-select'), dateFilterSelect = document.getElementById('date-filter-select');
+        const gridViewBtn = document.getElementById('grid-view-btn'), listViewBtn = document.getElementById('list-view-btn');
+        const loadMoreContainer = document.getElementById('load-more-container'), loadMoreBtn = document.getElementById('load-more-btn');
+        const modal = document.getElementById('article-modal'), modalCloseBtn = document.getElementById('modal-close-btn');
+
+        async function init() {
+            loadBookmarks();
+            setupEventListeners();
+            createCategoryButtons();
+            await loadAllFeeds();
+        }
+
+        function setupEventListeners() {
+            newsContainer.addEventListener('click', handleCardClick);
+            categoryNav.addEventListener('click', handleCategoryFilter);
+            searchInput.addEventListener('input', () => { currentPage = 1; renderNews(); });
+            sortSelect.addEventListener('change', () => { currentPage = 1; renderNews(); });
+            dateFilterSelect.addEventListener('change', () => { currentPage = 1; renderNews(); });
+            gridViewBtn.addEventListener('click', () => switchLayout('grid-view'));
+            listViewBtn.addEventListener('click', () => switchLayout('list-view'));
+            loadMoreBtn.addEventListener('click', loadMoreArticles);
+            modalCloseBtn.addEventListener('click', closeArticleModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeArticleModal(); });
+        }
+        
+        async function loadAllFeeds() {
+            showSkeletonLoaders();
+            const fetchPromises = FEEDS_CONFIG.map(feed => fetch(RSS_PROXY_URL + encodeURIComponent(feed.url)).then(res => res.ok ? res.json() : Promise.reject(`HTTP error`)).then(data => data.status === 'ok' ? data.items.map(item => ({...item, category: feed.name, categoryIcon: feed.icon, categoryColor: feed.color, sourceName: data.feed.title })) : Promise.reject(`API error`)).catch(error => { console.error(`Error fetching ${feed.name}:`, error); displayErrorMessage(feed.name); return []; }) );
+            masterArticleList = (await Promise.all(fetchPromises)).flat().sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+            renderNews();
+        }
+
+        function renderNews() {
+            const activeCategory = categoryNav.querySelector('.active').dataset.category;
+            const articlesToProcess = activeCategory === 'bookmarks' ? masterArticleList.filter(a => bookmarkedGuids.includes(a.guid)) : masterArticleList;
+            document.querySelector('.controls-bar').style.display = activeCategory === 'bookmarks' ? 'none' : 'flex';
+            
+            const filtered = filterArticles(articlesToProcess);
+            displayedArticles = sortArticles(filtered);
+            newsContainer.innerHTML = '';
+            
+            const articlesToDisplay = displayedArticles.slice(0, currentPage * ARTICLES_PER_PAGE);
+            if (articlesToDisplay.length === 0) {
+                const message = activeCategory === 'bookmarks' ? 'You have no bookmarked articles.' : 'No articles match your criteria.';
+                newsContainer.innerHTML = `<div class="status-indicator"><h3>${message}</h3></div>`;
+            } else {
+                articlesToDisplay.forEach(article => newsContainer.appendChild(createArticleCard(article)));
+            }
+            updateLoadMoreButton();
+        }
+        
+        function filterArticles(articles) {
+            if (categoryNav.querySelector('.active').dataset.category === 'bookmarks') return articles;
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = categoryNav.querySelector('.active').dataset.category;
+            const dateFilter = dateFilterSelect.value;
+            return articles.filter(a => (activeCategory === 'all' || a.category === activeCategory) && (searchTerm === '' || a.title.toLowerCase().includes(searchTerm)) && checkDateFilter(a.pubDate, dateFilter));
+        }
+        
+        function sortArticles(articles) {
+            const sortValue = sortSelect.value;
+            const sorted = [...articles]; 
+            if (sortValue === 'oldest') return sorted.sort((a, b) => new Date(a.pubDate) - new Date(b.pubDate));
+            if (sortValue === 'category') return sorted.sort((a, b) => a.category.localeCompare(b.category) || new Date(b.pubDate) - new Date(a.pubDate));
+            return sorted.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        }
+
+        function createCategoryButtons() {
+            categoryNav.innerHTML = `<a href="#" class="active" data-category="all"><i class="fas fa-globe"></i> All News</a>`;
+            FEEDS_CONFIG.forEach(feed => { categoryNav.innerHTML += `<a href="#" data-category="${feed.name}" style="border-color:${feed.color};"><i class="${feed.icon}"></i> ${feed.name}</a>`; });
+            categoryNav.innerHTML += `<a href="#" data-category="bookmarks" style="border-color:var(--bookmark-color);"><i class="fas fa-bookmark"></i> Bookmarks</a>`;
+        }
+
+        function createArticleCard(article) {
+            const card = document.createElement('article');
+            card.className = 'article-card';
+            card.style.borderTopColor = article.categoryColor;
+            card.dataset.guid = article.guid;
+
+            const isBookmarked = bookmarkedGuids.includes(article.guid);
+            const excerpt = (new DOMParser().parseFromString(article.description, 'text/html')).body.textContent || '';
+            const pubDate = new Date(article.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            card.innerHTML = `
+                <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark"><i class="fas fa-bookmark"></i></button>
+                <div class="article-card-content">
+                    <h3 class="article-title">${article.title || 'Untitled Article'}</h3>
+                    <div class="meta-info">
+                        <span class="category-tag" style="background-color:${article.categoryColor};">${article.category}</span> | <span class="source">${article.sourceName}</span> | <span class="date">${pubDate}</span>
+                    </div>
+                    <div class="excerpt">${excerpt.substring(0, 150)}...</div>
+                </div>
+                <div class="article-actions"> <button class="share-btn" title="Share"><i class="fas fa-share-alt"></i></button> </div>`;
+            return card;
+        }
+
+        function handleCardClick(event) {
+            const target = event.target;
+            const card = target.closest('.article-card');
+            if (!card) return;
+
+            if (target.closest('.bookmark-btn')) {
+                toggleBookmark(card.dataset.guid, target.closest('.bookmark-btn'));
+            } else if (target.closest('.share-btn')) {
+                const article = masterArticleList.find(a => a.guid === card.dataset.guid);
+                if (article) shareArticle(article.title, article.link, target.closest('.share-btn'));
+            } else if (target.closest('.article-title')) {
+                openArticleModal(card.dataset.guid);
+            }
+        }
+        
+        function handleCategoryFilter(event) {
+            event.preventDefault();
+            const target = event.target.closest('a');
+            if (target && target.dataset.category) {
+                categoryNav.querySelector('.active').classList.remove('active');
+                target.classList.add('active');
+                currentPage = 1;
+                renderNews();
+            }
+        }
+
+        function loadBookmarks() { bookmarkedGuids = JSON.parse(localStorage.getItem('tontufNewsBookmarks')) || []; }
+        function toggleBookmark(guid, button) {
+            const index = bookmarkedGuids.indexOf(guid);
+            if (index > -1) bookmarkedGuids.splice(index, 1); else bookmarkedGuids.push(guid);
+            localStorage.setItem('tontufNewsBookmarks', JSON.stringify(bookmarkedGuids));
+            button.classList.toggle('bookmarked');
+            if (categoryNav.querySelector('.active').dataset.category === 'bookmarks') renderNews();
+        }
+
+        async function shareArticle(title, url, button) {
+            if (navigator.share) {
+                await navigator.share({ title, url }).catch(e => console.error('Share failed:', e));
+            } else {
+                navigator.clipboard.writeText(url).then(() => alert('Article link copied to clipboard!'));
+            }
+        }
+        
+        function openArticleModal(guid) {
+            const article = masterArticleList.find(a => a.guid === guid);
+            if (!article) return;
+            document.getElementById('modal-title').textContent = article.title;
+            const modalContent = document.getElementById('modal-content');
+            const pubDate = new Date(article.pubDate).toLocaleString();
+            modalContent.innerHTML = `<div class="meta-info"><strong>${article.sourceName}</strong> | <span>${pubDate}</span></div><div>${article.content}</div>`;
+            document.getElementById('modal-original-link').href = article.link;
+            modal.classList.add('visible');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeArticleModal() {
+            modal.classList.remove('visible');
+            document.body.classList.remove('modal-open');
+        }
+
+        function showSkeletonLoaders() {
+            newsContainer.innerHTML = '';
+            for (let i = 0; i < ARTICLES_PER_PAGE; i++) {
+                const skeletonCard = document.createElement('div');
+                skeletonCard.className = 'article-card skeleton';
+                skeletonCard.style.borderTopColor = 'var(--border-color)';
+                skeletonCard.innerHTML = `<div class="article-card-content"><div class="skeleton-text" style="height:1.8em;width:80%;margin-bottom:0.5rem;"></div><div class="skeleton-text" style="height:1em;width:40%;margin-bottom:1rem;"></div><div class="skeleton-text" style="width:100%;"></div><div class="skeleton-text" style="width:100%;margin-top:0.5rem;"></div></div>`;
+                newsContainer.appendChild(skeletonCard);
+            }
+        }
+        
+        function updateLoadMoreButton() { loadMoreContainer.style.display = displayedArticles.length > currentPage * ARTICLES_PER_PAGE ? 'block' : 'none'; }
+        function loadMoreArticles() {
+            currentPage++;
+            const articlesToAppend = displayedArticles.slice((currentPage - 1) * ARTICLES_PER_PAGE, currentPage * ARTICLES_PER_PAGE);
+            articlesToAppend.forEach(article => newsContainer.appendChild(createArticleCard(article)));
+            updateLoadMoreButton();
+        }
+        function switchLayout(layoutClass) {
+            newsContainer.className = `news-container ${layoutClass}`;
+            gridViewBtn.classList.toggle('active', layoutClass === 'grid-view');
+            listViewBtn.classList.toggle('active', layoutClass === 'list-view');
+        }
+        function checkDateFilter(pubDateStr, filter) {
+            if (filter === 'all') return true;
+            const now = new Date(), pubDate = new Date(pubDateStr);
+            const weekAgo = new Date(); weekAgo.setDate(now.getDate() - 7);
+            const monthAgo = new Date(); monthAgo.setMonth(now.getMonth() - 1);
+            if (filter === 'today') return pubDate.toDateString() === now.toDateString();
+            if (filter === 'week') return pubDate >= weekAgo;
+            if (filter === 'month') return pubDate >= monthAgo;
+            return true;
+        }
+        function displayErrorMessage(feedName) {
+            const errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            errorElement.innerHTML = `Could not load articles from <strong>${feedName}</strong>.`;
+            newsContainer.prepend(errorElement);
+        }
+
+        init();
+    });
+    </script>
+</body>
+</html>
