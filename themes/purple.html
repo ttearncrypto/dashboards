@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCryptos Dashboard | F9XR'TTEarnCrypto - Premium Earning Hub</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your ultimate dashboard for discovering the best free crypto earning projects, FaucetPay faucets, crypto faucet lists, airdrops, and investment opportunities.">
+    <meta name="keywords" content="free crypto, earn crypto, faucetpay faucets, crypto faucet list, airdrops, iCryptos, F9XR">
+    <meta name="author" content="F9XR">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="iCryptos Dashboard - Premium Crypto Earning Hub">
+    <meta property="og:description" content="Discover verified earning opportunities, airdrops, and investments.">
+    <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (Configured via Script for single-file portability) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            violet: '#ea7af4',
+                            fandango: '#b43e8f',
+                            grape: '#6200b3',
+                            indigo: '#3b0086',
+                            dark: '#290628',
+                        }
+                    },
+                    backgroundImage: {
+                        'brand-gradient': 'linear-gradient(135deg, #ea7af4, #b43e8f, #6200b3, #3b0086, #290628)',
+                        'brand-gradient-hover': 'linear-gradient(135deg, #b43e8f, #6200b3)',
+                        'glass': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #290628; }
+        ::-webkit-scrollbar-thumb { background: #6200b3; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ea7af4; }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(41, 6, 40, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(234, 122, 244, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(59, 0, 134, 0.3);
+            border: 1px solid rgba(234, 122, 244, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(234, 122, 244, 0.3);
+            border-color: rgba(234, 122, 244, 0.4);
+        }
+
+        /* Loading Spinner */
+        .ts-loader {
+            border: 4px solid rgba(234, 122, 244, 0.1);
+            border-left-color: #ea7af4;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Legacy Class Support (Helper for JS logic targeting) */
+        .ts-active {
+            background: linear-gradient(90deg, rgba(180, 62, 143, 0.2), transparent);
+            border-left: 4px solid #ea7af4;
+            color: #ea7af4 !important;
+        }
+        
+        /* Smooth transitions */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .ts-hidden { display: none !important; }
+        
+        /* Sidebar Shrink Logic handled via Tailwind in JS, but adding transition helper */
+        #ts-sidebar { transition: width 0.3s ease, padding 0.3s ease; }
+        #ts-main-content { transition: margin-left 0.3s ease; }
+        
+        /* Mobile fixes */
+        @media (max-width: 768px) {
+            .ts-sidebar-shrunk #ts-sidebar { width: 0; padding: 0; overflow: hidden; }
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-200 font-sans antialiased overflow-x-hidden relative selection:bg-brand-violet selection:text-brand-dark">
+
+    <!-- SETTINGS MODAL -->
+    <div id="ts-settings-modal" class="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-8 shadow-2xl transform scale-95 transition-all duration-300 relative">
+            <div class="flex justify-between items-center mb-6 border-b border-brand-violet/20 pb-4">
+                <h2 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-violet to-brand-fandango">
+                    <i class="fas fa-cog mr-2"></i> Settings
+                </h2>
+                <button id="ts-settings-close-btn" class="text-gray-400 hover:text-brand-violet text-2xl transition-colors">&times;</button>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-brand-indigo/30 p-4 rounded-lg border border-brand-violet/10">
+                    <h3 class="text-lg font-semibold text-brand-violet mb-2">Theme & Display</h3>
+                    <p class="text-sm text-gray-400">Custom theme options and density settings coming in v2.0.</p>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <a href="https://github.com/ttearncrypto" target="_blank" class="flex items-center justify-between p-4 bg-brand-grape/20 hover:bg-brand-grape/40 border border-brand-violet/20 rounded-xl transition-all group">
+                        <span class="font-medium text-gray-200 group-hover:text-brand-violet"><i class="fab fa-github mr-3"></i> Visit GitHub Repository</span>
+                        <i class="fas fa-external-link-alt text-xs text-gray-500 group-hover:text-brand-violet"></i>
+                    </a>
+                </div>
+                
+                <div class="text-center text-xs text-gray-500 mt-4">
+                    iCryptos Dashboard v1.2.0 &copy; 2023 F9XR
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ts-main-container" class="flex min-h-screen">
+        
+        <!-- SIDEBAR -->
+        <!-- Fixed height removed, updated to be full screen flexible column with scroll -->
+        <aside id="ts-sidebar" class="ts-sidebar fixed top-0 left-0 h-screen w-20 md:w-24 bg-brand-indigo/90 backdrop-blur-md border-r border-brand-violet/10 flex flex-col items-center py-6 z-50 overflow-y-auto scrollbar-thin scrollbar-thumb-brand-violet scrollbar-track-brand-dark">
+            
+            <div class="w-12 h-12 mb-8 rounded-full p-[2px] bg-gradient-to-br from-brand-violet to-brand-grape shadow-lg shadow-brand-violet/20 flex-shrink-0">
+                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-full h-full rounded-full object-cover">
+            </div>
+
+            <!-- Nav Links -->
+            <nav id="ts-sidebar-nav" class="flex flex-col gap-2 w-full flex-grow px-2">
+                <!-- Dynamically Inserted -->
+            </nav>
+
+            <!-- Sidebar Footer Actions -->
+            <div class="mt-auto pt-6 flex flex-col gap-4 w-full items-center border-t border-brand-violet/10 pb-4">
+                <button id="ts-claim-list-btn" class="ts-sidebar-footer-btn w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-violet/20 transition-all duration-200" title="My Claim List">
+                    <i class="fas fa-clipboard-list text-xl"></i>
+                </button>
+                
+                <div class="relative group">
+                    <button id="ts-follow-us-btn" class="ts-sidebar-footer-btn w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-violet/20 transition-all duration-200" title="Follow Us">
+                        <i class="fas fa-share-nodes text-xl"></i>
+                    </button>
+                    <!-- Follow Dropdown -->
+                    <div id="ts-follow-us-panel" class="absolute left-14 bottom-0 glass-panel p-3 rounded-xl flex flex-col gap-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-x-2 w-max">
+                        <a href="#" class="text-brand-violet hover:text-white transition"><i class="fab fa-twitter text-lg"></i> Twitter</a>
+                        <a href="#" class="text-brand-violet hover:text-white transition"><i class="fab fa-telegram text-lg"></i> Telegram</a>
+                    </div>
+                </div>
+
+                <button id="ts-settings-open-btn" class="ts-sidebar-footer-btn w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-violet/20 transition-all duration-200" title="Settings">
+                    <i class="fas fa-cog text-xl"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main id="ts-main-content" class="ts-main-content flex-grow ml-20 md:ml-24 p-4 md:p-8 relative transition-all duration-300">
+            
+            <!-- Header / Navbar -->
+            <header class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 glass-panel p-4 rounded-2xl sticky top-4 z-40">
+                <div class="flex items-center gap-4 w-full md:w-auto">
+                    <button id="ts-sidebar-toggle-btn" class="w-10 h-10 rounded-lg flex items-center justify-center text-brand-violet hover:bg-brand-violet/10 transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div>
+                        <h1 id="ts-main-title" class="text-xl md:text-2xl font-bold text-white tracking-tight">Dashboard</h1>
+                        <p class="text-xs text-brand-violet font-medium uppercase tracking-wider">iCryptos Intelligence</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 w-full md:w-auto justify-end">
+                    <button id="ts-bookmark-button" class="px-4 py-2 rounded-lg bg-brand-indigo/40 hover:bg-brand-indigo/60 text-sm font-semibold border border-brand-violet/20 text-brand-violet transition-all">
+                        <i class="fas fa-bookmark mr-2"></i> Save
+                    </button>
+                    <button id="ts-share-button" class="px-4 py-2 rounded-lg bg-gradient-to-r from-brand-violet to-brand-fandango hover:from-brand-fandango hover:to-brand-grape text-white text-sm font-bold shadow-lg shadow-brand-violet/20 transition-all transform hover:scale-105">
+                        <i class="fas fa-share-alt mr-2"></i> Share
+                    </button>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="mb-10 rounded-3xl p-8 md:p-12 relative overflow-hidden bg-brand-gradient shadow-2xl">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="max-w-2xl">
+                        <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold text-white mb-3 border border-white/10">✨ Verified Opportunities</span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">Maximize Your Crypto <br>Earnings Today</h2>
+                        <p class="text-brand-violet/20 text-white/90 text-lg mb-6 max-w-lg">Consolidating the latest airdrops, investments, and earning sites so you can act decisively without the noise.</p>
+                        <div class="flex gap-4">
+                            <button onclick="document.getElementById('ts-data-controls').scrollIntoView({behavior: 'smooth'})" class="bg-white text-brand-grape px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg">Start Exploring</button>
+                            <a href="https://ttearncrypto.blogspot.com" target="_blank" class="px-6 py-3 rounded-xl font-bold text-white border border-white/30 hover:bg-white/10 transition">Read Blog</a>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block text-9xl text-white/10 absolute right-10 -bottom-10 rotate-12">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats/Highlights Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-brand-violet/20 flex items-center justify-center text-brand-violet text-xl"><i class="fas fa-layer-group"></i></div>
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase font-semibold">Total Projects</p>
+                        <h4 class="text-2xl font-bold text-white" id="stat-total-count">...</h4>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xl"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase font-semibold">Status</p>
+                        <h4 class="text-2xl font-bold text-white">Verified</h4>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl"><i class="fas fa-sync-alt"></i></div>
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase font-semibold">Updates</p>
+                        <h4 class="text-2xl font-bold text-white">Daily</h4>
+                    </div>
+                </div>
+                 <div class="glass-card p-6 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-brand-violet/10 transition" id="ts-quick-claim-nav">
+                    <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-xl"><i class="fas fa-star"></i></div>
+                    <div>
+                        <p class="text-gray-400 text-xs uppercase font-semibold">My Saves</p>
+                        <h4 class="text-xl font-bold text-white">View List</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ad Space Top -->
+            <div class="w-full h-24 bg-brand-dark/50 border-2 border-dashed border-gray-700 rounded-xl flex items-center justify-center text-gray-500 mb-10">
+                <span class="font-mono text-sm">ADS: 728x90 Banner Placement</span>
+            </div>
+
+            <!-- Controls -->
+            <div id="ts-data-controls" class="mb-6">
+                <div class="glass-panel p-4 rounded-xl flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full md:flex-grow max-w-2xl">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-brand-violet"></i>
+                        <input type="text" id="ts-search-input" placeholder="Search projects, tokens, or categories..." 
+                            class="w-full bg-brand-dark/50 border border-brand-violet/20 text-gray-200 pl-12 pr-4 py-3 rounded-lg focus:outline-none focus:border-brand-violet focus:ring-1 focus:ring-brand-violet transition-all placeholder-gray-500">
+                    </div>
+                    <div class="flex items-center gap-4 w-full md:w-auto flex-shrink-0">
+                         <div class="relative w-full md:w-48">
+                            <i class="fas fa-sort absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <select id="ts-sort-select" class="w-full bg-brand-dark/50 border border-brand-violet/20 text-gray-200 pl-10 pr-4 py-3 rounded-lg appearance-none focus:outline-none focus:border-brand-violet cursor-pointer">
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="name-asc">A-Z Name</option>
+                                <option value="name-desc">Z-A Name</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main List Area -->
+            <div id="ts-list-container" class="relative min-h-[400px]">
+                <!-- Header Row (Hidden on Mobile) -->
+                <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 text-xs font-bold text-brand-violet uppercase tracking-wider border-b border-brand-violet/10 mb-2">
+                    <div class="col-span-5">Project Name</div>
+                    <div class="col-span-4">Categories & Tags</div>
+                    <div class="col-span-3 text-right">Actions</div>
+                </div>
+
+                <!-- List Body -->
+                <div id="ts-list-body" class="space-y-3">
+                    <!-- Javascript populates this -->
+                </div>
+
+                <!-- Feedback / Loading -->
+                <div id="ts-feedback-message" class="ts-hidden text-center py-20"></div>
+                
+                <div id="ts-loading-indicator" class="absolute inset-0 z-10 bg-brand-dark/80 backdrop-blur-sm flex flex-col justify-center items-center ts-hidden rounded-xl">
+                    <div class="ts-loader mb-4"></div>
+                    <p class="text-brand-violet animate-pulse font-medium">Fetching Data...</p>
+                </div>
+
+                <!-- Load More -->
+                <div id="ts-load-more-container" class="ts-hidden text-center mt-10">
+                    <button id="ts-load-more-btn" class="px-8 py-3 rounded-full bg-brand-violet/10 hover:bg-brand-violet text-brand-violet hover:text-white border border-brand-violet transition-all duration-300 font-semibold shadow-lg">
+                        Load More Projects <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Claim List View (Initially Hidden) -->
+            <div id="ts-claim-list-container" class="ts-hidden flex-col gap-6">
+                <!-- Javascript populates this -->
+            </div>
+
+            <!-- Tags Filter Section -->
+            <section id="ts-tags-section" class="mt-12 glass-panel rounded-2xl overflow-hidden transition-all duration-300">
+                <div id="ts-tags-header" class="p-5 border-b border-brand-violet/10 flex justify-between items-center cursor-pointer bg-brand-indigo/20 hover:bg-brand-indigo/30 transition">
+                    <h3 class="font-bold text-lg text-white"><i class="fas fa-tags mr-2 text-brand-violet"></i> Filter by Category</h3>
+                    <i id="ts-tags-toggle-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                </div>
+                <div id="ts-tags-container" class="p-6 flex flex-wrap gap-2 max-h-60 overflow-y-auto scrollbar-thin">
+                    <!-- Tags populated here -->
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section class="mt-12">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fas fa-comments text-brand-violet mr-3"></i> Community Chat</h3>
+                <div class="glass-panel p-2 rounded-2xl">
+                    <script defer src="https://minnit.chat/js/embed.js"></script>
+                    <minnit-chat
+                      data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&amp;nickname="
+                      data-style="width:100%;height:500px;border-radius:12px;"
+                    ></minnit-chat>
+                </div>
+            </section>
+
+             <!-- Ad Space Bottom -->
+             <div class="mt-10 w-full h-24 bg-brand-dark/50 border-2 border-dashed border-gray-700 rounded-xl flex items-center justify-center text-gray-500">
+                <span class="font-mono text-sm">ADS: 728x90 Banner Placement</span>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-16 text-center text-gray-500 py-8 border-t border-brand-violet/10">
+                <p class="mb-2"><b>With Love ❤, from F9XR</b></p>
+                <p class="text-xs opacity-60">&copy; 2023 iCryptos Dashboard. All Rights Reserved.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="ts-back-to-top-btn" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-brand-gradient text-white shadow-xl shadow-brand-violet/40 z-50 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-500 hover:scale-110 hover:-translate-y-1">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DOM Elements ---
+        const mainContainer = document.getElementById('ts-main-container');
+        const sidebar = document.getElementById('ts-sidebar');
+        const sidebarToggleBtn = document.getElementById('ts-sidebar-toggle-btn');
+        const settingsModal = document.getElementById('ts-settings-modal');
+        const settingsOpenBtn = document.getElementById('ts-settings-open-btn');
+        const settingsCloseBtn = document.getElementById('ts-settings-close-btn');
+        const shareButton = document.getElementById('ts-share-button');
+        const bookmarkButton = document.getElementById('ts-bookmark-button');
+        const sidebarNav = document.getElementById('ts-sidebar-nav');
+        const mainTitle = document.getElementById('ts-main-title');
+        const categoryTabsContainer = document.getElementById('ts-tags-container');
+        const tagsSection = document.getElementById('ts-tags-section');
+        const tagsHeader = document.getElementById('ts-tags-header');
+        const tagsToggleIcon = document.getElementById('ts-tags-toggle-icon');
+        const searchInput = document.getElementById('ts-search-input');
+        const sortSelect = document.getElementById('ts-sort-select');
+        const listContainer = document.getElementById('ts-list-container');
+        const listBody = document.getElementById('ts-list-body');
+        const feedbackMessage = document.getElementById('ts-feedback-message');
+        const loadingIndicator = document.getElementById('ts-loading-indicator');
+        const loadMoreContainer = document.getElementById('ts-load-more-container');
+        const loadMoreBtn = document.getElementById('ts-load-more-btn');
+        const dataControls = document.getElementById('ts-data-controls');
+        const claimListBtn = document.getElementById('ts-claim-list-btn');
+        const quickClaimNav = document.getElementById('ts-quick-claim-nav');
+        const claimListContainer = document.getElementById('ts-claim-list-container');
+        const followUsBtn = document.getElementById('ts-follow-us-btn');
+        const followUsPanel = document.getElementById('ts-follow-us-panel');
+        const backToTopBtn = document.getElementById('ts-back-to-top-btn');
+        const totalCountStat = document.getElementById('stat-total-count');
+
+        // --- Configuration & State ---
+        const SOURCE_CONFIG = [
+            { name: "Earning Projects", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
+            { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
+            { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
+            { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" },
+            { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" }
+        ];
+        let dataCache = {}, currentSourceUrl = null, currentProjects = [], filteredProjects = [];
+        let activeCategory = 'All', itemsPerLoad = 15, itemsLoaded = 0;
+        let claimList = [];
+
+        // --- CORE LOGIC ---
+        const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+            window[callbackName] = data => { resolve(data); delete window[callbackName]; script.remove(); };
+            const script = document.createElement('script');
+            script.src = `${url}&callback=${callbackName}`;
+            script.onerror = err => { reject(err); delete window[callbackName]; script.remove(); };
+            document.body.appendChild(script);
+        });
+
+        const processEntries = entries => (entries || []).map(entry => ({
+            id: entry.id.$t,
+            name: entry.title.$t.trim(),
+            url: (entry.link.find(l => l.rel === 'alternate') || {}).href,
+            tags: (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")).length > 0 ? (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")) : ['General'],
+            publishedDate: new Date(entry.published.$t),
+        })).filter(p => p.url && p.name);
+
+        const showFeedback = (message, iconClass = 'fa-info-circle') => {
+            listBody.innerHTML = '';
+            loadMoreContainer.classList.add('ts-hidden');
+            feedbackMessage.innerHTML = `<div class="bg-brand-indigo/30 p-6 rounded-xl border border-brand-violet/20 inline-block"><i class="fas ${iconClass} text-4xl text-brand-violet mb-4 block"></i><p class="text-gray-300 text-lg">${message}</p></div>`;
+            feedbackMessage.classList.remove('ts-hidden');
+        };
+
+        const hideFeedback = () => { feedbackMessage.classList.add('ts-hidden'); };
+        const showLoading = (show) => { loadingIndicator.classList.toggle('ts-hidden', !show); };
+
+        // --- CLAIM LIST LOGIC ---
+        const loadClaimList = () => { claimList = JSON.parse(localStorage.getItem('ts-claimList')) || []; };
+        const saveClaimList = () => { localStorage.setItem('ts-claimList', JSON.stringify(claimList)); };
+        const isProjectInClaimList = (projectId) => claimList.some(item => item.id === projectId);
+        const addToClaimList = (project) => { if (isProjectInClaimList(project.id)) return; claimList.push({ ...project, notes: '', claimDate: '' }); saveClaimList(); updateSaveButtonState(project.id, true); };
+        const removeFromClaimList = (projectId) => { claimList = claimList.filter(item => item.id !== projectId); saveClaimList(); renderClaimListView(); updateSaveButtonState(projectId, false); };
+        const updateClaimListItem = (projectId, key, value) => { const itemIndex = claimList.findIndex(item => item.id === projectId); if (itemIndex > -1) { claimList[itemIndex][key] = value; saveClaimList(); } };
+        
+        const downloadClaimList = () => {
+            if (claimList.length === 0) { alert('Your claim list is empty.'); return; }
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "Project Name,URL,Claim Date,Notes\n"
+                + claimList.map(item => `"${item.name}","${item.url}","${item.claimDate || ''}","${(item.notes || '').replace(/"/g, '""')}"`).join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "my_icryptos_claim_list.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        const updateSaveButtonState = (projectId, isSaved) => {
+             const saveBtn = document.querySelector(`.ts-save-btn[data-id="${projectId}"]`);
+             if (saveBtn) {
+                 if(isSaved) {
+                    saveBtn.classList.add('bg-green-600', 'text-white', 'border-green-600');
+                    saveBtn.classList.remove('text-gray-400');
+                    saveBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    saveBtn.title = 'Remove from Claim List';
+                 } else {
+                    saveBtn.classList.remove('bg-green-600', 'text-white', 'border-green-600');
+                    saveBtn.classList.add('text-gray-400');
+                    saveBtn.innerHTML = '<i class="fas fa-save"></i>';
+                    saveBtn.title = 'Save to Claim List';
+                 }
+                 saveBtn.classList.toggle('ts-saved', isSaved);
+             }
+        };
+        
+        // --- RENDER FUNCTIONS ---
+        const renderSidebar = () => { 
+            sidebarNav.innerHTML = SOURCE_CONFIG.map(source => `
+            <a href="#" class="ts-sidebar-link group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 mb-2 rounded-xl text-brand-violet/50 hover:text-white hover:bg-brand-violet hover:shadow-lg hover:shadow-brand-violet/40 transition-all duration-300 relative" data-url="${source.url}" data-name="${source.name}" title="${source.name}">
+                <i class="fas ${source.icon} text-xl md:text-2xl transition-transform group-hover:scale-110"></i>
+                <span class="absolute left-16 bg-brand-violet text-brand-dark text-xs font-bold px-2 py-1 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50">${source.name}</span>
+            </a>`).join(''); 
+        };
+        
+        const renderListItems = (projects, append = false) => {
+            if (!append) listBody.innerHTML = '';
+            if (projects.length === 0 && !append) {
+                showFeedback('No projects found matching your criteria.', 'fa-search-minus');
+                return;
+            }
+            hideFeedback();
+            const fragment = document.createDocumentFragment();
+            projects.forEach((project, index) => {
+                const item = document.createElement('div');
+                // Modern Card Layout
+                item.className = 'ts-list-item glass-card rounded-xl p-5 md:p-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-center fade-in border border-white/5 hover:border-brand-violet/30 bg-brand-dark/20';
+                item.style.animationDelay = `${index * 0.05}s`; // Staggered animation
+                
+                const isInClaimList = isProjectInClaimList(project.id);
+                
+                // Construct HTML with Tailwind Classes
+                item.innerHTML = `
+                    <div class="md:col-span-5 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-gradient flex items-center justify-center text-white text-sm font-bold shadow-md shrink-0">
+                            ${project.name.charAt(0).toUpperCase()}
+                        </div>
+                        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-100 hover:text-brand-violet transition text-lg md:text-base truncate">${project.name}</a>
+                    </div>
+                    
+                    <div class="md:col-span-4">
+                        <div class="flex flex-wrap gap-2">
+                            ${project.tags.slice(0, 3).map(tag => `<span class="ts-tag px-2 py-1 rounded text-[10px] font-semibold uppercase tracking-wide bg-brand-violet/10 text-brand-violet border border-brand-violet/20 hover:bg-brand-violet hover:text-white cursor-pointer transition" data-tag="${tag}">${tag}</span>`).join('')}
+                            ${project.tags.length > 3 ? `<span class="px-2 py-1 text-[10px] text-gray-500">+${project.tags.length - 3}</span>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-3 flex justify-start md:justify-end gap-2">
+                        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-action-btn w-9 h-9 rounded-lg flex items-center justify-center bg-brand-violet text-white hover:bg-white hover:text-brand-violet transition shadow-lg shadow-brand-violet/20" title="Visit"><i class="fas fa-external-link-alt"></i></a>
+                        
+                        <button class="ts-action-btn ts-share-project-btn w-9 h-9 rounded-lg flex items-center justify-center border border-gray-600 text-gray-400 hover:border-brand-violet hover:text-brand-violet hover:bg-brand-violet/10 transition" title="Share" data-name="${project.name}" data-url="${project.url}"><i class="fas fa-share-alt"></i></button>
+                        
+                        <button class="ts-action-btn ts-save-btn w-9 h-9 rounded-lg flex items-center justify-center border border-gray-600 transition ${isInClaimList ? 'bg-green-600 text-white border-green-600' : 'text-gray-400 hover:border-brand-violet hover:text-brand-violet hover:bg-brand-violet/10'}" data-id="${project.id}" title="${isInClaimList ? 'Remove from Claim List' : 'Save to Claim List'}">
+                            <i class="fas ${isInClaimList ? 'fa-check' : 'fa-save'}"></i>
+                        </button>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            listBody.appendChild(fragment);
+        };
+
+        const renderClaimListView = () => {
+            mainTitle.textContent = 'My Claim List';
+            listContainer.classList.add('ts-hidden');
+            dataControls.classList.add('ts-hidden');
+            tagsSection.classList.add('ts-hidden');
+            claimListContainer.classList.remove('ts-hidden');
+            claimListContainer.style.display = 'flex';
+            
+            if (claimList.length === 0) {
+                claimListContainer.innerHTML = `
+                <div class="text-center py-20 bg-brand-indigo/20 rounded-2xl border border-brand-violet/10">
+                    <div class="w-20 h-20 bg-brand-dark rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border border-white/5">
+                        <i class="fas fa-folder-open text-4xl text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Your List is Empty</h3>
+                    <p class="text-gray-400 mb-6">Start exploring projects and click the <i class="fas fa-save mx-1 text-brand-violet"></i> icon to save them here.</p>
+                    <button onclick="document.querySelector('.ts-sidebar-link').click()" class="px-6 py-2 bg-brand-violet text-white rounded-lg font-bold hover:bg-brand-fandango transition">Browse Projects</button>
+                </div>`;
+                return;
+            }
+            
+            let content = `
+                <div class="flex justify-between items-center bg-brand-indigo/40 p-5 rounded-xl border border-brand-violet/20 mb-4">
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-star text-yellow-400 mr-2"></i> Saved Projects (${claimList.length})</h3>
+                    <button id="ts-download-claim-list-btn" class="bg-brand-dark hover:bg-brand-violet border border-white/10 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2"><i class="fas fa-download"></i> CSV Export</button>
+                </div>
+                <div class="grid gap-4">`;
+                
+            claimList.forEach(item => {
+                content += `
+                    <div class="ts-claim-item bg-brand-dark/40 border border-white/5 p-5 rounded-xl grid grid-cols-1 md:grid-cols-12 gap-4 items-start hover:border-brand-violet/30 transition shadow-lg" data-id="${item.id}">
+                        <div class="md:col-span-3 font-bold text-lg">
+                            <a href="${item.url}" target="_blank" class="text-brand-violet hover:underline">${item.name}</a>
+                        </div>
+                        <div class="md:col-span-5">
+                            <label class="text-xs text-gray-500 uppercase font-semibold block mb-1">Notes</label>
+                            <textarea class="w-full bg-brand-dark border border-gray-700 rounded-lg p-2 text-sm text-gray-300 focus:border-brand-violet focus:outline-none h-20 resize-none" placeholder="Add details...">${item.notes || ''}</textarea>
+                        </div>
+                        <div class="md:col-span-3">
+                            <label class="text-xs text-gray-500 uppercase font-semibold block mb-1">Next Claim</label>
+                            <input type="date" value="${item.claimDate || ''}" class="w-full bg-brand-dark border border-gray-700 rounded-lg p-2 text-sm text-gray-300 focus:border-brand-violet focus:outline-none">
+                        </div>
+                        <div class="md:col-span-1 flex justify-end items-center h-full">
+                            <button class="ts-remove-claim-btn text-red-400 hover:text-red-300 hover:bg-red-400/10 w-10 h-10 rounded-lg transition" title="Remove"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>`;
+            });
+            content += `</div>`;
+            claimListContainer.innerHTML = content;
+            document.getElementById('ts-download-claim-list-btn').addEventListener('click', downloadClaimList);
+        };
+
+        const renderProjectListView = () => {
+            claimListContainer.classList.add('ts-hidden');
+            listContainer.classList.remove('ts-hidden');
+            dataControls.classList.remove('ts-hidden');
+            tagsSection.classList.remove('ts-hidden');
+            const activeLink = document.querySelector('.ts-sidebar-link.ts-active');
+            if (activeLink) mainTitle.textContent = activeLink.dataset.name;
+        };
+
+        // --- DATA & FILTERING ---
+        const populateCategoryTabs = (projects) => {
+            const sortedCategories = [...new Set(projects.flatMap(p => p.tags))].sort();
+            let tabsHTML = `<button class="ts-cat-tab px-4 py-2 rounded-lg text-sm font-medium transition-all bg-brand-violet text-white shadow-lg shadow-brand-violet/30 border border-brand-violet transform scale-105" data-category="All">All</button>`;
+            
+            tabsHTML += sortedCategories.map(cat => `
+                <button class="ts-cat-tab px-4 py-2 rounded-lg text-sm font-medium transition-all bg-brand-dark/50 text-gray-400 hover:text-white hover:bg-brand-violet/20 border border-transparent hover:border-brand-violet/30" data-category="${cat}">${cat}</button>
+            `).join('');
+            
+            categoryTabsContainer.innerHTML = tabsHTML;
+            activeCategory = 'All';
+        };
+
+        const loadMoreItems = () => {
+            const nextItems = filteredProjects.slice(itemsLoaded, itemsLoaded + itemsPerLoad);
+            renderListItems(nextItems, true);
+            itemsLoaded += nextItems.length;
+
+            if (itemsLoaded >= filteredProjects.length) {
+                loadMoreContainer.classList.add('ts-hidden');
+            } else {
+                loadMoreContainer.classList.remove('ts-hidden');
+            }
+        };
+        
+        const applyFiltersAndSort = () => {
+            if (!currentProjects) return;
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            filteredProjects = [...currentProjects].filter(p => 
+                (activeCategory === 'All' || p.tags.includes(activeCategory)) && 
+                (searchTerm === '' || p.name.toLowerCase().includes(searchTerm) || p.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
+            );
+
+            const sortOrder = sortSelect.value;
+            switch (sortOrder) {
+                case 'date-desc': filteredProjects.sort((a, b) => b.publishedDate - a.publishedDate); break;
+                case 'date-asc': filteredProjects.sort((a, b) => a.publishedDate - b.publishedDate); break;
+                case 'name-asc': filteredProjects.sort((a, b) => a.name.localeCompare(b.name)); break;
+                case 'name-desc': filteredProjects.sort((a, b) => b.name.localeCompare(a.name)); break;
+            }
+
+            itemsLoaded = 0;
+            listBody.innerHTML = ''; 
+            // Update Stats
+            totalCountStat.innerText = filteredProjects.length;
+
+            if (filteredProjects.length === 0) {
+                 showFeedback('No projects found matching your criteria.', 'fa-search-minus');
+            } else {
+                hideFeedback();
+                loadMoreItems();
+            }
+        };
+
+        const loadSourceData = async (url, name) => {
+            if (currentSourceUrl === url) { renderProjectListView(); mainTitle.textContent = name; return; }
+            currentSourceUrl = url;
+            renderProjectListView();
+            mainTitle.textContent = name;
+            categoryTabsContainer.innerHTML = '';
+            showLoading(true);
+            hideFeedback();
+            
+            if (dataCache[url]) {
+                currentProjects = dataCache[url];
+                populateCategoryTabs(currentProjects);
+                applyFiltersAndSort();
+                showLoading(false);
+                return;
+            }
+            try {
+                const data = await fetchJsonp(`${url}/feeds/posts/summary?alt=json-in-script&max-results=500`, `tsJsonpCallback_${Date.now()}`);
+                const projects = processEntries(data.feed.entry);
+                dataCache[url] = projects;
+                currentProjects = projects;
+                populateCategoryTabs(currentProjects);
+                applyFiltersAndSort();
+            } catch (error) {
+                console.error("Failed to load data:", error);
+                showFeedback('Could not load projects. Please try again later.', 'fa-exclamation-triangle');
+            } finally {
+                showLoading(false);
+            }
+        };
+
+        // --- INITIALIZATION ---
+        function init() {
+            loadClaimList();
+            renderSidebar();
+
+            // Toggle Sidebar
+            sidebarToggleBtn.addEventListener('click', () => { 
+                mainContainer.classList.toggle('ts-sidebar-shrunk');
+                const isShrunk = mainContainer.classList.contains('ts-sidebar-shrunk');
+                
+                // Adjust width classes manually to ensure transition works with Tailwind
+                if(isShrunk) {
+                    sidebar.classList.remove('w-20', 'md:w-24');
+                    sidebar.classList.add('w-0', 'p-0', 'overflow-hidden');
+                    document.getElementById('ts-main-content').classList.remove('ml-20', 'md:ml-24');
+                    document.getElementById('ts-main-content').classList.add('ml-0');
+                } else {
+                    sidebar.classList.add('w-20', 'md:w-24');
+                    sidebar.classList.remove('w-0', 'p-0', 'overflow-hidden');
+                    document.getElementById('ts-main-content').classList.add('ml-20', 'md:ml-24');
+                    document.getElementById('ts-main-content').classList.remove('ml-0');
+                }
+            });
+            
+            // Modal Logic
+            const toggleModal = (show) => {
+                if(show) {
+                    settingsModal.classList.remove('opacity-0', 'invisible');
+                } else {
+                    settingsModal.classList.add('opacity-0', 'invisible');
+                }
+            };
+            settingsOpenBtn.addEventListener('click', () => toggleModal(true));
+            settingsCloseBtn.addEventListener('click', () => toggleModal(false));
+            settingsModal.addEventListener('click', (e) => { if (e.target === settingsModal) toggleModal(false); });
+
+            // Sharing & Bookmarks
+            shareButton.addEventListener('click', async () => { try { await navigator.share({ title: `iCryptos Dashboard: ${mainTitle.textContent}`, text: `Check out these projects on the iCryptos Dashboard!`, url: window.location.href }); } catch (err) { await navigator.clipboard.writeText(window.location.href); alert('Page URL copied to clipboard!'); } });
+            bookmarkButton.addEventListener('click', () => { alert('Press Ctrl+D (or Cmd+D on Mac) to bookmark this page for easy access!'); });
+            
+            // Tag Section Toggle
+            tagsHeader.addEventListener('click', () => {
+                const container = document.getElementById('ts-tags-container');
+                container.classList.toggle('hidden');
+                tagsToggleIcon.classList.toggle('-rotate-90');
+            });
+            
+            // Follow Panel
+            followUsBtn.addEventListener('click', (e) => { e.stopPropagation(); }); // CSS hover handles this now, but kept for logic safety if needed
+
+            // Sidebar Navigation
+            sidebarNav.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                const link = e.target.closest('.ts-sidebar-link'); 
+                if (!link) return; 
+                
+                // Visual Update
+                document.querySelectorAll('.ts-sidebar-link').forEach(l => {
+                    l.classList.remove('ts-active', 'bg-brand-violet', 'text-white', 'shadow-lg');
+                    l.classList.add('text-brand-violet/50');
+                }); 
+                link.classList.add('ts-active', 'bg-brand-violet', 'text-white', 'shadow-lg');
+                link.classList.remove('text-brand-violet/50');
+                
+                loadSourceData(link.dataset.url, link.dataset.name); 
+                
+                // Mobile: Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Navigation to Claim List
+            const openClaimList = () => {
+                document.querySelectorAll('.ts-sidebar-link').forEach(l => {
+                     l.classList.remove('ts-active', 'bg-brand-violet', 'text-white');
+                     l.classList.add('text-brand-violet/50');
+                });
+                claimListBtn.classList.add('text-white');
+                currentSourceUrl = null;
+                renderClaimListView();
+            };
+            claimListBtn.addEventListener('click', openClaimList);
+            if(quickClaimNav) quickClaimNav.addEventListener('click', openClaimList);
+
+            // Category Filter
+            categoryTabsContainer.addEventListener('click', (e) => { 
+                const tab = e.target.closest('.ts-cat-tab'); 
+                if (!tab) return; 
+                
+                // Reset styles
+                document.querySelectorAll('.ts-cat-tab').forEach(t => {
+                    t.classList.remove('bg-brand-violet', 'text-white', 'scale-105', 'shadow-lg');
+                    t.classList.add('bg-brand-dark/50', 'text-gray-400', 'border-transparent');
+                });
+                
+                // Activate clicked
+                tab.classList.remove('bg-brand-dark/50', 'text-gray-400', 'border-transparent');
+                tab.classList.add('bg-brand-violet', 'text-white', 'scale-105', 'shadow-lg', 'border-brand-violet');
+                
+                activeCategory = tab.dataset.category; 
+                applyFiltersAndSort();
+            });
+            
+            // Action Buttons in List
+            listBody.addEventListener('click', async (e) => {
+                const tagEl = e.target.closest('.ts-tag');
+                const saveBtn = e.target.closest('.ts-save-btn');
+                const shareProjBtn = e.target.closest('.ts-share-project-btn');
+
+                if (tagEl) { 
+                    const correspondingTab = categoryTabsContainer.querySelector(`.ts-cat-tab[data-category="${tagEl.dataset.tag}"]`);
+                    if (correspondingTab) correspondingTab.click(); 
+                } else if (saveBtn) { 
+                    const projectId = saveBtn.dataset.id; 
+                    const project = currentProjects.find(p => p.id === projectId); 
+                    if (!project) return; 
+                    isProjectInClaimList(projectId) ? removeFromClaimList(projectId) : addToClaimList(project);
+                } else if (shareProjBtn) {
+                    const name = shareProjBtn.dataset.name;
+                    const url = shareProjBtn.dataset.url;
+                    try {
+                        if (navigator.share) {
+                            await navigator.share({ title: name, text: `Check out this project: ${name}`, url: url });
+                        } else { throw new Error('Web Share API not supported'); }
+                    } catch (err) {
+                        await navigator.clipboard.writeText(url);
+                        alert(`Project URL copied to clipboard!\n${url}`);
+                    }
+                }
+            });
+
+            // Claim List Interactions
+            claimListContainer.addEventListener('input', (e) => { 
+                const itemEl = e.target.closest('.ts-claim-item'); 
+                if (!itemEl) return; 
+                const projectId = itemEl.dataset.id; 
+                if (e.target.tagName === 'TEXTAREA') { 
+                    updateClaimListItem(projectId, 'notes', e.target.value); 
+                } else if (e.target.type === 'date') { 
+                    updateClaimListItem(projectId, 'claimDate', e.target.value); 
+                } 
+            });
+            claimListContainer.addEventListener('click', (e) => { 
+                const removeBtn = e.target.closest('.ts-remove-claim-btn'); 
+                if (removeBtn) { removeFromClaimList(removeBtn.closest('.ts-claim-item').dataset.id); } 
+            });
+
+            sortSelect.addEventListener('change', applyFiltersAndSort);
+            loadMoreBtn.addEventListener('click', loadMoreItems);
+            
+            let searchDebounceTimer;
+            searchInput.addEventListener('input', () => { 
+                clearTimeout(searchDebounceTimer); 
+                searchDebounceTimer = setTimeout(applyFiltersAndSort, 300); 
+            });
+            
+            // Back to Top Button
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'translate-y-20');
+                    backToTopBtn.classList.add('opacity-100', 'translate-y-0');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'translate-y-20');
+                    backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            // Auto-load the first source
+            if(document.querySelector('.ts-sidebar-link')) {
+                document.querySelector('.ts-sidebar-link').click();
+            }
+        }
+
+        init();
+    });
+    </script>
+</body>
+</html>

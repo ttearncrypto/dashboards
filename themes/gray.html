@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCryptos Dashboard | F9XR'TTEarnCrypto - Enterprise Hub</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover verified crypto earning opportunities, airdrops, and investments with the iCryptos Dashboard. Enterprise-grade filtering and tracking.">
+    <meta name="keywords" content="crypto dashboard, free crypto, airdrops, faucetpay, earning stats, F9XR, iCryptos">
+    <meta name="author" content="F9XR">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (Configured via Script) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#2a2a2a',
+                            white: '#ffffff',
+                            accent: '#ffffff', // High contrast white accent
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Scoped Styles - No Body/Root Tags */
+        #ts-app-root {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            width: 100%;
+            min-height: 100vh;
+            /* Transparent background as requested */
+            background: transparent; 
+            overflow-x: hidden;
+        }
+
+        /* TS-Prefix Utility Classes */
+        .ts-glass-panel {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ts-glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ts-glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .ts-btn-primary {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .ts-btn-primary:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .ts-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        .ts-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+        }
+
+        /* Scrollbar styling specifically for containers within the app */
+        .ts-scrollable::-webkit-scrollbar { width: 6px; height: 6px; }
+        .ts-scrollable::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+        .ts-scrollable::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+        .ts-scrollable::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+
+        /* Loader */
+        .ts-loader-ring {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+        }
+        .ts-loader-ring:after {
+            content: " ";
+            display: block;
+            width: 32px;
+            height: 32px;
+            margin: 4px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            border-color: #fff transparent #fff transparent;
+            animation: ts-ring 1.2s linear infinite;
+        }
+        @keyframes ts-ring { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Layout Utilities */
+        .ts-sidebar-expanded { width: 260px; }
+        .ts-sidebar-collapsed { width: 80px; }
+        .ts-hidden { display: none !important; }
+        
+        /* Active State logic */
+        .ts-active-nav {
+            background: #ffffff;
+            color: #000000;
+        }
+        .ts-active-nav i { color: #000000; }
+        
+        .ts-tag-active {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Calculation Highlight */
+        .ts-highlight-result {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { border-color: rgba(255,255,255,0.1); }
+            50% { border-color: rgba(255,255,255,0.8); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+            100% { border-color: rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+<body>
+
+<div id="ts-app-root" class="flex relative">
+
+    <!-- SETTINGS MODAL -->
+    <div id="ts-settings-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center ts-hidden transition-opacity duration-300">
+        <div class="ts-glass-panel w-full max-w-lg rounded-xl p-8 shadow-2xl relative border border-white/20">
+            <button id="ts-settings-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-white/10 pb-4">Settings</h2>
+            <div class="space-y-4">
+                <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                    <h3 class="font-bold text-white mb-2">Data Preferences</h3>
+                    <p class="text-sm text-gray-400">Clear your local saved data and cache.</p>
+                    <button id="ts-reset-all-btn" class="mt-3 px-4 py-2 text-xs font-bold bg-red-600/20 text-red-400 border border-red-600/50 rounded hover:bg-red-600 hover:text-white transition">Factory Reset Tool</button>
+                </div>
+                <div class="text-center text-xs text-gray-600 mt-6">
+                    iCryptos Engine v2.0.1 (Enterprise Build)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="ts-sidebar" class="fixed md:sticky top-0 h-screen ts-glass-panel border-r border-white/10 z-50 transition-all duration-300 ts-sidebar-collapsed flex flex-col">
+        <!-- Logo Area -->
+        <div class="h-20 flex items-center justify-center border-b border-white/10 relative">
+            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-white/10">
+                <i class="fas fa-cube"></i>
+            </div>
+            <span class="ts-sidebar-text ml-3 font-display font-bold text-lg whitespace-nowrap opacity-0 absolute left-16 transition-opacity duration-300">iCryptos</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav id="ts-sidebar-nav" class="flex-1 overflow-y-auto ts-scrollable py-6 px-2 space-y-2 flex flex-col items-center">
+            <!-- Populated via JS -->
+        </nav>
+
+        <!-- Footer Actions -->
+        <div class="p-4 border-t border-white/10 flex flex-col items-center gap-3">
+            <button id="ts-claim-list-btn" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition" title="Saved Projects">
+                <i class="fas fa-bookmark"></i>
+            </button>
+            <button id="ts-settings-open-btn" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition" title="Settings">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 flex flex-col h-screen overflow-y-auto ts-scrollable bg-black/40 relative">
+        
+        <!-- Header -->
+        <header class="sticky top-0 z-40 ts-glass-panel border-b border-white/10 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <button id="ts-sidebar-toggle-btn" class="text-gray-400 hover:text-white transition"><i class="fas fa-bars text-xl"></i></button>
+                <div>
+                    <h1 id="ts-main-title" class="text-xl font-display font-bold text-white leading-none">Dashboard</h1>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Enterprise Intelligence Unit</p>
+                </div>
+            </div>
+
+            <!-- Stats Logic Visualizer -->
+            <div id="ts-live-stats" class="hidden md:flex items-center gap-6 text-sm">
+                <div class="flex flex-col items-end">
+                    <span class="text-[10px] text-gray-500 uppercase font-bold">Visible Projects</span>
+                    <span class="font-mono font-bold text-white" id="ts-stat-visible">0</span>
+                </div>
+                <div class="h-8 w-px bg-white/10"></div>
+                <div class="flex flex-col items-end">
+                    <span class="text-[10px] text-gray-500 uppercase font-bold">Calculation</span>
+                    <span class="text-green-400 text-xs flex items-center gap-1"><i class="fas fa-bolt"></i> Optimized</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-4 md:p-8 max-w-7xl mx-auto w-full">
+            
+            <!-- Hero Section -->
+            <section class="rounded-2xl relative overflow-hidden mb-8 border border-white/10 group">
+                <!-- Background Abstract -->
+                <div class="absolute inset-0 bg-gradient-to-r from-gray-900 to-black z-0"></div>
+                <div class="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1),_transparent_70%)] opacity-50"></div>
+                
+                <div class="relative z-10 p-8 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[10px] font-bold uppercase tracking-wider mb-4 text-white">
+                            <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Live Feeds Active
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">Analyze. Track. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Maximize Gains.</span></h2>
+                        <p class="text-gray-400 text-lg mb-6 max-w-lg">Consolidated verified earning opportunities without the noise. The iCryptos dashboard filters thousands of data points instantly.</p>
+                        
+                        <div class="flex gap-3">
+                            <button id="ts-scroll-data-btn" class="ts-btn-primary px-6 py-3 rounded-lg text-sm"><i class="fas fa-search mr-2"></i> Explore Data</button>
+                            <a href="#ts-guide-section" class="ts-btn-secondary px-6 py-3 rounded-lg text-sm font-bold">View Guide</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Visual Block -->
+                    <div class="hidden lg:grid grid-cols-2 gap-3 w-64 opacity-80">
+                        <div class="ts-glass-card p-4 rounded-lg text-center">
+                            <i class="fas fa-database text-2xl mb-2 text-white"></i>
+                            <div class="text-[10px] uppercase text-gray-500">Aggregated</div>
+                        </div>
+                        <div class="ts-glass-card p-4 rounded-lg text-center bg-white/5">
+                            <i class="fas fa-shield-alt text-2xl mb-2 text-white"></i>
+                            <div class="text-[10px] uppercase text-gray-500">Verified</div>
+                        </div>
+                        <div class="ts-glass-card p-4 rounded-lg text-center bg-white/5">
+                            <i class="fas fa-bolt text-2xl mb-2 text-white"></i>
+                            <div class="text-[10px] uppercase text-gray-500">Real-time</div>
+                        </div>
+                        <div class="ts-glass-card p-4 rounded-lg text-center">
+                            <i class="fas fa-chart-line text-2xl mb-2 text-white"></i>
+                            <div class="text-[10px] uppercase text-gray-500">Analytics</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls & Filters -->
+            <div id="ts-controls-area" class="sticky top-20 z-30 mb-6 transition-all duration-300">
+                <div class="ts-glass-panel p-4 rounded-xl flex flex-col lg:flex-row gap-4 justify-between items-center shadow-2xl shadow-black/50">
+                    
+                    <!-- Search -->
+                    <div class="relative w-full lg:w-96 group">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 group-focus-within:text-white transition-colors"></i>
+                        <input type="text" id="ts-search-input" placeholder="Search tokens, projects, or categories..." 
+                            class="w-full bg-black/50 border border-white/10 text-white pl-12 pr-10 py-3 rounded-lg focus:outline-none focus:border-white focus:bg-black transition-all placeholder-gray-600 text-sm">
+                        <button id="ts-search-clear" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-white ts-hidden"><i class="fas fa-times-circle"></i></button>
+                    </div>
+
+                    <!-- Filter Actions -->
+                    <div class="flex items-center gap-3 w-full lg:w-auto overflow-x-auto">
+                        <div class="relative min-w-[140px]">
+                            <select id="ts-sort-select" class="w-full appearance-none bg-black/50 border border-white/10 text-white px-4 py-3 rounded-lg text-sm font-medium focus:outline-none focus:border-white cursor-pointer hover:bg-white/5 transition">
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="name-asc">Alphabetical (A-Z)</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+                        </div>
+                        
+                        <button id="ts-reset-filters-btn" class="ts-btn-secondary px-4 py-3 rounded-lg text-sm font-bold whitespace-nowrap" title="Reset All Filters">
+                            <i class="fas fa-undo-alt mr-2"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Smart Tags Container -->
+                <div id="ts-tags-wrapper" class="mt-2 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                    <div class="ts-glass-panel p-3 rounded-lg border-t-0 rounded-t-none flex flex-wrap gap-2 justify-center bg-black/80" id="ts-tags-container">
+                        <!-- Tags injected here -->
+                    </div>
+                </div>
+                
+                <!-- Toggle Tags Button -->
+                <button id="ts-tags-toggle-btn" class="w-full flex justify-center mt-1">
+                    <div class="bg-black/80 border border-t-0 border-white/10 px-4 py-1 rounded-b-lg text-[10px] uppercase font-bold text-gray-400 hover:text-white cursor-pointer transition">
+                        Filter by Category <i class="fas fa-chevron-down ml-1 transition-transform" id="ts-tags-arrow"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Calculation Result Bar -->
+            <div id="ts-calculation-bar" class="flex justify-between items-center mb-4 px-2 ts-hidden">
+                <div class="text-sm text-gray-400">
+                    Showing <span class="text-white font-bold" id="ts-calc-count">0</span> results matching your criteria.
+                </div>
+                <div class="h-px bg-white/10 flex-1 mx-4"></div>
+                <div class="text-[10px] text-gray-600 uppercase tracking-widest">Live Query</div>
+            </div>
+
+            <!-- Content Grid -->
+            <div id="ts-content-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 relative min-h-[300px]">
+                <!-- Dynamic Content Loads Here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="ts-loader" class="ts-hidden py-20 text-center">
+                <div class="ts-loader-ring mb-4"></div>
+                <p class="text-gray-400 animate-pulse text-sm">Fetching verified enterprise data...</p>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-10 mb-20 ts-hidden" id="ts-load-more-container">
+                <button id="ts-load-more-btn" class="ts-btn-secondary px-8 py-3 rounded-full text-sm font-bold">
+                    Load More Records
+                </button>
+            </div>
+
+            <!-- Saved/Claim List View (Initially Hidden) -->
+            <div id="ts-saved-view" class="ts-hidden flex-col gap-4">
+                <div class="flex justify-between items-center bg-white/5 p-6 rounded-xl border border-white/10">
+                    <div>
+                        <h2 class="text-2xl font-display font-bold text-white">My Watchlist</h2>
+                        <p class="text-gray-400 text-sm mt-1">Track your selected opportunities.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="ts-export-csv-btn" class="ts-btn-secondary px-4 py-2 rounded-lg text-sm"><i class="fas fa-file-csv mr-2"></i>Export CSV</button>
+                        <button id="ts-clear-saved-btn" class="px-4 py-2 rounded-lg text-sm text-red-400 hover:bg-red-900/20 border border-transparent hover:border-red-900/50 transition"><i class="fas fa-trash-alt mr-2"></i>Clear</button>
+                    </div>
+                </div>
+                <div id="ts-saved-list-container" class="space-y-3">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- SEO & Guide Section -->
+            <section id="ts-guide-section" class="mt-20 border-t border-white/10 pt-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1">
+                        <h3 class="text-xl font-bold text-white mb-4">About iCryptos</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            The iCryptos Dashboard is a premium aggregator designed for serious crypto enthusiasts. We eliminate the noise of scam sites and low-paying faucets by programmatically verifying and listing only high-yield opportunities.
+                        </p>
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                            <h4 class="font-bold text-white text-sm mb-2"><i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Pro Tip</h4>
+                            <p class="text-xs text-gray-400">Use the "Save" feature to create a daily rotation of tasks. Export your list to CSV to track performance in Excel.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Feature Block -->
+                            <div>
+                                <h4 class="font-bold text-white mb-3 flex items-center"><i class="fas fa-check-circle mr-2"></i> How Calculated?</h4>
+                                <ul class="text-sm text-gray-400 space-y-2 list-disc pl-4">
+                                    <li><strong>Source:</strong> Real-time feeds from F9XR's verified blogs.</li>
+                                    <li><strong>Filters:</strong> Client-side logic filters by tags instantly.</li>
+                                    <li><strong>Sort:</strong> Date stamps parsed for accurate chronological ordering.</li>
+                                </ul>
+                            </div>
+                            <!-- Use Cases -->
+                            <div>
+                                <h4 class="font-bold text-white mb-3 flex items-center"><i class="fas fa-briefcase mr-2"></i> Use Cases</h4>
+                                <ul class="text-sm text-gray-400 space-y-2 list-disc pl-4">
+                                    <li><strong>Airdrop Hunters:</strong> Track new listings daily.</li>
+                                    <li><strong>Faucet Users:</strong> Organize high-paying sites.</li>
+                                    <li><strong>Investors:</strong> Monitor new verified platforms.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-white mb-3">User Guide</h4>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-3 p-3 bg-black/30 rounded border border-white/5">
+                                    <span class="w-6 h-6 rounded-full bg-white text-black font-bold flex items-center justify-center text-xs">1</span>
+                                    <span class="text-sm text-gray-300">Select a category from the sidebar (Earning, Airdrops, etc.).</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 bg-black/30 rounded border border-white/5">
+                                    <span class="w-6 h-6 rounded-full bg-white text-black font-bold flex items-center justify-center text-xs">2</span>
+                                    <span class="text-sm text-gray-300">Use the Search bar or Tags to narrow down results.</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 bg-black/30 rounded border border-white/5">
+                                    <span class="w-6 h-6 rounded-full bg-white text-black font-bold flex items-center justify-center text-xs">3</span>
+                                    <span class="text-sm text-gray-300">Click the bookmark icon <i class="fas fa-bookmark text-xs mx-1"></i> to save to your personal Watchlist.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="mt-16 py-8 border-t border-white/10 text-center">
+                <div class="flex justify-center gap-4 mb-4">
+                    <a href="#" class="w-8 h-8 rounded bg-white/10 hover:bg-white hover:text-black flex items-center justify-center transition text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-8 h-8 rounded bg-white/10 hover:bg-white hover:text-black flex items-center justify-center transition text-white"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded bg-white/10 hover:bg-white hover:text-black flex items-center justify-center transition text-white"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs">&copy; 2023 F9XR'TTEarnCrypto. All rights reserved.</p>
+                <p class="text-gray-600 text-[10px] mt-1">Data provided "as is" for informational purposes.</p>
+            </footer>
+
+        </div>
+    </main>
+
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Configuration ---
+    const CONFIG = {
+        sources: [
+            { id: 'earning', name: "Projects", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
+            { id: 'invest', name: "Investments", icon: "fa-chart-pie", url: "https://freecryptoradar.blogspot.com" },
+            { id: 'casino', name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
+            { id: 'airdrop', name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" }
+        ],
+        itemsPerLoad: 12
+    };
+
+    // --- State ---
+    let state = {
+        currentSource: null,
+        rawData: [],
+        filteredData: [],
+        loadedCount: 0,
+        savedItems: JSON.parse(localStorage.getItem('ts_saved_items')) || [],
+        activeTag: null
+    };
+
+    // --- DOM Elements ---
+    const els = {
+        sidebar: document.getElementById('ts-sidebar'),
+        sidebarNav: document.getElementById('ts-sidebar-nav'),
+        sidebarToggle: document.getElementById('ts-sidebar-toggle-btn'),
+        sidebarText: document.querySelectorAll('.ts-sidebar-text'),
+        grid: document.getElementById('ts-content-grid'),
+        loader: document.getElementById('ts-loader'),
+        mainTitle: document.getElementById('ts-main-title'),
+        searchInput: document.getElementById('ts-search-input'),
+        searchClear: document.getElementById('ts-search-clear'),
+        sortSelect: document.getElementById('ts-sort-select'),
+        tagsContainer: document.getElementById('ts-tags-container'),
+        tagsWrapper: document.getElementById('ts-tags-wrapper'),
+        tagsToggleBtn: document.getElementById('ts-tags-toggle-btn'),
+        loadMoreBtn: document.getElementById('ts-load-more-btn'),
+        loadMoreContainer: document.getElementById('ts-load-more-container'),
+        savedView: document.getElementById('ts-saved-view'),
+        savedListContainer: document.getElementById('ts-saved-list-container'),
+        controlsArea: document.getElementById('ts-controls-area'),
+        calculationBar: document.getElementById('ts-calculation-bar'),
+        calcCount: document.getElementById('ts-calc-count'),
+        statVisible: document.getElementById('ts-stat-visible'),
+        resetBtn: document.getElementById('ts-reset-filters-btn'),
+        scrollDataBtn: document.getElementById('ts-scroll-data-btn'),
+        settingsModal: document.getElementById('ts-settings-modal'),
+        settingsOpen: document.getElementById('ts-settings-open-btn'),
+        settingsClose: document.getElementById('ts-settings-close-btn'),
+        factoryReset: document.getElementById('ts-reset-all-btn'),
+        claimListBtn: document.getElementById('ts-claim-list-btn')
+    };
+
+    // --- Core Logic ---
+
+    // JSONP Fetcher
+    const fetchBloggerData = (url) => {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            const callbackName = 'ts_cb_' + Date.now();
+            window[callbackName] = (data) => {
+                delete window[callbackName];
+                document.body.removeChild(script);
+                resolve(data);
+            };
+            script.src = `${url}/feeds/posts/summary?alt=json-in-script&callback=${callbackName}&max-results=500`;
+            script.onerror = () => reject();
+            document.body.appendChild(script);
+        });
+    };
+
+    // Data Processor
+    const processData = (feed) => {
+        if (!feed.feed.entry) return [];
+        return feed.feed.entry.map(entry => {
+            const link = entry.link.find(l => l.rel === 'alternate');
+            const categories = entry.category ? entry.category.map(c => c.term) : ['General'];
+            return {
+                id: entry.id.$t.split('post-')[1], // Extract ID
+                title: entry.title.$t,
+                url: link ? link.href : '#',
+                tags: categories,
+                date: new Date(entry.published.$t),
+                timestamp: new Date(entry.published.$t).getTime()
+            };
+        });
+    };
+
+    // --- UI Renderers ---
+
+    const renderSidebar = () => {
+        els.sidebarNav.innerHTML = CONFIG.sources.map(src => `
+            <button class="ts-nav-item w-10 h-10 md:w-full md:h-12 rounded-lg flex items-center justify-center md:justify-start md:px-4 text-gray-400 hover:text-white hover:bg-white/10 transition group relative mb-2" data-id="${src.id}" data-url="${src.url}" data-name="${src.name}">
+                <i class="fas ${src.icon} text-lg w-6 text-center"></i>
+                <span class="ts-sidebar-text ml-3 font-medium opacity-0 absolute left-14 md:static md:opacity-100 md:block hidden whitespace-nowrap">${src.name}</span>
+                <!-- Tooltip for collapsed state -->
+                <span class="absolute left-12 bg-white text-black text-xs font-bold px-2 py-1 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all md:hidden z-50">${src.name}</span>
+            </button>
+        `).join('');
+    };
+
+    const renderTags = () => {
+        const allTags = state.rawData.flatMap(item => item.tags);
+        const uniqueTags = [...new Set(allTags)].sort();
+        
+        els.tagsContainer.innerHTML = uniqueTags.map(tag => `
+            <button class="ts-tag-btn px-3 py-1 rounded border border-white/20 text-xs font-medium text-gray-300 hover:text-white hover:border-white transition bg-black/50 ${state.activeTag === tag ? 'ts-tag-active' : ''}" data-tag="${tag}">
+                ${tag}
+            </button>
+        `).join('');
+    };
+
+    const createCard = (item, index) => {
+        const isSaved = state.savedItems.some(i => i.id === item.id);
+        const delay = (index % CONFIG.itemsPerLoad) * 0.05; // Stagger effect
+        
+        // Generate a deterministic SVG visual based on title char code
+        const charCode = item.title.charCodeAt(0) || 65;
+        const iconLetter = item.title.charAt(0).toUpperCase();
+        
+        return `
+            <div class="ts-glass-card rounded-xl p-5 flex flex-col h-full animate-slide-up hover:border-white/40 group relative" style="animation-delay: ${delay}s">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center text-black font-bold text-lg shadow-lg">
+                        ${iconLetter}
+                    </div>
+                    <div class="flex gap-2">
+                         <button class="ts-save-toggle w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition hover:bg-white hover:text-black ${isSaved ? 'bg-white text-black' : 'text-gray-500'}" data-id="${item.id}" title="${isSaved ? 'Remove' : 'Save'}">
+                            <i class="fas ${isSaved ? 'fa-bookmark' : 'fa-bookmark'}"></i>
+                        </button>
+                        <a href="${item.url}" target="_blank" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:bg-white hover:text-black transition" title="Visit">
+                            <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <h3 class="font-bold text-white text-lg leading-tight mb-2 line-clamp-2 hover:text-gray-300 transition">${item.title}</h3>
+                
+                <div class="flex flex-wrap gap-2 mb-4 mt-auto">
+                    ${item.tags.slice(0, 2).map(t => `<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded bg-white/5 text-gray-400 border border-white/5">${t}</span>`).join('')}
+                    ${item.tags.length > 2 ? `<span class="text-[10px] text-gray-500 py-1">+${item.tags.length - 2}</span>` : ''}
+                </div>
+                
+                <div class="pt-3 border-t border-white/5 flex justify-between items-center text-xs text-gray-500">
+                    <span>${new Date(item.date).toLocaleDateString()}</span>
+                    <button class="hover:text-white transition ts-share-btn" data-url="${item.url}"><i class="fas fa-share-nodes"></i> Share</button>
+                </div>
+            </div>
+        `;
+    };
+
+    const renderGrid = (append = false) => {
+        const toShow = state.filteredData.slice(0, state.loadedCount + CONFIG.itemsPerLoad);
+        const html = toShow.slice(append ? state.loadedCount : 0).map((item, idx) => createCard(item, idx)).join('');
+        
+        if (append) {
+            els.grid.insertAdjacentHTML('beforeend', html);
+        } else {
+            els.grid.innerHTML = html;
+            state.loadedCount = 0; // Reset logic check
+        }
+        
+        state.loadedCount = toShow.length;
+        els.loadMoreContainer.classList.toggle('ts-hidden', state.loadedCount >= state.filteredData.length);
+        
+        // Update Stats
+        els.calcCount.innerText = state.filteredData.length;
+        els.statVisible.innerText = state.loadedCount;
+        els.calculationBar.classList.remove('ts-hidden');
+        
+        // Empty State
+        if (state.filteredData.length === 0) {
+            els.grid.innerHTML = `
+                <div class="col-span-full py-16 text-center border border-dashed border-white/10 rounded-xl bg-white/5">
+                    <i class="fas fa-filter text-4xl text-gray-600 mb-4"></i>
+                    <h3 class="text-white font-bold text-lg">No matches found</h3>
+                    <p class="text-gray-500 text-sm mt-2">Try adjusting your filters or search query.</p>
+                    <button onclick="document.getElementById('ts-reset-filters-btn').click()" class="mt-4 text-xs underline text-white">Clear Filters</button>
+                </div>
+            `;
+        }
+    };
+
+    const renderSavedList = () => {
+        if (state.savedItems.length === 0) {
+            els.savedListContainer.innerHTML = '<div class="text-center text-gray-500 py-10">Your watchlist is empty.</div>';
+            return;
+        }
+        
+        els.savedListContainer.innerHTML = state.savedItems.map(item => `
+            <div class="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-lg hover:border-white/30 transition group">
+                <div class="flex items-center gap-4 overflow-hidden">
+                    <div class="w-2 h-2 rounded-full bg-white flex-shrink-0"></div>
+                    <a href="${item.url}" target="_blank" class="font-bold text-white truncate hover:underline">${item.title}</a>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                    <a href="${item.url}" target="_blank" class="w-8 h-8 flex items-center justify-center bg-white text-black rounded text-xs font-bold">GO</a>
+                    <button class="ts-remove-saved w-8 h-8 flex items-center justify-center border border-red-500/30 text-red-400 rounded hover:bg-red-500 hover:text-white transition" data-id="${item.id}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    };
+
+    // --- Logic Functions ---
+
+    const filterAndSort = () => {
+        const query = els.searchInput.value.toLowerCase();
+        const sortType = els.sortSelect.value;
+        
+        let res = state.rawData.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(query) || item.tags.some(t => t.toLowerCase().includes(query));
+            const matchesTag = state.activeTag ? item.tags.includes(state.activeTag) : true;
+            return matchesSearch && matchesTag;
+        });
+
+        // Sorting
+        if (sortType === 'date-desc') res.sort((a, b) => b.timestamp - a.timestamp);
+        if (sortType === 'date-asc') res.sort((a, b) => a.timestamp - b.timestamp);
+        if (sortType === 'name-asc') res.sort((a, b) => a.title.localeCompare(b.title));
+
+        state.filteredData = res;
+        state.loadedCount = 0;
+        renderGrid();
+    };
+
+    const loadSource = async (sourceObj) => {
+        // UI Updates
+        state.currentSource = sourceObj;
+        els.mainTitle.innerText = sourceObj.name;
+        els.grid.innerHTML = '';
+        els.loader.classList.remove('ts-hidden');
+        els.loadMoreContainer.classList.add('ts-hidden');
+        els.savedView.classList.add('ts-hidden');
+        els.controlsArea.classList.remove('ts-hidden');
+        els.guideSection = document.getElementById('ts-guide-section');
+        if(els.guideSection) els.guideSection.classList.remove('ts-hidden');
+
+        // Nav Active State
+        document.querySelectorAll('.ts-nav-item').forEach(el => {
+            if(el.dataset.id === sourceObj.id) {
+                el.classList.add('bg-white', 'text-black');
+                el.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-white/10');
+            } else {
+                el.classList.remove('bg-white', 'text-black');
+                el.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-white/10');
+            }
+        });
+
+        try {
+            const data = await fetchBloggerData(sourceObj.url);
+            state.rawData = processData(data);
+            
+            // Populate Filters
+            renderTags();
+            
+            // Initial Filter & Render
+            els.searchInput.value = '';
+            state.activeTag = null;
+            filterAndSort();
+        } catch (e) {
+            console.error(e);
+            els.grid.innerHTML = `<div class="text-red-400 text-center col-span-full">Failed to load data. Please check your connection.</div>`;
+        } finally {
+            els.loader.classList.add('ts-hidden');
+        }
+    };
+
+    const toggleSavedItem = (id) => {
+        const existingIdx = state.savedItems.findIndex(i => i.id === id);
+        if (existingIdx > -1) {
+            state.savedItems.splice(existingIdx, 1);
+        } else {
+            const item = state.rawData.find(i => i.id === id);
+            if (item) state.savedItems.push(item);
+        }
+        localStorage.setItem('ts_saved_items', JSON.stringify(state.savedItems));
+        
+        // Re-render current view button states
+        document.querySelectorAll(`.ts-save-toggle[data-id="${id}"]`).forEach(btn => {
+            const isSaved = state.savedItems.some(i => i.id === id);
+            if (isSaved) {
+                btn.classList.add('bg-white', 'text-black');
+                btn.classList.remove('text-gray-500');
+                btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+            } else {
+                btn.classList.remove('bg-white', 'text-black');
+                btn.classList.add('text-gray-500');
+                btn.innerHTML = '<i class="far fa-bookmark"></i>';
+            }
+        });
+        
+        // Visual feedback
+        if(els.claimListBtn) {
+            els.claimListBtn.classList.add('text-white');
+            setTimeout(() => els.claimListBtn.classList.remove('text-white'), 300);
+        }
+    };
+
+    // --- Event Listeners ---
+
+    // Nav Click
+    els.sidebarNav.addEventListener('click', (e) => {
+        const btn = e.target.closest('.ts-nav-item');
+        if (btn) {
+            const src = CONFIG.sources.find(s => s.id === btn.dataset.id);
+            if (src) loadSource(src);
+            if (window.innerWidth < 768) els.sidebar.classList.add('ts-sidebar-collapsed'); // Close mobile menu
+        }
+    });
+
+    // Tag Click
+    els.tagsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('ts-tag-btn')) {
+            const tag = e.target.dataset.tag;
+            // Toggle logic
+            state.activeTag = state.activeTag === tag ? null : tag;
+            
+            // Visual Update
+            document.querySelectorAll('.ts-tag-btn').forEach(b => {
+                b.classList.remove('ts-tag-active');
+                if (b.dataset.tag === state.activeTag) b.classList.add('ts-tag-active');
+            });
+            
+            filterAndSort();
+        }
+    });
+
+    // Inputs
+    els.searchInput.addEventListener('input', (e) => {
+        els.searchClear.classList.toggle('ts-hidden', e.target.value === '');
+        filterAndSort();
+    });
+    
+    els.searchClear.addEventListener('click', () => {
+        els.searchInput.value = '';
+        els.searchClear.classList.add('ts-hidden');
+        filterAndSort();
+    });
+
+    els.sortSelect.addEventListener('change', filterAndSort);
+
+    els.resetBtn.addEventListener('click', () => {
+        els.searchInput.value = '';
+        els.sortSelect.value = 'date-desc';
+        state.activeTag = null;
+        document.querySelectorAll('.ts-tag-btn').forEach(b => b.classList.remove('ts-tag-active'));
+        filterAndSort();
+    });
+
+    // Grid Actions (Delegation)
+    els.grid.addEventListener('click', (e) => {
+        const saveBtn = e.target.closest('.ts-save-toggle');
+        const shareBtn = e.target.closest('.ts-share-btn');
+        
+        if (saveBtn) {
+            toggleSavedItem(saveBtn.dataset.id);
+        } else if (shareBtn) {
+            const url = shareBtn.dataset.url;
+            navigator.clipboard.writeText(url).then(() => {
+                const originalText = shareBtn.innerHTML;
+                shareBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                setTimeout(() => shareBtn.innerHTML = originalText, 2000);
+            });
+        }
+    });
+
+    // Load More
+    els.loadMoreBtn.addEventListener('click', () => renderGrid(true));
+
+    // Sidebar Toggle
+    els.sidebarToggle.addEventListener('click', () => {
+        els.sidebar.classList.toggle('ts-sidebar-collapsed');
+        els.sidebar.classList.toggle('ts-sidebar-expanded');
+        // Toggle text visibility classes
+        document.querySelectorAll('.ts-sidebar-text').forEach(el => {
+            if (els.sidebar.classList.contains('ts-sidebar-expanded')) {
+                el.classList.remove('opacity-0');
+                if (window.innerWidth >= 768) el.classList.remove('hidden');
+            } else {
+                el.classList.add('opacity-0');
+            }
+        });
+    });
+
+    // Saved/Claim List View
+    els.claimListBtn.addEventListener('click', () => {
+        els.grid.innerHTML = ''; // Clear grid
+        els.controlsArea.classList.add('ts-hidden');
+        els.loadMoreContainer.classList.add('ts-hidden');
+        document.getElementById('ts-guide-section').classList.add('ts-hidden');
+        els.savedView.classList.remove('ts-hidden');
+        els.mainTitle.innerText = "Watchlist";
+        
+        // Deselect Nav
+        document.querySelectorAll('.ts-nav-item').forEach(el => el.classList.remove('bg-white', 'text-black'));
+        
+        renderSavedList();
+    });
+
+    // Saved List Actions
+    els.savedListContainer.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('.ts-remove-saved');
+        if (removeBtn) {
+            const id = removeBtn.dataset.id;
+            toggleSavedItem(id); // Logic removes it
+            renderSavedList(); // Re-render view
+        }
+    });
+    
+    document.getElementById('ts-clear-saved-btn').addEventListener('click', () => {
+        if(confirm('Clear all saved items?')) {
+            state.savedItems = [];
+            localStorage.setItem('ts_saved_items', '[]');
+            renderSavedList();
+        }
+    });
+
+    document.getElementById('ts-export-csv-btn').addEventListener('click', () => {
+        const csvContent = "data:text/csv;charset=utf-8," 
+            + "Title,URL,Date Added\n"
+            + state.savedItems.map(e => `"${e.title}","${e.url}","${new Date().toLocaleDateString()}"`).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "icryptos_watchlist.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    // Settings Modal
+    els.settingsOpen.addEventListener('click', () => els.settingsModal.classList.remove('ts-hidden'));
+    els.settingsClose.addEventListener('click', () => els.settingsModal.classList.add('ts-hidden'));
+    els.factoryReset.addEventListener('click', () => {
+        if(confirm("Factory Reset: This will clear your saved list and local settings. Continue?")) {
+            localStorage.removeItem('ts_saved_items');
+            location.reload();
+        }
+    });
+
+    // Tag Container Expand/Collapse
+    els.tagsToggleBtn.addEventListener('click', () => {
+        const wrapper = els.tagsWrapper;
+        const icon = document.getElementById('ts-tags-arrow');
+        
+        if (wrapper.style.maxHeight) {
+            wrapper.style.maxHeight = null;
+            wrapper.style.opacity = '0';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+            wrapper.style.opacity = '1';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    });
+    
+    // Scroll Hero Button
+    els.scrollDataBtn.addEventListener('click', () => {
+        els.controlsArea.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Initialization
+    const init = () => {
+        renderSidebar();
+        loadSource(CONFIG.sources[0]); // Load first source by default
+        
+        // Handle Mobile Sidebar initially
+        if (window.innerWidth < 768) {
+            els.sidebar.classList.add('ts-sidebar-collapsed');
+            els.sidebar.classList.remove('ts-sidebar-expanded');
+        }
+    };
+
+    init();
+});
+</script>
+</body>
+</html>
