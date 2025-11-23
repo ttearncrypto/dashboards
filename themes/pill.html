@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCryptos Dashboard | F9XR - Enterprise Hub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            dark: '#050505',      /* Deepest Black */
+                            panel: '#121212',     /* Card Background */
+                            border: '#333333',    /* Subtle Border */
+                            highlight: '#2a2a2a', /* Hover State */
+                            white: '#ffffff',
+                            gray: '#a1a1a1'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- SCOPED ROOT: ISOLATION FROM HOST STYLES --- */
+        #ts-app-root {
+            width: 100%;
+            min-height: 100vh;
+            /* Transparent background as requested, but elements are solid */
+            background-color: transparent; 
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        /* --- FORCE VISIBILITY OVERRIDES --- */
+        /* These ensure host CSS doesn't make text invisible */
+        #ts-app-root h1, #ts-app-root h2, #ts-app-root h3, #ts-app-root h4, #ts-app-root h5, #ts-app-root h6 {
+            color: #ffffff !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        #ts-app-root button, #ts-app-root a {
+            cursor: pointer;
+        }
+
+        /* --- COMPONENT STYLES --- */
+
+        /* Solid Panels for Readability */
+        .ts-panel {
+            background-color: #121212 !important; /* Force Solid Dark */
+            border: 1px solid #333 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Floating Pill Header - FIXED VISIBILITY */
+        .ts-pill-header {
+            background-color: #050505 !important; /* SOLID BLACK - No Transparency */
+            border: 1px solid #444 !important; /* High contrast border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            color: #ffffff !important;
+        }
+
+        /* Card Styles */
+        .ts-card {
+            background-color: #121212 !important;
+            border: 1px solid #333;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .ts-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-4px);
+            background-color: #1a1a1a !important;
+        }
+
+        /* Stats Pill */
+        .ts-stats-pill {
+            background-color: #000000 !important; /* SOLID BLACK */
+            border: 1px solid #444;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        /* Mode Switcher Buttons */
+        .ts-mode-btn {
+            background: transparent;
+            color: #cccccc !important; /* Light gray default */
+            transition: all 0.2s ease;
+        }
+        .ts-mode-btn:hover { color: #ffffff !important; background: #262626; }
+        .ts-mode-btn.ts-active {
+            background: #ffffff !important;
+            color: #000000 !important; /* Black text on white btn */
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Scrollbar */
+        .ts-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .ts-scroll::-webkit-scrollbar-track { background: #000; }
+        .ts-scroll::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+        /* Loader */
+        .ts-spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #333;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: ts-spin 0.8s linear infinite;
+        }
+        @keyframes ts-spin { to { transform: rotate(360deg); } }
+
+        /* Font Sizes */
+        .ts-font-sm { font-size: 0.875rem; }
+        .ts-font-md { font-size: 1rem; }
+        .ts-font-lg { font-size: 1.125rem; }
+        .ts-font-fam-sans { font-family: 'Inter', sans-serif; }
+        .ts-font-fam-mono { font-family: 'Roboto Mono', monospace; }
+        
+        /* Keys */
+        .ts-key {
+            background: #333; border-bottom: 2px solid #000;
+            padding: 2px 6px; border-radius: 4px; font-family: monospace;
+            font-size: 0.75rem; color: #fff; display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="ts-app-root" class="ts-font-md ts-font-fam-sans">
+
+    <!-- SETTINGS MODAL -->
+    <div id="ts-settings-modal" class="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="ts-panel w-full max-w-md rounded-xl p-6 relative m-4 border border-brand-border">
+            <div class="flex justify-between items-center mb-6 border-b border-brand-border pb-4">
+                <h2 class="text-xl font-display font-bold text-white"><i class="fas fa-sliders-h mr-2"></i> Settings</h2>
+                <button class="ts-close-modal text-gray-400 hover:text-white transition"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-xs uppercase text-gray-500 font-bold mb-2">Text Size</label>
+                    <div class="flex gap-2">
+                        <button class="ts-font-btn flex-1 py-2 bg-brand-border text-white rounded hover:bg-white hover:text-black transition" data-size="sm">Small</button>
+                        <button class="ts-font-btn flex-1 py-2 bg-white text-black font-bold rounded" data-size="md">Medium</button>
+                        <button class="ts-font-btn flex-1 py-2 bg-brand-border text-white rounded hover:bg-white hover:text-black transition" data-size="lg">Large</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase text-gray-500 font-bold mb-2">Font Style</label>
+                    <div class="flex gap-2">
+                        <button class="ts-font-fam-btn flex-1 py-2 bg-white text-black font-bold rounded" data-font="sans">Modern</button>
+                        <button class="ts-font-fam-btn flex-1 py-2 bg-brand-border text-white rounded hover:bg-white hover:text-black transition font-mono" data-font="mono">Code</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                    <button id="ts-refresh-btn" class="py-2 bg-brand-highlight hover:bg-white hover:text-black text-white rounded transition text-sm"><i class="fas fa-sync-alt mr-2"></i>Refresh</button>
+                    <button id="ts-clear-data-btn" class="py-2 bg-red-900/20 border border-red-900/50 hover:bg-red-600 hover:text-white text-red-400 rounded transition text-sm"><i class="fas fa-trash-alt mr-2"></i>Clear Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROI CALCULATOR MODAL -->
+    <div id="ts-roi-modal" class="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="ts-panel w-full max-w-lg rounded-xl p-6 relative m-4 border-l-4 border-l-green-500">
+             <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-display font-bold text-white"><i class="fas fa-calculator mr-2 text-green-500"></i> Earnings Estimator</h2>
+                <button class="ts-close-modal text-gray-400 hover:text-white transition"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Hours/Day</label>
+                    <input type="number" id="ts-roi-hours" value="2" class="w-full bg-brand-black border border-brand-border rounded p-3 text-white focus:border-white outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Avg. Rate ($/hr)</label>
+                    <input type="number" id="ts-roi-rate" value="5" class="w-full bg-brand-black border border-brand-border rounded p-3 text-white focus:border-white outline-none">
+                </div>
+            </div>
+            <div class="bg-brand-black p-4 rounded-lg border border-brand-border mb-4">
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div><div class="text-xs text-gray-500 uppercase">Daily</div><div class="text-xl font-bold text-green-400" id="ts-roi-daily">$0.00</div></div>
+                    <div><div class="text-xs text-gray-500 uppercase">Weekly</div><div class="text-xl font-bold text-green-400" id="ts-roi-weekly">$0.00</div></div>
+                    <div><div class="text-xs text-gray-500 uppercase">Monthly</div><div class="text-xl font-bold text-green-400" id="ts-roi-monthly">$0.00</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHORTCUTS MODAL -->
+    <div id="ts-shortcuts-modal" class="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="ts-panel w-full max-w-md rounded-xl p-6 relative m-4">
+            <h2 class="text-xl font-bold text-white mb-4"><i class="fas fa-keyboard mr-2"></i> Shortcuts</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-400">Search</span> <div><span class="ts-key">/</span></div></div>
+                <div class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-400">Settings</span> <div><span class="ts-key">Shift</span> + <span class="ts-key">S</span></div></div>
+                <div class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-400">Calculator</span> <div><span class="ts-key">Shift</span> + <span class="ts-key">C</span></div></div>
+                <div class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-400">Watchlist</span> <div><span class="ts-key">Shift</span> + <span class="ts-key">W</span></div></div>
+                <div class="flex justify-between"><span class="text-gray-400">Close</span> <div><span class="ts-key">Esc</span></div></div>
+            </div>
+            <button class="ts-close-modal mt-6 w-full py-2 bg-white text-black font-bold rounded hover:bg-gray-200">Close</button>
+        </div>
+    </div>
+
+    <!-- FLOATING HEADER (PILL DESIGN) -->
+    <!-- Z-Index 9999 ensures it stays on top of any host elements -->
+    <header class="fixed top-4 left-0 right-0 z-[9999] flex justify-center px-4 pointer-events-none">
+        <div class="w-full max-w-5xl ts-pill-header rounded-full px-2 py-2 flex items-center justify-between pointer-events-auto">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-3 pl-2">
+                <div class="w-10 h-10 rounded-full overflow-hidden bg-white border-2 border-brand-border shrink-0">
+                    <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <div class="hidden md:block">
+                    <h1 class="text-sm font-bold font-display leading-none text-white !important">iCryptos</h1>
+                    <span class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Dashboard</span>
+                </div>
+            </div>
+
+            <!-- Scrollable Nav (Pill) -->
+            <nav class="flex-1 overflow-x-auto ts-scroll flex items-center justify-center gap-1 px-4">
+                <button class="ts-mode-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap ts-active" data-id="earning" data-url="https://ttearncrypto.blogspot.com">Projects</button>
+                <button class="ts-mode-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap" data-id="invest" data-url="https://freecryptoradar.blogspot.com">Invest</button>
+                <button class="ts-mode-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap" data-id="casino" data-url="https://freecryptoshop.blogspot.com">Casinos</button>
+                <button class="ts-mode-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap" data-id="airdrop" data-url="https://ttairdropcentral.blogspot.com">Airdrops</button>
+            </nav>
+
+            <!-- Tools -->
+            <div class="flex items-center gap-1 pr-1 shrink-0">
+                <button id="ts-open-calc" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition text-gray-400" title="Estimator (Shift+C)"><i class="fas fa-calculator"></i></button>
+                <button id="ts-open-watchlist" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition text-gray-400 relative" title="Watchlist (Shift+W)"><i class="fas fa-bookmark"></i></button>
+                <button id="ts-open-settings" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition text-gray-400" title="Settings (Shift+S)"><i class="fas fa-cog"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 pb-20 pt-32 relative z-10">
+        
+        <!-- HERO SECTION -->
+        <section class="mb-12 text-center relative z-10">
+            <span class="inline-block px-3 py-1 rounded-full bg-brand-panel border border-brand-border text-white text-[10px] font-bold uppercase tracking-wider mb-4 animate-fade-in">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block mr-2 animate-pulse"></span> Live System Active
+            </span>
+            <h2 class="text-4xl md:text-6xl font-display font-black text-white !important mb-4 tracking-tight animate-slide-up">
+                Maximize Your <br class="md:hidden"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Crypto Gains.</span>
+            </h2>
+            <p class="text-gray-400 max-w-xl mx-auto text-lg mb-8 leading-relaxed">
+                The enterprise-grade hub for discovering verified earning opportunities. 
+                We remove the noise so you can act decisively.
+            </p>
+            <div class="flex justify-center gap-4">
+                <button onclick="document.getElementById('ts-search-input').focus()" class="px-8 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-lg shadow-white/10">Start Searching</button>
+                <button onclick="document.getElementById('ts-shortcuts-modal').classList.remove('hidden', 'opacity-0')" class="px-8 py-3 bg-brand-panel text-white font-bold rounded-full border border-brand-border hover:border-white transition">Shortcuts</button>
+            </div>
+        </section>
+
+        <!-- FLOATING STATS PILL -->
+        <section class="flex justify-center mb-16 relative z-20">
+            <div class="ts-stats-pill inline-flex flex-wrap items-center justify-center gap-6 md:gap-10 px-8 py-4 rounded-full">
+                <div class="text-center">
+                    <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Total Projects</div>
+                    <div class="text-xl font-bold text-white font-mono" id="ts-stat-total">0</div>
+                </div>
+                <div class="w-px h-8 bg-gray-700 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Verification</div>
+                    <div class="text-xl font-bold text-green-500 font-mono"><i class="fas fa-check-circle text-sm mr-1"></i> 100%</div>
+                </div>
+                <div class="w-px h-8 bg-gray-700 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Updates</div>
+                    <div class="text-xl font-bold text-blue-400 font-mono">Real-time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILTER & CONTROL BAR -->
+        <section class="sticky top-24 z-30 mb-8 transition-all duration-300">
+            <div class="ts-panel p-2 rounded-2xl flex flex-col md:flex-row gap-2 shadow-2xl">
+                <div class="relative flex-grow group">
+                    <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 group-focus-within:text-white transition"></i>
+                    <input type="text" id="ts-search-input" placeholder="Search verified projects (Press '/')..." class="w-full bg-brand-dark border border-transparent focus:border-brand-border text-white pl-12 pr-4 py-3 rounded-xl outline-none transition font-medium placeholder-gray-600">
+                </div>
+                <div class="flex gap-2">
+                    <select id="ts-sort-select" class="bg-brand-dark text-white px-6 py-3 rounded-xl border border-transparent hover:border-brand-border outline-none cursor-pointer font-bold text-sm">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="az">A-Z Name</option>
+                    </select>
+                    <button id="ts-reset-filters" class="px-5 py-3 bg-brand-border hover:bg-white hover:text-black rounded-xl transition font-bold"><i class="fas fa-undo"></i></button>
+                </div>
+            </div>
+            <!-- Tags -->
+            <div id="ts-tags-container" class="mt-4 flex flex-wrap justify-center gap-2"></div>
+        </section>
+
+        <!-- CONTENT GRID -->
+        <div id="ts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 min-h-[400px]"></div>
+
+        <!-- LOADERS & STATES -->
+        <div id="ts-loader" class="hidden flex justify-center py-20"><div class="ts-spinner"></div></div>
+        <div id="ts-load-more-wrapper" class="text-center mt-12 mb-20 hidden">
+            <button id="ts-load-more-btn" class="px-8 py-3 bg-brand-panel border border-brand-border hover:border-white rounded-full text-white font-bold transition shadow-lg">Load More Results</button>
+        </div>
+
+        <!-- WATCHLIST VIEW -->
+        <div id="ts-watchlist-view" class="hidden pt-4">
+            <div class="flex justify-between items-center mb-8 bg-brand-panel p-6 rounded-2xl border border-brand-border">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Your Watchlist</h2>
+                    <p class="text-gray-400 text-sm">Locally stored for your privacy.</p>
+                </div>
+                <button id="ts-close-watchlist" class="px-4 py-2 bg-brand-dark border border-brand-border rounded-lg text-sm font-bold hover:bg-white hover:text-black transition">Back to Dashboard</button>
+            </div>
+            <div id="ts-watchlist-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            <div id="ts-watchlist-empty" class="text-center py-20 text-gray-500 hidden border border-dashed border-brand-border rounded-2xl">
+                <i class="fas fa-bookmark text-4xl mb-4 opacity-50"></i>
+                <p>No items saved yet.</p>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section class="mt-24 pt-10 border-t border-brand-border">
+            <h3 class="text-2xl font-display font-bold text-white text-center mb-10">Trusted by Crypto Hunters</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="ts-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold">A</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Alex M.</div>
+                            <div class="text-[10px] text-gray-400">Airdrop Hunter</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"The iCryptos dashboard filters out all the spam. I only use this tool to find verified airdrops now. The dark mode is perfect."</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="ts-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 flex items-center justify-center text-white font-bold">S</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Sarah K.</div>
+                            <div class="text-[10px] text-gray-400">Faucet User</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"Finally, a clean interface without annoying popups. The watchlist feature helps me organize my daily claims efficiently."</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="ts-card p-6 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-500 to-red-500 flex items-center justify-center text-white font-bold">D</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">CryptoDave</div>
+                            <div class="text-[10px] text-gray-400">Investor</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"I use the ROI calculator daily. The enterprise build feels incredibly fast compared to other aggregators."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="mt-20">
+            <h3 class="text-2xl font-display font-bold text-white text-center mb-10">Frequently Asked Questions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="ts-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-white mb-2 flex items-center"><i class="fas fa-question-circle text-gray-500 mr-2"></i> How often is data updated?</h4>
+                    <p class="text-sm text-gray-400">Data is fetched in real-time using JSONP feeds directly from F9XR's verified repositories. As soon as a post goes live, it appears here.</p>
+                </div>
+                <div class="ts-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-white mb-2 flex items-center"><i class="fas fa-shield-alt text-gray-500 mr-2"></i> Is this tool free?</h4>
+                    <p class="text-sm text-gray-400">Yes, the iCryptos Dashboard is 100% free to use for the community. We are supported by minimal, non-intrusive ad placements.</p>
+                </div>
+                <div class="ts-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-white mb-2 flex items-center"><i class="fas fa-cookie-bite text-gray-500 mr-2"></i> Do you store my data?</h4>
+                    <p class="text-sm text-gray-400">No. Your Watchlist and Settings are stored locally in your browser's LocalStorage. We do not have a backend database for user data.</p>
+                </div>
+                <div class="ts-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-white mb-2 flex items-center"><i class="fas fa-bolt text-gray-500 mr-2"></i> How are projects verified?</h4>
+                    <p class="text-sm text-gray-400">Our team manually reviews every project before adding it to the feed to ensure it pays out and isn't a scam.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-20 py-12 border-t border-brand-border text-center bg-brand-dark">
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="https://twitter.com/ttearncrypto" target="_blank" class="w-10 h-10 rounded-full bg-brand-panel flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-highlight transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://pinterest.com/ttearncrypto" target="_blank" class="w-10 h-10 rounded-full bg-brand-panel flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-highlight transition"><i class="fab fa-pinterest"></i></a>
+                <a href="https://discord.gg/D6hAEEumtx" target="_blank" class="w-10 h-10 rounded-full bg-brand-panel flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-highlight transition"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/ttearncrypto" target="_blank" class="w-10 h-10 rounded-full bg-brand-panel flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-highlight transition"><i class="fab fa-github"></i></a>
+            </div>
+            
+            <p class="font-display font-bold text-xl text-white mb-2">With Love <span class="text-red-600 animate-pulse">❤</span>,</p>
+            <p class="text-sm text-gray-500 uppercase tracking-[0.2em] font-bold">from F9XR</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- STATE ---
+    const state = {
+        currentSource: null,
+        rawData: [],
+        filteredData: [],
+        savedItems: JSON.parse(localStorage.getItem('ts_saved_items')) || [],
+        displayCount: 16,
+        currentCount: 0,
+        activeTag: null,
+        config: {
+            fontSize: localStorage.getItem('ts_font_size') || 'md',
+            fontFamily: localStorage.getItem('ts_font_family') || 'sans'
+        }
+    };
+
+    // --- DOM REFERENCES ---
+    const els = {
+        root: document.getElementById('ts-app-root'),
+        grid: document.getElementById('ts-grid'),
+        watchlistGrid: document.getElementById('ts-watchlist-grid'),
+        watchlistView: document.getElementById('ts-watchlist-view'),
+        modeBtns: document.querySelectorAll('.ts-mode-btn'),
+        searchInput: document.getElementById('ts-search-input'),
+        sortSelect: document.getElementById('ts-sort-select'),
+        tagsContainer: document.getElementById('ts-tags-container'),
+        loader: document.getElementById('ts-loader'),
+        loadMoreBtn: document.getElementById('ts-load-more-btn'),
+        loadMoreWrapper: document.getElementById('ts-load-more-wrapper'),
+        statTotal: document.getElementById('ts-stat-total'),
+        
+        // Modals & Tools
+        modals: document.querySelectorAll('[id$="-modal"]'),
+        closeModalBtns: document.querySelectorAll('.ts-close-modal'),
+        settingsBtn: document.getElementById('ts-open-settings'),
+        calcBtn: document.getElementById('ts-open-calc'),
+        watchlistBtn: document.getElementById('ts-open-watchlist'),
+        
+        // ROI Inputs
+        roiHours: document.getElementById('ts-roi-hours'),
+        roiRate: document.getElementById('ts-roi-rate'),
+        roiOutputs: {
+            d: document.getElementById('ts-roi-daily'),
+            w: document.getElementById('ts-roi-weekly'),
+            m: document.getElementById('ts-roi-monthly')
+        }
+    };
+
+    // --- CORE FUNCTIONS ---
+
+    // 1. Theme Config
+    const applyConfig = () => {
+        els.root.classList.remove('ts-font-sm', 'ts-font-md', 'ts-font-lg');
+        els.root.classList.add(`ts-font-${state.config.fontSize}`);
+        els.root.classList.remove('ts-font-fam-sans', 'ts-font-fam-mono');
+        els.root.classList.add(`ts-font-fam-${state.config.fontFamily}`);
+
+        document.querySelectorAll('.ts-font-btn').forEach(b => {
+            b.classList.toggle('bg-white', b.dataset.size === state.config.fontSize);
+            b.classList.toggle('text-black', b.dataset.size === state.config.fontSize);
+            b.classList.toggle('bg-brand-border', b.dataset.size !== state.config.fontSize);
+            b.classList.toggle('text-white', b.dataset.size !== state.config.fontSize);
+        });
+    };
+    applyConfig();
+
+    // 2. Data Fetching
+    const fetchBloggerData = (url) => {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            const cb = 'ts_cb_' + Math.floor(Math.random() * 10000);
+            window[cb] = (data) => {
+                document.body.removeChild(script);
+                delete window[cb];
+                resolve(data);
+            };
+            script.src = `${url}/feeds/posts/summary?alt=json-in-script&callback=${cb}&max-results=500`;
+            script.onerror = () => { reject(); delete window[cb]; };
+            document.body.appendChild(script);
+        });
+    };
+
+    const processEntries = (data) => {
+        if (!data.feed.entry) return [];
+        return data.feed.entry.map(e => {
+            const link = e.link.find(l => l.rel === 'alternate');
+            return {
+                id: e.id.$t.split('post-')[1],
+                title: e.title.$t,
+                url: link ? link.href : '#',
+                tags: e.category ? e.category.map(c => c.term) : ['General'],
+                date: new Date(e.published.$t)
+            };
+        });
+    };
+
+    // 3. Rendering
+    const createCardHTML = (item) => {
+        const isSaved = state.savedItems.some(i => i.id === item.id);
+        const tagsHTML = item.tags.slice(0, 2).map(t => 
+            `<span class="text-[10px] bg-brand-black border border-brand-border px-2 py-1 rounded text-gray-400 hover:text-white cursor-pointer ts-filter-tag transition" data-tag="${t}">${t}</span>`
+        ).join('');
+
+        return `
+        <div class="ts-card rounded-2xl p-6 flex flex-col h-full animate-slide-up relative group">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-10 h-10 rounded-xl bg-white text-black font-bold flex items-center justify-center text-lg shadow-lg shadow-white/10">
+                    ${item.title.charAt(0).toUpperCase()}
+                </div>
+                <button class="ts-save-trigger text-lg transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 ${isSaved ? 'text-white' : 'text-gray-600 hover:text-white'}" data-id="${item.id}" title="${isSaved ? 'Remove' : 'Save'}">
+                    <i class="fas ${isSaved ? 'fa-bookmark' : 'fa-bookmark'}"></i>
+                </button>
+            </div>
+            <a href="${item.url}" target="_blank" class="font-bold text-white text-lg leading-tight mb-3 hover:text-gray-300 transition line-clamp-2">${item.title}</a>
+            <div class="flex flex-wrap gap-2 mt-auto mb-4">
+                ${tagsHTML}
+                ${item.tags.length > 2 ? `<span class="text-[10px] text-gray-600 py-1">+${item.tags.length-2}</span>` : ''}
+            </div>
+            <div class="pt-4 border-t border-brand-border flex justify-between items-center text-xs text-gray-500">
+                <span>${item.date.toLocaleDateString()}</span>
+                <a href="${item.url}" target="_blank" class="px-3 py-1 rounded-full bg-brand-highlight text-white hover:bg-white hover:text-black transition">Open <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+        </div>
+        `;
+    };
+
+    const renderGrid = (append = false) => {
+        const data = state.filteredData;
+        const total = data.length;
+        const limit = append ? state.currentCount + state.displayCount : state.displayCount;
+        const subset = data.slice(append ? state.currentCount : 0, limit);
+        
+        if (append) els.grid.insertAdjacentHTML('beforeend', subset.map(createCardHTML).join(''));
+        else els.grid.innerHTML = subset.map(createCardHTML).join('');
+
+        state.currentCount = Math.min(limit, total);
+        els.loadMoreWrapper.classList.toggle('hidden', state.currentCount >= total);
+        els.statTotal.innerText = total;
+        
+        if (total === 0) els.grid.innerHTML = `<div class="col-span-full text-center py-20 text-gray-500 border border-dashed border-brand-border rounded-xl bg-brand-panel">No verified projects found matching criteria.</div>`;
+    };
+
+    const renderTags = () => {
+        const allTags = state.rawData.flatMap(i => i.tags);
+        const uniqueTags = [...new Set(allTags)].sort();
+        els.tagsContainer.innerHTML = uniqueTags.map(tag => `
+            <button class="ts-filter-tag text-[11px] font-bold uppercase tracking-wide px-4 py-2 rounded-full border ${state.activeTag === tag ? 'bg-white text-black border-white' : 'bg-brand-panel text-gray-500 border-brand-border hover:border-white hover:text-white'} transition" data-tag="${tag}">${tag}</button>
+        `).join('');
+    };
+
+    const renderWatchlist = () => {
+        const container = document.getElementById('ts-watchlist-grid');
+        const emptyMsg = document.getElementById('ts-watchlist-empty');
+        if (state.savedItems.length === 0) {
+            container.innerHTML = '';
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+        emptyMsg.classList.add('hidden');
+        container.innerHTML = state.savedItems.map(createCardHTML).join('');
+    };
+
+    // 4. Logic & Filters
+    const applyFilters = () => {
+        let res = [...state.rawData];
+        const q = els.searchInput.value.toLowerCase();
+        if (q) res = res.filter(i => i.title.toLowerCase().includes(q) || i.tags.some(t => t.toLowerCase().includes(q)));
+        if (state.activeTag) res = res.filter(i => i.tags.includes(state.activeTag));
+        
+        const sort = els.sortSelect.value;
+        if (sort === 'newest') res.sort((a, b) => b.date - a.date);
+        else if (sort === 'oldest') res.sort((a, b) => a.date - b.date);
+        else if (sort === 'az') res.sort((a, b) => a.title.localeCompare(b.title));
+
+        state.filteredData = res;
+        renderGrid(false);
+    };
+
+    const loadSource = async (url) => {
+        els.grid.innerHTML = '';
+        els.loader.classList.remove('hidden');
+        els.loadMoreWrapper.classList.add('hidden');
+        try {
+            const data = await fetchBloggerData(url);
+            state.rawData = processEntries(data);
+            state.activeTag = null;
+            els.searchInput.value = '';
+            renderTags();
+            applyFilters();
+        } catch (e) {
+            els.grid.innerHTML = `<div class="col-span-full text-center text-red-500">Error loading feed. Check connection.</div>`;
+        } finally {
+            els.loader.classList.add('hidden');
+        }
+    };
+
+    // 5. Handlers
+    const toggleModal = (modalId) => {
+        const m = document.getElementById(modalId);
+        els.modals.forEach(modal => { if(modal.id !== modalId) modal.classList.add('hidden', 'opacity-0'); });
+        if (m.classList.contains('hidden')) {
+            m.classList.remove('hidden'); setTimeout(() => m.classList.remove('opacity-0'), 10);
+        } else {
+            m.classList.add('opacity-0'); setTimeout(() => m.classList.add('hidden'), 300);
+        }
+    };
+
+    els.modeBtns.forEach(btn => btn.addEventListener('click', () => {
+        els.modeBtns.forEach(b => b.classList.remove('ts-active'));
+        btn.classList.add('ts-active');
+        els.watchlistView.classList.add('hidden');
+        document.querySelector('section.sticky').classList.remove('hidden');
+        loadSource(btn.dataset.url);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }));
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('ts-filter-tag')) {
+            state.activeTag = state.activeTag === e.target.dataset.tag ? null : e.target.dataset.tag;
+            renderTags(); applyFilters();
+        }
+        if (e.target.closest('.ts-save-trigger')) {
+            const btn = e.target.closest('.ts-save-trigger');
+            const id = btn.dataset.id;
+            const existingIdx = state.savedItems.findIndex(i => i.id === id);
+            if (existingIdx > -1) state.savedItems.splice(existingIdx, 1);
+            else { const item = state.rawData.find(i => i.id === id); if (item) state.savedItems.push(item); }
+            localStorage.setItem('ts_saved_items', JSON.stringify(state.savedItems));
+            
+            const icon = btn.querySelector('i');
+            btn.classList.toggle('text-white', state.savedItems.some(i => i.id === id));
+            btn.classList.toggle('text-gray-600', !state.savedItems.some(i => i.id === id));
+            if(!els.watchlistView.classList.contains('hidden')) renderWatchlist();
+        }
+    });
+
+    els.searchInput.addEventListener('input', applyFilters);
+    els.sortSelect.addEventListener('change', applyFilters);
+    els.loadMoreBtn.addEventListener('click', () => renderGrid(true));
+    
+    // Modal Events
+    els.settingsBtn.addEventListener('click', () => toggleModal('ts-settings-modal'));
+    els.calcBtn.addEventListener('click', () => toggleModal('ts-roi-modal'));
+    els.watchlistBtn.addEventListener('click', () => {
+        els.watchlistView.classList.remove('hidden');
+        document.querySelector('section.sticky').classList.add('hidden');
+        els.grid.innerHTML = '';
+        els.loadMoreWrapper.classList.add('hidden');
+        renderWatchlist();
+    });
+    document.getElementById('ts-close-watchlist').addEventListener('click', () => {
+        els.watchlistView.classList.add('hidden');
+        document.querySelector('section.sticky').classList.remove('hidden');
+        applyFilters();
+    });
+    els.closeModalBtns.forEach(b => b.addEventListener('click', () => {
+        b.closest('[id$="-modal"]').classList.add('opacity-0');
+        setTimeout(() => b.closest('[id$="-modal"]').classList.add('hidden'), 300);
+    }));
+
+    // Settings & Calc
+    document.querySelectorAll('.ts-font-btn').forEach(btn => btn.addEventListener('click', () => {
+        state.config.fontSize = btn.dataset.size; localStorage.setItem('ts_font_size', btn.dataset.size); applyConfig();
+    }));
+    document.querySelectorAll('.ts-font-fam-btn').forEach(btn => btn.addEventListener('click', () => {
+        state.config.fontFamily = btn.dataset.font; localStorage.setItem('ts_font_family', btn.dataset.font); applyConfig();
+    }));
+    document.getElementById('ts-refresh-btn').addEventListener('click', () => location.reload());
+    document.getElementById('ts-clear-data-btn').addEventListener('click', () => { if(confirm('Clear all data?')) { localStorage.clear(); location.reload(); } });
+    
+    const calculateROI = () => {
+        const h = parseFloat(els.roiHours.value) || 0; const r = parseFloat(els.roiRate.value) || 0; const daily = h * r;
+        els.roiOutputs.d.innerText = '$' + daily.toFixed(2); els.roiOutputs.w.innerText = '$' + (daily * 7).toFixed(2); els.roiOutputs.m.innerText = '$' + (daily * 30).toFixed(2);
+    };
+    els.roiHours.addEventListener('input', calculateROI); els.roiRate.addEventListener('input', calculateROI);
+
+    // Shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== els.searchInput) { e.preventDefault(); els.searchInput.focus(); }
+        if (e.key === 'Escape') { els.modals.forEach(m => m.classList.add('hidden', 'opacity-0')); els.searchInput.blur(); }
+        if (e.shiftKey) {
+            if (e.key.toLowerCase() === 's') toggleModal('ts-settings-modal');
+            if (e.key.toLowerCase() === 'c') toggleModal('ts-roi-modal');
+            if (e.key.toLowerCase() === 'w') els.watchlistBtn.click();
+        }
+    });
+
+    // Initial Load
+    if (els.modeBtns.length > 0) loadSource(els.modeBtns[0].dataset.url);
+});
+</script>
+</body>
+</html>
