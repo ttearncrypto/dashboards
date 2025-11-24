@@ -1,0 +1,15 @@
+{
+  "name": "ttearncrypto-dashboards",
+  "version": "0.1.0",
+  "description": "Client-side dashboards for TTEarnCrypto (F9XR).",
+  "private": true,
+  "scripts": {
+    "serve": "npx http-server -c-1 -p 8000",
+    "start": "npm run serve",
+    "test": "echo \"No tests configured\" && exit 0",
+    "lint": "echo \"No linter configured\" && exit 0"
+  },
+  "keywords": ["dashboard","blogger","spa","json"],
+  "author": "F9XR",
+  "license": "UNLICENSED"
+}
