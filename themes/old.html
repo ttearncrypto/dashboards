@@ -35,6 +35,8 @@
     <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Font Display Swap for Performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Tailwind Config for Blue Brand Colors -->
@@ -57,13 +59,16 @@
                         alabaster: '#f0f4f8',
                     },
                     boxShadow: {
-                        '3d': '5px 5px 0px 0px rgba(4, 150, 255, 0.2)',
-                        '3d-hover': '8px 8px 0px 0px rgba(4, 150, 255, 0.3)',
-                        '3d-light': '4px 4px 0px 0px rgba(220, 220, 220, 1)',
+                        '3d': '6px 6px 0px 0px rgba(4, 150, 255, 0.2)',
+                        '3d-hover': '10px 10px 0px 0px rgba(4, 150, 255, 0.3)',
+                        '3d-light': '5px 5px 0px 0px rgba(220, 220, 220, 1)',
                     },
                     animation: {
                         'float': 'float 4s ease-in-out infinite',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    screens: {
+                        '3xl': '1800px', // Added larger breakpoint
                     }
                 }
             }
@@ -72,9 +77,9 @@
 
     <style>
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #f0f4f8; }
-        ::-webkit-scrollbar-thumb { background: #3e6680; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #3e6680; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #027bce; }
 
         /* Custom HR */
@@ -95,10 +100,10 @@
 
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         /* Loaders */
@@ -135,27 +140,27 @@
         .sidebar-closed { margin-left: -5rem; }
 
         /* Dynamic Font Classes */
-        .font-small { font-size: 0.875rem; }
-        .font-normal { font-size: 1rem; }
-        .font-large { font-size: 1.125rem; }
+        .font-small { font-size: 0.95rem; }
+        .font-normal { font-size: 1.05rem; }
+        .font-large { font-size: 1.2rem; }
     </style>
 </head>
 <body class="bg-alabaster text-slate font-sans selection:bg-dodger selection:text-white transition-colors duration-300 font-normal">
 
     <!-- INITIAL LOADING SCREEN -->
     <div id="loading-screen" class="page-loader">
-        <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-16 h-16 rounded-full mb-4 shadow-xl animate-bounce">
+        <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-20 h-20 rounded-full mb-6 shadow-xl animate-bounce">
         <div class="spinner"></div>
         <p class="mt-4 text-yale font-bold tracking-widest text-sm">INITIALIZING F9XR DASHBOARD</p>
     </div>
 
     <!-- SETTINGS MODAL -->
-    <div id="ts-settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div id="ts-settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/80 backdrop-blur-md opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="settings-title">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg transform scale-95 transition-all duration-300 relative overflow-hidden border border-white/50 m-4">
             
             <div class="px-8 py-6 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-                <h2 class="text-2xl font-display font-bold text-yale"><i class="fas fa-sliders-h mr-2 text-dodger"></i> Settings</h2>
-                <button id="ts-settings-close-btn" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-dodger hover:text-white transition-colors flex items-center justify-center">
+                <h2 id="settings-title" class="text-2xl font-display font-bold text-yale"><i class="fas fa-sliders-h mr-2 text-dodger"></i> Settings</h2>
+                <button id="ts-settings-close-btn" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-dodger hover:text-white transition-colors flex items-center justify-center" aria-label="Close Settings">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -165,8 +170,8 @@
                 <h3 class="font-bold text-xs uppercase text-dodger tracking-widest mb-4">Appearance</h3>
                 <div class="space-y-4 mb-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-500 mb-1">Font Family</label>
-                        <select id="ts-font-family-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-dodger outline-none">
+                        <label for="ts-font-family-select" class="block text-sm font-bold text-gray-600 mb-1">Font Family</label>
+                        <select id="ts-font-family-select" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-dodger outline-none text-slate">
                             <option value="'Inter', sans-serif">Inter (Modern)</option>
                             <option value="'Outfit', sans-serif">Outfit (Display)</option>
                             <option value="'Roboto Mono', monospace">Roboto Mono (Code)</option>
@@ -174,9 +179,9 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-500 mb-1">Font Size</label>
-                        <select id="ts-font-size-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-dodger outline-none">
-                            <option value="font-small">Small</option>
+                        <label for="ts-font-size-select" class="block text-sm font-bold text-gray-600 mb-1">Font Size</label>
+                        <select id="ts-font-size-select" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-dodger outline-none text-slate">
+                            <option value="font-small">Compact</option>
                             <option value="font-normal" selected>Normal</option>
                             <option value="font-large">Large</option>
                         </select>
@@ -198,36 +203,35 @@
 
                 <!-- Shortcuts -->
                 <h3 class="font-bold text-xs uppercase text-dodger tracking-widest mb-4"><i class="fas fa-keyboard mr-2"></i>Shortcuts</h3>
-                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Search</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">/</kbd></div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Close</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">Esc</kbd></div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Scroll</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">j/k</kbd></div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Sidebar</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">m</kbd></div>
-                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Top/Bot</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">t/b</kbd></div>
+                <div class="grid grid-cols-2 gap-3 text-sm text-gray-600">
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-200"><span>Search</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">/</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-200"><span>Close</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">Esc</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-200"><span>Scroll</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">j/k</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-200"><span>Sidebar</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">m</kbd></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ADVERTISE MODAL -->
-    <div id="ts-ad-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div id="ts-ad-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/60 backdrop-blur-sm opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="ad-title">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md transform scale-95 transition-all duration-300 relative overflow-hidden border border-white/50 m-4">
             <div class="p-8 text-center">
                 <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-dodger text-2xl shadow-3d-light">
                     <i class="fas fa-bullhorn"></i>
                 </div>
-                <h2 class="text-2xl font-display font-bold text-yale mb-2">Advertise With Us</h2>
-                <p class="text-gray-500 text-sm mb-6">Reach thousands of crypto enthusiasts daily. Secure your spot in our sponsored sections.</p>
+                <h2 id="ad-title" class="text-2xl font-display font-bold text-yale mb-2">Advertise With Us</h2>
+                <p class="text-gray-600 text-sm mb-6">Reach thousands of crypto enthusiasts daily. Secure your spot in our sponsored sections.</p>
                 
                 <div class="space-y-3">
                     <a href="https://t.me/ttearncrypto" target="_blank" class="block w-full py-3 bg-dodger text-white rounded-xl font-bold hover:bg-yale transition shadow-3d hover:shadow-3d-hover hover:-translate-y-0.5">
                         <i class="fab fa-telegram-plane mr-2"></i> Contact on Telegram
                     </a>
-                    <a href="mailto:support@f9xr.com" class="block w-full py-3 bg-gray-100 text-slate rounded-xl font-bold hover:bg-gray-200 transition">
+                    <a href="mailto:support@f9xr.com" class="block w-full py-3 bg-gray-100 text-slate rounded-xl font-bold hover:bg-gray-200 transition border border-gray-200">
                         <i class="fas fa-envelope mr-2"></i> Send Email
                     </a>
                 </div>
-                <button id="ts-ad-close-btn" class="mt-6 text-xs text-gray-400 hover:text-gray-600 underline">No thanks, maybe later</button>
+                <button id="ts-ad-close-btn" class="mt-6 text-xs text-gray-500 hover:text-yale underline">No thanks, maybe later</button>
             </div>
         </div>
     </div>
@@ -239,20 +243,20 @@
         <aside id="main-sidebar" class="w-20 bg-yale text-white flex flex-col items-center py-6 z-50 shadow-2xl flex-shrink-0 h-full relative border-r border-white/10">
             <!-- Brand Icon -->
             <div class="mb-6 hover:scale-110 transition-transform cursor-pointer relative group">
-                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-10 h-10 rounded-full shadow-lg border-2 border-dodger">
+                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-12 h-12 rounded-full shadow-lg border-2 border-dodger">
             </div>
 
             <hr class="w-8 border-white/20 mb-4">
 
             <!-- Nav Items (Dynamic) -->
-            <nav id="ts-sidebar-nav" class="flex-1 w-full flex flex-col items-center gap-4 px-2 overflow-y-auto no-scrollbar">
+            <nav id="ts-sidebar-nav" class="flex-1 w-full flex flex-col items-center gap-4 px-2 overflow-y-auto no-scrollbar" aria-label="Sidebar Navigation">
                 <!-- Injected via JS -->
             </nav>
 
             <!-- Bottom Actions -->
             <div class="mt-auto flex flex-col gap-4 pb-4">
-                <button id="ts-settings-open-btn" class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 hover:bg-dodger text-white transition-colors hover:shadow-lg" title="Settings">
-                    <i class="fas fa-cog text-lg animate-spin-slow"></i>
+                <button id="ts-settings-open-btn" class="w-12 h-12 rounded-xl flex items-center justify-center bg-white/10 hover:bg-dodger text-white transition-colors hover:shadow-lg" aria-label="Open Settings">
+                    <i class="fas fa-cog text-xl animate-spin-slow"></i>
                 </button>
             </div>
         </aside>
@@ -261,16 +265,16 @@
         <main class="flex-1 relative overflow-y-auto overflow-x-hidden bg-alabaster scroll-smooth" id="main-scroll">
             
             <!-- FLOATING HEADER -->
-            <div class="sticky top-4 z-40 px-4 w-full flex justify-center pointer-events-none mb-6">
-                <header class="pointer-events-auto glass shadow-3d shadow-yale/10 rounded-full px-4 py-3 flex items-center justify-between gap-4 max-w-6xl w-full mx-auto border-white/60 transition-all hover:border-dodger/30">
+            <div class="sticky top-6 z-40 px-4 w-full flex justify-center pointer-events-none mb-8">
+                <header class="pointer-events-auto glass shadow-3d shadow-yale/10 rounded-full px-6 py-4 flex items-center justify-between gap-6 max-w-[1600px] w-full mx-auto border-white/60 transition-all hover:border-dodger/30">
                     
                     <!-- Left: Toggle & Breadcrumbs -->
-                    <div class="flex items-center gap-3 overflow-hidden">
-                        <button id="ts-header-sidebar-toggle" class="w-8 h-8 flex items-center justify-center rounded-full text-slate hover:bg-dodger hover:text-white transition-colors bg-white shadow-sm border border-gray-100" title="Toggle Sidebar">
+                    <div class="flex items-center gap-4 overflow-hidden">
+                        <button id="ts-header-sidebar-toggle" class="w-10 h-10 flex items-center justify-center rounded-full text-slate hover:bg-dodger hover:text-white transition-colors bg-white shadow-md border border-gray-100" aria-label="Toggle Sidebar">
                             <i class="fas fa-bars"></i>
                         </button>
                         
-                        <nav id="ts-breadcrumbs" class="text-sm font-medium text-slate truncate flex items-center gap-2">
+                        <nav id="ts-breadcrumbs" class="text-sm font-medium text-slate truncate flex items-center gap-2" aria-label="Breadcrumb">
                             <!-- JS Injected -->
                         </nav>
                     </div>
@@ -278,18 +282,19 @@
                     <!-- Right: Search & Actions -->
                     <div class="flex items-center gap-3">
                         <div class="relative group hidden sm:block">
+                            <label for="ts-search-input" class="sr-only">Search Projects</label>
                             <input type="text" id="ts-search-input" placeholder="Search..." 
-                                class="bg-gray-50 border-transparent rounded-full py-1.5 pl-9 pr-4 text-sm focus:bg-white focus:ring-2 focus:ring-dodger/50 transition-all w-32 focus:w-56 outline-none placeholder-gray-400 shadow-inner">
-                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-dodger transition-colors"></i>
+                                class="bg-gray-50 border-transparent rounded-full py-2 pl-10 pr-4 text-sm focus:bg-white focus:ring-2 focus:ring-dodger/50 transition-all w-40 focus:w-64 outline-none placeholder-gray-500 shadow-inner">
+                            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-dodger transition-colors"></i>
                         </div>
 
-                        <div class="h-6 w-px bg-gray-300 hidden sm:block"></div>
+                        <div class="h-8 w-px bg-gray-300 hidden sm:block"></div>
 
-                        <a href="https://tontuftools.blogspot.com" target="_blank" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate hover:bg-dodger hover:text-white transition-colors shadow-sm" title="Tools">
-                            <i class="fas fa-tools text-xs"></i>
+                        <a href="https://tontuftools.blogspot.com" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-slate hover:bg-dodger hover:text-white transition-colors shadow-sm border border-gray-100" title="Online Tools" aria-label="Online Tools">
+                            <i class="fas fa-tools text-sm"></i>
                         </a>
                         
-                        <button id="ts-share-button" class="bg-gradient-to-r from-yale to-dodger hover:brightness-110 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-dodger/20 transition-all transform active:scale-95 flex items-center gap-2">
+                        <button id="ts-share-button" class="bg-gradient-to-r from-yale to-dodger hover:brightness-110 text-white text-sm font-bold px-6 py-2.5 rounded-full shadow-lg shadow-dodger/20 transition-all transform active:scale-95 flex items-center gap-2" aria-label="Share Page">
                             <i class="fas fa-share-nodes"></i> <span class="hidden sm:inline">Share</span>
                         </button>
                     </div>
@@ -297,49 +302,49 @@
             </div>
 
             <!-- SPONSORED AD SPACE -->
-            <div class="container mx-auto px-6 mb-6 max-w-7xl">
-                <div class="relative w-full rounded-2xl h-24 overflow-hidden border border-dodger/20 bg-white shadow-3d-light flex items-center justify-center group">
+            <div class="container mx-auto px-6 mb-8 max-w-[1600px]">
+                <div class="relative w-full rounded-2xl h-28 overflow-hidden border border-dodger/20 bg-white shadow-3d-light flex items-center justify-center group transition-transform hover:scale-[1.005]">
                     <div class="absolute inset-0 ad-pattern opacity-30"></div>
                     <div class="relative z-10 flex flex-col items-center justify-center">
                         <span class="text-xs font-bold text-dodger uppercase tracking-widest mb-1">Sponsored Space</span>
-                        <p class="text-slate text-sm">Boost your project visibility here.</p>
+                        <p class="text-slate text-sm font-medium">Boost your project visibility here.</p>
                     </div>
-                    <button class="btn-open-ad absolute right-4 top-1/2 -translate-y-1/2 bg-white text-dodger border border-dodger px-3 py-1 rounded-full text-xs font-bold hover:bg-dodger hover:text-white transition opacity-0 group-hover:opacity-100 shadow-md">
+                    <button class="btn-open-ad absolute right-6 top-1/2 -translate-y-1/2 bg-white text-dodger border-2 border-dodger px-4 py-2 rounded-full text-xs font-bold hover:bg-dodger hover:text-white transition opacity-0 group-hover:opacity-100 shadow-md">
                         Advertise Here
                     </button>
                 </div>
             </div>
 
             <!-- HERO SECTION -->
-            <section class="px-6 lg:px-12 mb-8 text-center relative">
-                <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[80%] h-40 bg-coolsky/20 blur-[80px] rounded-full -z-10"></div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-yale mb-3 tracking-tight">
+            <section class="px-6 lg:px-12 mb-10 text-center relative max-w-[1600px] mx-auto">
+                <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[60%] h-48 bg-coolsky/15 blur-[100px] rounded-full -z-10"></div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-yale mb-4 tracking-tight drop-shadow-sm">
                     F9XR's <span class="text-transparent bg-clip-text bg-gradient-to-r from-dodger to-teal">iCryptos</span>
                 </h1>
-                <p class="text-lg text-slate max-w-2xl mx-auto mb-6 font-light">
+                <p class="text-xl text-slate max-w-3xl mx-auto mb-8 font-light leading-relaxed">
                     The Official Directory. Discover verified earning opportunities, airdrops, and crypto investments.
                 </p>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" class="bg-[#5865F2]/10 text-[#5865F2] hover:bg-[#5865F2] hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" aria-label="Join Discord" class="bg-[#5865F2]/10 text-[#5865F2] hover:bg-[#5865F2] hover:text-white px-6 py-2.5 rounded-full text-base font-bold transition-colors flex items-center gap-2">
                         <i class="fab fa-discord"></i> Discord
                     </a>
-                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="bg-[#0088cc]/10 text-[#0088cc] hover:bg-[#0088cc] hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" aria-label="Join Telegram" class="bg-[#0088cc]/10 text-[#0088cc] hover:bg-[#0088cc] hover:text-white px-6 py-2.5 rounded-full text-base font-bold transition-colors flex items-center gap-2">
                         <i class="fab fa-telegram"></i> Telegram
                     </a>
-                    <a href="https://twitter.com/ttearncrypto" target="_blank" class="bg-black/5 text-black hover:bg-black hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                    <a href="https://twitter.com/ttearncrypto" target="_blank" aria-label="Follow on Twitter" class="bg-black/5 text-black hover:bg-black hover:text-white px-6 py-2.5 rounded-full text-base font-bold transition-colors flex items-center gap-2">
                         <i class="fa-brands fa-x-twitter"></i> Twitter
                     </a>
                 </div>
             </section>
 
             <!-- MEDIA HUB -->
-            <section class="px-6 lg:px-12 mb-10">
-                <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-3d overflow-hidden border border-white/50">
+            <section class="px-6 lg:px-12 mb-12">
+                <div class="max-w-[1600px] mx-auto bg-white rounded-3xl shadow-3d overflow-hidden border border-white/50">
                     <div class="flex border-b border-gray-100 bg-gray-50">
-                        <button id="tab-video" class="flex-1 py-4 text-sm font-bold text-yale border-b-2 border-yale bg-white transition-all flex items-center justify-center gap-2">
+                        <button id="tab-video" class="flex-1 py-5 text-sm font-bold text-yale border-b-2 border-yale bg-white transition-all flex items-center justify-center gap-2" aria-label="Show Featured Video">
                             <i class="fas fa-play-circle"></i> Featured Video
                         </button>
-                        <button id="tab-chat" class="flex-1 py-4 text-sm font-bold text-gray-500 hover:text-slate transition-all flex items-center justify-center gap-2">
+                        <button id="tab-chat" class="flex-1 py-5 text-sm font-bold text-gray-600 hover:text-slate transition-all flex items-center justify-center gap-2" aria-label="Show Community Chat">
                             <i class="fas fa-comments"></i> Community Chat
                         </button>
                     </div>
@@ -347,12 +352,13 @@
                         <!-- Video Container -->
                         <div id="content-video" class="grid md:grid-cols-3">
                             <div class="md:col-span-2 bg-black aspect-video relative">
-                                <iframe id="odysee-iframe" class="absolute inset-0 w-full h-full" src="https://odysee.com/$/embed/@ttearncrypto:5?feature=latest" allowfullscreen></iframe>
+                                <iframe id="odysee-iframe" title="Featured Crypto Video" class="absolute inset-0 w-full h-full" src="https://odysee.com/$/embed/@ttearncrypto:5?feature=latest" allowfullscreen></iframe>
                             </div>
-                            <div class="p-8 flex flex-col justify-center bg-gradient-to-br from-white to-blue-50">
-                                <span class="text-dodger font-bold text-xs uppercase tracking-widest mb-2">Latest Insights</span>
-                                <p class="text-slate text-sm mb-6 leading-relaxed">Stay updated with the latest video tutorials, market analysis, and airdrop guides directly from the F9XR team.</p>
-                                <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank" class="inline-flex items-center gap-2 text-yale font-bold hover:text-dodger transition group">
+                            <div class="p-10 flex flex-col justify-center bg-gradient-to-br from-white to-blue-50">
+                                <span class="text-dodger font-bold text-xs uppercase tracking-widest mb-3">Latest Insights</span>
+                                <h3 class="text-2xl font-bold text-yale mb-4">Market Analysis & Airdrops</h3>
+                                <p class="text-slate text-base mb-8 leading-relaxed">Stay updated with the latest video tutorials, market analysis, and airdrop guides directly from the F9XR team.</p>
+                                <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank" class="inline-flex items-center gap-2 text-yale font-bold hover:text-dodger transition group text-lg" aria-label="Watch more on Odysee">
                                     Watch more on Odysee <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                                 </a>
                             </div>
@@ -372,26 +378,28 @@
             </section>
 
             <!-- CONTROLS -->
-            <div class="px-6 lg:px-12 mb-6 max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl shadow-3d-light border border-gray-200">
-                    <div class="flex items-center gap-3 w-full md:w-auto">
+            <div class="px-6 lg:px-12 mb-8 max-w-[1600px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-5 rounded-2xl shadow-3d-light border border-gray-200">
+                    <div class="flex items-center gap-4 w-full md:w-auto">
                         <div class="relative flex-1 md:flex-none">
-                            <i class="fas fa-sort-amount-down absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10"></i>
-                            <select id="ts-sort-select" class="w-full md:w-auto pl-9 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-slate focus:ring-2 focus:ring-dodger outline-none appearance-none cursor-pointer hover:bg-gray-100 transition">
+                            <label for="ts-sort-select" class="sr-only">Sort Projects</label>
+                            <i class="fas fa-sort-amount-down absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"></i>
+                            <select id="ts-sort-select" class="w-full md:w-auto pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-slate focus:ring-2 focus:ring-dodger outline-none appearance-none cursor-pointer hover:bg-gray-100 transition font-medium">
                                 <option value="date-desc">Newest First</option>
                                 <option value="date-asc">Oldest First</option>
                                 <option value="name-asc">Name (A-Z)</option>
                                 <option value="name-desc">Name (Z-A)</option>
                             </select>
                         </div>
-                        <div class="flex bg-gray-50 p-1 rounded-lg border border-gray-200">
-                            <button id="view-grid" class="p-2 rounded-md bg-white text-dodger shadow-sm transition"><i class="fas fa-th-large"></i></button>
-                            <button id="view-list" class="p-2 rounded-md text-gray-400 hover:text-slate transition"><i class="fas fa-list"></i></button>
+                        <div class="flex bg-gray-50 p-1.5 rounded-xl border border-gray-200">
+                            <button id="view-grid" class="p-2.5 rounded-lg bg-white text-dodger shadow-sm transition" aria-label="Grid View"><i class="fas fa-th-large"></i></button>
+                            <button id="view-list" class="p-2.5 rounded-lg text-gray-400 hover:text-slate transition" aria-label="List View"><i class="fas fa-list"></i></button>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                    <div class="flex items-center gap-3 text-sm text-gray-600 font-medium">
                         <span>Show:</span>
-                        <select id="ts-items-per-page" class="bg-gray-50 border-none rounded-lg text-sm font-bold text-slate focus:ring-0 cursor-pointer">
+                        <label for="ts-items-per-page" class="sr-only">Items per page</label>
+                        <select id="ts-items-per-page" class="bg-gray-50 border-none rounded-xl text-sm font-bold text-slate focus:ring-0 cursor-pointer py-2 pl-3 pr-8">
                             <option value="12">12</option>
                             <option value="24">24</option>
                             <option value="48">48</option>
@@ -401,8 +409,8 @@
             </div>
 
             <!-- DASHBOARD CONTENT -->
-            <div class="px-6 lg:px-12 pb-8 min-h-[400px] max-w-7xl mx-auto">
-                <div id="ts-feedback-message" class="hidden flex-col items-center justify-center py-20 text-gray-400">
+            <div class="px-6 lg:px-12 pb-10 min-h-[400px] max-w-[1600px] mx-auto">
+                <div id="ts-feedback-message" class="hidden flex-col items-center justify-center py-20 text-gray-500">
                     <!-- JS Injected -->
                 </div>
                 <!-- Card Grid -->
@@ -412,13 +420,13 @@
             </div>
 
             <!-- CATEGORIES & PAGINATION -->
-            <div class="px-6 lg:px-12 mb-12 max-w-7xl mx-auto">
+            <div class="px-6 lg:px-12 mb-16 max-w-[1600px] mx-auto">
                 <div class="bg-white rounded-3xl p-8 shadow-3d border border-gray-200">
                     
                     <!-- Categories (Pills at Bottom) -->
-                    <div class="mb-8">
-                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Filter by Category</h3>
-                        <nav id="ts-category-filter-tabs" class="flex flex-wrap gap-2">
+                    <div class="mb-10">
+                        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-5">Filter by Category</h3>
+                        <nav id="ts-category-filter-tabs" class="flex flex-wrap gap-3" aria-label="Category Filters">
                             <!-- JS Injected Pills -->
                         </nav>
                     </div>
@@ -433,57 +441,57 @@
             </div>
 
             <!-- AD SPACE BOTTOM -->
-            <div class="container mx-auto px-6 mb-12 max-w-7xl">
-                <div class="relative w-full rounded-2xl h-32 overflow-hidden border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center group">
+            <div class="container mx-auto px-6 mb-16 max-w-[1600px]">
+                <div class="relative w-full rounded-2xl h-36 overflow-hidden border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center group">
                     <div class="text-center z-10">
-                        <p class="text-gray-400 font-bold mb-1">Advertisement Space</p>
-                        <button class="btn-open-ad text-xs text-dodger underline hover:text-yale">Rent this banner</button>
+                        <p class="text-gray-500 font-bold mb-2">Advertisement Space</p>
+                        <button class="btn-open-ad text-sm text-dodger underline hover:text-yale font-medium">Rent this banner</button>
                     </div>
                 </div>
             </div>
 
             <!-- FOOTER -->
-            <footer class="bg-yale text-white pt-16 pb-8 px-6 lg:px-12 mt-auto relative overflow-hidden">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 relative z-10">
+            <footer class="bg-yale text-white pt-20 pb-10 px-6 lg:px-12 mt-auto relative overflow-hidden">
+                <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
                     <div class="text-center md:text-left">
-                        <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-10 h-10 rounded-full border-2 border-dodger">
-                            <span class="font-display font-bold text-xl text-white">iCryptos</span>
+                        <div class="flex items-center justify-center md:justify-start gap-4 mb-5">
+                            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-12 h-12 rounded-full border-2 border-dodger">
+                            <span class="font-display font-bold text-2xl text-white">iCryptos</span>
                         </div>
-                        <p class="text-blue-200 text-sm mb-4">Your decentralized gateway to the verified earning ecosystem.</p>
+                        <p class="text-blue-100 text-sm mb-6 leading-relaxed">Your decentralized gateway to the verified earning ecosystem.</p>
                         <div class="flex justify-center md:justify-start gap-4">
-                            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-github"></i></a>
-                            <a href="https://twitter.com/ttearncrypto" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="https://discord.gg/D6hAEEumtx" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-discord"></i></a>
+                            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" aria-label="GitHub" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-github"></i></a>
+                            <a href="https://twitter.com/ttearncrypto" target="_blank" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://discord.gg/D6hAEEumtx" target="_blank" aria-label="Discord" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-discord"></i></a>
                         </div>
                     </div>
 
                     <div class="md:col-span-2 flex flex-col items-center justify-center text-center">
-                        <h2 class="text-3xl md:text-5xl font-display font-extrabold mb-2 tracking-tight text-white">
+                        <h2 class="text-4xl md:text-6xl font-display font-extrabold mb-3 tracking-tight text-white drop-shadow-md">
                             With Love <span class="text-red-500 animate-pulse-slow inline-block">❤</span>
                         </h2>
-                        <h3 class="text-xl md:text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-coolsky to-white">
+                        <h3 class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-coolsky to-white">
                             from F9XR Team
                         </h3>
                     </div>
                 </div>
                 
-                <div class="max-w-7xl mx-auto mt-12 bg-yale/50 p-6 rounded-xl border border-white/10 text-[10px] text-blue-200 leading-relaxed text-justify">
-                    <strong class="text-dodger block mb-1">IMPORTANT DISCLAIMER:</strong>
+                <div class="max-w-[1600px] mx-auto mt-16 bg-yale/50 p-8 rounded-2xl border border-white/10 text-[11px] text-blue-200 leading-relaxed text-justify shadow-inner">
+                    <strong class="text-dodger block mb-2 text-sm uppercase tracking-wider">Important Disclaimer:</strong>
                     All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.
                 </div>
 
-                <hr class="border-white/10 mt-8 mb-6">
+                <hr class="border-white/10 mt-10 mb-8">
 
-                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-blue-300 gap-4">
+                <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-blue-300 gap-6">
                     <p>Open Source at <a href="https://github.com/ttearncrypto/dashboards" class="text-white hover:underline font-bold">GitHub</a>.</p>
-                    <p>Data provided "as is". <a href="https://f9xr.github.io" class="hover:text-white">F9XR</a> & <a href="https://inakm.github.io" class="hover:text-white">AKM</a></p>
+                    <p>Data provided "as is". <a href="https://f9xr.github.io" class="hover:text-white transition-colors">F9XR</a> & <a href="https://inakm.github.io" class="hover:text-white transition-colors">AKM</a></p>
                 </div>
             </footer>
 
             <!-- BACK TO TOP BUTTON -->
-            <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-yale text-white rounded-full shadow-xl flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 hover:bg-dodger hover:-translate-y-1 z-50 border border-white/20">
-                <i class="fas fa-arrow-up"></i>
+            <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-yale text-white rounded-full shadow-2xl flex items-center justify-center translate-y-32 opacity-0 transition-all duration-500 hover:bg-dodger hover:-translate-y-2 z-50 border-2 border-white/20" aria-label="Back to Top">
+                <i class="fas fa-arrow-up text-xl"></i>
             </button>
 
         </main>
@@ -589,8 +597,7 @@
             feedbackMessage.classList.add('hidden');
             feedbackMessage.classList.remove('flex');
             
-            // Grid Columns: lg:3 and gap-8 for bigger cards
-            if(currentView === 'list') listBody.className = 'grid grid-cols-1 gap-3';
+            if(currentView === 'list') listBody.className = 'grid grid-cols-1 gap-4';
             else listBody.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
 
             const fragment = document.createDocumentFragment();
@@ -605,46 +612,44 @@
                 item.classList.add('fade-in-up');
 
                 if (currentView === 'grid') {
-                    // BIGGER 3D CARD
-                    item.className = `bg-white rounded-2xl p-6 shadow-3d hover:shadow-3d-hover hover:-translate-y-2 transition-all duration-300 border ${borderColor} group flex flex-col h-full relative`;
+                    item.className = `bg-white rounded-2xl p-8 shadow-3d hover:shadow-3d-hover hover:-translate-y-2 transition-all duration-300 border ${borderColor} group flex flex-col h-full relative`;
                     
-                    if(isNotActive) item.innerHTML += `<div class="absolute top-2 right-2 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-200 px-2 rounded-full">Inactive</div>`;
+                    if(isNotActive) item.innerHTML += `<div class="absolute top-3 right-3 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-200 px-3 py-1 rounded-full bg-red-50">Inactive</div>`;
 
                     const tagsHTML = project.tags.slice(0, 3).map(tag => 
-                        `<span class="inline-block px-2 py-1 ${tag === 'Not Active' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-500 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
+                        `<span class="inline-block px-2.5 py-1 ${tag === 'Not Active' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-600 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1.5 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
                     ).join('');
 
                     item.innerHTML += `
                         <div class="mb-5">
-                            <span class="text-[10px] text-gray-400 font-mono block mb-2">${project.publishedDate.toLocaleDateString('en-US', { year:'numeric', month: 'short', day: 'numeric' })}</span>
+                            <span class="text-xs text-gray-500 font-mono block mb-2">${project.publishedDate.toLocaleDateString('en-US', { year:'numeric', month: 'short', day: 'numeric' })}</span>
                             <h3 class="font-bold text-yale text-2xl leading-tight group-hover:text-dodger transition-colors break-words">
                                 <a href="${project.url}" target="_blank" class="focus:outline-none">${project.name}</a>
                             </h3>
                         </div>
                         <div class="mt-auto pt-4 border-t border-gray-100">
-                            <div class="mb-4 flex flex-wrap gap-y-2 min-h-[1.5rem]">${tagsHTML}</div>
-                            <a href="${project.url}" target="_blank" class="block w-full text-center py-3 rounded-xl ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-yale text-white hover:bg-teal'} font-bold text-sm transition-all shadow-md transform active:scale-95">
+                            <div class="mb-5 flex flex-wrap gap-y-2 min-h-[1.5rem]">${tagsHTML}</div>
+                            <a href="${project.url}" target="_blank" class="block w-full text-center py-3.5 rounded-xl ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-yale text-white hover:bg-teal'} font-bold text-sm transition-all shadow-md transform active:scale-[0.98]">
                                 ${isNotActive ? 'Closed' : buttonText} <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </a>
                         </div>
                     `;
                 } else {
-                    // LIST CARD
-                    item.className = `bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border ${borderColor} flex items-center gap-4`;
+                    item.className = `bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all border ${borderColor} flex items-center gap-6`;
                     item.innerHTML = `
                         <div class="flex-1 min-w-0">
-                            <div class="flex items-center gap-2">
-                                <h3 class="font-bold text-slate text-lg truncate hover:text-dodger"><a href="${project.url}" target="_blank">${project.name}</a></h3>
-                                ${isNotActive ? '<i class="fas fa-ban text-red-500 text-xs"></i>' : ''}
+                            <div class="flex items-center gap-3">
+                                <h3 class="font-bold text-slate text-xl truncate hover:text-dodger"><a href="${project.url}" target="_blank">${project.name}</a></h3>
+                                ${isNotActive ? '<i class="fas fa-ban text-red-500 text-sm"></i>' : ''}
                             </div>
-                            <div class="flex items-center gap-2 mt-1">
-                                <span class="text-[10px] text-gray-400">${project.publishedDate.toLocaleDateString()}</span>
-                                <div class="hidden sm:flex gap-1">
-                                    ${project.tags.slice(0,3).map(t => `<span class="text-[9px] bg-gray-50 px-1 rounded text-gray-500">${t}</span>`).join('')}
+                            <div class="flex items-center gap-3 mt-1">
+                                <span class="text-xs text-gray-400 font-mono">${project.publishedDate.toLocaleDateString()}</span>
+                                <div class="hidden sm:flex gap-2">
+                                    ${project.tags.slice(0,3).map(t => `<span class="text-[10px] bg-gray-50 px-2 py-0.5 rounded text-gray-500 font-bold">${t}</span>`).join('')}
                                 </div>
                             </div>
                         </div>
-                        <a href="${project.url}" target="_blank" class="whitespace-nowrap px-4 py-2 rounded-lg ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-slate hover:bg-dodger hover:text-white'} text-xs font-bold transition-all">
+                        <a href="${project.url}" target="_blank" class="whitespace-nowrap px-6 py-2.5 rounded-lg ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-slate hover:bg-dodger hover:text-white'} text-xs font-bold transition-all shadow-sm">
                             ${buttonText}
                         </a>
                     `;
@@ -656,10 +661,9 @@
 
         const renderSidebar = () => {
             sidebarNav.innerHTML = SOURCE_CONFIG.map(source => 
-                `<a href="#" class="ts-sidebar-link w-10 h-10 rounded-lg flex items-center justify-center text-blue-200 hover:text-white hover:bg-white/10 transition-all duration-200 relative group" data-url="${source.url}">
-                    <i class="fas ${source.icon} text-base"></i>
-                    <!-- Tooltip Title -->
-                    <span class="absolute left-12 ml-3 bg-yale text-white text-xs font-medium px-3 py-2 rounded shadow-3d border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[100] transform translate-x-2 group-hover:translate-x-0 duration-200">${source.name}</span>
+                `<a href="#" class="ts-sidebar-link w-12 h-12 rounded-xl flex items-center justify-center text-blue-200 hover:text-white hover:bg-white/10 transition-all duration-200 relative group" data-url="${source.url}" aria-label="${source.name}">
+                    <i class="fas ${source.icon} text-lg"></i>
+                    <span class="absolute left-14 ml-2 bg-yale text-white text-xs font-bold px-3 py-2 rounded shadow-3d border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[100] transform translate-x-2 group-hover:translate-x-0 duration-200">${source.name}</span>
                  </a>`
             ).join('');
         };
@@ -669,10 +673,10 @@
             const tagCounts = allTags.reduce((acc, tag) => { acc[tag] = (acc[tag] || 0) + 1; return acc; }, {});
             const sortedCategories = Object.keys(tagCounts).sort((a,b) => tagCounts[b] - tagCounts[a]); 
             
-            let html = `<button class="ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all ${activeCategory === 'All' ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="All">All (${allTags.length})</button>`;
+            let html = `<button class="ts-cat-tab px-4 py-1.5 rounded-full text-xs font-bold transition-all ${activeCategory === 'All' ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="All">All (${allTags.length})</button>`;
             
             html += sortedCategories.map(cat => 
-                `<button class="ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all ${activeCategory === cat ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="${cat}">${cat} (${tagCounts[cat]})</button>`
+                `<button class="ts-cat-tab px-4 py-1.5 rounded-full text-xs font-bold transition-all ${activeCategory === cat ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="${cat}">${cat} (${tagCounts[cat]})</button>`
             ).join('');
             
             categoryTabsContainer.innerHTML = html;
@@ -704,7 +708,6 @@
             renderListItems(projects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage));
         };
 
-        // ADVANCED PAGINATION
         const renderPagination = (totalItems) => {
             const totalPages = Math.ceil(totalItems / projectsPerPage);
             if (totalPages <= 1) { paginationContainer.innerHTML = ''; return; }
@@ -717,24 +720,26 @@
                 startPage = Math.max(1, endPage - maxVisibleButtons + 1);
             }
 
-            let html = `<button class="ts-page-nav px-4 py-2 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm" data-action="prev" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+            let html = `<button class="ts-page-nav px-5 py-3 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm flex items-center gap-2" data-action="prev" ${currentPage === 1 ? 'disabled' : ''} aria-label="Previous Page"><i class="fas fa-arrow-left"></i> Prev</button>`;
 
+            html += `<div class="flex items-center gap-1">`;
             if (startPage > 1) {
-                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold" data-page="1">1</button>`;
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold transition-all" data-page="1">1</button>`;
                 if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
             }
 
             for (let i = startPage; i <= endPage; i++) {
                 const activeClass = i === currentPage ? 'bg-dodger text-white shadow-3d-light border-dodger scale-110' : 'bg-white text-gray-500 hover:bg-gray-50 border-gray-200';
-                html += `<button class="ts-page-num w-10 h-10 rounded-xl border font-bold transition-all ${activeClass}" data-page="${i}">${i}</button>`;
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl border font-bold transition-all ${activeClass}" data-page="${i}" aria-label="Page ${i}">${i}</button>`;
             }
 
             if (endPage < totalPages) {
                 if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
-                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold" data-page="${totalPages}">${totalPages}</button>`;
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold transition-all" data-page="${totalPages}">${totalPages}</button>`;
             }
+            html += `</div>`;
 
-            html += `<button class="ts-page-nav px-4 py-2 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm" data-action="next" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+            html += `<button class="ts-page-nav px-5 py-3 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm flex items-center gap-2" data-action="next" ${currentPage === totalPages ? 'disabled' : ''} aria-label="Next Page">Next <i class="fas fa-arrow-right"></i></button>`;
 
             paginationContainer.innerHTML = html;
         };
@@ -746,27 +751,30 @@
                 delete dataCache[source.url]; 
                 currentProjects = [];
             } else if (currentSource === source) {
+                // Auto-scroll even if already loaded
+                document.getElementById('ts-breadcrumbs').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return;
             }
 
             currentSource = source; 
             currentPage = 1;
             
-            // Auto Scroll to Content
             document.getElementById('ts-breadcrumbs').innerHTML = `<span class="text-gray-400 hidden sm:inline">Dashboard /</span> <span class="text-dodger font-bold">${source.name}</span>`;
             
             document.querySelectorAll('.ts-sidebar-link').forEach(l => {
-                l.classList.toggle('bg-white', l.dataset.url === source.url);
-                l.classList.toggle('text-yale', l.dataset.url === source.url);
-                l.classList.toggle('text-blue-200', l.dataset.url !== source.url);
+                const isActive = l.dataset.url === source.url;
+                l.classList.toggle('bg-white', isActive);
+                l.classList.toggle('text-yale', isActive);
+                l.classList.toggle('text-blue-200', !isActive);
             });
+
+            // Scroll to Content Start
+            document.getElementById('ts-breadcrumbs').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             if (dataCache[source.url]) {
                 currentProjects = dataCache[source.url];
                 populateCategoryTabs(currentProjects);
                 applyFiltersAndSort();
-                // Scroll to content
-                document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
             } else {
                 try {
                     showFeedback('Fetching Data...');
@@ -777,8 +785,6 @@
                     dataCache[source.url] = currentProjects;
                     populateCategoryTabs(currentProjects);
                     applyFiltersAndSort();
-                    // Scroll to content
-                    document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
                 } catch (error) { 
                     showFeedback('Connection Failed. Retrying...');
                     setTimeout(() => loadSourceData(source, true), 3000); 
@@ -845,8 +851,8 @@
             });
 
             mainScroll.addEventListener('scroll', () => {
-                if (mainScroll.scrollTop > 300) backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
-                else backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                if (mainScroll.scrollTop > 300) backToTopBtn.classList.remove('translate-y-32', 'opacity-0');
+                else backToTopBtn.classList.add('translate-y-32', 'opacity-0');
             });
             backToTopBtn.addEventListener('click', () => mainScroll.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -864,9 +870,9 @@
                     activeCategory = tab.dataset.category;
                     currentPage = 1;
                     document.querySelectorAll('.ts-cat-tab').forEach(t => {
-                        t.className = 'ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all bg-gray-100 text-slate hover:bg-gray-200';
+                        t.className = 'ts-cat-tab px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-gray-100 text-slate hover:bg-gray-200';
                     });
-                    tab.className = 'ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all bg-dodger text-white shadow-3d-light';
+                    tab.className = 'ts-cat-tab px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-dodger text-white shadow-3d-light';
                     applyFiltersAndSort();
                 }
             });
@@ -909,7 +915,7 @@
             // Force Reload Fix
             btnReload.addEventListener('click', () => {
                 if(currentSource) {
-                    showFeedback('Clearing Cache & Reloading...');
+                    showFeedback('Force Refreshing Data...');
                     loadSourceData(currentSource, true);
                     toggleModal(settingsModal, false);
                 } else {
@@ -919,7 +925,7 @@
 
             btnClearCache.addEventListener('click', () => { 
                 dataCache = {}; 
-                alert('Cache Cleared'); 
+                alert('Local Cache Cleared'); 
                 loadSourceData(currentSource, true);
                 toggleModal(settingsModal, false); 
             });
