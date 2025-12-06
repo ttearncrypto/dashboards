@@ -619,7 +619,7 @@
                     if(isNotActive) item.innerHTML += `<div class="absolute top-3 right-3 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-200 px-3 py-1 rounded-full bg-red-50">Inactive</div>`;
 
                     const tagsHTML = project.tags.slice(0, 3).map(tag => 
-                        `<span class="inline-block px-2.5 py-1 ${tag === 'Not Active' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-600 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1.5 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
+                        `<span class="inline-block px-2.5 py-1 ${tag === 'NotActive' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-600 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1.5 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
                     ).join('');
 
                     item.innerHTML += `
