@@ -1,597 +1,933 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F9XR's Crypto Projects Dashboard</title>
-    <meta name="description" content="A dynamic dashboard to explore, search, and filter various crypto projects, airdrops, news, and investment opportunities.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/new/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/new/favicon-16x16.png">
-    <link rel="manifest" href="assets/new/site.webmanifest">
-    
-    <meta name="google-site-verification" content="eUs3gO62-qye1PfAW79eLM5uws1KN7DXKVM8bjPADLM" />
-</head>
-<body>
+    <title>F9XR's TTEarnCrypto iCryptos Dashboard</title>
+    <meta name="description" content="The iCryptos Dashboard by F9XR's TTEarnCrypto is your flagship hub for discovering verified earning opportunities, airdrops, and crypto investments.">
+    <meta name="keywords" content="Crypto, Airdrops, F9XR, TTEarnCrypto, Dashboard, Investments, Earning, TON, Blockchain">
+    <meta name="author" content="F9XR Team & AKM">
 
-<!-- Settings Modal -->
-<div id="ts-settings-modal" class="ts-settings-modal-overlay">
-    <div class="ts-settings-modal-panel">
-        <button id="ts-settings-close-btn" class="ts-settings-close-btn">×</button>
-        <h2>Settings & Guide</h2>
+    <!-- SEO Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "iCryptos Dashboard",
+      "url": "https://ttearncrypto.blogspot.com",
+      "applicationCategory": "FinanceApplication",
+      "genre": "Cryptocurrency",
+      "operatingSystem": "Any",
+      "description": "Hub for discovering verified earning opportunities, airdrops, and earning sites.",
+      "author": {
+        "@type": "Organization",
+        "name": "F9XR Team",
+        "url": "https://f9xr.github.io"
+      }
+    }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="shortcut icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config for Blue Brand Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    colors: {
+                        yale: '#00487c',
+                        coolsky: '#4bb3fd',
+                        slate: '#3e6680',
+                        dodger: '#0496ff',
+                        teal: '#027bce',
+                        alabaster: '#f0f4f8',
+                    },
+                    boxShadow: {
+                        '3d': '5px 5px 0px 0px rgba(4, 150, 255, 0.2)',
+                        '3d-hover': '8px 8px 0px 0px rgba(4, 150, 255, 0.3)',
+                        '3d-light': '4px 4px 0px 0px rgba(220, 220, 220, 1)',
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f0f4f8; }
+        ::-webkit-scrollbar-thumb { background: #3e6680; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #027bce; }
+
+        /* Custom HR */
+        hr.brand-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(2, 123, 206, 0), rgba(2, 123, 206, 0.75), rgba(2, 123, 206, 0));
+            margin: 1.5rem 0;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Loaders */
+        .page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0496ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        <div class="ts-settings-section">
-            <h3>Appearance</h3>
-            <div class="ts-setting-item">
-                <label for="ts-font-family-select">Font Family</label>
-                <select id="ts-font-family-select">
-                    <option value='-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'>System Default</option>
-                    <option value='Inter, sans-serif'>Inter</option>
-                    <option value='Verdana, sans-serif'>Verdana</option>
-                    <option value='Georgia, serif'>Georgia</option>
-                </select>
-            </div>
-            <div class="ts-setting-item">
-                <label for="ts-font-size-select">Font Size</label>
-                <select id="ts-font-size-select">
-                    <option value="14px">Small</option>
-                    <option value="16px">Normal</option>
-                    <option value="18px">Large</option>
-                </select>
-            </div>
-        </div>
+        /* Ad Pattern */
+        .ad-pattern {
+            background-color: #f0f4f8;
+            background-image: radial-gradient(#0496ff 0.5px, transparent 0.5px), radial-gradient(#0496ff 0.5px, #f0f4f8 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.5;
+        }
 
-        <div class="ts-settings-section">
-            <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts Guide:</h3>
-            <ul class="ts-shortcut-list">
-                <li><span>/</span> Focus the search bar</li>
-                <li><span>Esc</span> Clear search or close modal</li>
-                <li><span>j</span> or <span>↓</span> Navigate down the list</li>
-                <li><span>k</span> or <span>↑</span> Navigate up the list</li>
-                <li><span>Enter</span> Open selected project</li>
-                <li><span>n</span> Go to the next page</li>
-                <li><span>p</span> Go to the previous page</li>
-            </ul>
+        /* Sidebar Transition */
+        aside { transition: margin-left 0.3s ease-in-out; }
+        .sidebar-closed { margin-left: -5rem; }
+
+        /* Dynamic Font Classes */
+        .font-small { font-size: 0.875rem; }
+        .font-normal { font-size: 1rem; }
+        .font-large { font-size: 1.125rem; }
+    </style>
+</head>
+<body class="bg-alabaster text-slate font-sans selection:bg-dodger selection:text-white transition-colors duration-300 font-normal">
+
+    <!-- INITIAL LOADING SCREEN -->
+    <div id="loading-screen" class="page-loader">
+        <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-16 h-16 rounded-full mb-4 shadow-xl animate-bounce">
+        <div class="spinner"></div>
+        <p class="mt-4 text-yale font-bold tracking-widest text-sm">INITIALIZING F9XR DASHBOARD</p>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div id="ts-settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg transform scale-95 transition-all duration-300 relative overflow-hidden border border-white/50 m-4">
+            
+            <div class="px-8 py-6 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
+                <h2 class="text-2xl font-display font-bold text-yale"><i class="fas fa-sliders-h mr-2 text-dodger"></i> Settings</h2>
+                <button id="ts-settings-close-btn" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-dodger hover:text-white transition-colors flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-8 h-[60vh] overflow-y-auto no-scrollbar">
+                <!-- Appearance -->
+                <h3 class="font-bold text-xs uppercase text-dodger tracking-widest mb-4">Appearance</h3>
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-500 mb-1">Font Family</label>
+                        <select id="ts-font-family-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-dodger outline-none">
+                            <option value="'Inter', sans-serif">Inter (Modern)</option>
+                            <option value="'Outfit', sans-serif">Outfit (Display)</option>
+                            <option value="'Roboto Mono', monospace">Roboto Mono (Code)</option>
+                            <option value="serif">Serif (Classic)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-500 mb-1">Font Size</label>
+                        <select id="ts-font-size-select" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-dodger outline-none">
+                            <option value="font-small">Small</option>
+                            <option value="font-normal" selected>Normal</option>
+                            <option value="font-large">Large</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="brand-divider">
+
+                <!-- Data Controls -->
+                <h3 class="font-bold text-xs uppercase text-dodger tracking-widest mb-4">Data Controls</h3>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <button id="btn-reload-data" class="bg-yale text-white py-3 px-4 rounded-xl hover:bg-teal transition shadow-3d hover:shadow-3d-hover hover:-translate-y-1 text-sm font-bold flex items-center justify-center gap-2">
+                        <i class="fas fa-sync-alt"></i> Force Fetch
+                    </button>
+                    <button id="btn-clear-cache" class="bg-white border-2 border-red-100 text-red-500 py-3 px-4 rounded-xl hover:bg-red-50 transition shadow-sm text-sm font-bold flex items-center justify-center gap-2">
+                        <i class="fas fa-trash-alt"></i> Clear Cache
+                    </button>
+                </div>
+
+                <!-- Shortcuts -->
+                <h3 class="font-bold text-xs uppercase text-dodger tracking-widest mb-4"><i class="fas fa-keyboard mr-2"></i>Shortcuts</h3>
+                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Search</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">/</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Close</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">Esc</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Scroll</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">j/k</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Sidebar</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">m</kbd></div>
+                    <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100"><span>Top/Bot</span> <kbd class="font-mono text-xs border bg-white px-1 rounded shadow-sm">t/b</kbd></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-
-<div class="ts-table-dashboard-container" id="ts-main-container">
-    <aside class="ts-sidebar">
-        <div class="ts-sidebar-logo">
-            <i class="fab fa-bitcoin"></i>
-        </div>
-        <nav id="ts-sidebar-nav" class="ts-sidebar-nav">
-            <!-- Navigation links are dynamically inserted here -->
-        </nav>
-        <div class="ts-sidebar-footer">
-            <div id="ts-settings-open-btn" class="ts-sidebar-icon" title="Settings & Guide">
-                <i class="fas fa-cog"></i>
-            </div>
-        </div>
-    </aside>
-
-    <main class="ts-main-content">
-        <div class="ts-banner-header">
-            <h1>F9XR's TTEarnCrypto Directory</h1>
-            <p>Welcome to the Official Directory of TTEarnCrypto by F9XR</p>
-            <div class="ts-search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" id="ts-search-input" placeholder="Search by coin, project name...">
-            </div>
-        </div>
-        
-        <header class="ts-main-header">
-            <div class="ts-header-left">
-                <button id="ts-sidebar-toggle-btn" class="ts-sidebar-toggle-btn" title="Shrink Sidebar">
-                    <i class="fas fa-angle-double-left"></i>
-                </button>
-                <nav id="ts-breadcrumbs" class="ts-breadcrumbs" aria-label="breadcrumb"></nav>
-            </div>
-            <div class="ts-header-right">
-                <a href="https://tontuftools.blogspot.com" target="_blank" rel="noopener noreferrer" class="ts-header-icon-btn" title="Online Tools">
-                    <i class="fas fa-tools"></i>
-                </a>
-                <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" class="ts-header-icon-btn" title="View on GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <button id="ts-share-button" class="ts-share-button" title="Share Page">
-                    <i class="fas fa-share-square"></i> Share
-                </button>
-            </div>
-        </header>
-        
-        <div class="ts-controls-bar">
-            <div class="ts-filter-actions">
-                <div class="ts-sort-wrapper">
-                    <i class="fas fa-filter"></i>
-                    <select id="ts-sort-select">
-                        <option value="date-desc">Newest First</option>
-                        <option value="date-asc">Oldest First</option>
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
-                    </select>
+    <!-- ADVERTISE MODAL -->
+    <div id="ts-ad-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-yale/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md transform scale-95 transition-all duration-300 relative overflow-hidden border border-white/50 m-4">
+            <div class="p-8 text-center">
+                <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-dodger text-2xl shadow-3d-light">
+                    <i class="fas fa-bullhorn"></i>
                 </div>
-                 <div class="ts-view-options-wrapper">
-                    <i class="fas fa-list-ol"></i>
-                    <select id="ts-items-per-page">
-                        <option value="10">10 per page</option>
-                        <option value="25">25 per page</option>
-                        <option value="50">50 per page</option>
-                    </select>
+                <h2 class="text-2xl font-display font-bold text-yale mb-2">Advertise With Us</h2>
+                <p class="text-gray-500 text-sm mb-6">Reach thousands of crypto enthusiasts daily. Secure your spot in our sponsored sections.</p>
+                
+                <div class="space-y-3">
+                    <a href="https://t.me/ttearncrypto" target="_blank" class="block w-full py-3 bg-dodger text-white rounded-xl font-bold hover:bg-yale transition shadow-3d hover:shadow-3d-hover hover:-translate-y-0.5">
+                        <i class="fab fa-telegram-plane mr-2"></i> Contact on Telegram
+                    </a>
+                    <a href="mailto:support@f9xr.com" class="block w-full py-3 bg-gray-100 text-slate rounded-xl font-bold hover:bg-gray-200 transition">
+                        <i class="fas fa-envelope mr-2"></i> Send Email
+                    </a>
+                </div>
+                <button id="ts-ad-close-btn" class="mt-6 text-xs text-gray-400 hover:text-gray-600 underline">No thanks, maybe later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex h-screen overflow-hidden relative" id="ts-main-container">
+
+        <!-- SIDEBAR -->
+        <aside id="main-sidebar" class="w-20 bg-yale text-white flex flex-col items-center py-6 z-50 shadow-2xl flex-shrink-0 h-full relative border-r border-white/10">
+            <!-- Brand Icon -->
+            <div class="mb-6 hover:scale-110 transition-transform cursor-pointer relative group">
+                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-10 h-10 rounded-full shadow-lg border-2 border-dodger">
+            </div>
+
+            <hr class="w-8 border-white/20 mb-4">
+
+            <!-- Nav Items (Dynamic) -->
+            <nav id="ts-sidebar-nav" class="flex-1 w-full flex flex-col items-center gap-4 px-2 overflow-y-auto no-scrollbar">
+                <!-- Injected via JS -->
+            </nav>
+
+            <!-- Bottom Actions -->
+            <div class="mt-auto flex flex-col gap-4 pb-4">
+                <button id="ts-settings-open-btn" class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 hover:bg-dodger text-white transition-colors hover:shadow-lg" title="Settings">
+                    <i class="fas fa-cog text-lg animate-spin-slow"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="flex-1 relative overflow-y-auto overflow-x-hidden bg-alabaster scroll-smooth" id="main-scroll">
+            
+            <!-- FLOATING HEADER -->
+            <div class="sticky top-4 z-40 px-4 w-full flex justify-center pointer-events-none mb-6">
+                <header class="pointer-events-auto glass shadow-3d shadow-yale/10 rounded-full px-4 py-3 flex items-center justify-between gap-4 max-w-6xl w-full mx-auto border-white/60 transition-all hover:border-dodger/30">
+                    
+                    <!-- Left: Toggle & Breadcrumbs -->
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <button id="ts-header-sidebar-toggle" class="w-8 h-8 flex items-center justify-center rounded-full text-slate hover:bg-dodger hover:text-white transition-colors bg-white shadow-sm border border-gray-100" title="Toggle Sidebar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        
+                        <nav id="ts-breadcrumbs" class="text-sm font-medium text-slate truncate flex items-center gap-2">
+                            <!-- JS Injected -->
+                        </nav>
+                    </div>
+
+                    <!-- Right: Search & Actions -->
+                    <div class="flex items-center gap-3">
+                        <div class="relative group hidden sm:block">
+                            <input type="text" id="ts-search-input" placeholder="Search..." 
+                                class="bg-gray-50 border-transparent rounded-full py-1.5 pl-9 pr-4 text-sm focus:bg-white focus:ring-2 focus:ring-dodger/50 transition-all w-32 focus:w-56 outline-none placeholder-gray-400 shadow-inner">
+                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-dodger transition-colors"></i>
+                        </div>
+
+                        <div class="h-6 w-px bg-gray-300 hidden sm:block"></div>
+
+                        <a href="https://tontuftools.blogspot.com" target="_blank" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate hover:bg-dodger hover:text-white transition-colors shadow-sm" title="Tools">
+                            <i class="fas fa-tools text-xs"></i>
+                        </a>
+                        
+                        <button id="ts-share-button" class="bg-gradient-to-r from-yale to-dodger hover:brightness-110 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-dodger/20 transition-all transform active:scale-95 flex items-center gap-2">
+                            <i class="fas fa-share-nodes"></i> <span class="hidden sm:inline">Share</span>
+                        </button>
+                    </div>
+                </header>
+            </div>
+
+            <!-- SPONSORED AD SPACE -->
+            <div class="container mx-auto px-6 mb-6 max-w-7xl">
+                <div class="relative w-full rounded-2xl h-24 overflow-hidden border border-dodger/20 bg-white shadow-3d-light flex items-center justify-center group">
+                    <div class="absolute inset-0 ad-pattern opacity-30"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center">
+                        <span class="text-xs font-bold text-dodger uppercase tracking-widest mb-1">Sponsored Space</span>
+                        <p class="text-slate text-sm">Boost your project visibility here.</p>
+                    </div>
+                    <button class="btn-open-ad absolute right-4 top-1/2 -translate-y-1/2 bg-white text-dodger border border-dodger px-3 py-1 rounded-full text-xs font-bold hover:bg-dodger hover:text-white transition opacity-0 group-hover:opacity-100 shadow-md">
+                        Advertise Here
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <div id="ts-list-container" class="ts-list-container">
-             <div class="ts-list-header">
-                <div class="ts-header-item ts-col-name">Project Name</div>
-                <div class="ts-header-item ts-col-tags">Categories</div>
-                <div class="ts-header-item ts-col-date">Date Added</div>
-                <div class="ts-header-item ts-col-action">Action</div>
+            <!-- HERO SECTION -->
+            <section class="px-6 lg:px-12 mb-8 text-center relative">
+                <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[80%] h-40 bg-coolsky/20 blur-[80px] rounded-full -z-10"></div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-yale mb-3 tracking-tight">
+                    F9XR's <span class="text-transparent bg-clip-text bg-gradient-to-r from-dodger to-teal">iCryptos</span>
+                </h1>
+                <p class="text-lg text-slate max-w-2xl mx-auto mb-6 font-light">
+                    The Official Directory. Discover verified earning opportunities, airdrops, and crypto investments.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" class="bg-[#5865F2]/10 text-[#5865F2] hover:bg-[#5865F2] hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" class="bg-[#0088cc]/10 text-[#0088cc] hover:bg-[#0088cc] hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://twitter.com/ttearncrypto" target="_blank" class="bg-black/5 text-black hover:bg-black hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2">
+                        <i class="fa-brands fa-x-twitter"></i> Twitter
+                    </a>
+                </div>
+            </section>
+
+            <!-- MEDIA HUB -->
+            <section class="px-6 lg:px-12 mb-10">
+                <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-3d overflow-hidden border border-white/50">
+                    <div class="flex border-b border-gray-100 bg-gray-50">
+                        <button id="tab-video" class="flex-1 py-4 text-sm font-bold text-yale border-b-2 border-yale bg-white transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-play-circle"></i> Featured Video
+                        </button>
+                        <button id="tab-chat" class="flex-1 py-4 text-sm font-bold text-gray-500 hover:text-slate transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-comments"></i> Community Chat
+                        </button>
+                    </div>
+                    <div class="bg-gray-50 p-0">
+                        <!-- Video Container -->
+                        <div id="content-video" class="grid md:grid-cols-3">
+                            <div class="md:col-span-2 bg-black aspect-video relative">
+                                <iframe id="odysee-iframe" class="absolute inset-0 w-full h-full" src="https://odysee.com/$/embed/@ttearncrypto:5?feature=latest" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-8 flex flex-col justify-center bg-gradient-to-br from-white to-blue-50">
+                                <span class="text-dodger font-bold text-xs uppercase tracking-widest mb-2">Latest Insights</span>
+                                <p class="text-slate text-sm mb-6 leading-relaxed">Stay updated with the latest video tutorials, market analysis, and airdrop guides directly from the F9XR team.</p>
+                                <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank" class="inline-flex items-center gap-2 text-yale font-bold hover:text-dodger transition group">
+                                    Watch more on Odysee <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Chat Container -->
+                        <div id="content-chat" class="hidden aspect-video md:aspect-[21/9]">
+                            <center class="h-full w-full">
+                                <script defer src="https://minnit.chat/js/embed.js"></script>
+                                <minnit-chat
+                                  data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&amp;nickname="
+                                  data-style="width:100%;height:100%;min-height:400px;"
+                                ></minnit-chat>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTROLS -->
+            <div class="px-6 lg:px-12 mb-6 max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl shadow-3d-light border border-gray-200">
+                    <div class="flex items-center gap-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:flex-none">
+                            <i class="fas fa-sort-amount-down absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10"></i>
+                            <select id="ts-sort-select" class="w-full md:w-auto pl-9 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-slate focus:ring-2 focus:ring-dodger outline-none appearance-none cursor-pointer hover:bg-gray-100 transition">
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="flex bg-gray-50 p-1 rounded-lg border border-gray-200">
+                            <button id="view-grid" class="p-2 rounded-md bg-white text-dodger shadow-sm transition"><i class="fas fa-th-large"></i></button>
+                            <button id="view-list" class="p-2 rounded-md text-gray-400 hover:text-slate transition"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <span>Show:</span>
+                        <select id="ts-items-per-page" class="bg-gray-50 border-none rounded-lg text-sm font-bold text-slate focus:ring-0 cursor-pointer">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="48">48</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div id="ts-list-body" class="ts-list-body">
-                <!-- List items are dynamically inserted here -->
+
+            <!-- DASHBOARD CONTENT -->
+            <div class="px-6 lg:px-12 pb-8 min-h-[400px] max-w-7xl mx-auto">
+                <div id="ts-feedback-message" class="hidden flex-col items-center justify-center py-20 text-gray-400">
+                    <!-- JS Injected -->
+                </div>
+                <!-- Card Grid -->
+                <div id="ts-list-body" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards Injected Here via JS -->
+                </div>
             </div>
-            <div id="ts-feedback-message" class="ts-feedback-message" style="display: none;">
-                <!-- Feedback messages (loading, error, no results) shown here -->
+
+            <!-- CATEGORIES & PAGINATION -->
+            <div class="px-6 lg:px-12 mb-12 max-w-7xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 shadow-3d border border-gray-200">
+                    
+                    <!-- Categories (Pills at Bottom) -->
+                    <div class="mb-8">
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Filter by Category</h3>
+                        <nav id="ts-category-filter-tabs" class="flex flex-wrap gap-2">
+                            <!-- JS Injected Pills -->
+                        </nav>
+                    </div>
+
+                    <hr class="border-gray-100 mb-8">
+
+                    <!-- Pagination -->
+                    <div id="ts-pagination-container" class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <!-- JS Injected -->
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!-- AD SPACE BOTTOM -->
+            <div class="container mx-auto px-6 mb-12 max-w-7xl">
+                <div class="relative w-full rounded-2xl h-32 overflow-hidden border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center group">
+                    <div class="text-center z-10">
+                        <p class="text-gray-400 font-bold mb-1">Advertisement Space</p>
+                        <button class="btn-open-ad text-xs text-dodger underline hover:text-yale">Rent this banner</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="bg-yale text-white pt-16 pb-8 px-6 lg:px-12 mt-auto relative overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 relative z-10">
+                    <div class="text-center md:text-left">
+                        <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-10 h-10 rounded-full border-2 border-dodger">
+                            <span class="font-display font-bold text-xl text-white">iCryptos</span>
+                        </div>
+                        <p class="text-blue-200 text-sm mb-4">Your decentralized gateway to the verified earning ecosystem.</p>
+                        <div class="flex justify-center md:justify-start gap-4">
+                            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-github"></i></a>
+                            <a href="https://twitter.com/ttearncrypto" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://discord.gg/D6hAEEumtx" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-yale transition-all"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 flex flex-col items-center justify-center text-center">
+                        <h2 class="text-3xl md:text-5xl font-display font-extrabold mb-2 tracking-tight text-white">
+                            With Love <span class="text-red-500 animate-pulse-slow inline-block">❤</span>
+                        </h2>
+                        <h3 class="text-xl md:text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-coolsky to-white">
+                            from F9XR Team
+                        </h3>
+                    </div>
+                </div>
+                
+                <div class="max-w-7xl mx-auto mt-12 bg-yale/50 p-6 rounded-xl border border-white/10 text-[10px] text-blue-200 leading-relaxed text-justify">
+                    <strong class="text-dodger block mb-1">IMPORTANT DISCLAIMER:</strong>
+                    All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.
+                </div>
+
+                <hr class="border-white/10 mt-8 mb-6">
+
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-blue-300 gap-4">
+                    <p>Open Source at <a href="https://github.com/ttearncrypto/dashboards" class="text-white hover:underline font-bold">GitHub</a>.</p>
+                    <p>Data provided "as is". <a href="https://f9xr.github.io" class="hover:text-white">F9XR</a> & <a href="https://inakm.github.io" class="hover:text-white">AKM</a></p>
+                </div>
+            </footer>
+
+            <!-- BACK TO TOP BUTTON -->
+            <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-yale text-white rounded-full shadow-xl flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 hover:bg-dodger hover:-translate-y-1 z-50 border border-white/20">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Remove Loader ---
+        setTimeout(() => {
+            const loader = document.getElementById('loading-screen');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }, 1200);
+
+        // --- DOM Elements ---
+        const sidebar = document.getElementById('main-sidebar');
+        const headerSidebarToggle = document.getElementById('ts-header-sidebar-toggle');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const mainScroll = document.getElementById('main-scroll');
         
-        <nav id="ts-category-filter-tabs" class="ts-category-filter-tabs" style="display: none;">
-            <!-- Category filter tabs are dynamically inserted here -->
-        </nav>
+        // Modals
+        const settingsModal = document.getElementById('ts-settings-modal');
+        const adModal = document.getElementById('ts-ad-modal');
+        const settingsOpenBtn = document.getElementById('ts-settings-open-btn');
+        const settingsCloseBtn = document.getElementById('ts-settings-close-btn');
+        const adCloseBtn = document.getElementById('ts-ad-close-btn');
+        const fontFamilySelect = document.getElementById('ts-font-family-select');
+        const fontSizeSelect = document.getElementById('ts-font-size-select');
+        
+        // Content
+        const categoryTabsContainer = document.getElementById('ts-category-filter-tabs');
+        const searchInput = document.getElementById('ts-search-input');
+        const sortSelect = document.getElementById('ts-sort-select');
+        const itemsPerPageSelect = document.getElementById('ts-items-per-page');
+        const listBody = document.getElementById('ts-list-body');
+        const feedbackMessage = document.getElementById('ts-feedback-message');
+        const paginationContainer = document.getElementById('ts-pagination-container');
+        const btnReload = document.getElementById('btn-reload-data');
+        const btnClearCache = document.getElementById('btn-clear-cache');
+        const sidebarNav = document.getElementById('ts-sidebar-nav');
+        
+        // Tabs & View
+        const tabVideo = document.getElementById('tab-video');
+        const tabChat = document.getElementById('tab-chat');
+        const contentVideo = document.getElementById('content-video');
+        const contentChat = document.getElementById('content-chat');
+        const btnGrid = document.getElementById('view-grid');
+        const btnList = document.getElementById('view-list');
 
-        <div id="ts-pagination-container" class="ts-pagination-container" style="display: none;">
-            <!-- Pagination controls are dynamically inserted here -->
-        </div>
-    </main>
-</div>
+        // --- Configuration & State ---
+        const SOURCE_CONFIG = [
+            { name: "Earning Projects", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com", buttonText: "View Project" },
+            { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com", buttonText: "View Investment" },
+            { name: "Casinos Directory", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com", buttonText: "Visit Casino" },
+            { name: "Crypto Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com", buttonText: "Claim Airdrop" },
+            { name: "Learning Academy", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com", buttonText: "Start Learning" },
+            { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com", buttonText: "Read More" },
+            { name: "Profit Networks", icon: "fa-sitemap", url: "https://networksradar.blogspot.com", buttonText: "Explore Network" },
+            { name: "App Store", icon: "fa-store-alt", url: "https://ttappstore.blogspot.com", buttonText: "Get App" },
+            { name: "Money Articles", icon: "fa-file-invoice-dollar", url: "https://growwithguidance.blogspot.com", buttonText: "Read Article" }
+        ];
 
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        let dataCache = {}, currentSource = null, currentProjects = [], activeCategory = 'All';
+        let searchDebounceTimer, currentPage = 1, projectsPerPage = parseInt(itemsPerPageSelect.value, 10);
+        let currentView = 'grid'; 
 
-:root {
-    --ts-sidebar-bg: #1e2a53;
-    --ts-sidebar-width: 80px;
-    --ts-main-bg: #f5f6fa;
-    --ts-content-bg: #ffffff;
-    --ts-primary-text: #2c3e50;
-    --ts-secondary-text: #8492a6;
-    --ts-border-color: #e6e9f0;
-    --ts-accent-color: #4a69ff;
-    --ts-accent-light: #eef2ff;
-    --ts-banner-bg: #4a4e91;
-    --ts-radius: 8px;
-    --ts-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    
-    --ts-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --ts-base-font-size: 16px;
-}
+        // --- Core Functions ---
 
-/* --- Animations --- */
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes panelScaleUp { from { opacity: 0.5; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
-body { margin: 0; background-color: var(--ts-main-bg); }
-
-.ts-table-dashboard-container { display: flex; min-height: 100vh; font-family: var(--ts-font-family); font-size: var(--ts-base-font-size); color: var(--ts-primary-text); }
-
-/* --- Sidebar (Fixed) --- */
-.ts-sidebar { position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; width: var(--ts-sidebar-width); background-color: var(--ts-sidebar-bg); display: flex; flex-direction: column; align-items: center; padding: 20px 0; flex-shrink: 0; transition: width 0.3s ease-in-out; }
-.ts-sidebar-logo { font-size: 2.5em; color: #fff; margin-bottom: 40px; }
-.ts-sidebar-nav { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-.ts-sidebar-link { display: flex; align-items: center; justify-content: center; width: 100%; height: 50px; color: #a0aed4; font-size: 1.4em; text-decoration: none; position: relative; transition: color 0.2s, background-color 0.2s; }
-.ts-sidebar-link:hover { color: #fff; }
-.ts-sidebar-link.ts-active { color: #fff; background-color: rgba(255, 255, 255, 0.05); }
-.ts-sidebar-link.ts-active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: var(--ts-accent-color); border-radius: 0 4px 4px 0; }
-.ts-sidebar-footer { margin-top: auto; padding-bottom: 20px; }
-.ts-sidebar-icon { font-size: 1.4em; color: #a0aed4; cursor: pointer; transition: color 0.2s ease; }
-.ts-sidebar-icon:hover { color: #fff; }
-.ts-table-dashboard-container.ts-sidebar-shrunk .ts-sidebar { width: 0; overflow: hidden; }
-
-/* --- Main Content --- */
-.ts-main-content { flex-grow: 1; padding: 0 30px 25px 30px; overflow-x: hidden; margin-left: var(--ts-sidebar-width); transition: margin-left 0.3s ease-in-out; width: calc(100% - var(--ts-sidebar-width)); }
-.ts-table-dashboard-container.ts-sidebar-shrunk .ts-main-content { margin-left: 0; width: 100%; }
-
-/* --- Banner Header --- */
-.ts-banner-header { background: var(--ts-banner-bg); color: #fff; padding: 40px 30px; margin: 0 -30px; text-align: center; }
-.ts-banner-header h1 { font-size: 2.5em; font-weight: 700; margin: 0 0 10px 0; }
-.ts-banner-header p { font-size: 1.1em; max-width: 650px; margin: 0 auto 25px auto; opacity: 0.9; line-height: 1.5; }
-.ts-banner-header .ts-search-wrapper { position: relative; max-width: 500px; margin: 0 auto; }
-.ts-banner-header .ts-search-wrapper i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--ts-secondary-text); }
-.ts-banner-header #ts-search-input { width: 100%; padding: 12px 20px 12px 50px; border-radius: var(--ts-radius); border: 1px solid transparent; background-color: #fff; color: var(--ts-primary-text); font-size: 1em; height: 48px; }
-.ts-banner-header #ts-search-input:focus { outline: none; box-shadow: 0 0 0 3px var(--ts-accent-light); }
-
-/* --- Main Header & Breadcrumbs --- */
-.ts-main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin: 0 0 20px 0; border-bottom: 1px solid var(--ts-border-color); }
-.ts-header-left, .ts-header-right { display: flex; align-items: center; gap: 10px; }
-.ts-breadcrumbs { display: flex; align-items: center; gap: 8px; font-size: 0.9em; }
-.ts-breadcrumb-item { color: var(--ts-secondary-text); }
-.ts-breadcrumb-item.ts-breadcrumb-active { color: var(--ts-primary-text); font-weight: 500; }
-.ts-breadcrumb-separator { color: var(--ts-secondary-text); }
-.ts-sidebar-toggle-btn { background: none; border: 1px solid transparent; color: var(--ts-secondary-text); padding: 8px; width: 40px; height: 40px; border-radius: var(--ts-radius); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2em; transition: all 0.2s ease; }
-.ts-sidebar-toggle-btn:hover { background-color: var(--ts-accent-light); color: var(--ts-accent-color); }
-.ts-header-icon-btn { background: none; border: 1px solid var(--ts-border-color); color: var(--ts-secondary-text); width: 40px; height: 40px; border-radius: var(--ts-radius); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1em; text-decoration: none; transition: all 0.2s ease; }
-.ts-header-icon-btn:hover { background-color: var(--ts-accent-light); color: var(--ts-accent-color); border-color: var(--ts-accent-light); }
-.ts-share-button { background: var(--ts-accent-color); border: 1px solid var(--ts-accent-color); color: #fff; padding: 8px 15px; border-radius: var(--ts-radius); cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500; transition: all 0.2s ease; }
-.ts-share-button:hover { opacity: 0.9; box-shadow: 0 2px 8px rgba(74, 105, 255, 0.3); }
-
-/* --- Controls Bar --- */
-.ts-controls-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap; }
-.ts-filter-actions { display: flex; align-items: center; gap: 15px; }
-.ts-sort-wrapper, .ts-view-options-wrapper { display: flex; align-items: center; border: 1px solid var(--ts-border-color); border-radius: var(--ts-radius); padding: 0 10px; background-color: var(--ts-content-bg); }
-.ts-sort-wrapper i, .ts-view-options-wrapper i { color: var(--ts-secondary-text); margin-right: 8px; }
-#ts-sort-select, #ts-items-per-page { height: 38px; border: none; background: none; outline: none; cursor: pointer; color: var(--ts-primary-text); }
-
-/* --- List Container --- */
-.ts-list-container { background-color: var(--ts-content-bg); border-radius: var(--ts-radius); box-shadow: var(--ts-shadow); overflow: hidden; display: flex; flex-direction: column; }
-.ts-list-header, .ts-list-item { display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; align-items: center; padding: 15px 20px; gap: 15px; }
-.ts-list-header { font-size: 0.8em; font-weight: 600; text-transform: uppercase; color: var(--ts-secondary-text); border-bottom: 1px solid var(--ts-border-color); }
-.ts-list-body { flex-grow: 1; }
-.ts-list-item { border-bottom: 1px solid var(--ts-border-color); transition: background-color 0.2s ease; cursor: pointer; outline: none; animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
-.ts-list-item:nth-child(2) { animation-delay: 0.05s; } .ts-list-item:nth-child(3) { animation-delay: 0.1s; } .ts-list-item:nth-child(4) { animation-delay: 0.15s; } .ts-list-item:nth-child(5) { animation-delay: 0.2s; } .ts-list-item:nth-child(6) { animation-delay: 0.25s; } .ts-list-item:nth-child(7) { animation-delay: 0.3s; } .ts-list-item:nth-child(8) { animation-delay: 0.35s; } .ts-list-item:nth-child(9) { animation-delay: 0.4s; } .ts-list-item:nth-child(10) { animation-delay: 0.45s; }
-.ts-list-item:hover { background-color: var(--ts-accent-light); }
-.ts-list-item:focus, .ts-list-item.ts-item-focus { background-color: var(--ts-accent-light); box-shadow: inset 3px 0 0 0 var(--ts-accent-color); }
-.ts-list-item:last-child { border-bottom: none; }
-.ts-project-name-link { font-weight: 600; color: var(--ts-primary-text); text-decoration: none; }
-.ts-project-name-link:hover { color: var(--ts-accent-color); text-decoration: underline; }
-.ts-project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.ts-tag { font-size: 0.75em; font-weight: 500; padding: 3px 8px; background-color: var(--ts-main-bg); color: var(--ts-secondary-text); border-radius: 4px; cursor: pointer; transition: all 0.2s; }
-.ts-tag:hover { background-color: var(--ts-accent-light); color: var(--ts-accent-color); }
-.ts-project-date { font-size: 0.9em; color: var(--ts-secondary-text); }
-.ts-visit-button { text-decoration: none; padding: 8px 15px; font-size: 0.85em; font-weight: 500; color: #fff; background-color: var(--ts-accent-color); border-radius: var(--ts-radius); text-align: center; transition: opacity 0.2s; }
-.ts-visit-button:hover { opacity: 0.85; }
-
-/* --- Category Filter Tabs --- */
-.ts-category-filter-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 25px; padding: 15px 0; border-top: 1px solid var(--ts-border-color); }
-.ts-cat-tab { padding: 8px 16px; font-size: 0.9em; font-weight: 500; cursor: pointer; border: none; background: var(--ts-content-bg); color: var(--ts-secondary-text); border-radius: 20px; transition: all 0.25s ease; border: 1px solid var(--ts-border-color); }
-.ts-cat-tab:hover { background-color: var(--ts-accent-light); color: var(--ts-accent-color); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
-.ts-cat-tab.ts-active { background-color: var(--ts-accent-color); color: #fff; font-weight: 600; box-shadow: 0 4px 12px rgba(74, 105, 255, 0.3); transform: translateY(-2px); border-color: var(--ts-accent-color); }
-
-/* --- Pagination & Feedback --- */
-.ts-pagination-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-.ts-page-numbers { display: flex; align-items: center; gap: 5px; }
-.ts-pagination-button, .ts-page-number { padding: 8px 16px; border-radius: var(--ts-radius); border: 1px solid var(--ts-border-color); background-color: #fff; color: var(--ts-primary-text); cursor: pointer; font-weight: 500; transition: all 0.2s ease; }
-.ts-pagination-button:disabled { opacity: 0.5; cursor: not-allowed; }
-.ts-page-number { min-width: 40px; text-align: center; }
-.ts-page-number:hover, .ts-pagination-button:not(:disabled):hover { border-color: var(--ts-accent-color); color: var(--ts-accent-color); background-color: var(--ts-accent-light); }
-.ts-page-number.ts-active { background-color: var(--ts-accent-color); color: #fff; border-color: var(--ts-accent-color); }
-.ts-pagination-ellipsis { padding: 8px; color: var(--ts-secondary-text); }
-.ts-feedback-message { padding: 50px 20px; text-align: center; color: var(--ts-secondary-text); min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.ts-feedback-message i { font-size: 2em; margin-bottom: 15px; display: block; }
-
-/* --- Settings Modal --- */
-.ts-settings-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
-.ts-settings-modal-overlay.ts-visible { display: flex; opacity: 1; animation: modalFadeIn 0.3s ease; }
-.ts-settings-modal-panel { background: var(--ts-content-bg); color: var(--ts-primary-text); padding: 30px 40px; border-radius: var(--ts-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 500px; position: relative; transition: transform 0.3s ease; }
-.ts-visible .ts-settings-modal-panel { animation: panelScaleUp 0.3s ease-out; }
-.ts-settings-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 2em; color: var(--ts-secondary-text); cursor: pointer; }
-.ts-settings-modal-panel h2 { margin-top: 0; margin-bottom: 30px; }
-.ts-settings-section { margin-bottom: 25px; } .ts-settings-section:last-child { margin-bottom: 0; }
-.ts-settings-section h3 { font-size: 1.1em; margin-bottom: 15px; border-bottom: 1px solid var(--ts-border-color); padding-bottom: 8px; }
-.ts-setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.ts-setting-item label { font-weight: 500; }
-.ts-setting-item select { padding: 8px; border-radius: var(--ts-radius); border: 1px solid var(--ts-border-color); background: var(--ts-main-bg); color: var(--ts-primary-text); }
-.ts-shortcut-list { list-style: none; padding: 0; }
-.ts-shortcut-list li { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-.ts-shortcut-list span { background: var(--ts-main-bg); border: 1px solid var(--ts-border-color); padding: 2px 8px; border-radius: 4px; font-family: monospace; min-width: 20px; text-align: center; }
-
-</style>
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-    // --- DOM Elements ---
-    const mainContainer = document.getElementById('ts-main-container');
-    const sidebarToggleBtn = document.getElementById('ts-sidebar-toggle-btn');
-    const settingsModal = document.getElementById('ts-settings-modal');
-    const settingsOpenBtn = document.getElementById('ts-settings-open-btn');
-    const settingsCloseBtn = document.getElementById('ts-settings-close-btn');
-    const fontFamilySelect = document.getElementById('ts-font-family-select');
-    const fontSizeSelect = document.getElementById('ts-font-size-select');
-    const shareButton = document.getElementById('ts-share-button');
-    const sidebarNav = document.getElementById('ts-sidebar-nav');
-    const breadcrumbsContainer = document.getElementById('ts-breadcrumbs');
-    const categoryTabsContainer = document.getElementById('ts-category-filter-tabs');
-    const searchInput = document.getElementById('ts-search-input');
-    const sortSelect = document.getElementById('ts-sort-select');
-    const itemsPerPageSelect = document.getElementById('ts-items-per-page');
-    const listBody = document.getElementById('ts-list-body');
-    const feedbackMessage = document.getElementById('ts-feedback-message');
-    const paginationContainer = document.getElementById('ts-pagination-container');
-
-    // --- Configuration & State ---
-    const SOURCE_CONFIG = [
-        { name: "Earning Projects", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com", buttonText: "View Project" },
-        { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com", buttonText: "View Investment" },
-        { name: "Casinos Directory", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com", buttonText: "Visit Casino" },
-        { name: "Crypto Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com", buttonText: "Claim Airdrop" },
-        { name: "Learning Academy", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com", buttonText: "Start Learning" },
-        { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com", buttonText: "Read More" },
-        { name: "Profit Networks", icon: "fa-sitemap", url: "https://networksradar.blogspot.com", buttonText: "Explore Network" },
-        { name: "App Store", icon: "fa-store-alt", url: "https://ttappstore.blogspot.com", buttonText: "Get App" },
-        { name: "Money Articles", icon: "fa-file-invoice-dollar", url: "https://growwithguidance.blogspot.com", buttonText: "Read Article" }
-    ];
-    let dataCache = {}, currentSource = null, currentProjects = [], activeCategory = 'All';
-    let searchDebounceTimer, currentPage = 1, projectsPerPage = parseInt(itemsPerPageSelect.value, 10);
-
-    // --- Functions ---
-    const applySetting = (key, value) => {
-        document.documentElement.style.setProperty(`--ts-${key}`, value);
-        localStorage.setItem(`ts-setting-${key}`, value);
-    };
-
-    const loadSettings = () => {
-        const fontFamily = localStorage.getItem('ts-setting-font-family') || 'Inter, sans-serif';
-        const fontSize = localStorage.getItem('ts-setting-base-font-size') || '16px';
-        applySetting('font-family', fontFamily);
-        applySetting('base-font-size', fontSize);
-        fontFamilySelect.value = fontFamily;
-        fontSizeSelect.value = fontSize;
-    };
-    
-    const updateBreadcrumbs = (sourceName) => {
-        breadcrumbsContainer.innerHTML = `
-            <span class="ts-breadcrumb-item">Dashboard</span>
-            <span class="ts-breadcrumb-separator">›</span>
-            <span class="ts-breadcrumb-item ts-breadcrumb-active">${sourceName}</span>
-        `;
-    };
-
-    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        window[callbackName] = (data) => {
-            delete window[callbackName];
-            script.remove();
-            resolve(data);
-        };
-        script.src = `${url}&callback=${callbackName}`;
-        script.onerror = (err) => {
-            delete window[callbackName];
-            script.remove();
-            reject(err);
-        };
-        document.body.appendChild(script);
-    });
-
-    // **FIXED**: This function is now more robust and handles posts without tags.
-    const processEntries = (entries) => {
-        return (entries || []).map(entry => {
-            const link = (entry.link.find(l => l.rel === 'alternate') || {}).href;
-            const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http"));
-            return {
-                id: entry.id.$t,
-                name: entry.title.$t.trim(),
-                url: link,
-                tags: tags.length > 0 ? tags : ['General'], // Assign 'General' if no tags
-                publishedDate: new Date(entry.published.$t),
-            };
-        }).filter(p => p.url); // Filter only by presence of a URL
-    };
-
-    const showFeedback = (message, iconClass = 'fa-info-circle') => {
-        listBody.innerHTML = '';
-        paginationContainer.style.display = 'none';
-        categoryTabsContainer.style.display = 'none';
-        feedbackMessage.innerHTML = `<i class="fas ${iconClass}"></i><p>${message}</p>`;
-        feedbackMessage.style.display = 'flex';
-    };
-
-    const hideFeedback = () => { 
-        feedbackMessage.style.display = 'none'; 
-        categoryTabsContainer.style.display = 'flex';
-    };
-    
-    const renderListItems = (projects) => {
-        listBody.innerHTML = '';
-        if (projects.length === 0) return;
-        hideFeedback();
-        const fragment = document.createDocumentFragment();
-        const buttonText = currentSource?.buttonText || 'View Project';
-        projects.forEach((project) => {
-            const item = document.createElement('div');
-            item.className = 'ts-list-item';
-            item.tabIndex = 0;
-            const tagsHTML = project.tags.map(tag => `<span class="ts-tag" data-tag="${tag}">${tag}</span>`).join('');
-            item.innerHTML = `
-                <div class="ts-col-name"><a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-project-name-link">${project.name}</a></div>
-                <div class="ts-col-tags"><div class="ts-project-tags">${tagsHTML}</div></div>
-                <div class="ts-col-date"><span class="ts-project-date">${project.publishedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span></div>
-                <div class="ts-col-action"><a href="${project.url}" target="_blank" rel="noopener noreferrer" class="ts-visit-button">${buttonText}</a></div>
-            `;
-            fragment.appendChild(item);
+        const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); };
+            script.src = `${url}&callback=${callbackName}`;
+            script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); };
+            document.body.appendChild(script);
         });
-        listBody.appendChild(fragment);
-    };
 
-    const renderSidebar = () => {
-        sidebarNav.innerHTML = SOURCE_CONFIG.map(source => 
-            `<a href="#" class="ts-sidebar-link" data-url="${source.url}" title="${source.name}"><i class="fas ${source.icon}"></i></a>`
-        ).join('');
-    };
+        const processEntries = (entries) => {
+            return (entries || []).map(entry => {
+                const link = (entry.link.find(l => l.rel === 'alternate') || {}).href;
+                const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http"));
+                return {
+                    id: entry.id.$t,
+                    name: entry.title.$t.trim(),
+                    url: link,
+                    tags: tags.length > 0 ? tags : ['General'],
+                    publishedDate: new Date(entry.published.$t),
+                };
+            }).filter(p => p.url);
+        };
 
-    const populateCategoryTabs = (projects) => {
-        const allTags = projects.flatMap(p => p.tags);
-        if (allTags.length === 0) {
-            categoryTabsContainer.style.display = 'none';
-            return;
-        }
-        const tagCounts = allTags.reduce((acc, tag) => { acc[tag] = (acc[tag] || 0) + 1; return acc; }, {});
-        const sortedCategories = Object.keys(tagCounts).sort();
-        let tabsHTML = `<button class="ts-cat-tab ts-active" data-category="All">All (${allTags.length})</button>`;
-        tabsHTML += sortedCategories.map(cat => `<button class="ts-cat-tab" data-category="${cat}">${cat} (${tagCounts[cat]})</button>`).join('');
-        categoryTabsContainer.innerHTML = tabsHTML;
-        categoryTabsContainer.style.display = 'flex';
-        activeCategory = 'All';
-    };
-    
-    const applyFiltersAndSort = () => {
-        let projects = [...currentProjects];
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        if (activeCategory !== 'All') projects = projects.filter(p => p.tags.includes(activeCategory));
-        if (searchTerm) projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm) || p.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
-        
-        projects.sort((a, b) => {
-            switch (sortSelect.value) {
-                case 'name-asc': return a.name.localeCompare(b.name);
-                case 'name-desc': return b.name.localeCompare(a.name);
-                case 'date-asc': return a.publishedDate - b.publishedDate;
-                default: return b.publishedDate - a.publishedDate;
-            }
-        });
-        
-        if (projects.length === 0) {
-            showFeedback('No projects found matching your criteria.', 'fa-search-minus');
-            return;
-        }
-        renderPagination(projects.length);
-        const paginatedProjects = projects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
-        renderListItems(paginatedProjects);
-    };
-
-    const renderPagination = (totalItems) => {
-        const totalPages = Math.ceil(totalItems / projectsPerPage);
-        paginationContainer.style.display = totalPages > 1 ? 'flex' : 'none';
-        if (totalPages <= 1) {
+        const showFeedback = (message) => {
+            listBody.innerHTML = '';
             paginationContainer.innerHTML = '';
-            return;
-        }
-        let paginationHTML = `<button class="ts-pagination-button" id="ts-prev-page" ${currentPage === 1 ? 'disabled' : ''}>← Previous</button>`;
-        const pagesToShow = new Set([1, totalPages, currentPage, currentPage - 1, currentPage + 1].filter(p => p > 0 && p <= totalPages));
-        let lastPage = 0;
-        paginationHTML += '<div class="ts-page-numbers">';
-        Array.from(pagesToShow).sort((a,b) => a - b).forEach(page => {
-            if (lastPage !== 0 && page > lastPage + 1) paginationHTML += '<span class="ts-pagination-ellipsis">...</span>';
-            paginationHTML += `<button class="ts-page-number ${page === currentPage ? 'ts-active' : ''}" data-page="${page}">${page}</button>`;
-            lastPage = page;
-        });
-        paginationHTML += '</div>';
-        paginationHTML += `<button class="ts-pagination-button" id="ts-next-page" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
-        paginationContainer.innerHTML = paginationHTML;
-    };
+            feedbackMessage.innerHTML = `<div class="spinner mb-4 border-t-dodger border-gray-200"></div><p class="font-medium text-slate animate-pulse">${message}</p>`;
+            feedbackMessage.classList.remove('hidden');
+            feedbackMessage.classList.add('flex');
+        };
 
-    const loadSourceData = async (source) => {
-        if (!source || currentSource === source) return;
-        currentSource = source;
-        currentPage = 1;
-        updateBreadcrumbs(source.name);
-        categoryTabsContainer.innerHTML = '';
-        showFeedback('Loading projects...', 'fa-spinner fa-spin');
+        const renderListItems = (projects) => {
+            listBody.innerHTML = '';
+            if (projects.length === 0) return;
+            feedbackMessage.classList.add('hidden');
+            feedbackMessage.classList.remove('flex');
+            
+            // Grid Columns: lg:3 and gap-8 for bigger cards
+            if(currentView === 'list') listBody.className = 'grid grid-cols-1 gap-3';
+            else listBody.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+
+            const fragment = document.createDocumentFragment();
+            const buttonText = currentSource?.buttonText || 'View';
+            
+            projects.forEach((project, index) => {
+                const item = document.createElement('div');
+                const isNotActive = project.tags.some(t => ['Not Active', 'Scam', 'Ended', 'Closed'].includes(t));
+                const borderColor = isNotActive ? 'border-red-200 ring-1 ring-red-50' : 'border-gray-200';
+                
+                item.style.animationDelay = `${index * 0.03}s`;
+                item.classList.add('fade-in-up');
+
+                if (currentView === 'grid') {
+                    // BIGGER 3D CARD
+                    item.className = `bg-white rounded-2xl p-6 shadow-3d hover:shadow-3d-hover hover:-translate-y-2 transition-all duration-300 border ${borderColor} group flex flex-col h-full relative`;
+                    
+                    if(isNotActive) item.innerHTML += `<div class="absolute top-2 right-2 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-200 px-2 rounded-full">Inactive</div>`;
+
+                    const tagsHTML = project.tags.slice(0, 3).map(tag => 
+                        `<span class="inline-block px-2 py-1 ${tag === 'Not Active' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-500 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
+                    ).join('');
+
+                    item.innerHTML += `
+                        <div class="mb-5">
+                            <span class="text-[10px] text-gray-400 font-mono block mb-2">${project.publishedDate.toLocaleDateString('en-US', { year:'numeric', month: 'short', day: 'numeric' })}</span>
+                            <h3 class="font-bold text-yale text-2xl leading-tight group-hover:text-dodger transition-colors break-words">
+                                <a href="${project.url}" target="_blank" class="focus:outline-none">${project.name}</a>
+                            </h3>
+                        </div>
+                        <div class="mt-auto pt-4 border-t border-gray-100">
+                            <div class="mb-4 flex flex-wrap gap-y-2 min-h-[1.5rem]">${tagsHTML}</div>
+                            <a href="${project.url}" target="_blank" class="block w-full text-center py-3 rounded-xl ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-yale text-white hover:bg-teal'} font-bold text-sm transition-all shadow-md transform active:scale-95">
+                                ${isNotActive ? 'Closed' : buttonText} <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    `;
+                } else {
+                    // LIST CARD
+                    item.className = `bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border ${borderColor} flex items-center gap-4`;
+                    item.innerHTML = `
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-bold text-slate text-lg truncate hover:text-dodger"><a href="${project.url}" target="_blank">${project.name}</a></h3>
+                                ${isNotActive ? '<i class="fas fa-ban text-red-500 text-xs"></i>' : ''}
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-[10px] text-gray-400">${project.publishedDate.toLocaleDateString()}</span>
+                                <div class="hidden sm:flex gap-1">
+                                    ${project.tags.slice(0,3).map(t => `<span class="text-[9px] bg-gray-50 px-1 rounded text-gray-500">${t}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <a href="${project.url}" target="_blank" class="whitespace-nowrap px-4 py-2 rounded-lg ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-slate hover:bg-dodger hover:text-white'} text-xs font-bold transition-all">
+                            ${buttonText}
+                        </a>
+                    `;
+                }
+                fragment.appendChild(item);
+            });
+            listBody.appendChild(fragment);
+        };
+
+        const renderSidebar = () => {
+            sidebarNav.innerHTML = SOURCE_CONFIG.map(source => 
+                `<a href="#" class="ts-sidebar-link w-10 h-10 rounded-lg flex items-center justify-center text-blue-200 hover:text-white hover:bg-white/10 transition-all duration-200 relative group" data-url="${source.url}">
+                    <i class="fas ${source.icon} text-base"></i>
+                    <!-- Tooltip Title -->
+                    <span class="absolute left-12 ml-3 bg-yale text-white text-xs font-medium px-3 py-2 rounded shadow-3d border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[100] transform translate-x-2 group-hover:translate-x-0 duration-200">${source.name}</span>
+                 </a>`
+            ).join('');
+        };
+
+        const populateCategoryTabs = (projects) => {
+            const allTags = projects.flatMap(p => p.tags);
+            const tagCounts = allTags.reduce((acc, tag) => { acc[tag] = (acc[tag] || 0) + 1; return acc; }, {});
+            const sortedCategories = Object.keys(tagCounts).sort((a,b) => tagCounts[b] - tagCounts[a]); 
+            
+            let html = `<button class="ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all ${activeCategory === 'All' ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="All">All (${allTags.length})</button>`;
+            
+            html += sortedCategories.map(cat => 
+                `<button class="ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all ${activeCategory === cat ? 'bg-dodger text-white shadow-3d-light' : 'bg-gray-100 text-slate hover:bg-gray-200'}" data-category="${cat}">${cat} (${tagCounts[cat]})</button>`
+            ).join('');
+            
+            categoryTabsContainer.innerHTML = html;
+        };
         
-        if (dataCache[source.url]) {
-            currentProjects = dataCache[source.url];
-        } else {
-            try {
-                const callbackName = `tsJsonpCallback_${Date.now()}`;
-                const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=500`, callbackName);
-                currentProjects = processEntries(data.feed.entry);
-                dataCache[source.url] = currentProjects;
-            } catch (error) {
-                console.error(`Failed to load source: ${source.name}`, error);
-                showFeedback('Could not load projects. Please try again later.', 'fa-exclamation-triangle');
+        const applyFiltersAndSort = () => {
+            let projects = [...currentProjects];
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            if (activeCategory !== 'All') projects = projects.filter(p => p.tags.includes(activeCategory));
+            if (searchTerm) projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm) || p.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+            
+            projects.sort((a, b) => {
+                const sortVal = sortSelect.value;
+                if (sortVal === 'name-asc') return a.name.localeCompare(b.name);
+                if (sortVal === 'name-desc') return b.name.localeCompare(a.name);
+                if (sortVal === 'date-asc') return a.publishedDate - b.publishedDate;
+                return b.publishedDate - a.publishedDate;
+            });
+            
+            if (projects.length === 0) {
+                listBody.innerHTML = '';
+                paginationContainer.innerHTML = '';
+                feedbackMessage.innerHTML = `<i class="fas fa-search mb-4 text-4xl text-gray-300"></i><p class="text-gray-400">No results found.</p>`;
+                feedbackMessage.classList.remove('hidden');
+                feedbackMessage.classList.add('flex');
                 return;
             }
-        }
-        populateCategoryTabs(currentProjects);
-        applyFiltersAndSort();
-    };
-    
-    const handleFilterChange = () => { currentPage = 1; applyFiltersAndSort(); };
+            renderPagination(projects.length);
+            renderListItems(projects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage));
+        };
 
-    // --- Initialization & Event Listeners ---
-    const init = () => {
-        loadSettings();
-        renderSidebar();
-
-        settingsOpenBtn.addEventListener('click', () => settingsModal.classList.add('ts-visible'));
-        settingsCloseBtn.addEventListener('click', () => settingsModal.classList.remove('ts-visible'));
-        settingsModal.addEventListener('click', (e) => {
-            if (e.target === settingsModal) settingsModal.classList.remove('ts-visible');
-        });
-
-        document.addEventListener('keydown', (e) => {
-            const isModalOpen = settingsModal.classList.contains('ts-visible');
-            const activeEl = document.activeElement;
-            const isInputFocused = ['INPUT', 'SELECT', 'TEXTAREA'].includes(activeEl.tagName);
-
-            if (e.key === 'Escape') {
-                if (isModalOpen) settingsModal.classList.remove('ts-visible');
-                else activeEl.blur();
-            }
-            if (e.key === '/' && !isInputFocused && !isModalOpen) {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (isInputFocused || isModalOpen) return;
-            // ... rest of keyboard nav
-        });
-        
-        sidebarToggleBtn.addEventListener('click', () => {
-            mainContainer.classList.toggle('ts-sidebar-shrunk');
-            sidebarToggleBtn.querySelector('i').className = mainContainer.classList.contains('ts-sidebar-shrunk') ? 'fas fa-angle-double-right' : 'fas fa-angle-double-left';
-        });
-
-        fontFamilySelect.addEventListener('change', (e) => applySetting('font-family', e.target.value));
-        fontSizeSelect.addEventListener('change', (e) => applySetting('base-font-size', e.target.value));
-        
-        shareButton.addEventListener('click', async () => {
-            const shareData = { title: `Crypto Dashboard: ${currentSource?.name || ''}`, text: `Check out these projects!`, url: window.location.href };
-            try {
-                if (navigator.share) await navigator.share(shareData);
-                else { navigator.clipboard.writeText(window.location.href); alert('Page URL copied to clipboard!'); }
-            } catch (err) { console.error("Share failed:", err); }
-        });
-
-        sidebarNav.addEventListener('click', (e) => {
-            e.preventDefault();
-            const link = e.target.closest('.ts-sidebar-link');
-            if (!link || link.classList.contains('ts-active')) return;
-            document.querySelectorAll('.ts-sidebar-link.ts-active').forEach(l => l.classList.remove('ts-active'));
-            link.classList.add('ts-active');
-            loadSourceData(SOURCE_CONFIG.find(s => s.url === link.dataset.url));
-        });
-        
-        categoryTabsContainer.addEventListener('click', (e) => {
-            const tab = e.target.closest('.ts-cat-tab');
-            if (!tab || tab.classList.contains('ts-active')) return;
-            document.querySelectorAll('.ts-cat-tab.ts-active').forEach(t => t.classList.remove('ts-active'));
-            tab.classList.add('ts-active');
-            activeCategory = tab.dataset.category;
-            handleFilterChange();
-        });
-        
-        listBody.addEventListener('click', (e) => {
-            if (e.target.closest('.ts-tag')) {
-                const tab = categoryTabsContainer.querySelector(`.ts-cat-tab[data-category="${e.target.dataset.tag}"]`);
-                if (tab) tab.click();
-            }
-        });
-
-        sortSelect.addEventListener('change', handleFilterChange);
-        itemsPerPageSelect.addEventListener('change', (e) => { projectsPerPage = parseInt(e.target.value, 10); handleFilterChange(); });
-        searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(handleFilterChange, 300); });
-        
-        paginationContainer.addEventListener('click', (e) => {
-            const target = e.target.closest('button');
-            if (!target) return;
-            const totalItems = (activeCategory === 'All' ? currentProjects : currentProjects.filter(p => p.tags.includes(activeCategory))).length;
+        // ADVANCED PAGINATION
+        const renderPagination = (totalItems) => {
             const totalPages = Math.ceil(totalItems / projectsPerPage);
-            if (target.id === 'ts-next-page' && currentPage < totalPages) currentPage++;
-            else if (target.id === 'ts-prev-page' && currentPage > 1) currentPage--;
-            else if (target.matches('.ts-page-number')) currentPage = parseInt(target.dataset.page, 10);
-            else return;
-            applyFiltersAndSort();
-        });
+            if (totalPages <= 1) { paginationContainer.innerHTML = ''; return; }
 
-        document.querySelector('.ts-sidebar-link').click();
-    };
+            const maxVisibleButtons = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
 
-    init();
-});
-</script>
+            if (endPage - startPage + 1 < maxVisibleButtons) {
+                startPage = Math.max(1, endPage - maxVisibleButtons + 1);
+            }
 
+            let html = `<button class="ts-page-nav px-4 py-2 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm" data-action="prev" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+
+            if (startPage > 1) {
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold" data-page="1">1</button>`;
+                if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const activeClass = i === currentPage ? 'bg-dodger text-white shadow-3d-light border-dodger scale-110' : 'bg-white text-gray-500 hover:bg-gray-50 border-gray-200';
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl border font-bold transition-all ${activeClass}" data-page="${i}">${i}</button>`;
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
+                html += `<button class="ts-page-num w-10 h-10 rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 font-bold" data-page="${totalPages}">${totalPages}</button>`;
+            }
+
+            html += `<button class="ts-page-nav px-4 py-2 rounded-xl bg-gray-50 text-slate font-bold hover:bg-yale hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 shadow-sm" data-action="next" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+
+            paginationContainer.innerHTML = html;
+        };
+
+        const loadSourceData = async (source, forceReload = false) => {
+            if (!source) return;
+            // Clear current data if forcing
+            if(forceReload) { 
+                delete dataCache[source.url]; 
+                currentProjects = [];
+            } else if (currentSource === source) {
+                return;
+            }
+
+            currentSource = source; 
+            currentPage = 1;
+            
+            // Auto Scroll to Content
+            document.getElementById('ts-breadcrumbs').innerHTML = `<span class="text-gray-400 hidden sm:inline">Dashboard /</span> <span class="text-dodger font-bold">${source.name}</span>`;
+            
+            document.querySelectorAll('.ts-sidebar-link').forEach(l => {
+                l.classList.toggle('bg-white', l.dataset.url === source.url);
+                l.classList.toggle('text-yale', l.dataset.url === source.url);
+                l.classList.toggle('text-blue-200', l.dataset.url !== source.url);
+            });
+
+            if (dataCache[source.url]) {
+                currentProjects = dataCache[source.url];
+                populateCategoryTabs(currentProjects);
+                applyFiltersAndSort();
+                // Scroll to content
+                document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                try {
+                    showFeedback('Fetching Data...');
+                    // Callback name with timestamp forces browser to ignore cache if called repeatedly
+                    const callbackName = `tsJsonpCallback_${Date.now()}`;
+                    const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=500`, callbackName);
+                    currentProjects = processEntries(data.feed.entry);
+                    dataCache[source.url] = currentProjects;
+                    populateCategoryTabs(currentProjects);
+                    applyFiltersAndSort();
+                    // Scroll to content
+                    document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
+                } catch (error) { 
+                    showFeedback('Connection Failed. Retrying...');
+                    setTimeout(() => loadSourceData(source, true), 3000); 
+                }
+            }
+        };
+
+        // --- Init & Listeners ---
+        const init = () => {
+            renderSidebar();
+
+            const toggleModal = (modal, show) => {
+                if(show) {
+                    modal.classList.remove('hidden');
+                    setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.replace('scale-95', 'scale-100'); }, 10);
+                } else {
+                    modal.classList.add('opacity-0'); modal.querySelector('div').classList.replace('scale-100', 'scale-95');
+                    setTimeout(() => modal.classList.add('hidden'), 300);
+                }
+            };
+
+            settingsOpenBtn.addEventListener('click', () => toggleModal(settingsModal, true));
+            settingsCloseBtn.addEventListener('click', () => toggleModal(settingsModal, false));
+            adCloseBtn.addEventListener('click', () => toggleModal(adModal, false));
+            document.querySelectorAll('.btn-open-ad').forEach(btn => btn.addEventListener('click', () => toggleModal(adModal, true)));
+            
+            // Font Settings
+            fontFamilySelect.addEventListener('change', (e) => {
+                document.body.style.fontFamily = e.target.value;
+            });
+            fontSizeSelect.addEventListener('change', (e) => {
+                document.body.classList.remove('font-small', 'font-normal', 'font-large');
+                document.body.classList.add(e.target.value);
+            });
+
+            // Layout & Tabs
+            tabVideo.addEventListener('click', () => {
+                contentVideo.classList.remove('hidden'); contentChat.classList.add('hidden');
+                tabVideo.classList.add('border-b-2', 'border-yale', 'text-yale', 'bg-white'); tabVideo.classList.remove('text-gray-500');
+                tabChat.classList.remove('border-b-2', 'border-yale', 'text-yale', 'bg-white'); tabChat.classList.add('text-gray-500');
+            });
+            tabChat.addEventListener('click', () => {
+                contentVideo.classList.add('hidden'); contentChat.classList.remove('hidden');
+                tabChat.classList.add('border-b-2', 'border-yale', 'text-yale', 'bg-white'); tabChat.classList.remove('text-gray-500');
+                tabVideo.classList.remove('border-b-2', 'border-yale', 'text-yale', 'bg-white'); tabVideo.classList.add('text-gray-500');
+            });
+
+            btnGrid.addEventListener('click', () => { currentView = 'grid'; applyFiltersAndSort(); });
+            btnList.addEventListener('click', () => { currentView = 'list'; applyFiltersAndSort(); });
+            headerSidebarToggle.addEventListener('click', () => sidebar.classList.toggle('sidebar-closed'));
+
+            // Shortcuts
+            document.addEventListener('keydown', (e) => {
+                const isInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName);
+                if (e.key === 'Escape') { toggleModal(settingsModal, false); toggleModal(adModal, false); if(!isInput) searchInput.value = ''; }
+                if (!isInput) {
+                    if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+                    if (e.key === 'j') mainScroll.scrollBy({ top: 200, behavior: 'smooth' });
+                    if (e.key === 'k') mainScroll.scrollBy({ top: -200, behavior: 'smooth' });
+                    if (e.key === 'm') sidebar.classList.toggle('sidebar-closed');
+                    if (e.key === 't') mainScroll.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (e.key === 'b') mainScroll.scrollTo({ top: mainScroll.scrollHeight, behavior: 'smooth' });
+                }
+            });
+
+            mainScroll.addEventListener('scroll', () => {
+                if (mainScroll.scrollTop > 300) backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                else backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+            });
+            backToTopBtn.addEventListener('click', () => mainScroll.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            sidebarNav.addEventListener('click', (e) => {
+                const link = e.target.closest('.ts-sidebar-link');
+                if (link) { 
+                    e.preventDefault(); 
+                    loadSourceData(SOURCE_CONFIG.find(s => s.url === link.dataset.url)); 
+                }
+            });
+
+            categoryTabsContainer.addEventListener('click', (e) => {
+                const tab = e.target.closest('.ts-cat-tab');
+                if(tab) {
+                    activeCategory = tab.dataset.category;
+                    currentPage = 1;
+                    document.querySelectorAll('.ts-cat-tab').forEach(t => {
+                        t.className = 'ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all bg-gray-100 text-slate hover:bg-gray-200';
+                    });
+                    tab.className = 'ts-cat-tab px-3 py-1 rounded-full text-xs font-bold transition-all bg-dodger text-white shadow-3d-light';
+                    applyFiltersAndSort();
+                }
+            });
+
+            listBody.addEventListener('click', (e) => {
+                if (e.target.closest('.ts-tag')) {
+                    const tagTxt = e.target.dataset.tag;
+                    const tab = document.querySelector(`.ts-cat-tab[data-category="${tagTxt}"]`);
+                    if(tab) {
+                        tab.click();
+                        document.getElementById('ts-category-filter-tabs').scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+            
+            sortSelect.addEventListener('change', applyFiltersAndSort);
+            itemsPerPageSelect.addEventListener('change', (e) => { projectsPerPage = parseInt(e.target.value, 10); currentPage = 1; applyFiltersAndSort(); });
+            searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(applyFiltersAndSort, 300); });
+            
+            // Pagination Logic
+            paginationContainer.addEventListener('click', (e) => {
+                const navBtn = e.target.closest('.ts-page-nav');
+                const numBtn = e.target.closest('.ts-page-num');
+                const totalPages = Math.ceil((activeCategory === 'All' ? currentProjects : currentProjects.filter(p => p.tags.includes(activeCategory))).length / projectsPerPage);
+
+                if (navBtn && !navBtn.disabled) {
+                    if (navBtn.dataset.action === 'prev' && currentPage > 1) currentPage--;
+                    if (navBtn.dataset.action === 'next' && currentPage < totalPages) currentPage++;
+                    applyFiltersAndSort();
+                    document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
+                }
+
+                if (numBtn) {
+                    currentPage = parseInt(numBtn.dataset.page);
+                    applyFiltersAndSort();
+                    document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Force Reload Fix
+            btnReload.addEventListener('click', () => {
+                if(currentSource) {
+                    showFeedback('Clearing Cache & Reloading...');
+                    loadSourceData(currentSource, true);
+                    toggleModal(settingsModal, false);
+                } else {
+                    location.reload();
+                }
+            });
+
+            btnClearCache.addEventListener('click', () => { 
+                dataCache = {}; 
+                alert('Cache Cleared'); 
+                loadSourceData(currentSource, true);
+                toggleModal(settingsModal, false); 
+            });
+
+            loadSourceData(SOURCE_CONFIG[0]);
+        };
+        init();
+    });
+    </script>
 </body>
 </html>
