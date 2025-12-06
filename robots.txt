@@ -1,0 +1,4 @@
+ User-agent: *
+      Allow: /
+      
+      Sitemap: https://ttearncrypto.github.io/dashboards/sitemap.xml
