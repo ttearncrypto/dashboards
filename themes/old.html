@@ -64,6 +64,7 @@
                         '3d': '6px 6px 0px 0px rgba(4, 150, 255, 0.2)',
                         '3d-hover': '10px 10px 0px 0px rgba(4, 150, 255, 0.3)',
                         '3d-light': '5px 5px 0px 0px rgba(220, 220, 220, 1)',
+                        'danger': '6px 6px 0px 0px rgba(239, 68, 68, 0.2)', // Red shadow for NotActive
                     },
                     animation: {
                         'float': 'float 4s ease-in-out infinite',
@@ -153,7 +154,7 @@
     <div id="loading-screen" class="page-loader">
         <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-20 h-20 rounded-full mb-6 shadow-xl animate-bounce">
         <div class="spinner"></div>
-        <p class="mt-4 text-yale font-bold tracking-widest text-sm">INITIALIZING F9XR DASHBOARD</p>
+        <p class="mt-4 text-yale font-bold tracking-widest text-sm">INITIALIZING YOUR DASHBOARD</p>
     </div>
 
     <!-- SETTINGS MODAL -->
@@ -321,7 +322,7 @@
             <section class="px-6 lg:px-12 mb-10 text-center relative max-w-[1600px] mx-auto">
                 <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[60%] h-48 bg-coolsky/15 blur-[100px] rounded-full -z-10"></div>
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-yale mb-4 tracking-tight drop-shadow-sm">
-                    F9XR's TTEarnCrypto <span class="text-transparent bg-clip-text bg-gradient-to-r from-dodger to-teal">iCryptos Dashboard</span>
+                    F9XR's <span class="text-transparent bg-clip-text bg-gradient-to-r from-dodger to-teal">TTEarnCrypto iCryptos</span>
                 </h1>
                 <p class="text-xl text-slate max-w-3xl mx-auto mb-8 font-light leading-relaxed">
                     The flagship hub for discovering verified earning opportunities, airdrops, and crypto investments without the noise.
@@ -458,7 +459,7 @@
                     <div class="text-center md:text-left">
                         <div class="flex items-center justify-center md:justify-start gap-4 mb-5">
                             <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="Logo" class="w-12 h-12 rounded-full border-2 border-dodger">
-                            <span class="font-display font-bold text-2xl text-white">F9XR's TTEarnCrypto iCryptos Dashboard</span>
+                            <span class="font-display font-bold text-2xl text-white">F9XR's TTEarnCrypto iCryptos</span>
                         </div>
                         <p class="text-blue-100 text-sm mb-6 leading-relaxed">The Official Directory. Discover verified earning opportunities, airdrops, and crypto investments.</p>
                         <div class="flex justify-center md:justify-start gap-4">
@@ -593,6 +594,7 @@
             feedbackMessage.classList.add('flex');
         };
 
+        // --- UPDATED RENDER FUNCTION WITH RED/NOTACTIVE LOGIC ---
         const renderListItems = (projects) => {
             listBody.innerHTML = '';
             if (projects.length === 0) return;
@@ -605,44 +607,65 @@
             const fragment = document.createDocumentFragment();
             const buttonText = currentSource?.buttonText || 'View';
             
+            // Define Danger Tags (Normalized)
+            const dangerTagsList = ['NotActive', 'Scam', 'Ended', 'Closed', 'notactive', 'scam', 'ended'];
+
             projects.forEach((project, index) => {
                 const item = document.createElement('div');
-                const isNotActive = project.tags.some(t => ['Not Active', 'Scam', 'Ended', 'Closed'].includes(t));
-                const borderColor = isNotActive ? 'border-red-200 ring-1 ring-red-50' : 'border-gray-200';
+                
+                // Check if project has a danger tag
+                const isDanger = project.tags.some(t => dangerTagsList.includes(t) || dangerTagsList.includes(t.replace(/\s/g, '')));
+                
+                // Determine Styles based on Danger status
+                const borderClass = isDanger ? 'border-red-500 ring-4 ring-red-50 shadow-danger' : 'border-gray-200 hover:shadow-3d-hover hover:-translate-y-2 shadow-3d';
+                const buttonClass = isDanger ? 'bg-red-50 text-red-600 border border-red-100 cursor-not-allowed' : 'bg-yale text-white hover:bg-teal shadow-md';
+                const statusLabel = isDanger ? 'CLOSED' : buttonText;
                 
                 item.style.animationDelay = `${index * 0.03}s`;
                 item.classList.add('fade-in-up');
 
                 if (currentView === 'grid') {
-                    item.className = `bg-white rounded-2xl p-8 shadow-3d hover:shadow-3d-hover hover:-translate-y-2 transition-all duration-300 border ${borderColor} group flex flex-col h-full relative`;
+                    item.className = `bg-white rounded-2xl p-8 transition-all duration-300 border ${borderClass} group flex flex-col h-full relative overflow-hidden`;
                     
-                    if(isNotActive) item.innerHTML += `<div class="absolute top-3 right-3 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-200 px-3 py-1 rounded-full bg-red-50">Inactive</div>`;
+                    // Add RED BADGE if danger
+                    let badgeHTML = '';
+                    if(isDanger) {
+                        badgeHTML = `
+                        <div class="absolute -top-3 -right-3 bg-red-600 text-white text-[10px] font-bold px-6 py-4 rounded-bl-3xl z-10 shadow-lg flex items-end justify-center">
+                            <span class="translate-y-1 translate-x-1"><i class="fas fa-exclamation-triangle mr-1"></i> NOT ACTIVE</span>
+                        </div>`;
+                    }
 
-                    const tagsHTML = project.tags.slice(0, 3).map(tag => 
-                        `<span class="inline-block px-2.5 py-1 ${tag === 'NotActive' ? 'text-red-500 bg-red-50' : 'bg-gray-100 text-gray-600 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1.5 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`
-                    ).join('');
+                    const tagsHTML = project.tags.slice(0, 3).map(tag => {
+                        const isTagDanger = dangerTagsList.includes(tag) || dangerTagsList.includes(tag.replace(/\s/g, ''));
+                        return `<span class="inline-block px-2.5 py-1 ${isTagDanger ? 'text-white bg-red-500 shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-dodger hover:text-white'} text-[10px] uppercase font-bold tracking-wider rounded-md mr-1.5 cursor-pointer transition-colors ts-tag" data-tag="${tag}">${tag}</span>`;
+                    }).join('');
 
                     item.innerHTML += `
-                        <div class="mb-5">
+                        ${badgeHTML}
+                        <div class="mb-5 relative z-0">
                             <span class="text-xs text-gray-500 font-mono block mb-2">${project.publishedDate.toLocaleDateString('en-US', { year:'numeric', month: 'short', day: 'numeric' })}</span>
-                            <h3 class="font-bold text-yale text-2xl leading-tight group-hover:text-dodger transition-colors break-words">
+                            <h3 class="font-bold ${isDanger ? 'text-red-800' : 'text-yale group-hover:text-dodger'} text-2xl leading-tight transition-colors break-words">
                                 <a href="${project.url}" target="_blank" class="focus:outline-none">${project.name}</a>
                             </h3>
                         </div>
-                        <div class="mt-auto pt-4 border-t border-gray-100">
+                        <div class="mt-auto pt-4 border-t border-gray-100 relative z-0">
                             <div class="mb-5 flex flex-wrap gap-y-2 min-h-[1.5rem]">${tagsHTML}</div>
-                            <a href="${project.url}" target="_blank" class="block w-full text-center py-3.5 rounded-xl ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-yale text-white hover:bg-teal'} font-bold text-sm transition-all shadow-md transform active:scale-[0.98]">
-                                ${isNotActive ? 'Closed' : buttonText} <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            <a href="${project.url}" target="_blank" class="block w-full text-center py-3.5 rounded-xl ${buttonClass} font-bold text-sm transition-all transform active:scale-[0.98]">
+                                ${statusLabel} <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </a>
                         </div>
                     `;
                 } else {
-                    item.className = `bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all border ${borderColor} flex items-center gap-6`;
+                    // List View Logic
+                    item.className = `bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all border ${borderClass} flex items-center gap-6 relative overflow-hidden`;
+                    
                     item.innerHTML = `
+                        ${isDanger ? '<div class="absolute right-0 top-0 bottom-0 w-2 bg-red-500"></div>' : ''}
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center gap-3">
-                                <h3 class="font-bold text-slate text-xl truncate hover:text-dodger"><a href="${project.url}" target="_blank">${project.name}</a></h3>
-                                ${isNotActive ? '<i class="fas fa-ban text-red-500 text-sm"></i>' : ''}
+                                <h3 class="font-bold ${isDanger ? 'text-red-700' : 'text-slate hover:text-dodger'} text-xl truncate"><a href="${project.url}" target="_blank">${project.name}</a></h3>
+                                ${isDanger ? '<span class="px-2 py-0.5 rounded bg-red-100 text-red-600 text-[10px] font-bold uppercase border border-red-200">Not Active</span>' : ''}
                             </div>
                             <div class="flex items-center gap-3 mt-1">
                                 <span class="text-xs text-gray-400 font-mono">${project.publishedDate.toLocaleDateString()}</span>
@@ -651,8 +674,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="${project.url}" target="_blank" class="whitespace-nowrap px-6 py-2.5 rounded-lg ${isNotActive ? 'bg-red-50 text-red-500' : 'bg-gray-100 text-slate hover:bg-dodger hover:text-white'} text-xs font-bold transition-all shadow-sm">
-                            ${buttonText}
+                        <a href="${project.url}" target="_blank" class="whitespace-nowrap px-6 py-2.5 rounded-lg ${buttonClass} text-xs font-bold transition-all shadow-sm">
+                            ${statusLabel}
                         </a>
                     `;
                 }
@@ -924,7 +947,6 @@
                 }
             });
             
-            // Force Reload Fix
             btnReload.addEventListener('click', () => {
                 if(currentSource) {
                     showFeedback('Force Refreshing Data...');
