@@ -68,7 +68,7 @@
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     screens: {
-                        '3xl': '1800px', // Added larger breakpoint
+                        '3xl': '1800px',
                     }
                 }
             }
@@ -890,7 +890,17 @@
             
             sortSelect.addEventListener('change', applyFiltersAndSort);
             itemsPerPageSelect.addEventListener('change', (e) => { projectsPerPage = parseInt(e.target.value, 10); currentPage = 1; applyFiltersAndSort(); });
-            searchInput.addEventListener('input', () => { clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(applyFiltersAndSort, 300); });
+            
+            // Search Debounce with Auto-Scroll
+            searchInput.addEventListener('input', () => { 
+                clearTimeout(searchDebounceTimer); 
+                searchDebounceTimer = setTimeout(() => {
+                    applyFiltersAndSort();
+                    if(searchInput.value.trim().length > 0) {
+                        document.getElementById('ts-list-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 300); 
+            });
             
             // Pagination Logic
             paginationContainer.addEventListener('click', (e) => {
