@@ -230,30 +230,130 @@
             </div>
             <div id="cp-claim-list-content" class="cp-claim-list-content">
                 <!-- Saved items will be injected here by JS -->
+                <div id="cp-claim-list-empty" style="text-align: center; padding: 40px 20px; display: none;">
+                    <i class="far fa-bookmark"
+                        style="font-size: 3rem; color: var(--cp-border-color); margin-bottom: 20px;"></i>
+                    <p style="color: var(--cp-secondary-text);">No projects saved yet.</p>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <!-- Search Modal -->
-    <div id="cp-search-modal" class="cp-modal-overlay" style="display: none;">
+    <!-- Filter Modal (Round 9) -->
+    <div id="cp-filter-modal" class="cp-modal-overlay" style="display: none;">
         <div class="cp-modal-panel">
-            <button id="cp-search-close-btn" class="cp-modal-close-btn">×</button>
-            <h2>Search Projects</h2>
-            <div class="cp-modal-search-wrapper" style="position: relative; margin-top: 15px;">
-                <i class="fas fa-search"
-                    style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text);"></i>
-                <input type="text" id="cp-search-input" placeholder="Type to search..."
-                    style="width: 100%; padding: 14px 15px 14px 45px; border-radius: 12px; border: 1px solid var(--cp-border-color); background: var(--cp-card-bg); font-family: inherit; font-size: 1rem; outline: none;">
-                <button id="cp-search-clear-input-btn"
-                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); cursor: pointer; display: none;"><i
-                        class="fas fa-times"></i></button>
+            <button class="cp-modal-close-btn">×</button>
+            <h2>Filters</h2>
+            <div class="cp-filter-modal-content">
+
+                <!-- Token Filter -->
+                <div class="cp-filter-wrapper cp-token-filter-wrapper" style="width: 100%;">
+                    <i class="fas fa-coins"></i>
+                    <select id="cp-token-select" aria-label="Filter by Token" style="width: 100%;">
+                        <option value="all">All Tokens</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="TRX">Tron (TRX)</option>
+                        <option value="LTC">Litecoin (LTC)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="MATIC">Polygon (MATIC)</option>
+                        <option value="BNB">BNB</option>
+                    </select>
+                </div>
+
+                <!-- Wallet Filter -->
+                <div class="cp-filter-wrapper cp-wallet-filter-wrapper" style="width: 100%;">
+                    <i class="fas fa-wallet"></i>
+                    <div class="cp-custom-dropdown" id="cp-wallet-custom" style="width: 100%;">
+                        <button class="cp-dropdown-btn" id="cp-wallet-filter-btn">All Wallets <i
+                                class="fas fa-chevron-down"></i></button>
+                        <div class="cp-dropdown-content">
+                            <div class="cp-dropdown-controls">
+                                <button class="cp-dropdown-action" data-action="select-all">Select All</button>
+                                <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
+                            </div>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
+                                Wallets</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Binance"> Binance</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Paytm"> Paytm</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="FaucetPay"> FaucetPay</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="PhonePe"> PhonePe</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Cwallet"> Cwallet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Payeer"> Payeer</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Paypal"> Paypal</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Direct Wallet"> Direct
+                                Wallet</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--cp-secondary-text);">Search by name or
-                keyword...</p>
+
+            <!-- Category Filter -->
+            <div class="cp-filter-wrapper cp-category-filter-wrapper" style="width: 100%;">
+                <i class="fas fa-layer-group"></i>
+                <div class="cp-custom-dropdown" id="cp-category-custom" style="width: 100%;">
+                    <button class="cp-dropdown-btn" id="cp-category-filter-btn">All Categories <i
+                            class="fas fa-chevron-down"></i></button>
+                    <div class="cp-dropdown-content">
+                        <div class="cp-dropdown-controls">
+                            <button class="cp-dropdown-action" data-action="select-all">Select All</button>
+                            <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
+                        </div>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
+                            Categories</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Faucet"> Faucet</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="MultiFaucet"> MultiFaucet</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="AutoFaucet"> AutoFaucet</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Mining"> Mining</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Investment"> Investment</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="TestNetFaucet">
+                            TestNetFaucet</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Gaming"> Gaming</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Airdrop"> Airdrop</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="TelegramBot"> TelegramBot</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Investing"> Investing</label>
+                        <label class="cp-dropdown-item"><input type="checkbox" value="Other Projects"> Other
+                            Projects</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="cp-clear-filters-full-btn"
+                    style="flex: 1; padding: 12px; background: #eee; border: none; border-radius: 12px; font-weight: 600;">Clear
+                    All</button>
+                <button id="cp-apply-filters-btn" class="cp-view-btn" style="flex: 2;">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Restoring Sort Modal -->
+    <div id="cp-sort-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <button class="cp-modal-close-btn">×</button>
+            <h2>Sort By</h2>
+            <div class="cp-sort-options-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <label class="cp-dropdown-item cp-sort-option" data-value="date-desc">
+                    <input type="radio" name="sortOrder" value="date-desc" checked> Newest First
+                </label>
+                <label class="cp-dropdown-item cp-sort-option" data-value="date-asc">
+                    <input type="radio" name="sortOrder" value="date-asc"> Oldest First
+                </label>
+                <label class="cp-dropdown-item cp-sort-option" data-value="name-asc">
+                    <input type="radio" name="sortOrder" value="name-asc"> Name (A-Z)
+                </label>
+                <label class="cp-dropdown-item cp-sort-option" data-value="name-desc">
+                    <input type="radio" name="sortOrder" value="name-desc"> Name (Z-A)
+                </label>
+            </div>
         </div>
     </div>
 
+    <!-- App Background -->
     <div class="cp-app-background"
         style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120,119,198,0.3), rgba(255,255,255,0)); pointer-events: none;">
     </div>
@@ -275,13 +375,10 @@
                         aria-label="Refresh Projects"><i class="fas fa-sync-alt"></i></button>
                     <button class="cp-icon-btn" id="cp-guide-btn" title="App Guide" aria-label="Open App Guide"><i
                             class="fas fa-question-circle"></i></button>
-                    <!-- Duplicate Sort Removed -->
                 </div>
             </header>
 
-            <!-- Announcements Section REMOVED -->
-
-            <!-- NEW Date Picker -->
+            <!-- Date Picker -->
             <section class="cp-date-picker-section">
                 <div class="cp-date-picker-wrapper" id="cp-date-picker-wrapper">
                     <div class="cp-date-picker" id="cp-date-picker">
@@ -290,128 +387,44 @@
                 </div>
             </section>
 
-            <div class="cp-source-tabs-wrapper" id="cp-source-tabs-wrapper">
-                <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
+            <!-- Search Row -->
+            <div class="cp-search-row-container">
+                <div class="cp-search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="cp-inline-search-input" class="cp-search-input-inline"
+                        placeholder="Search projects...">
+                    <button class="cp-filter-trigger-btn" id="cp-filter-trigger-btn" aria-label="Filter">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+                <!-- Separate Sort Button -->
+                <button class="cp-sort-trigger-btn" id="cp-sort-trigger-btn" aria-label="Sort">
+                    <i class="fas fa-sort-amount-down-alt"></i>
+                </button>
             </div>
 
-            <div class="cp-filter-bar">
-                <!-- Search Bar Moved to Modal -->
+            <!-- Chips / Bubbles Container -->
+            <div class="cp-chips-container" id="cp-chips-wrapper">
+                <!-- Chips injected by JS -->
+            </div>
 
-                <!-- Token Filter -->
-                <div class="cp-filter-wrapper cp-token-filter-wrapper">
-                    <i class="fas fa-coins"></i>
-                    <select id="cp-token-select" aria-label="Filter by Token">
-                        <option value="all">All Tokens</option>
-                        <option value="BTC">Bitcoin (BTC)</option>
-                        <option value="ETH">Ethereum (ETH)</option>
-                        <option value="USDT">Tether (USDT)</option>
-                        <option value="TRX">Tron (TRX)</option>
-                        <option value="LTC">Litecoin (LTC)</option>
-                        <option value="DOGE">Dogecoin (DOGE)</option>
-                        <option value="SOL">Solana (SOL)</option>
-                        <option value="MATIC">Polygon (MATIC)</option>
-                        <option value="BNB">BNB</option>
-                    </select>
-                </div>
-                <!-- Sort Filter -->
-                <div class="cp-filter-wrapper">
-                    <i class="fas fa-sort-amount-down"></i>
-                    <div class="cp-custom-dropdown" id="cp-sort-custom">
-                        <button class="cp-dropdown-btn" id="cp-sort-btn">Newest First <i
-                                class="fas fa-chevron-down"></i></button>
-                        <div class="cp-dropdown-content">
-                            <!-- Single Select Logic -->
-                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="date-desc" checked>
-                                Newest First</label>
-                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="date-asc"> Oldest
-                                First</label>
-                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="name-asc"> Name
-                                (A-Z)</label>
-                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="name-desc"> Name
-                                (Z-A)</label>
-                        </div>
-                    </div>
-                </div>
+            <!-- Projects Per Page Filter -->
+            <div class="cp-filter-wrapper cp-per-page-filter-wrapper" style="margin-bottom: 15px;">
+                <i class="fas fa-list-ol"></i>
+                <select id="cp-per-page-select" aria-label="Projects per page">
+                    <option value="10">10 / page</option>
+                    <option value="25">25 / page</option>
+                    <option value="50">50 / page</option>
+                </select>
+            </div>
 
-                <!-- Wallet Filter -->
-                <div class="cp-filter-wrapper cp-wallet-filter-wrapper">
-                    <i class="fas fa-wallet"></i>
-                    <div class="cp-custom-dropdown" id="cp-wallet-custom">
-                        <button class="cp-dropdown-btn" id="cp-wallet-btn">All Wallets <i
-                                class="fas fa-chevron-down"></i></button>
-                        <div class="cp-dropdown-content">
-                            <div class="cp-dropdown-controls">
-                                <button class="cp-dropdown-action" data-action="select-all">Select All</button>
-                                <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
-                            </div>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
-                                Wallets</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Binance"> Binance</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Paytm"> Paytm</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="FaucetPay"> FaucetPay</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="PhonePe"> PhonePe</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Cwallet"> Cwallet</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Payeer"> Payeer</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Paypal"> Paypal</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Direct Wallet"> Direct
-                                Wallet</label>
-                        </div>
-                    </div>
-                </div>
+            <div id="cp-wallet-dynamic-link-container" style="width: 100%; margin-top: 15px; display: none;"></div>
 
-                <!-- Category Filter -->
-                <div class="cp-filter-wrapper cp-category-filter-wrapper">
-                    <i class="fas fa-layer-group"></i>
-                    <div class="cp-custom-dropdown" id="cp-category-custom">
-                        <button class="cp-dropdown-btn" id="cp-category-btn">All Categories <i
-                                class="fas fa-chevron-down"></i></button>
-                        <div class="cp-dropdown-content">
-                            <div class="cp-dropdown-controls">
-                                <button class="cp-dropdown-action" data-action="select-all">Select All</button>
-                                <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
-                            </div>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
-                                Categories</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Faucet"> Faucet</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="MultiFaucet">
-                                MultiFaucet</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="AutoFaucet">
-                                AutoFaucet</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Mining"> Mining</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Investment">
-                                Investment</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="TestNetFaucet">
-                                TestNetFaucet</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Gaming"> Gaming</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Airdrop"> Airdrop</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="TelegramBot">
-                                TelegramBot</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Investing"> Investing</label>
-                            <label class="cp-dropdown-item"><input type="checkbox" value="Other Projects"> Other
-                                Projects</label>
-                        </div>
-                    </div>
-                </div>
+            <hr style="width: 100%; border: 0; border-top: 1px solid var(--cp-border-color); margin: 25px 0 10px 0;">
 
-                <!-- Projects Per Page Filter -->
-                <div class="cp-filter-wrapper cp-per-page-filter-wrapper">
-                    <i class="fas fa-list-ol"></i>
-                    <select id="cp-per-page-select" aria-label="Projects per page">
-                        <option value="10">10 / page</option>
-                        <option value="25">25 / page</option>
-                        <option value="50">50 / page</option>
-                    </select>
-                </div>
-
-                <div id="cp-wallet-dynamic-link-container" style="width: 100%; margin-top: 15px; display: none;"></div>
-
-                <hr
-                    style="width: 100%; border: 0; border-top: 1px solid var(--cp-border-color); margin: 25px 0 10px 0;">
-
-                <div id="cp-active-filter-container" style="display: none;">
-                    <span id="cp-active-filter-tag"></span>
-                    <button id="cp-clear-filter-btn">×</button>
-                </div>
+            <div id="cp-active-filter-container" style="display: none;">
+                <span id="cp-active-filter-tag"></span>
+                <button id="cp-clear-filter-btn">×</button>
             </div>
 
             <h2 class="sr-only">Project List</h2>
@@ -420,6 +433,7 @@
             <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
                 <button id="cp-load-more-btn">Load More</button>
             </div>
+            <!-- Main Ends Later -->
 
             <!-- Video Embed -->
             <section class="cp-video-section" style="margin-bottom: 25px;">
@@ -429,7 +443,8 @@
                 <div style="text-align: right; margin-top: 5px;">
                     <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank"
                         style="font-size: 0.85rem; color: var(--cp-purple); text-decoration: none;"><i
-                            class="fas fa-video"></i> Watch more on Odysee</a>
+                            class="fas fa-video"></i>
+                        Watch more on Odysee</a>
                 </div>
             </section>
 
@@ -438,12 +453,14 @@
                 <ul>
                     <li><strong>NEW:</strong> Filter projects by Category using the new dropdown menu!</li>
                     <li>Modern horizontal calendar view implemented!</li>
-                    <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
+                    <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh
+                        new UI!</li>
                 </ul>
                 <div class="cp-info-actions">
                     <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send
                         Feedback / Report Bugs</a>
-                    <button id="cp-about-btn" class="cp-info-link"><i class="fas fa-info-circle"></i> About This
+                    <button id="cp-about-btn" class="cp-info-link"><i class="fas fa-info-circle"></i> About
+                        This
                         App</button>
                 </div>
             </section>
@@ -496,15 +513,18 @@
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
                     <div class="cp-stat-item">
                         <h3 id="cp-stat-projects" style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">0</h3>
-                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Projects</p>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">
+                            Projects</p>
                     </div>
                     <div class="cp-stat-item">
                         <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">15+</h3>
-                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Sources</p>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">
+                            Sources</p>
                     </div>
                     <div class="cp-stat-item">
                         <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">10k+</h3>
-                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Users</p>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">
+                            Users</p>
                     </div>
                 </div>
             </section>
@@ -517,18 +537,32 @@
             </div>
 
             <div class="cp-footer-content">
-                <p><strong>Disclaimer:</strong> By using this website, you agree to our Terms and Conditions and Privacy
-                    Policy. TTEarnCrypto has no affiliation or relationship with any coin, business, or project unless
-                    explicitly stated otherwise. TTEarnCrypto is only an informational website that provides news about
-                    coins, blockchain companies, blockchain products, and blockchain events. None of the information you
-                    read on TTEarnCrypto should be taken as investment advice. Buying and trading cryptocurrencies
-                    should be considered a high-risk activity. Please do your own diligence before making any investment
-                    decisions. TTEarnCrypto is not accountable, directly or indirectly, for any damage or loss incurred,
-                    alleged or otherwise, in connection with the use or reliance on any content you read on the site.
+                <p style="color: #444455;"><strong>Disclaimer:</strong> By using this website, you agree
+                    to our Terms
+                    and Conditions and Privacy
+                    Policy. TTEarnCrypto has no affiliation or relationship with any coin, business, or
+                    project unless
+                    explicitly stated otherwise. TTEarnCrypto is only an informational website that
+                    provides news about
+                    coins, blockchain companies, blockchain products, and blockchain events. None of the
+                    information you
+                    read on TTEarnCrypto should be taken as investment advice. Buying and trading
+                    cryptocurrencies
+                    should be considered a high-risk activity. Please do your own diligence before
+                    making any investment
+                    decisions. TTEarnCrypto is not accountable, directly or indirectly, for any damage
+                    or loss incurred,
+                    alleged or otherwise, in connection with the use or reliance on any content you read
+                    on the site.
                 </p>
-                <p><strong>Affiliate Disclosure:</strong> This website may contain affiliate links. We may earn a
-                    commission if you sign up or make a purchase through these links, at no additional cost to you.</p>
-                <p class="cp-creator-link">Data provided "as is" for informational purposes. | Made By F9XR & AKM</p>
+                <p style="color: #444455;"><strong>Affiliate Disclosure:</strong> This website may
+                    contain affiliate
+                    links. We may earn a
+                    commission if you sign up or make a purchase through these links, at no additional
+                    cost to you.</p>
+                <p class="cp-creator-link" style="color: #444455;">Data provided "as is" for
+                    informational purposes.
+                    Made By F9XR & AKM</p>
             </div>
         </footer>
 
@@ -644,8 +678,8 @@
         .cp-header-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
-            /* Reduced gap for better fit */
+            gap: 20px;
+            /* Increased gap for better separator spacing */
         }
 
         .cp-icon-btn {
@@ -654,8 +688,24 @@
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
-            padding: 5px;
+            padding: 5px 12px;
+            /* More padding */
             transition: transform 0.2s;
+            position: relative;
+        }
+
+        /* Improved Vertical Separator for Header Icons */
+        .cp-icon-btn:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            /* Centered in the 20px gap */
+            top: 50%;
+            transform: translateY(-50%);
+            height: 18px;
+            /* Taller separator */
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         #cp-refresh-btn {
@@ -688,27 +738,142 @@
             color: var(--cp-purple);
         }
 
-        .cp-sort-container {
-            position: relative;
+        /* === Search & Filter Row (Round 9) === */
+        .cp-search-row-container {
             display: flex;
             align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 0 5px;
+            position: sticky;
+            /* Sticky Search */
+            top: 70px;
+            /* Below header */
+            z-index: 99;
         }
 
-        #cp-sort-select {
-            position: absolute;
-            top: 0;
-            right: 0;
-            opacity: 0;
-            width: 36px;
-            height: 36px;
+        .cp-search-input-wrapper {
+            flex-grow: 1;
+            position: relative;
+            background: #fff;
+            border-radius: 9999px;
+            /* Pill shape */
+            border: 1px solid var(--cp-border-color);
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            /* Slight shadow */
+        }
+
+        .cp-search-input-wrapper i.fa-search {
+            color: #888;
+            font-size: 1rem;
+            margin-right: 12px;
+        }
+
+        .cp-search-input-inline {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--cp-primary-text);
+            padding: 10px 0;
+            background: transparent;
+        }
+
+        .cp-filter-trigger-btn {
+            background: none;
+            border: none;
+            color: var(--cp-primary-text);
             cursor: pointer;
-        }
-
-        #cp-filter-icon {
-            font-size: 1.2rem;
-            color: var(--cp-secondary-text);
             padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid #eee;
+            padding-left: 15px;
+            margin-left: 5px;
+            font-size: 1.1rem;
+        }
+
+        .cp-sort-trigger-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background-color: #dce3f2;
+            /* Light accent similar to image */
+            border: none;
+            color: var(--cp-primary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
             cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .cp-sort-trigger-btn:hover {
+            background-color: #ccd6ea;
+        }
+
+        /* === Chips / Bubbles Row (Round 9) === */
+        .cp-chips-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            /* Horizontal Scroll */
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+            padding-left: 5px;
+            /* Alignment */
+        }
+
+        .cp-chips-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cp-chip {
+            padding: 10px 20px;
+            border-radius: 12px;
+            /* Slightly rectangular chips like image? Or pill? Image is rect-rounded */
+            background-color: #fff;
+            border: 1px solid var(--cp-border-color);
+            color: var(--cp-primary-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            flex-shrink: 0;
+        }
+
+        .cp-chip:hover {
+            background-color: #f8f9fa;
+        }
+
+        .cp-chip.active {
+            background-color: #C1D9B7;
+            /* Greenish/Sage color from image */
+            color: #1a1a1a;
+            border-color: #C1D9B7;
+            font-weight: 600;
+        }
+
+        /* Modal for Filters Content */
+        .cp-filter-modal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-bottom: 20px;
         }
 
         /* Horizontal Date Picker */
@@ -1411,29 +1576,42 @@
             padding: 10px;
             cursor: pointer;
             transition: color 0.2s ease;
+            flex: 1;
+            /* Distribute space evenly */
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .cp-nav-item:hover {
-            color: var(--cp-purple);
-        }
-
-        .cp-nav-item.active {
-            color: var(--cp-purple);
+        /* Vertical Separator for Bottom Nav */
+        .cp-nav-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 1px;
+            background-color: var(--cp-border-color);
         }
 
         .cp-nav-item-main {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            /* Slightly smaller for better fit */
+            height: 50px;
             background: var(--cp-purple);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: -35px;
+            margin-top: -30px;
             box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4);
             border: 4px solid var(--cp-bg);
             transition: transform 0.2s ease;
+            flex: 0 0 50px;
+            /* Fixed width in flex container */
         }
 
         .cp-nav-item-main:hover {
@@ -2158,28 +2336,105 @@
             line-height: 1.7;
             /* Improved line spacing */
         }
+
+        /* Claim List UI Polish */
+        .cp-claim-list-item {
+            background: var(--cp-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid var(--cp-border-color);
+        }
+
+        .cp-claim-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cp-claim-item-title {
+            font-weight: 600;
+            color: var(--cp-primary-text);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .cp-claim-remove-btn {
+            background: none;
+            border: none;
+            color: var(--cp-red);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cp-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--cp-border-color);
+            align-items: center;
+            flex-wrap: wrap;
+            /* Ensure wrapping on small screens */
+            justify-content: space-between;
+        }
+
+        @media (max-width: 360px) {
+            .cp-card-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cp-card-action-buttons {
+                justify-content: space-between;
+                margin-top: 10px;
+            }
+
+            .cp-view-btn {
+                width: 100%;
+            }
+        }
+
+        /* Round 9 Tweaks - User Requests */
+        .cp-chip.active {
+            background-color: var(--cp-purple) !important;
+            color: white !important;
+            border-color: var(--cp-purple) !important;
+        }
+
+        /* Remove separator between Chat and Search (Chat is 2nd item) */
+        .cp-bottom-nav .cp-nav-item:nth-child(2)::after {
+            display: none !important;
+            content: none !important;
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // === DOM Elements ===
             const appContainer = document.querySelector('.cp-app-container');
-            const sourceTabsContainer = document.getElementById('cp-source-tabs');
-            const sourceTabsWrapper = document.getElementById('cp-source-tabs-wrapper');
-            const sorted = []; // placeholder
+            const chipsWrapper = document.getElementById('cp-chips-wrapper'); // Replaces sourceTabsContainer
+            const sorted = [];
 
-            // Search Modal Elements
-            const searchModal = document.getElementById('cp-search-modal');
-            const searchInput = document.getElementById('cp-search-input');
-            const searchClearBtn = document.getElementById('cp-search-clear-input-btn'); // Renamed ID in HTML
-            const searchCloseBtn = document.getElementById('cp-search-close-btn');
+            // Search & Filter Elements (Round 9)
+            const inlineSearchInput = document.getElementById('cp-inline-search-input');
+            const filterTriggerBtn = document.getElementById('cp-filter-trigger-btn');
+            const sortTriggerBtn = document.getElementById('cp-sort-trigger-btn');
 
-            const sortSelect = document.getElementById('cp-sort-select');
-            // const walletSelect = document.getElementById('cp-wallet-select'); // Removed
-            // const categorySelect = document.getElementById('cp-category-select'); // Removed
-            const tokenSelect = document.getElementById('cp-token-select'); // NEW
+            const filterModal = document.getElementById('cp-filter-modal');
+            const sortModal = document.getElementById('cp-sort-modal');
+            const applyFiltersBtn = document.getElementById('cp-apply-filters-btn');
+
+            // const searchModal = document.getElementById('cp-search-modal'); // REMOVED (Inline now)
+            // const searchInput = document.getElementById('cp-search-input'); // Remapped to inline
+            // const searchClearBtn = ... // Inline logic handles clearing less explicitly or uses 'x'
+
+            const tokenSelect = document.getElementById('cp-token-select');
             const walletFilterWrapper = document.querySelector('.cp-wallet-filter-wrapper');
-            // const categoryFilterWrapper = document.querySelector('.cp-category-filter-wrapper'); // No longer needed to hide separately if we manage properly
             const perPageSelect = document.getElementById('cp-per-page-select');
             const listBody = document.getElementById('cp-list-body');
             const feedbackMessage = document.getElementById('cp-feedback-message');
@@ -2201,6 +2456,9 @@
             const claimListModal = document.getElementById('cp-claim-list-modal');
             const networkErrorModal = document.getElementById('cp-network-error-modal');
 
+            // Search Input mapping for existing logic
+            const searchInput = inlineSearchInput;
+
             // === Buttons ===
             const guideBtn = document.getElementById('cp-guide-btn');
             const aboutBtn = document.getElementById('cp-about-btn');
@@ -2213,9 +2471,11 @@
             const navSettings = document.getElementById('cp-nav-settings');
 
             // === Config & State ===
+            // === Config & State ===
             const NEWS_SOURCE = { name: "News & Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" };
             const LEARN_SOURCE = { name: "Learn", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" };
             const SOURCE_CONFIG = [
+                { name: "All", icon: "fa-border-all", url: "ALL_AGGREGATE" }, // Special "All" Source
                 { name: "Earning", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
                 { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
                 { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
@@ -2276,28 +2536,49 @@
             }
 
             function renderClaimList() {
-                const contentEl = document.getElementById('cp-claim-list-content');
                 const list = getClaimList();
+                const container = document.getElementById('cp-claim-list-content');
+                const emptyState = document.getElementById('cp-claim-list-empty');
+
+                // Clear current content but keep the empty state div if it exists (it's hidden by default)
+                // Actually, let's rebuild content safely
+                container.innerHTML = '';
+
+                // If empty state div doesn't exist, we can re-add it or just manage visibility
+                // Since we cleared innerHTML, let's just use the JS logic fully
 
                 if (list.length === 0) {
-                    contentEl.innerHTML = `<div class="cp-feedback-message"><i class="far fa-folder-open"></i><p>Your claim list is empty.</p></div>`;
+                    container.innerHTML = `
+                    <div id="cp-claim-list-empty" style="text-align: center; padding: 40px 20px;">
+                        <i class="far fa-bookmark" style="font-size: 3rem; color: var(--cp-border-color); margin-bottom: 20px;"></i>
+                        <p style="color: var(--cp-secondary-text);">No projects saved yet.</p>
+                    </div>`;
                     return;
                 }
 
-                contentEl.innerHTML = list.map(item => `
-            <div class="cp-claim-item" data-id="${item.id}">
-                <div class="cp-claim-item-header">
-                    <h4 class="cp-claim-item-title">${item.name}</h4>
-                    <button class="cp-claim-item-remove-btn" title="Remove from list"><i class="fas fa-trash-alt"></i></button>
-                </div>
-                <a href="${item.url}" target="_blank" class="cp-claim-item-link">View Project</a>
-                <textarea class="cp-claim-item-notes" placeholder="Add your notes here...">${item.notes || ''}</textarea>
-                 <div class="cp-claim-item-date-picker">
-                    <label for="claim-date-${item.id}">Next Claim:</label>
-                    <input type="date" id="claim-date-${item.id}" value="${item.claimDate || ''}">
-                </div>
-            </div>
-        `).join('');
+                list.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'cp-claim-list-item';
+                    el.setAttribute('data-id', item.id);
+                    el.innerHTML = `
+                        <div class="cp-claim-item-header">
+                            <a href="${item.url}" target="_blank" class="cp-claim-item-title">${item.name}</a>
+                            <button class="cp-claim-remove-btn cp-claim-item-remove-btn" title="Remove"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--cp-secondary-text);">
+                            Added: ${item.claimDate ? new Date(item.claimDate).toLocaleDateString() : 'No date set'}
+                        </div>
+                        <textarea class="cp-claim-item-notes" placeholder="Notes...">${item.notes || ''}</textarea>
+                         <div class="cp-claim-item-date-picker">
+                            <label>Claim Date:</label>
+                            <input type="date" value="${item.claimDate || ''}">
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 5px;">
+                            <a href="${item.url}" target="_blank" class="cp-view-btn" style="padding: 8px; font-size: 0.85rem;">Visit Project</a>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
             }
 
             // === Main Functions ===
@@ -2408,8 +2689,8 @@
                 if (isNewData) currentPage = 1;
                 let projects = [...allProjects];
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                const sortInput = document.querySelector('input[name="sort"]:checked');
-                const sortOrder = sortInput ? sortInput.value : 'date-desc';
+                const sortInput = window.currentSortOrder || 'date-desc';
+                const sortOrder = sortInput; // Simplified since we use variable now
 
                 const selectedWallets = getSelectedValues('cp-wallet-custom');
                 const selectedCategories = getSelectedValues('cp-category-custom');
@@ -2492,54 +2773,86 @@
                 }
             }
 
+            // Modified loadSourceData to handle "All"
             const loadSourceData = async (source, forceReload = false) => {
                 currentSource = source;
                 listBody.innerHTML = '';
                 renderSkeletonLoaders();
                 hideFeedback();
 
-                let projects;
-                if (dataCache[source.url] && !forceReload) {
-                    projects = dataCache[source.url];
-                } else {
+                let projects = [];
+
+                if (source.url === 'ALL_AGGREGATE') {
+                    // Aggregation Logic (Round 9)
                     try {
-                        const callbackName = `cpJsonpCallback_${Date.now()}`;
-                        const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName);
-                        projects = processEntries(data.feed.entry, source);
-                        dataCache[source.url] = projects;
+                        // All non-aggregate non-info sources
+                        const sourcesToFetch = SOURCE_CONFIG.filter(s => s.url !== 'ALL_AGGREGATE');
+
+                        // Fetch concurrently
+                        const fetchPromises = sourcesToFetch.map(s => {
+                            if (dataCache[s.url] && !forceReload) return Promise.resolve(dataCache[s.url]);
+                            // Unique callback for safety
+                            const cb = `cpJsonpCallback_${Math.floor(Math.random() * 10000000)}`;
+                            return fetchJsonp(`${s.url}/feeds/posts/summary?alt=json-in-script&max-results=50`, cb)
+                                .then(data => {
+                                    const p = processEntries(data.feed.entry, s);
+                                    dataCache[s.url] = p; // Cache individually
+                                    return p;
+                                });
+                        });
+
+                        const results = await Promise.all(fetchPromises);
+                        results.forEach(res => projects = projects.concat(res));
+
+                        // Sort aggregated by date default (Newest First)
+                        projects.sort((a, b) => b.publishedDate - a.publishedDate);
+
                     } catch (error) {
-                        console.error("Fetch Error:", error);
-                        showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
+                        console.error("Aggregation Error:", error);
+                        showFeedback('Could not load all projects.', 'fa-exclamation-triangle');
                         return;
                     }
+                } else {
+                    // Single Source Logic
+                    if (dataCache[source.url] && !forceReload) {
+                        projects = dataCache[source.url];
+                    } else {
+                        try {
+                            const callbackName = `cpJsonpCallback_${Date.now()}`;
+                            const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName);
+                            projects = processEntries(data.feed.entry, source);
+                            dataCache[source.url] = projects;
+                        } catch (error) {
+                            console.error("Fetch Error:", error);
+                            showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
+                            return;
+                        }
+                    }
                 }
+
                 allProjects = projects;
                 applyFiltersAndSort(true);
                 renderSourceSpecificTags(allProjects);
             };
 
-            function renderSourceTabs() {
-                sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
+            function renderChips() {
+                chipsWrapper.innerHTML = SOURCE_CONFIG.map(source =>
+                    `<button class="cp-chip" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`
+                ).join('');
             }
 
             // Helper to adjust UI based on the selected source
+            // Helper to adjust UI based on the selected source
             const updateLayoutForSource = (source) => {
+                // Logic mostly same, "All" behaves like Earning for filters
                 const isInformational = source.name === NEWS_SOURCE.name || source.name === LEARN_SOURCE.name;
                 const showFilters = !isInformational;
 
-                // Hide/Show Filters
-                walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
-                // Only show Category filter for Earning tab
-                document.querySelector('.cp-category-filter-wrapper').style.display = (showFilters && source.name === 'Earning') ? 'flex' : 'none';
-                document.querySelector('.cp-token-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
+                // Show filters for Earning, Investment, Casino, Airdrops AND All
+                // Hide only for News/Learn
 
-                // Hide/Show Filters
-                walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
-                // Only show Category filter for Earning tab
-                document.querySelector('.cp-category-filter-wrapper').style.display = (showFilters && source.name === 'Earning') ? 'flex' : 'none';
-                document.querySelector('.cp-token-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
-
-                // REMOVED Auto-scroll to the content area
+                // Re-enable Auto-scroll (Round 8 Request)
+                // Scroll Chips container to active chip?
             };
 
             function setupBanners() {
@@ -2642,8 +2955,30 @@
 
             function init() {
                 loadSettings();
-                renderSourceTabs();
+                renderChips();
                 setupBanners();
+
+                // === First Load Logic (Round 9 Fix) ===
+                // Use "Earning" as default if nothing else selected, OR "All" if preferred? 
+                // Let's use "All" as default if intended, or "Earning" based on established default.
+                // Assuming "Earning" is the main source usually.
+                const DEFAULT_SOURCE = SOURCE_CONFIG.find(s => s.name === "Earning") || SOURCE_CONFIG[1];
+
+                // Simulate click on default or "All"
+                const initialChip = chipsWrapper.querySelector(`.cp-chip[data-url="${DEFAULT_SOURCE.url}"]`);
+                if (initialChip) initialChip.click();
+
+                // Hook up Chips events
+                chipsWrapper.querySelectorAll('.cp-chip').forEach(chip => chip.addEventListener('click', (e) => {
+                    chipsWrapper.querySelectorAll('.cp-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const source = SOURCE_CONFIG.find(s => s.url === e.target.dataset.url);
+                    if (source) {
+                        loadSourceData(source);
+                        updateLayoutForSource(source);
+                    }
+                }));
+
                 // Refresh Button Logic
                 const refreshBtn = document.getElementById('cp-refresh-btn');
                 refreshBtn.addEventListener('click', () => {
@@ -2660,25 +2995,15 @@
                 setupPullToRefresh();
                 renderDatePicker();
 
-                sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
-                    navItems.forEach(i => i.classList.remove('active'));
-                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
-                    e.currentTarget.classList.add('active');
-                    const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
-                    if (source) {
-                        loadSourceData(source);
-                        updateLayoutForSource(source);
-                    }
-                }));
-
                 const setupNavLink = (el, action, isModal = false, source = null) => {
                     el.addEventListener('click', (e) => {
                         e.preventDefault();
                         if (!isModal) {
-                            sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                            chipsWrapper.querySelector('.active')?.classList.remove('active');
                             navItems.forEach(i => i.classList.remove('active'));
                             el.classList.add('active');
                             if (source) {
+                                loadSourceData(source);
                                 updateLayoutForSource(source);
                             }
                         }
@@ -2686,250 +3011,108 @@
                     });
                 };
 
-                setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE), false, LEARN_SOURCE);
-                setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE), false, NEWS_SOURCE);
+                setupNavLink(navLearn, () => { }, false, LEARN_SOURCE); // Helper handles load
+                setupNavLink(navNews, () => { }, false, NEWS_SOURCE);
                 setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
                 setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
 
-                // Search Modal Trigger from Nav
-                document.querySelector('.cp-nav-item-main').onclick = (e) => {
-                    e.preventDefault();
-                    searchModal.style.display = 'flex';
-                    setTimeout(() => searchInput.focus(), 100); // Focus input
+                // Filter & Sort Triggers
+                filterTriggerBtn.onclick = () => filterModal.style.display = 'flex';
+                sortTriggerBtn.onclick = () => sortModal.style.display = 'flex';
+
+                applyFiltersBtn.onclick = () => {
+                    applyFiltersAndSort(true);
+                    filterModal.style.display = 'none';
                 };
 
-                searchCloseBtn.onclick = () => searchModal.style.display = 'none';
-
-                perPageSelect.addEventListener('change', () => {
-                    projectsPerPage = parseInt(perPageSelect.value, 10);
-                    applyFiltersAndSort(true);
+                // Sort Options (Radio behavior)
+                // We need to properly select the radio input
+                const sortRadios = document.querySelectorAll('input[name="sortOrder"]');
+                sortRadios.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        window.currentSortOrder = e.target.value;
+                        applyFiltersAndSort(true);
+                        sortModal.style.display = 'none';
+                    });
                 });
 
-                searchInput.addEventListener('input', () => {
-                    searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
+                // Clear Filter Button in Modal
+                document.getElementById('cp-clear-filters-full-btn').addEventListener('click', () => {
+                    document.querySelectorAll('.cp-dropdown-item input[type="checkbox"]').forEach(cb => cb.checked = false);
+                    document.getElementById('cp-wallet-custom').querySelector('input[value="all"]').checked = true;
+                    document.getElementById('cp-category-custom').querySelector('input[value="all"]').checked = true;
+                    tokenSelect.value = 'all';
+                    // Reset sort? maybe
+                    applyFiltersAndSort(true);
+                    filterModal.style.display = 'none';
+                });
+
+                // Inline Search Listener
+                inlineSearchInput.addEventListener('input', () => {
+                    // Debounce
                     clearTimeout(searchDebounceTimer);
-                    searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300);
+                    searchDebounceTimer = setTimeout(() => {
+                        searchInput.value = inlineSearchInput.value; // Sync with logic var
+                        applyFiltersAndSort();
+                    }, 300);
                 });
 
-                searchClearBtn.addEventListener('click', () => {
-                    searchInput.value = '';
-                    applyFiltersAndSort(true);
-                    searchClearBtn.style.display = 'none';
-                    searchInput.focus();
+
+                // Render Saved Claims on open
+                claimListBtn.addEventListener('click', () => {
+                    renderClaimList();
+                    claimListModal.style.display = 'flex';
                 });
-                // sortSelect.addEventListener('change', () => applyFiltersAndSort(true)); // Removed
-                tokenSelect.addEventListener('change', () => applyFiltersAndSort(true));
 
-                // Custom Dropdown Initialization
-                const setupDropdown = (id, btnId, label, isSingleSelect = false) => {
-                    const dropdown = document.getElementById(id);
-                    const btn = document.getElementById(btnId);
-                    const inputs = dropdown.querySelectorAll('input');
-                    const controls = dropdown.querySelector('.cp-dropdown-controls');
+                // Guide, About etc.
+                guideBtn.addEventListener('click', () => guideModal.style.display = 'flex');
+                aboutBtn.addEventListener('click', () => aboutModal.style.display = 'flex');
 
-                    // Toggle Dropdown
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        // Close others
-                        document.querySelectorAll('.cp-custom-dropdown').forEach(d => { if (d !== dropdown) d.classList.remove('active'); });
-                        dropdown.classList.toggle('active');
-                    });
-
-                    const updateButtonText = () => {
-                        if (isSingleSelect) {
-                            const checked = dropdown.querySelector('input:checked');
-                            const text = checked ? checked.parentElement.textContent.trim() : label;
-                            btn.innerHTML = `${text} <i class="fas fa-chevron-down"></i>`;
-                            return;
-                        }
-
-                        const allInput = dropdown.querySelector('input[value="all"]');
-                        const otherInputs = Array.from(inputs).filter(i => i.value !== 'all');
-                        const checkedCount = otherInputs.filter(i => i.checked).length;
-
-                        if (allInput && allInput.checked) {
-                            btn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
-                        } else if (checkedCount === 0) {
-                            // Fallback if nothing checked (shouldn't happen with logic below but good for safety)
-                            btn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
-                        } else if (checkedCount < 3) {
-                            // Chips-like text: "Binance, Paytm"
-                            const names = otherInputs.filter(i => i.checked).map(i => i.parentElement.textContent.trim()).join(', ');
-                            btn.innerHTML = `${names} <i class="fas fa-chevron-down"></i>`;
-                        } else {
-                            btn.innerHTML = `${checkedCount} Selected <i class="fas fa-chevron-down"></i>`;
-                        }
-                    };
-
-                    // Control Actions (Select All / Clear All)
-                    if (controls && !isSingleSelect) {
-                        controls.addEventListener('click', (e) => {
-                            if (e.target.dataset.action === 'select-all') {
-                                inputs.forEach(i => i.checked = true);
-                                // If "All" is checked, individual logic might vary, but usually "All Wallets" implies everything or strict content.
-                                // In this code "all" value logic is: if 'all' is checked, ignore others.
-                                // But "Select All" usually means check every box. 
-                                // Let's check everything including 'all'.
-                            } else if (e.target.dataset.action === 'clear-all') {
-                                inputs.forEach(i => i.checked = false);
-                                // Default to 'all' if clearing? Or empty? User request says "Clear All". 
-                                // If empty, filter might show nothing. Let's default to check 'all' so user sees data.
-                                // Actually, standard behavior is clear selection. If empty = show nothing or everything?
-                                // Let's check 'all' input to be safe so user sees data.
-                                const allInput = dropdown.querySelector('input[value="all"]');
-                                if (allInput) allInput.checked = true;
-                            }
-                            updateButtonText();
-                            applyFiltersAndSort(true);
-                        });
+                // Clear Cache
+                clearCacheBtn.addEventListener('click', () => {
+                    if (confirm('Clear all local data and cache?')) {
+                        localStorage.clear();
+                        window.location.reload();
                     }
-
-                    // Input Change Logic
-                    inputs.forEach(input => {
-                        input.addEventListener('change', () => {
-                            if (isSingleSelect) {
-                                // Ensure only one is checked for single select
-                                inputs.forEach(i => {
-                                    if (i !== input) i.checked = false;
-                                });
-                                // Close on selection
-                                dropdown.classList.remove('active');
-                            } else {
-                                if (input.value === 'all') {
-                                    if (input.checked) {
-                                        inputs.forEach(i => { if (i !== input) i.checked = false; });
-                                    }
-                                } else {
-                                    if (input.checked) {
-                                        const allInput = dropdown.querySelector('input[value="all"]');
-                                        if (allInput) allInput.checked = false;
-                                    } else {
-                                        const anyChecked = Array.from(inputs).some(i => i.value !== 'all' && i.checked);
-                                        if (!anyChecked) {
-                                            const allInput = dropdown.querySelector('input[value="all"]');
-                                            if (allInput) allInput.checked = true;
-                                        }
-                                    }
-                                }
-                            }
-                            updateButtonText();
-                            applyFiltersAndSort(true);
-                        });
-                    });
-                    updateButtonText(); // Initial button text setup
-                };
-
-                setupDropdown('cp-wallet-custom', 'cp-wallet-btn', 'All Wallets');
-                setupDropdown('cp-category-custom', 'cp-category-btn', 'All Categories');
-                setupDropdown('cp-sort-custom', 'cp-sort-btn', 'Newest First', true); // Custom Sort Init
-
-                // Close dropdowns on outside click
-                window.addEventListener('click', () => {
-                    document.querySelectorAll('.cp-custom-dropdown').forEach(d => d.classList.remove('active'));
                 });
 
-                // Replaced Infinite Scroll with Load More Button
+                // Load More
                 loadMoreBtn.addEventListener('click', () => {
                     currentPage++;
-                    const newProjects = displayedProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
-                    renderListItems(newProjects, true);
-
-                    if (displayedProjects.length <= currentPage * projectsPerPage) {
+                    const end = currentPage * projectsPerPage;
+                    const nextBatch = displayedProjects.slice(end - projectsPerPage, end);
+                    renderListItems(nextBatch, true);
+                    if (displayedProjects.length <= end) {
                         paginationContainer.style.display = 'none';
                     }
                 });
 
-                // Ensure button is initially visible/hidden correctly in applyFiltersAndSort
-                if (loadMoreBtn) loadMoreBtn.style.display = 'none'; // Initial state before data loads
+                // Close Modals
+                document.querySelectorAll('.cp-close-modal').forEach(btn =>
+                    btn.addEventListener('click', (e) => e.target.closest('.cp-modal').style.display = 'none'));
 
-                clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
-                clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
-
-                listBody.addEventListener('click', (e) => {
-                    const tagBtn = e.target.closest('.cp-tag');
-                    if (tagBtn) { activeTag = tagBtn.dataset.tag; applyFiltersAndSort(true); return; }
-                    const copyBtn = e.target.closest('.cp-copy-btn');
-                    if (copyBtn) { navigator.clipboard.writeText(copyBtn.dataset.url).then(() => { copyBtn.innerHTML = '<i class="fas fa-check"></i>'; copyBtn.disabled = true; setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy"></i>'; copyBtn.disabled = false; }, 1500); }); return; }
-                    const shareBtn = e.target.closest('.cp-share-btn');
-                    if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
-                    const saveBtn = e.target.closest('.cp-save-btn');
-                    if (saveBtn) {
-                        const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url };
-                        const i = saveBtn.querySelector('i');
-                        if (getClaimList().some(item => item.id === p.id)) {
-                            removeFromClaimList(p.id);
-                            i.className = 'far fa-bookmark';
-                            saveBtn.title = 'Add to Claim List';
-                        } else {
-                            addToClaimList(p);
-                            i.className = 'fas fa-bookmark';
-                            saveBtn.title = 'Remove from Claim List';
-                            renderClaimList();
-                            claimListModal.style.display = 'flex';
-                        }
-                        return;
-                    }
+                window.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('cp-modal')) e.target.style.display = 'none';
                 });
 
-                document.getElementById('cp-tags-header').addEventListener('click', () => {
-                    allTagsSection.classList.toggle('collapsed');
-                });
-
-                allTagsSection.addEventListener('click', e => { if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
-
-                document.querySelector('.cp-features-grid').addEventListener('click', e => {
-                    e.preventDefault(); const card = e.target.closest('.cp-feature-card'); if (!card) return;
-                    switch (card.id) {
-                        case 'feature-latest': sortSelect.value = 'date-desc'; sortSelect.dispatchEvent(new Event('change')); window.scrollTo({ top: 0, behavior: 'smooth' }); break;
-                        case 'feature-filter': searchInput.focus(); searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); break;
-                        case 'feature-customize': settingsModal.style.display = 'flex'; break;
-                        case 'feature-mobile': guideModal.style.display = 'flex'; break;
-                    }
-                });
-
-                guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
-                aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
-                claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; if (!localStorage.getItem(CLAIM_GUIDE_SEEN_KEY)) { document.getElementById('cp-claim-list-guide').style.display = 'block'; localStorage.setItem(CLAIM_GUIDE_SEEN_KEY, 'true'); } else { document.getElementById('cp-claim-list-guide').style.display = 'none'; } });
-
-                [chatModal, settingsModal, guideModal, aboutModal, claimListModal].forEach(m => { m.querySelector('.cp-modal-close-btn').addEventListener('click', () => { m.style.display = 'none'; }); m.addEventListener('click', e => { if (e.target === m) m.style.display = 'none'; }); });
-
-                claimListModal.addEventListener('click', e => { if (e.target.closest('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className = 'far fa-bookmark'; cardBtn.title = 'Add to Claim List'; } } });
-                claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
-                claimListModal.addEventListener('change', e => { if (e.target.matches('input[type="date"]')) { const id = e.target.closest('.cp-claim-item').dataset.id; updateClaimDate(id, e.target.value); } });
-
-                const annSection = document.getElementById('cp-announcement-section');
-                const annID = 'announcement_v2.6';
-                if (localStorage.getItem('closedAnnouncement') === annID) annSection.style.display = 'none';
-                document.getElementById('cp-announcement-close-btn').addEventListener('click', () => { annSection.style.display = 'none'; localStorage.setItem('closedAnnouncement', annID); });
-
-                document.getElementById('cp-setting-color').addEventListener('input', e => applySetting('color', e.target.value));
-                document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
-                document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
-
-                clearCacheBtn.addEventListener('click', () => {
-                    dataCache = {};
-                    const originalHTML = clearCacheBtn.innerHTML;
-                    clearCacheBtn.innerHTML = '<i class="fas fa-check"></i> Cache Cleared!';
-                    clearCacheBtn.disabled = true;
-
-                    setTimeout(() => {
-                        settingsModal.style.display = 'none';
-                        clearCacheBtn.innerHTML = originalHTML;
-                        clearCacheBtn.disabled = false;
-                    }, 1500);
-                });
-
-                window.addEventListener('online', handleNetworkChange);
                 window.addEventListener('offline', handleNetworkChange);
-                handleNetworkChange();
+                window.addEventListener('online', handleNetworkChange);
 
-                sourceTabsContainer.querySelector('.cp-source-tab')?.click();
+                // Auto Select All/Clear All for Dropdowns
+                window.toggleSelectAll = (containerId, select) => {
+                    const inputs = document.querySelectorAll(`#${containerId} input[type="checkbox"]`);
+                    inputs.forEach(i => i.checked = select);
+                    // If 'all' is separate, handle it (usually logic handles 'all' checkbox specifically)
+                    // Simple logic: if select all, uncheck specific 'all' if it exists? or just check everything.
+                    // Our filter logic checks for 'all' value specifically.
+                    const allInput = document.querySelector(`#${containerId} input[value="all"]`);
+                    if (allInput) allInput.checked = select;
+                };
             }
 
             init();
         });
     </script>
-
 </body>
 
 </html>
