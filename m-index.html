@@ -1,686 +1,2259 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>F9XR's iCryptos: Crypto Earning & Airdrop Dashboard by TTEarnCrypto</title>
-    <meta name="description" content="Your one-stop dashboard for discovering the latest crypto earning projects, investment opportunities, airdrops, news, and more. Curated by the TTEarnCrypto community.">
-    <meta name="keywords" content="crypto, cryptocurrency, airdrops, earning, investment, bitcoin, ethereum, TTEarnCrypto, F9XR, crypto projects, faucetpay, cwallet, binance, payeer, paypal, faucet, mining, gaming, airdrop">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTEarnCrypto iCryptos: Crypto Earning & Airdrop Dashboard</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Discover verified crypto earning projects, high-paying faucets, legit airdrops, and investment opportunities with F9XR's iCryptos Dashboard. Updated daily.">
+    <meta name="keywords"
+        content="crypto airdrops, free bitcoin, high paying faucets, crypto earning, best faucet 2026, ttearncrypto, legit crypto projects, binance earn, faucetpay list, earn crypto online">
     <meta name="author" content="F9XR, TTEarnCrypto">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ttearncrypto.github.io/dashboards/">
+    <meta property="og:title" content="iCryptos: Best Crypto Airdrops & Earning Dashboard">
+    <meta property="og:description"
+        content="Your #1 destination for verified crypto airdrops, faucets, and earning opportunities. Start earning free crypto today!">
+    <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ttearncrypto.github.io/dashboards/">
+    <meta property="twitter:title" content="TTEarnCrypto iCryptos: Crypto Earning & Airdrop Dashboard">
+    <meta property="twitter:description"
+        content="Find the best crypto airdrops, faucets, and earning sites. Daily updates & verified projects.">
+    <meta property="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Mobile App Properties -->
+    <meta name="theme-color" content="#6A5AE0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "iCryptos Dashboard",
+      "url": "https://ttearncrypto.github.io/dashboards/",
+      "author": {
+        "@type": "Person",
+        "name": "F9XR",
+        "url": "https://github.com/ttearncrypto"
+      },
+      "description": "A comprehensive dashboard for crypto earning projects, airdrops, and investments.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://ttearncrypto.github.io/dashboards/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+          "@type": "Organization",
+          "name": "TTEarnCrypto",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg"
+          }
+      }
+    }
+    </script>
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://ttearncrypto.github.io/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dashboards",
+        "item": "https://ttearncrypto.github.io/dashboards/"
+      }]
+    }
+    </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/new/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/new/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/new/favicon-16x16.png">
+    <link rel="manifest" href="assets/new/site.webmanifest">
+    <link rel="shortcut icon" href="assets/new/favicon.ico">
+
+    <!-- Fonts (Swap for Performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://raw.githubusercontent.com/ttearncrypto/dashboards/refs/heads/main/android-chrome-192x192.png" type="image/png">
-    
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&family=Roboto+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </noscript>
 </head>
+
 <body>
 
-<!-- ===== MODALS ===== -->
-<div id="cp-network-error-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel">
-        <div class="cp-modal-content cp-network-error-content">
-            <i class="fas fa-wifi"></i>
-            <h2>Connection Error</h2>
-            <p>You are not connected to the internet. Please check your connection and try again.</p>
-        </div>
-    </div>
-</div>
-
-<!-- Chat Modal -->
-<div id="cp-chat-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel cp-modal-panel-large">
-        <button id="cp-chat-close-btn" class="cp-modal-close-btn">×</button>
-        <div class="cp-modal-content">
-             <script defer src="https://minnit.chat/js/embed.js"></script>
-             <minnit-chat data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&nickname=" data-style="width:100%;height:100%;"></minnit-chat>
-        </div>
-    </div>
-</div>
-
-<!-- About Modal -->
-<div id="cp-about-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel">
-        <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
-        <div class="cp-about-content">
-            <img src="https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png" alt="App Logo" class="cp-about-logo">
-            <h3>F9XR's iCryptos Dashboard</h3>
-            <p>Version 2.6</p>
-            <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning, investment, airdrops, and more. Curated for the crypto community.</p>
-            <p>Powered by <strong>TTEarnCrypto</strong>.</p>
-        </div>
-    </div>
-</div>
-
-
-<!-- Settings Modal -->
-<div id="cp-settings-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel">
-        <button id="cp-settings-close-btn" class="cp-modal-close-btn">×</button>
-        <h2>Settings</h2>
-        <div class="cp-setting-item">
-            <label for="cp-setting-color">App Appearance</label>
-            <input type="color" id="cp-setting-color" value="#6A5AE0">
-        </div>
-        <div class="cp-setting-item">
-            <label for="cp-setting-font-family">Font Family</label>
-            <select id="cp-setting-font-family">
-                <option value="'Inter', sans-serif">Inter (Default)</option>
-                <option value="'Poppins', sans-serif">Poppins</option>
-                <option value="'Roboto Mono', monospace">Roboto Mono</option>
-                <option value="Arial, sans-serif">Arial</option>
-            </select>
-        </div>
-        <div class="cp-setting-item">
-            <label for="cp-setting-font-size">Font Size</label>
-            <select id="cp-setting-font-size">
-                <option value="14px">Small</option>
-                <option value="16px">Normal</option>
-                <option value="18px">Large</option>
-            </select>
-        </div>
-        <!-- Clear Cache Button -->
-        <div style="border-top: 1px solid var(--cp-border-color); padding-top: 15px; margin-top: 15px;">
-            <button id="cp-clear-cache-btn" class="cp-info-link"><i class="fas fa-trash-alt"></i> Clear App Cache</button>
-        </div>
-    </div>
-</div>
-
-<!-- Guide Modal -->
-<div id="cp-guide-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel">
-        <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
-        <h2>App Guide:</h2>
-        <div class="cp-guide-content">
-            <div class="cp-guide-item"><h5><i class="far fa-bookmark"></i> Claim List</h5><p>Click the bookmark icon on any project to save it. You can add notes and set a "Next Claim" date to track your progress.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-stream"></i> Categories & Wallets</h5><p>Use the dropdown menus to filter projects by category or supported wallet.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-search"></i> Search & Filter</h5><p>Use the search bar and wallet dropdown to find projects. Click on any tag to filter.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-share-alt"></i> Share & Copy</h5><p>Use the <i class="fas fa-share-alt"></i> icon to share a project, or the <i class="fas fa-copy"></i> icon to copy its link.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-redo"></i> Reload</h5><p>On mobile, swipe down from the top of the list to refresh the content.</p></div>
-            <div class="cp-guide-item"><h5><i class="fas fa-compass"></i> Bottom Navigation</h5><p>Use the bottom bar for quick access to Chat, News, Settings, and more.</p></div>
-        </div>
-    </div>
-</div>
-
-<!-- Claim List Modal -->
-<div id="cp-claim-list-modal" class="cp-modal-overlay" style="display: none;">
-    <div class="cp-modal-panel cp-modal-panel-large">
-        <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
-        <h2>My Claim List</h2>
-        <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
-            <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any project to save it here. You can add notes and set claim dates!</p>
-        </div>
-        <div id="cp-claim-list-content" class="cp-claim-list-content">
-            <!-- Saved items will be injected here by JS -->
-        </div>
-    </div>
-</div>
-
-
-<div class="cp-app-container">
-    <div id="cp-pull-to-refresh-indicator" class="cp-pull-to-refresh-indicator">
-        <i class="fas fa-arrow-down"></i>
-    </div>
-    <main class="cp-main-content">
-        <header class="cp-header">
-            <div class="cp-header-title-group">
-                <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="App Logo" class="cp-app-logo">
-                <h1 class="cp-title">iCryptos</h1>
+    <!-- ===== MODALS ===== -->
+    <div id="cp-network-error-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <div class="cp-modal-content cp-network-error-content">
+                <i class="fas fa-wifi"></i>
+                <h2>Connection Error</h2>
+                <p>You are not connected to the internet. Please check your connection and try again.</p>
             </div>
-            <div class="cp-header-actions">
-                <i class="fas fa-tasks" id="cp-claim-list-btn" title="Claim List"></i>
-                <i class="fas fa-question-circle" id="cp-guide-btn" title="App Guide"></i>
-                <div class="cp-sort-container">
-                    <select id="cp-sort-select">
-                        <option value="date-desc">Newest First</option>
-                        <option value="date-asc">Oldest First</option>
-                        <option value="name-asc">Name (A-Z)</option>
-                        <option value="name-desc">Name (Z-A)</option>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="cp-chat-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel cp-modal-panel-large">
+            <button id="cp-chat-close-btn" class="cp-modal-close-btn">×</button>
+            <div class="cp-modal-content">
+                <script defer src="https://minnit.chat/js/embed.js"></script>
+                <minnit-chat data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&nickname="
+                    data-style="width:100%;height:100%;"></minnit-chat>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="cp-about-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <button id="cp-about-close-btn" class="cp-modal-close-btn">×</button>
+            <div class="cp-about-content">
+                <img src="https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png" alt="App Logo"
+                    class="cp-about-logo">
+                <h3>F9XR's iCryptos Dashboard</h3>
+                <p>Version 2.6</p>
+                <p class="cp-about-description">Your one-stop dashboard for discovering the latest in crypto earning,
+                    investment, airdrops, and more. Curated for the crypto community.</p>
+                <p>Powered by <strong>TTEarnCrypto</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Settings Modal -->
+    <div id="cp-settings-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <button id="cp-settings-close-btn" class="cp-modal-close-btn">×</button>
+            <h2>Settings</h2>
+            <div class="cp-setting-item">
+                <label for="cp-setting-color">App Appearance</label>
+                <input type="color" id="cp-setting-color" value="#6A5AE0">
+            </div>
+            <div class="cp-setting-item">
+                <label for="cp-setting-font-family">Font Family</label>
+                <select id="cp-setting-font-family">
+                    <option value="'Inter', sans-serif">Inter (Default)</option>
+                    <option value="'Poppins', sans-serif">Poppins</option>
+                    <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                </select>
+            </div>
+            <div class="cp-setting-item">
+                <label for="cp-setting-font-size">Font Size</label>
+                <select id="cp-setting-font-size">
+                    <option value="14px">Small</option>
+                    <option value="16px">Normal</option>
+                    <option value="18px">Large</option>
+                </select>
+            </div>
+            <!-- Clear Cache Button -->
+            <div style="border-top: 1px solid var(--cp-border-color); padding-top: 15px; margin-top: 15px;">
+                <button id="cp-clear-cache-btn" class="cp-info-link"><i class="fas fa-trash-alt"></i> Clear App
+                    Cache</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guide Modal -->
+    <div id="cp-guide-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <button id="cp-guide-close-btn" class="cp-modal-close-btn">×</button>
+            <h2>App Guide:</h2>
+            <div class="cp-guide-content">
+                <div class="cp-guide-item">
+                    <h5><i class="far fa-bookmark"></i> Claim List</h5>
+                    <p>Click the bookmark icon on any project to save it. You can add notes and set a "Next Claim" date
+                        to track your progress.</p>
+                </div>
+                <div class="cp-guide-item">
+                    <h5><i class="fas fa-stream"></i> Categories & Wallets</h5>
+                    <p>Use the dropdown menus to filter projects by category or supported wallet.</p>
+                </div>
+                <div class="cp-guide-item">
+                    <h5><i class="fas fa-search"></i> Search & Filter</h5>
+                    <p>Use the search bar and wallet dropdown to find projects. Click on any tag to filter.</p>
+                </div>
+                <div class="cp-guide-item">
+                    <h5><i class="fas fa-share-alt"></i> Share & Copy</h5>
+                    <p>Use the <i class="fas fa-share-alt"></i> icon to share a project, or the <i
+                            class="fas fa-copy"></i> icon to copy its link.</p>
+                </div>
+                <div class="cp-guide-item">
+                    <h5><i class="fas fa-redo"></i> Reload</h5>
+                    <p>On mobile, swipe down from the top of the list to refresh the content.</p>
+                </div>
+                <div class="cp-guide-item">
+                    <h5><i class="fas fa-compass"></i> Bottom Navigation</h5>
+                    <p>Use the bottom bar for quick access to Chat, News, Settings, and more.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Claim List Modal -->
+    <div id="cp-claim-list-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel cp-modal-panel-large">
+            <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
+            <h2>My Claim List</h2>
+            <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
+                <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any
+                    project to save it here. You can add notes and set claim dates!</p>
+            </div>
+            <div id="cp-claim-list-content" class="cp-claim-list-content">
+                <!-- Saved items will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="cp-app-container">
+        <div id="cp-pull-to-refresh-indicator" class="cp-pull-to-refresh-indicator">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+        <main class="cp-main-content">
+            <header class="cp-header">
+                <div class="cp-header-title-group">
+                    <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="App Logo" class="cp-app-logo">
+                    <h1 class="cp-title">iCryptos</h1>
+                </div>
+                <div class="cp-header-actions">
+                    <button class="cp-icon-btn" id="cp-claim-list-btn" title="Claim List"
+                        aria-label="Open Claim List"><i class="fas fa-tasks"></i></button>
+                    <button class="cp-icon-btn" id="cp-refresh-btn" title="Refresh Content"
+                        aria-label="Refresh Projects"><i class="fas fa-sync-alt"></i></button>
+                    <button class="cp-icon-btn" id="cp-guide-btn" title="App Guide" aria-label="Open App Guide"><i
+                            class="fas fa-question-circle"></i></button>
+                    <!-- Duplicate Sort Removed -->
+                </div>
+            </header>
+
+            <!-- Announcements Section -->
+            <section class="cp-announcement-section" id="cp-announcement-section">
+                <div class="cp-announcement-content">
+                    <i class="fas fa-bullhorn"></i>
+                    <div class="cp-marquee-container">
+                        <p id="cp-announcement-text" class="cp-marquee-text">Welcome to iCryptos! 🚀 Check out the
+                            latest high-paying faucets and airdrops. Make sure to join our Telegram channel for instant
+                            updates!</p>
+                    </div>
+                </div>
+                <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
+            </section>
+
+            <!-- NEW Date Picker -->
+            <section class="cp-date-picker-section">
+                <div class="cp-date-picker-wrapper" id="cp-date-picker-wrapper">
+                    <div class="cp-date-picker" id="cp-date-picker">
+                        <!-- Dates will be injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <div class="cp-source-tabs-wrapper" id="cp-source-tabs-wrapper">
+                <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
+            </div>
+
+            <div class="cp-filter-bar">
+                <!-- Search Bar with Clear Button -->
+                <div class="cp-search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="cp-search-input" placeholder="Search projects...">
+                    <button id="cp-search-clear-btn" style="display: none;" title="Clear Search">×</button>
+                </div>
+
+                <!-- Token Filter -->
+                <div class="cp-filter-wrapper cp-token-filter-wrapper">
+                    <i class="fas fa-coins"></i>
+                    <select id="cp-token-select">
+                        <option value="all">All Tokens</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="TRX">Tron (TRX)</option>
+                        <option value="LTC">Litecoin (LTC)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="MATIC">Polygon (MATIC)</option>
+                        <option value="BNB">BNB</option>
                     </select>
-                    <i class="fas fa-filter" id="cp-filter-icon"></i>
+                </div>
+                <!-- Sort Filter -->
+                <div class="cp-filter-wrapper">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <div class="cp-custom-dropdown" id="cp-sort-custom">
+                        <button class="cp-dropdown-btn" id="cp-sort-btn">Newest First <i
+                                class="fas fa-chevron-down"></i></button>
+                        <div class="cp-dropdown-content">
+                            <!-- Single Select Logic -->
+                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="date-desc" checked>
+                                Newest First</label>
+                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="date-asc"> Oldest
+                                First</label>
+                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="name-asc"> Name
+                                (A-Z)</label>
+                            <label class="cp-dropdown-item"><input type="radio" name="sort" value="name-desc"> Name
+                                (Z-A)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wallet Filter -->
+                <div class="cp-filter-wrapper cp-wallet-filter-wrapper">
+                    <i class="fas fa-wallet"></i>
+                    <div class="cp-custom-dropdown" id="cp-wallet-custom">
+                        <button class="cp-dropdown-btn" id="cp-wallet-btn">All Wallets <i
+                                class="fas fa-chevron-down"></i></button>
+                        <div class="cp-dropdown-content">
+                            <div class="cp-dropdown-controls">
+                                <button class="cp-dropdown-action" data-action="select-all">Select All</button>
+                                <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
+                            </div>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
+                                Wallets</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Binance"> Binance</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Paytm"> Paytm</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="FaucetPay"> FaucetPay</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="PhonePe"> PhonePe</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Cwallet"> Cwallet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Payeer"> Payeer</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Paypal"> Paypal</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Direct Wallet"> Direct
+                                Wallet</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="cp-filter-wrapper cp-category-filter-wrapper">
+                    <i class="fas fa-layer-group"></i>
+                    <div class="cp-custom-dropdown" id="cp-category-custom">
+                        <button class="cp-dropdown-btn" id="cp-category-btn">All Categories <i
+                                class="fas fa-chevron-down"></i></button>
+                        <div class="cp-dropdown-content">
+                            <div class="cp-dropdown-controls">
+                                <button class="cp-dropdown-action" data-action="select-all">Select All</button>
+                                <button class="cp-dropdown-action" data-action="clear-all">Clear All</button>
+                            </div>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="all" checked> All
+                                Categories</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Faucet"> Faucet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="MultiFaucet">
+                                MultiFaucet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="AutoFaucet">
+                                AutoFaucet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Mining"> Mining</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Investment">
+                                Investment</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="TestNetFaucet">
+                                TestNetFaucet</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Gaming"> Gaming</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Airdrop"> Airdrop</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="TelegramBot">
+                                TelegramBot</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Investing"> Investing</label>
+                            <label class="cp-dropdown-item"><input type="checkbox" value="Other Projects"> Other
+                                Projects</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Per Page Filter -->
+                <div class="cp-filter-wrapper cp-per-page-filter-wrapper">
+                    <i class="fas fa-list-ol"></i>
+                    <select id="cp-per-page-select">
+                        <option value="10">10 / page</option>
+                        <option value="25">25 / page</option>
+                        <option value="50">50 / page</option>
+                    </select>
+                </div>
+
+                <div id="cp-wallet-dynamic-link-container" style="width: 100%; margin-top: 15px; display: none;"></div>
+
+                <hr
+                    style="width: 100%; border: 0; border-top: 1px solid var(--cp-border-color); margin: 25px 0 10px 0;">
+
+                <div id="cp-active-filter-container" style="display: none;">
+                    <span id="cp-active-filter-tag"></span>
+                    <button id="cp-clear-filter-btn">×</button>
                 </div>
             </div>
-        </header>
-        
-        <!-- Announcements Section -->
-        <section class="cp-announcement-section" id="cp-announcement-section">
-            <div class="cp-announcement-content">
-                <i class="fas fa-bullhorn"></i>
-                <p id="cp-announcement-text">Welcome to iCryptos v2.6! You can now filter projects by Category!</p>
-            </div>
-            <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
-        </section>
 
-        <!-- NEW Date Picker -->
-        <section class="cp-date-picker-section">
-            <div class="cp-date-picker-wrapper" id="cp-date-picker-wrapper">
-                <div class="cp-date-picker" id="cp-date-picker">
-                    <!-- Dates will be injected by JS -->
+            <div id="cp-list-body" class="cp-list-body"></div>
+            <div id="cp-feedback-message" style="display: none;"></div>
+            <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
+                <button id="cp-load-more-btn">Load More</button>
+            </div>
+
+            <!-- Video Embed -->
+            <section class="cp-video-section" style="margin-bottom: 20px;">
+                <iframe id="odysee-iframe"
+                    style="width:100%; aspect-ratio:16 / 9; border-radius: 12px; border: none; box-shadow: var(--cp-shadow);"
+                    src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" allowfullscreen></iframe>
+                <div style="text-align: right; margin-top: 5px;">
+                    <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank"
+                        style="font-size: 0.85rem; color: var(--cp-purple); text-decoration: none;"><i
+                            class="fas fa-video"></i> Watch more on Odysee</a>
                 </div>
+            </section>
+
+            <section class="cp-info-section" id="cp-whats-new-section">
+                <h2>What's New in v2.6?</h2>
+                <ul>
+                    <li><strong>NEW:</strong> Filter projects by Category using the new dropdown menu!</li>
+                    <li>Modern horizontal calendar view implemented!</li>
+                    <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
+                </ul>
+                <div class="cp-info-actions">
+                    <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send
+                        Feedback / Report Bugs</a>
+                    <button id="cp-about-btn" class="cp-info-link"><i class="fas fa-info-circle"></i> About This
+                        App</button>
+                </div>
+            </section>
+
+            <!-- Banner Slider -->
+            <div class="cp-banner-slider-wrapper" id="cp-banner-slider-wrapper">
+                <div class="cp-banner-slider" id="cp-banner-slider">
+                    <!-- Banners will be injected by JS -->
+                </div>
+                <div class="cp-banner-dots" id="cp-banner-dots"></div>
             </div>
-        </section>
 
-        <div class="cp-source-tabs-wrapper" id="cp-source-tabs-wrapper">
-            <nav id="cp-source-tabs" class="cp-source-tabs"></nav>
-        </div>
-        
-        <!-- Banner Slider -->
-        <div class="cp-banner-slider-wrapper" id="cp-banner-slider-wrapper">
-            <div class="cp-banner-slider" id="cp-banner-slider">
-                <!-- Banners will be injected by JS -->
+            <section class="cp-info-section" id="cp-social-section">
+                <h2>Follow Us</h2>
+                <div class="cp-social-icons">
+                    <a href="https://t.me/CxO1NVTowno2Y2E1" target="_blank" title="Telegram"><i
+                            class="fab fa-telegram-plane"></i></a>
+                    <a href="https://facebook.com/groups/ttearncrypto" target="_blank" title="Facebook"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" title="Discord"><i
+                            class="fab fa-discord"></i></a>
+                    <a href="https://bento.me/ttearncrypto" target="_blank" title="Other Socials"><i
+                            class="fas fa-link"></i></a>
+                </div>
+            </section>
+
+            <div class="cp-features-grid">
+                <a href="#" id="feature-latest" class="cp-feature-card"><i class="fas fa-bolt"></i><span>Latest
+                        Projects</span></a>
+                <a href="#" id="feature-filter" class="cp-feature-card"><i class="fas fa-tags"></i><span>Filter &
+                        Search</span></a>
+                <a href="#" id="feature-customize" class="cp-feature-card"><i
+                        class="fas fa-palette"></i><span>Customize</span></a>
+                <a href="#" id="feature-mobile" class="cp-feature-card"><i class="fas fa-question-circle"></i><span>App
+                        Guide</span></a>
             </div>
-            <div class="cp-banner-dots" id="cp-banner-dots"></div>
-        </div>
-        
-        <div class="cp-filter-bar">
-            <!-- Search Bar with Clear Button -->
-            <div class="cp-search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" id="cp-search-input" placeholder="Search projects...">
-                <button id="cp-search-clear-btn" style="display: none;" title="Clear Search">×</button>
+
+            <!-- Tags Section -->
+            <section class="cp-info-section" id="cp-all-tags-section">
+                <h2 id="cp-tags-header">Global Tags <i class="fas fa-chevron-down cp-chevron"></i></h2>
+                <div id="cp-all-tags-container" class="cp-all-tags-container">
+                    <p class="cp-secondary-text">Loading tags...</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="cp-footer">
+            <div class="cp-footer-love">
+                With Love <span class="heart-pulse">❤</span>,<br>
+                from <span class="f9xr-text">F9XR</span>
             </div>
-             <!-- Wallet Filter -->
-            <div class="cp-wallet-filter-wrapper">
-                <i class="fas fa-wallet"></i>
-                <select id="cp-wallet-select">
-                    <option value="all">All Wallets</option>
-                    <option value="Binance">Binance</option>
-                    <option value="Paytm">Paytm</option>
-                    <option value="FaucetPay">FaucetPay</option>
-                    <option value="Cwallet">Cwallet</option>
-                    <option value="Payeer">Payeer</option>
-                    <option value="Paypal">Paypal</option>
-                    <option value="Direct Wallet">Direct Wallet</option>
-                </select>
+
+            <div class="cp-footer-content">
+                <p><strong>Disclaimer:</strong> By using this website, you agree to our Terms and Conditions and Privacy
+                    Policy. TTEarnCrypto has no affiliation or relationship with any coin, business, or project unless
+                    explicitly stated otherwise. TTEarnCrypto is only an informational website that provides news about
+                    coins, blockchain companies, blockchain products, and blockchain events. None of the information you
+                    read on TTEarnCrypto should be taken as investment advice. Buying and trading cryptocurrencies
+                    should be considered a high-risk activity. Please do your own diligence before making any investment
+                    decisions. TTEarnCrypto is not accountable, directly or indirectly, for any damage or loss incurred,
+                    alleged or otherwise, in connection with the use or reliance on any content you read on the site.
+                </p>
+                <p><strong>Affiliate Disclosure:</strong> This website may contain affiliate links. We may earn a
+                    commission if you sign up or make a purchase through these links, at no additional cost to you.</p>
+                <p class="cp-creator-link">Data provided "as is" for informational purposes. | Made By F9XR & AKM</p>
             </div>
-             <!-- NEW: Category Filter -->
-            <div class="cp-category-filter-wrapper">
-                <i class="fas fa-layer-group"></i>
-                <select id="cp-category-select">
-                    <option value="all">All Categories</option>
-                    <option value="Faucet">Faucet</option>
-                    <option value="MultiFaucet">MultiFaucet</option>
-                    <option value="AutoFaucet">AutoFaucet</option>
-                    <option value="Mining">Mining</option>
-                    <option value="Investment">Investment</option>
-                    <option value="TestNetFaucet">TestNetFaucet</option>
-                    <option value="Gaming">Gaming</option>
-                    <option value="Airdrop">Airdrop</option>
-                    <option value="TelegramBot">TelegramBot</option>
-                    <option value="Investing">Investing</option>
-                    <option value="Other Projects">Other Projects</option>
-                </select>
-            </div>
-             <!-- Projects Per Page Filter -->
-            <div class="cp-per-page-filter-wrapper">
-                <i class="fas fa-list-ol"></i>
-                <select id="cp-per-page-select">
-                    <option value="10">10 / page</option>
-                    <option value="25">25 / page</option>
-                    <option value="50">50 / page</option>
-                </select>
-            </div>
-            <div id="cp-active-filter-container" style="display: none;">
-                 <span id="cp-active-filter-tag"></span>
-                 <button id="cp-clear-filter-btn">×</button>
-            </div>
-        </div>
+        </footer>
 
-        <div id="cp-list-body" class="cp-list-body"></div>
-        <div id="cp-feedback-message" style="display: none;"></div>
-        <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
-            <button id="cp-load-more-btn">Load More</button>
-        </div>
+        <nav class="cp-bottom-nav">
+            <a href="#" class="cp-nav-item" id="cp-nav-learn"><i class="fas fa-graduation-cap"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-chat"><i class="fas fa-comments"></i></a>
+            <a href="#" class="cp-nav-item-main"
+                onclick="document.getElementById('cp-search-input').focus(); return false;"><i
+                    class="fas fa-search"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-news"><i class="fas fa-newspaper"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-settings"><i class="fas fa-cog"></i></a>
+        </nav>
+    </div>
 
-        <section class="cp-info-section" id="cp-whats-new-section">
-            <h2>What's New in v2.6?</h2>
-            <ul>
-                <li><strong>NEW:</strong> Filter projects by Category using the new dropdown menu!</li>
-                <li>Modern horizontal calendar view implemented!</li>
-                <li>Added Dashboard Calendar, collapsible sections, and Claim List date tracking. Fresh new UI!</li>
-            </ul>
-            <div class="cp-info-actions">
-                <a href="mailto:tontufads@gmail.com" class="cp-info-link"><i class="fas fa-envelope"></i> Send Feedback / Report Bugs</a>
-                <button id="cp-about-btn" class="cp-info-link"><i class="fas fa-info-circle"></i> About This App</button>
-            </div>
-        </section>
-
-        <section class="cp-info-section" id="cp-social-section">
-            <h2>Follow Us</h2>
-            <div class="cp-social-icons">
-                <a href="https://t.me/CxO1NVTowno2Y2E1" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://facebook.com/groups/ttearncrypto" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://discord.gg/D6hAEEumtx" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-                <a href="https://bento.me/ttearncrypto" target="_blank" title="Other Socials"><i class="fas fa-link"></i></a>
-            </div>
-        </section>
-        
-        <div class="cp-features-grid">
-            <a href="#" id="feature-latest" class="cp-feature-card"><i class="fas fa-bolt"></i><span>Latest Projects</span></a>
-            <a href="#" id="feature-filter" class="cp-feature-card"><i class="fas fa-tags"></i><span>Filter & Search</span></a>
-            <a href="#" id="feature-customize" class="cp-feature-card"><i class="fas fa-palette"></i><span>Customize</span></a>
-            <a href="#" id="feature-mobile" class="cp-feature-card"><i class="fas fa-question-circle"></i><span>App Guide</span></a>
-        </div>
-
-        <!-- Tags Section -->
-        <section class="cp-info-section" id="cp-all-tags-section">
-            <h2 id="cp-tags-header">Global Tags <i class="fas fa-chevron-down cp-chevron"></i></h2>
-            <div id="cp-all-tags-container" class="cp-all-tags-container">
-                <p class="cp-secondary-text">Loading tags...</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="cp-footer">
-        With Love ❤,<br>from F9XR
-    </footer>
-
-    <nav class="cp-bottom-nav">
-        <a href="#" class="cp-nav-item" id="cp-nav-learn"><i class="fas fa-graduation-cap"></i></a>
-        <a href="#" class="cp-nav-item" id="cp-nav-chat"><i class="fas fa-comments"></i></a>
-        <a href="#" class="cp-nav-item-main" onclick="document.getElementById('cp-search-input').focus(); return false;"><i class="fas fa-search"></i></a>
-        <a href="#" class="cp-nav-item" id="cp-nav-news"><i class="fas fa-newspaper"></i></a>
-        <a href="#" class="cp-nav-item" id="cp-nav-settings"><i class="fas fa-cog"></i></a>
-    </nav>
-</div>
-
-<style>
-:root {
-    --cp-bg: #F8F9FE;
-    --cp-card-bg: #FFFFFF;
-    --cp-primary-text: #171725;
-    --cp-secondary-text: #8A8A9E;
-    --cp-purple: #6A5AE0;
-    --cp-font-family: 'Inter', sans-serif;
-    --cp-radius: 18px;
-    --cp-shadow: 0 8px 25px -10px rgba(23, 23, 37, 0.08);
-    --cp-light-bg: #EFF2F9;
-    --cp-border-color: #EAEBF2;
-    --cp-red: #E74C3C;
-    --cp-green: #2ECC71;
-    --cp-blue: #3498DB;
-}
-html { font-size: 16px; scroll-behavior: smooth; }
-body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margin: 0; color: var(--cp-primary-text); -webkit-tap-highlight-color: transparent; }
-.cp-app-container { max-width: 480px; margin: 0 auto; background-color: var(--cp-bg); min-height: 100vh; position: relative; padding-bottom: 120px; }
-.cp-main-content { padding: 20px; position: relative; z-index: 1; transition: transform 0.3s ease; }
-.cp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.cp-header-title-group { display: flex; align-items: center; gap: 12px; }
-/* IMPROVED Logo Style */
-.cp-app-logo { 
-    width: 45px; 
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 2px solid var(--cp-card-bg);
-}
-.cp-title { font-size: 1.75rem; font-weight: 700; margin: 0; }
-.cp-header-actions { display: flex; align-items: center; gap: 8px; }
-#cp-guide-btn, #cp-claim-list-btn { font-size: 1.3rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; transition: color 0.2s ease;}
-#cp-guide-btn:hover, #cp-claim-list-btn:hover { color: var(--cp-purple); }
-.cp-sort-container { position: relative; display: flex; align-items: center; }
-#cp-sort-select { position: absolute; top: 0; right: 0; opacity: 0; width: 36px; height: 36px; cursor: pointer; }
-#cp-filter-icon { font-size: 1.2rem; color: var(--cp-secondary-text); padding: 8px; cursor: pointer; }
-
-/* Announcement Section */
-.cp-announcement-section { background: linear-gradient(45deg, var(--cp-purple), #8a7dff); color: white; padding: 12px 40px 12px 20px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; position: relative; box-shadow: 0 5px 15px rgba(106, 90, 224, 0.3); }
-.cp-announcement-content { display: flex; align-items: center; gap: 15px; }
-.cp-announcement-content i { font-size: 1.5rem; }
-.cp-announcement-content p { margin: 0; font-weight: 500; line-height: 1.4; font-size: 0.9rem; }
-.cp-announcement-close-btn { position: absolute; top: 50%; right: 5px; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 5px; }
-.cp-announcement-close-btn:hover { color: white; }
-
-/* Horizontal Date Picker */
-.cp-date-picker-section {
-    margin-bottom: 20px;
-}
-.cp-date-picker-wrapper {
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-.cp-date-picker-wrapper::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-.cp-date-picker {
-    display: flex;
-    gap: 12px;
-    padding: 5px 0;
-    white-space: nowrap;
-}
-.cp-date-item {
-    flex-shrink: 0;
-    width: 65px;
-    height: 80px;
-    background-color: var(--cp-card-bg);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid var(--cp-border-color);
-}
-.cp-date-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--cp-shadow);
-}
-.cp-date-item.active {
-    background-color: var(--cp-purple);
-    color: white;
-    border-color: var(--cp-purple);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px -5px rgba(106, 90, 224, 0.4);
-}
-.cp-date-day {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-.cp-date-month {
-    font-size: 0.9rem;
-    margin-top: 2px;
-}
-
-/* Banner Slider */
-.cp-banner-slider-wrapper { position: relative; margin-bottom: 20px; border-radius: var(--cp-radius); overflow: hidden; box-shadow: var(--cp-shadow); background-color: var(--cp-light-bg); transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.cp-banner-slider { display: flex; transition: transform 0.5s ease-in-out; }
-.cp-banner-slide { width: 100%; flex-shrink: 0; }
-.cp-banner-slide img { display: block; width: 100%; height: auto; max-width: 100%; }
-.cp-banner-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; padding: 5px; background: rgba(0,0,0,0.2); border-radius: 10px; }
-.cp-banner-dot { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); cursor: pointer; transition: all 0.3s; }
-.cp-banner-dot.active { background-color: white; transform: scale(1.2); }
-
-/* Features */
-.cp-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0; }
-.cp-feature-card { background: var(--cp-card-bg); border-radius: 12px; padding: 20px 10px; text-align: center; font-size: 0.85rem; font-weight: 500; color: var(--cp-primary-text); box-shadow: var(--cp-shadow); text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.cp-feature-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px -5px rgba(23, 23, 37, 0.1); }
-.cp-feature-card i { display: block; margin-bottom: 8px; font-size: 1.5rem; color: var(--cp-purple); }
-
-.cp-source-tabs-wrapper { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; margin-bottom: 20px; background-color: var(--cp-light-bg); padding: 5px; border-radius: 14px; }
-.cp-source-tabs-wrapper::-webkit-scrollbar { display: none; }
-.cp-source-tabs { display: flex; gap: 5px; white-space: nowrap; }
-.cp-source-tab { padding: 8px 16px; border: none; background-color: transparent; color: var(--cp-secondary-text); border-radius: 10px; font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
-.cp-source-tab.active { background: var(--cp-card-bg); color: var(--cp-primary-text); font-weight: 600; box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1); }
-.cp-filter-bar { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; margin-bottom: 25px; }
-.cp-search-wrapper { position: relative; flex-grow: 1; }
-#cp-search-input { width: 100%; padding: 14px 45px 14px 45px; border-radius: 12px; border: 1px solid var(--cp-border-color); background-color: var(--cp-card-bg); font-size: 0.95rem; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s; }
-#cp-search-input:focus { border-color: var(--cp-purple); box-shadow: 0 0 0 3px rgba(106, 90, 224, 0.2); outline: none; }
-.cp-search-wrapper .fa-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text); }
-#cp-search-clear-btn { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 5px; }
-#cp-search-clear-btn:hover { color: var(--cp-primary-text); }
-/* Wallet, Category & Per Page Filter */
-.cp-wallet-filter-wrapper, .cp-category-filter-wrapper, .cp-per-page-filter-wrapper { position: relative; display: flex; align-items: center; background-color: var(--cp-card-bg); border-radius: 12px; box-shadow: var(--cp-shadow); padding: 0 15px; border: 1px solid var(--cp-border-color); }
-.cp-wallet-filter-wrapper .fa-wallet, .cp-category-filter-wrapper .fa-layer-group, .cp-per-page-filter-wrapper .fa-list-ol { color: var(--cp-secondary-text); margin-right: 10px; }
-#cp-wallet-select, #cp-category-select, #cp-per-page-select { border: none; background: transparent; padding: 14px 0; font-size: 0.95rem; font-family: inherit; color: var(--cp-primary-text); -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; }
-
-#cp-active-filter-container { display: flex; align-items: center; gap: 8px; margin-top: 15px; background-color: var(--cp-light-bg); color: var(--cp-purple); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; display: inline-flex; }
-#cp-clear-filter-btn { background: none; border: none; color: var(--cp-purple); font-size: 1.2rem; cursor: pointer; padding: 0; line-height: 1; }
-.cp-list-body { display: grid; gap: 20px; }
-
-/* Card Styling & Animation */
-.cp-card { 
-    background-color: var(--cp-card-bg); 
-    border-radius: var(--cp-radius); 
-    padding: 20px; 
-    box-shadow: var(--cp-shadow); 
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-.cp-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.cp-card.is-inactive { opacity: 0.7; background-color: #fcfcfc; }
-.cp-card-header { display: flex; align-items: center; gap: 15px; }
-.cp-card-icon { width: 50px; height: 50px; border-radius: 12px; background-color: var(--cp-light-bg); display: flex; align-items: center; justify-content: center; color: var(--cp-purple); font-size: 1.5rem; flex-shrink: 0; }
-.cp-card-title-section { flex-grow: 1; }
-.cp-card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 4px 0; }
-.cp-card-date { font-size: 0.85rem; color: var(--cp-secondary-text); }
-.cp-card-wallet { font-size: 0.8rem; font-weight: 500; color: var(--cp-secondary-text); padding: 4px 8px; border-radius: 6px; background-color: var(--cp-light-bg); display: inline-block; margin-top: 8px; }
-.cp-card-wallet.faucetpay { background-color: #e6f7ff; color: #1890ff; }
-.cp-card-wallet.cwallet { background-color: #e6fffb; color: #13c2c2; }
-.cp-card-wallet.binance { background-color: #f0b90b26; color: #b48909; }
-.cp-card-wallet.paytm { background-color: #00b9f126; color: #008ac4; }
-.cp-card-wallet.payeer { background-color: #007bff26; color: #0056b3; }
-.cp-card-wallet.paypal { background-color: #00308726; color: #003087; }
-.cp-card-wallet.direct-wallet { background-color: var(--cp-light-bg); color: var(--cp-purple); }
-
-.cp-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.cp-tag { background-color: var(--cp-bg); color: var(--cp-secondary-text); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; border: none; font-family: inherit; }
-.cp-tag:hover, .cp-tag.active { background-color: var(--cp-light-bg); color: var(--cp-purple); }
-.cp-card-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--cp-border-color); align-items: center; flex-wrap: wrap; justify-content: space-between;}
-.cp-view-btn { flex-grow: 1; text-align: center; padding: 12px; background: var(--cp-purple); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
-.cp-view-btn:hover { opacity: 0.9; }
-.cp-view-btn:disabled { background: #B0B0C0; cursor: not-allowed; }
-.cp-card-action-buttons { display: flex; gap: 10px; }
-.cp-copy-btn, .cp-share-btn, .cp-save-btn { flex-shrink: 0; padding: 12px; background: var(--cp-card-bg); color: var(--cp-secondary-text); border: 1px solid var(--cp-border-color); border-radius: 12px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease; line-height: 1; }
-.cp-copy-btn:hover, .cp-share-btn:hover, .cp-save-btn:hover { background-color: var(--cp-light-bg); color: var(--cp-purple); }
-.cp-copy-btn:disabled { cursor: default; }
-.cp-save-btn i.fas.fa-bookmark { color: var(--cp-purple); }
-.cp-not-active-btn { width: 100%; text-align: center; padding: 10px; background: var(--cp-red); color: white; border-radius: 12px; font-weight: 600; font-size: 0.9rem; border: none; margin-bottom: 10px; order: -1; }
-
-/* Skeleton Loader */
-@keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
-.cp-skeleton-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius); padding: 20px; box-shadow: var(--cp-shadow); }
-.skeleton { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: shimmer 1s linear infinite; }
-.cp-skeleton-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-.cp-skeleton-icon { width: 50px; height: 50px; border-radius: 12px; }
-.cp-skeleton-title-group { flex-grow: 1; }
-.cp-skeleton-line { height: 1.1rem; border-radius: 4px; margin-bottom: 8px; }
-.cp-skeleton-line.short { width: 40%; height: 0.85rem; margin-bottom: 0; }
-.cp-skeleton-tag { width: 60px; height: 26px; border-radius: 8px; }
-.cp-skeleton-tags { display: flex; gap: 8px; margin-bottom: 25px; }
-.cp-skeleton-button { height: 45px; border-radius: 12px; }
-
-.cp-feedback-message, .cp-pagination-container { text-align: center; padding: 40px 20px; }
-.cp-feedback-message { color: var(--cp-secondary-text); }
-.cp-feedback-message i { font-size: 2em; margin-bottom: 15px; display: block; }
-#cp-load-more-btn { padding: 12px 30px; border: none; background: var(--cp-purple); color: white; font-weight: 600; border-radius: 12px; cursor: pointer; font-size: 1rem; }
-
-/* Bottom Nav */
-.cp-bottom-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 440px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1000; border: 1px solid rgba(234, 235, 242, 0.8); }
-.cp-nav-item, .cp-nav-item-main { text-decoration: none; color: var(--cp-secondary-text); font-size: 1.5rem; position: relative; padding: 10px; cursor: pointer; transition: color 0.2s ease; }
-.cp-nav-item:hover { color: var(--cp-purple); }
-.cp-nav-item.active { color: var(--cp-purple); }
-.cp-nav-item-main { width: 60px; height: 60px; background: var(--cp-purple); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -35px; box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4); border: 4px solid var(--cp-bg); transition: transform 0.2s ease; }
-.cp-nav-item-main:hover { transform: scale(1.05); }
-
-/* Modals */
-@keyframes modal-pop-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-.cp-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1100; transition: opacity 0.3s ease; }
-.cp-modal-panel { background: var(--cp-bg); padding: 25px; border-radius: var(--cp-radius); width: 90%; max-width: 400px; position: relative; box-sizing: border-box; animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-.cp-modal-panel-large { max-width: 95%; height: 80%; }
-.cp-modal-content { height: 100%; }
-.cp-modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--cp-secondary-text); cursor: pointer; z-index: 10;}
-.cp-setting-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid var(--cp-border-color); }
-.cp-setting-item:first-child { border-top: none; }
-.cp-setting-item select, .cp-setting-item input[type="color"] { border: 1px solid #ddd; padding: 5px; border-radius: 6px; }
-.cp-setting-item input[type="color"] { width: 40px; height: 30px; padding: 2px; }
-.cp-about-content { text-align: center; }
-.cp-about-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; object-fit: cover;}
-.cp-about-content h3 { margin-bottom: 5px; }
-.cp-about-content .cp-about-description { margin: 15px 0; line-height: 1.6; }
-.cp-guide-content { margin-top: 20px; }
-.cp-guide-item { padding: 15px 0; border-top: 1px solid var(--cp-border-color); }
-.cp-guide-item:first-child { border-top: none; padding-top: 0;}
-.cp-guide-item h5 { margin: 0 0 8px 0; font-size: 1rem; color: var(--cp-primary-text); display: flex; align-items: center; }
-.cp-guide-item h5 i { margin-right: 10px; color: var(--cp-purple); width: 20px; text-align: center; }
-.cp-guide-item p { margin: 0; font-size: 0.9rem; color: var(--cp-secondary-text); line-height: 1.5; padding-left: 30px; }
-.cp-guide-item p i { font-size: 0.9em; }
-
-/* Claim List Modal Styles */
-#cp-claim-list-guide { background-color: var(--cp-light-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; color: var(--cp-primary-text); }
-#cp-claim-list-guide i { color: var(--cp-purple); }
-.cp-claim-list-content { height: calc(100% - 80px); overflow-y: auto; }
-.cp-claim-item { background: #fff; border: 1px solid var(--cp-border-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;}
-.cp-claim-item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;}
-.cp-claim-item-title { margin: 0; font-size: 1.1rem; flex-grow: 1;}
-.cp-claim-item-remove-btn { background: none; border: none; font-size: 1.2rem; color: var(--cp-secondary-text); cursor: pointer; padding: 5px; line-height: 1; transition: color 0.2s ease; }
-.cp-claim-item-remove-btn:hover { color: var(--cp-red); }
-.cp-claim-item-link { font-size: 0.9rem; color: var(--cp-purple); text-decoration: none; }
-.cp-claim-item-link:hover { text-decoration: underline; }
-.cp-claim-item-notes { width: 100%; min-height: 60px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; resize: vertical; }
-.cp-claim-item-date-picker { display: flex; align-items: center; gap: 10px; background-color: var(--cp-light-bg); padding: 8px 12px; border-radius: 8px;}
-.cp-claim-item-date-picker label { font-size: 0.9rem; font-weight: 500; color: var(--cp-secondary-text); }
-.cp-claim-item-date-picker input { flex-grow: 1; border: 1px solid #ddd; padding: 5px; border-radius: 6px; font-family: inherit; }
-
-/* Network Error Modal */
-.cp-network-error-content { text-align: center; }
-.cp-network-error-content i { font-size: 3rem; color: var(--cp-red); margin-bottom: 20px; }
-.cp-network-error-content h2 { margin-top: 0; }
-
-/* Pull to refresh */
-.cp-pull-to-refresh-indicator { position: absolute; top: 0; left: 0; right: 0; text-align: center; padding: 10px; background: var(--cp-light-bg); z-index: 0; transform: translateY(-100%); transition: transform 0.3s; font-size: 1.2rem; color: var(--cp-purple); }
-.cp-pull-to-refresh-indicator .fa-spinner, .cp-pull-to-refresh-indicator .fa-sync-alt { animation: spin 1s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* Info Sections */
-.cp-info-section { background-color: var(--cp-card-bg); padding: 20px; border-radius: var(--cp-radius); margin-bottom: 25px; box-shadow: var(--cp-shadow); }
-.cp-info-section h2 { margin-top: 0; font-size: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--cp-border-color); margin-bottom: 15px; }
-.cp-info-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--cp-secondary-text); line-height: 1.6; font-size: 0.9rem; }
-.cp-info-actions { display: flex; flex-direction: column; gap: 10px; }
-.cp-info-link { background-color: var(--cp-light-bg); color: var(--cp-primary-text); padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 500; text-align: center; border: none; font-family: inherit; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.cp-info-link:hover { background-color: #dce3f2; }
-.cp-social-icons { display: flex; justify-content: center; gap: 20px; padding: 10px 0; }
-.cp-social-icons a { color: var(--cp-secondary-text); font-size: 2rem; transition: color 0.2s ease, transform 0.2s ease; }
-.cp-social-icons a:hover { color: var(--cp-purple); transform: scale(1.1); }
-#cp-all-tags-section h2 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-#cp-all-tags-section .cp-chevron { transition: transform 0.3s ease; }
-#cp-all-tags-container { transition: max-height 0.4s ease-out, opacity 0.4s ease-out; overflow: hidden; max-height: 1000px; opacity: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;}
-#cp-all-tags-section.collapsed .cp-chevron { transform: rotate(-90deg); }
-#cp-all-tags-section.collapsed #cp-all-tags-container { max-height: 0; opacity: 0; margin-top: 0; }
-
-/* IMPROVED Footer */
-.cp-footer { 
-    padding: 20px; 
-    text-align: center; 
-    font-size: 1.1rem; /* Made bigger */
-    font-weight: 500; 
-    color: var(--cp-secondary-text); 
-    line-height: 1.7; /* Improved line spacing */
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // === DOM Elements ===
-    const appContainer = document.querySelector('.cp-app-container');
-    const sourceTabsContainer = document.getElementById('cp-source-tabs');
-    const sourceTabsWrapper = document.getElementById('cp-source-tabs-wrapper');
-    const searchInput = document.getElementById('cp-search-input');
-    const searchClearBtn = document.getElementById('cp-search-clear-btn');
-    const sortSelect = document.getElementById('cp-sort-select');
-    const walletSelect = document.getElementById('cp-wallet-select');
-    const categorySelect = document.getElementById('cp-category-select'); // NEW
-    const walletFilterWrapper = document.querySelector('.cp-wallet-filter-wrapper');
-    const categoryFilterWrapper = document.querySelector('.cp-category-filter-wrapper'); // NEW
-    const perPageSelect = document.getElementById('cp-per-page-select');
-    const listBody = document.getElementById('cp-list-body');
-    const feedbackMessage = document.getElementById('cp-feedback-message');
-    const paginationContainer = document.getElementById('cp-pagination-container');
-    const loadMoreBtn = document.getElementById('cp-load-more-btn');
-    const activeFilterContainer = document.getElementById('cp-active-filter-container');
-    const activeFilterTag = document.getElementById('cp-active-filter-tag');
-    const clearFilterBtn = document.getElementById('cp-clear-filter-btn');
-    const bannerSliderWrapper = document.getElementById('cp-banner-slider-wrapper');
-    const bannerSlider = document.getElementById('cp-banner-slider');
-    const bannerDots = document.getElementById('cp-banner-dots');
-    const allTagsSection = document.getElementById('cp-all-tags-section');
-
-    // === Modals ===
-    const chatModal = document.getElementById('cp-chat-modal');
-    const settingsModal = document.getElementById('cp-settings-modal');
-    const guideModal = document.getElementById('cp-guide-modal');
-    const aboutModal = document.getElementById('cp-about-modal');
-    const claimListModal = document.getElementById('cp-claim-list-modal');
-    const networkErrorModal = document.getElementById('cp-network-error-modal');
-    
-    // === Buttons ===
-    const guideBtn = document.getElementById('cp-guide-btn');
-    const aboutBtn = document.getElementById('cp-about-btn');
-    const claimListBtn = document.getElementById('cp-claim-list-btn');
-    const clearCacheBtn = document.getElementById('cp-clear-cache-btn');
-    const navItems = document.querySelectorAll('.cp-nav-item');
-    const navLearn = document.getElementById('cp-nav-learn');
-    const navChat = document.getElementById('cp-nav-chat');
-    const navNews = document.getElementById('cp-nav-news');
-    const navSettings = document.getElementById('cp-nav-settings');
-    
-    // === Config & State ===
-    const NEWS_SOURCE = { name: "News & Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" };
-    const LEARN_SOURCE = { name: "Learn", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" };
-    const SOURCE_CONFIG = [
-        { name: "Earning", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
-        { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
-        { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
-        { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" }
-    ];
-    const BANNERS = [
-        { img: 'https://i.imgur.com/7qPyMe2_d.webp?maxwidth=520&shape=thumb&fidelity=high', url: '#' },
-        { img: 'https://i.imgur.com/Qrd6ERS.jpeg', url: '#' },
-        { img: 'https://i.imgur.com/UmgaqgB.jpeg', url: '#' },
-    ];
-    // This array is used for display logic, 'Direct Wallet' is handled as a special case.
-    const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'Payeer', 'Paypal'];
-    let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
-    let currentPage = 1, projectsPerPage = 10;
-    let activeTag = null, searchDebounceTimer, bannerInterval;
-
-    // === Claim List (Todo) Logic ===
-    const CLAIM_LIST_KEY = 'cp-claimList';
-    const CLAIM_GUIDE_SEEN_KEY = 'cp-claimGuideSeen';
-
-    const getClaimList = () => JSON.parse(localStorage.getItem(CLAIM_LIST_KEY)) || [];
-    const saveClaimList = (list) => localStorage.setItem(CLAIM_LIST_KEY, JSON.stringify(list));
-    
-    function addToClaimList(project) {
-        const list = getClaimList();
-        if (!list.some(p => p.id === project.id)) {
-            list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '' });
-            saveClaimList(list);
-        }
-    }
-
-    function removeFromClaimList(projectId) {
-        saveClaimList(getClaimList().filter(p => p.id !== projectId));
-    }
-    
-    function updateClaimNote(projectId, notes) {
-        const list = getClaimList();
-        const item = list.find(p => p.id === projectId);
-        if (item) { item.notes = notes; saveClaimList(list); }
-    }
-
-    function updateClaimDate(projectId, date) {
-        const list = getClaimList();
-        const item = list.find(p => p.id === projectId);
-        if (item) { item.claimDate = date; saveClaimList(list); }
-    }
-    
-    function renderClaimList() {
-        const contentEl = document.getElementById('cp-claim-list-content');
-        const list = getClaimList();
-        
-        if (list.length === 0) {
-            contentEl.innerHTML = `<div class="cp-feedback-message"><i class="far fa-folder-open"></i><p>Your claim list is empty.</p></div>`;
-            return;
+    <style>
+        :root {
+            --cp-bg: #F8F9FE;
+            --cp-card-bg: #FFFFFF;
+            --cp-primary-text: #171725;
+            --cp-secondary-text: #8A8A9E;
+            --cp-purple: #6A5AE0;
+            --cp-font-family: 'Inter', sans-serif;
+            --cp-radius: 18px;
+            --cp-shadow: 0 8px 25px -10px rgba(23, 23, 37, 0.08);
+            --cp-light-bg: #EFF2F9;
+            --cp-border-color: #EAEBF2;
+            --cp-red: #E74C3C;
+            --cp-green: #2ECC71;
+            --cp-blue: #3498DB;
         }
 
-        contentEl.innerHTML = list.map(item => `
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cp-bg);
+            font-family: var(--cp-font-family);
+            margin: 0;
+            color: var(--cp-primary-text);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cp-app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--cp-bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 120px;
+        }
+
+        .cp-main-content {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .cp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cp-header-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* IMPROVED Logo Style */
+        .cp-app-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--cp-card-bg);
+        }
+
+        .cp-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .cp-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cp-icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.2s;
+        }
+
+        #cp-refresh-btn {
+            color: black !important;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .cp-icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #cp-guide-btn,
+        #cp-claim-list-btn {
+            font-size: 1.3rem;
+            color: var(--cp-secondary-text);
+            padding: 8px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        #cp-guide-btn:hover,
+        #cp-claim-list-btn:hover {
+            color: var(--cp-purple);
+        }
+
+        .cp-sort-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #cp-sort-select {
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }
+
+        #cp-filter-icon {
+            font-size: 1.2rem;
+            color: var(--cp-secondary-text);
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        /* Announcement Section */
+        .cp-announcement-section {
+            background: linear-gradient(45deg, var(--cp-purple), #8a7dff);
+            color: white;
+            padding: 12px 40px 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            /* Reduced spacing */
+            display: flex;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(106, 90, 224, 0.3);
+        }
+
+        .cp-announcement-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cp-announcement-content i {
+            font-size: 1.5rem;
+        }
+
+        .cp-announcement-content p {
+            margin: 0;
+            font-weight: 500;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        .cp-announcement-close-btn {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .cp-announcement-close-btn:hover {
+            color: white;
+        }
+
+        /* Horizontal Date Picker */
+        .cp-date-picker-section {
+            margin-bottom: 5px;
+            /* Minimal spacing */
+        }
+
+        .cp-date-picker-wrapper {
+            overflow-x: auto;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+        }
+
+        .cp-date-picker-wrapper::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        .cp-date-picker {
+            display: flex;
+            gap: 12px;
+            padding: 5px 0;
+            white-space: nowrap;
+        }
+
+        .cp-date-item {
+            flex-shrink: 0;
+            width: 65px;
+            height: 80px;
+            background-color: var(--cp-card-bg);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--cp-border-color);
+        }
+
+        .cp-date-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--cp-shadow);
+        }
+
+        .cp-date-item.active {
+            background-color: var(--cp-purple);
+            color: white;
+            border-color: var(--cp-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px -5px rgba(106, 90, 224, 0.4);
+        }
+
+        .cp-date-day {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cp-date-month {
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        /* Banner Slider */
+        .cp-banner-slider-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+            /* Reduced spacing */
+            border-radius: var(--cp-radius);
+            overflow: hidden;
+            box-shadow: var(--cp-shadow);
+            background-color: var(--cp-light-bg);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cp-banner-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .cp-banner-slide {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .cp-banner-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .cp-banner-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .cp-banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cp-banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Features */
+        .cp-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .cp-feature-card {
+            background: var(--cp-card-bg);
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cp-primary-text);
+            box-shadow: var(--cp-shadow);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cp-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px -5px rgba(23, 23, 37, 0.1);
+        }
+
+        .cp-feature-card i {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+            color: var(--cp-purple);
+        }
+
+        .cp-source-tabs-wrapper {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 10px;
+            /* Reduced spacing */
+            background-color: var(--cp-light-bg);
+            padding: 5px;
+            border-radius: 14px;
+        }
+
+        .cp-source-tabs-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cp-source-tabs {
+            display: flex;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .cp-source-tab {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            color: var(--cp-secondary-text);
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cp-source-tab.active {
+            background: var(--cp-card-bg);
+            color: var(--cp-primary-text);
+            font-weight: 600;
+            box-shadow: 0 3px 10px -2px rgba(23, 23, 37, 0.1);
+        }
+
+        .cp-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            /* Reduced spacing */
+        }
+
+        .cp-search-wrapper {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        #cp-search-input {
+            width: 100%;
+            padding: 14px 45px 14px 45px;
+            border-radius: 12px;
+            border: 1px solid var(--cp-border-color);
+            background-color: var(--cp-card-bg);
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        #cp-search-input:focus {
+            border-color: var(--cp-purple);
+            box-shadow: 0 0 0 3px rgba(106, 90, 224, 0.2);
+            outline: none;
+        }
+
+        .cp-search-wrapper .fa-search {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cp-secondary-text);
+        }
+
+        #cp-search-clear-btn {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--cp-secondary-text);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        #cp-search-clear-btn:hover {
+            color: var(--cp-primary-text);
+        }
+
+        /* Wallet, Category & Per Page Filter */
+        .cp-wallet-filter-wrapper,
+        .cp-category-filter-wrapper,
+        .cp-per-page-filter-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: var(--cp-card-bg);
+            border-radius: 12px;
+            box-shadow: var(--cp-shadow);
+            padding: 0 15px;
+            border: 1px solid var(--cp-border-color);
+        }
+
+        .cp-wallet-filter-wrapper .fa-wallet,
+        .cp-category-filter-wrapper .fa-layer-group,
+        .cp-per-page-filter-wrapper .fa-list-ol {
+            color: var(--cp-secondary-text);
+            margin-right: 10px;
+        }
+
+        #cp-wallet-select,
+        #cp-category-select,
+        #cp-per-page-select {
+            border: none;
+            background: transparent;
+            padding: 14px 0;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--cp-primary-text);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        #cp-active-filter-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            background-color: var(--cp-light-bg);
+            color: var(--cp-purple);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+        }
+
+        #cp-clear-filter-btn {
+            background: none;
+            border: none;
+            color: var(--cp-purple);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .cp-list-body {
+            display: grid;
+            gap: 20px;
+            padding-bottom: 120px;
+            /* Ensure content is above bottom nav */
+        }
+
+        /* Card Styling & Animation */
+        .cp-card {
+            background-color: var(--cp-card-bg);
+            border-radius: var(--cp-radius);
+            padding: 20px;
+            box-shadow: var(--cp-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+        }
+
+        .cp-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(106, 90, 224, 0.15);
+            z-index: 10;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cp-card.visible {
+            opacity: 1;
+            animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .cp-card.is-inactive {
+            opacity: 0.7;
+            background-color: #fcfcfc;
+        }
+
+        .cp-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cp-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: var(--cp-light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cp-purple);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cp-card-title-section {
+            flex-grow: 1;
+        }
+
+        .cp-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .cp-card-date {
+            font-size: 0.85rem;
+            color: var(--cp-secondary-text);
+        }
+
+        .cp-card-wallet {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--cp-secondary-text);
+            padding: 4px 8px;
+            border-radius: 6px;
+            background-color: var(--cp-light-bg);
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .cp-card-wallet.faucetpay {
+            background-color: #e6f7ff;
+            color: #1890ff;
+        }
+
+        .cp-card-wallet.cwallet {
+            background-color: #e6fffb;
+            color: #13c2c2;
+        }
+
+        .cp-card-wallet.binance {
+            background-color: #f0b90b26;
+            color: #b48909;
+        }
+
+        .cp-card-wallet.paytm {
+            background-color: #00b9f126;
+            color: #008ac4;
+        }
+
+        .cp-card-wallet.payeer {
+            background-color: #007bff26;
+            color: #0056b3;
+        }
+
+        .cp-card-wallet.paypal {
+            background-color: #00308726;
+            color: #003087;
+        }
+
+        .cp-card-wallet.direct-wallet {
+            background-color: var(--cp-light-bg);
+            color: var(--cp-purple);
+        }
+
+        .cp-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cp-tag {
+            background-color: var(--cp-bg);
+            color: var(--cp-secondary-text);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+        }
+
+        .cp-tag:hover,
+        .cp-tag.active {
+            background-color: var(--cp-light-bg);
+            color: var(--cp-purple);
+        }
+
+        /* Pagination Container */
+        .cp-pagination {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            /* Increased top margin for separation from cards */
+            padding-bottom: 20px;
+        }
+
+        .cp-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--cp-border-color);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .cp-view-btn {
+            flex-grow: 1;
+            text-align: center;
+            padding: 12px;
+            background: var(--cp-purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .cp-view-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cp-view-btn:disabled {
+            background: #B0B0C0;
+            cursor: not-allowed;
+        }
+
+        .cp-card-action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cp-copy-btn,
+        .cp-share-btn,
+        .cp-save-btn {
+            flex-shrink: 0;
+            padding: 12px;
+            background: var(--cp-card-bg);
+            color: var(--cp-secondary-text);
+            border: 1px solid var(--cp-border-color);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+
+        .cp-copy-btn:hover,
+        .cp-share-btn:hover,
+        .cp-save-btn:hover {
+            background-color: var(--cp-light-bg);
+            color: var(--cp-purple);
+        }
+
+        .cp-copy-btn:disabled {
+            cursor: default;
+        }
+
+        .cp-save-btn i.fas.fa-bookmark {
+            color: var(--cp-purple);
+        }
+
+        .cp-not-active-btn {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: var(--cp-red);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            margin-bottom: 10px;
+            order: -1;
+        }
+
+        /* Skeleton Loader */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        .cp-skeleton-card {
+            background-color: var(--cp-card-bg);
+            border-radius: var(--cp-radius);
+            padding: 20px;
+            box-shadow: var(--cp-shadow);
+        }
+
+        .skeleton {
+            background: #f6f7f8;
+            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 104px;
+            animation: shimmer 1s linear infinite;
+        }
+
+        .cp-skeleton-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cp-skeleton-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+        }
+
+        .cp-skeleton-title-group {
+            flex-grow: 1;
+        }
+
+        .cp-skeleton-line {
+            height: 1.1rem;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .cp-skeleton-line.short {
+            width: 40%;
+            height: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        .cp-skeleton-tag {
+            width: 60px;
+            height: 26px;
+            border-radius: 8px;
+        }
+
+        .cp-skeleton-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .cp-skeleton-button {
+            height: 45px;
+            border-radius: 12px;
+        }
+
+        .cp-feedback-message,
+        .cp-pagination-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .cp-feedback-message {
+            color: var(--cp-secondary-text);
+        }
+
+        .cp-feedback-message i {
+            font-size: 2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #cp-load-more-btn {
+            padding: 12px 30px;
+            border: none;
+            background: var(--cp-purple);
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Bottom Nav */
+        .cp-bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 440px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid rgba(234, 235, 242, 0.8);
+        }
+
+        .cp-nav-item,
+        .cp-nav-item-main {
+            text-decoration: none;
+            color: var(--cp-secondary-text);
+            font-size: 1.5rem;
+            position: relative;
+            padding: 10px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .cp-nav-item:hover {
+            color: var(--cp-purple);
+        }
+
+        .cp-nav-item.active {
+            color: var(--cp-purple);
+        }
+
+        .cp-nav-item-main {
+            width: 60px;
+            height: 60px;
+            background: var(--cp-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -35px;
+            box-shadow: 0 8px 20px rgba(106, 90, 224, 0.4);
+            border: 4px solid var(--cp-bg);
+            transition: transform 0.2s ease;
+        }
+
+        .cp-nav-item-main:hover {
+            transform: scale(1.05);
+        }
+
+        /* Modals */
+        @keyframes modal-pop-in {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cp-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            transition: opacity 0.3s ease;
+        }
+
+        .cp-modal-panel {
+            background: var(--cp-bg);
+            padding: 25px;
+            border-radius: var(--cp-radius);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-sizing: border-box;
+            animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .cp-modal-panel-large {
+            max-width: 95%;
+            height: 80%;
+        }
+
+        .cp-modal-content {
+            height: 100%;
+        }
+
+        .cp-modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--cp-secondary-text);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .cp-setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-top: 1px solid var(--cp-border-color);
+        }
+
+        .cp-setting-item:first-child {
+            border-top: none;
+        }
+
+        .cp-setting-item select,
+        .cp-setting-item input[type="color"] {
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .cp-setting-item input[type="color"] {
+            width: 40px;
+            height: 30px;
+            padding: 2px;
+        }
+
+        .cp-about-content {
+            text-align: center;
+        }
+
+        .cp-about-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .cp-about-content h3 {
+            margin-bottom: 5px;
+        }
+
+        .cp-about-content .cp-about-description {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .cp-guide-content {
+            margin-top: 20px;
+        }
+
+        .cp-guide-item {
+            padding: 15px 0;
+            border-top: 1px solid var(--cp-border-color);
+        }
+
+        .cp-guide-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .cp-guide-item h5 {
+            margin: 0 0 8px 0;
+            font-size: 1rem;
+            color: var(--cp-primary-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .cp-guide-item h5 i {
+            margin-right: 10px;
+            color: var(--cp-purple);
+            width: 20px;
+            text-align: center;
+        }
+
+        .cp-guide-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--cp-secondary-text);
+            line-height: 1.5;
+            padding-left: 30px;
+        }
+
+        .cp-guide-item p i {
+            font-size: 0.9em;
+        }
+
+        /* Claim List Modal Styles */
+        #cp-claim-list-guide {
+            background-color: var(--cp-light-bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: var(--cp-primary-text);
+        }
+
+        #cp-claim-list-guide i {
+            color: var(--cp-purple);
+        }
+
+        .cp-claim-list-content {
+            height: calc(100% - 80px);
+            overflow-y: auto;
+        }
+
+        .cp-claim-item {
+            background: #fff;
+            border: 1px solid var(--cp-border-color);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cp-claim-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .cp-claim-item-title {
+            margin: 0;
+            font-size: 1.1rem;
+            flex-grow: 1;
+        }
+
+        .cp-claim-item-remove-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--cp-secondary-text);
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .cp-claim-item-remove-btn:hover {
+            color: var(--cp-red);
+        }
+
+        .cp-claim-item-link {
+            font-size: 0.9rem;
+            color: var(--cp-purple);
+            text-decoration: none;
+        }
+
+        .cp-claim-item-link:hover {
+            text-decoration: underline;
+        }
+
+        .cp-claim-item-notes {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .cp-claim-item-date-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--cp-light-bg);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .cp-claim-item-date-picker label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--cp-secondary-text);
+        }
+
+        .cp-claim-item-date-picker input {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        /* Network Error Modal */
+        .cp-network-error-content {
+            text-align: center;
+        }
+
+        .cp-network-error-content i {
+            font-size: 3rem;
+            color: var(--cp-red);
+            margin-bottom: 20px;
+        }
+
+        .cp-network-error-content h2 {
+            margin-top: 0;
+        }
+
+        /* Pull to refresh */
+        .cp-pull-to-refresh-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px;
+            background: var(--cp-light-bg);
+            z-index: 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: var(--cp-purple);
+        }
+
+        .cp-pull-to-refresh-indicator .fa-spinner,
+        .cp-pull-to-refresh-indicator .fa-sync-alt {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Info Sections */
+        .cp-info-section {
+            background-color: var(--cp-card-bg);
+            padding: 20px;
+            border-radius: var(--cp-radius);
+            margin-bottom: 25px;
+            box-shadow: var(--cp-shadow);
+        }
+
+        .cp-info-section h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--cp-border-color);
+            margin-bottom: 15px;
+        }
+
+        .cp-info-section ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: var(--cp-secondary-text);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .cp-info-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cp-info-link {
+            background-color: var(--cp-light-bg);
+            color: var(--cp-primary-text);
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cp-info-link:hover {
+            background-color: #dce3f2;
+        }
+
+        .cp-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .cp-social-icons a {
+            color: var(--cp-secondary-text);
+            font-size: 2rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .cp-social-icons a:hover {
+            color: var(--cp-purple);
+            transform: scale(1.1);
+        }
+
+        #cp-all-tags-section h2 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cp-all-tags-section .cp-chevron {
+            transition: transform 0.3s ease;
+        }
+
+        #cp-all-tags-container {
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            overflow: hidden;
+            max-height: 1000px;
+            opacity: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        #cp-all-tags-section.collapsed .cp-chevron {
+            transform: rotate(-90deg);
+        }
+
+        #cp-all-tags-section.collapsed #cp-all-tags-container {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        /* IMPROVED Footer */
+        .cp-footer {
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--cp-secondary-text);
+            background-color: var(--cp-card-bg);
+            margin-top: 40px;
+            border-radius: var(--cp-radius) var(--cp-radius) 0 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .cp-footer-love {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--cp-primary-text);
+        }
+
+        .cp-footer-love .f9xr-text {
+            background: linear-gradient(45deg, #6A5AE0, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .heart-pulse {
+            display: inline-block;
+            color: #FF6B6B;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.3);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        .cp-footer-content {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .cp-footer-content p {
+            margin-bottom: 15px;
+        }
+
+        .cp-creator-link {
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .cp-creator-link a {
+            color: var(--cp-purple);
+            text-decoration: none;
+        }
+
+        /* Marquee */
+        .cp-marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            flex-grow: 1;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .cp-marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* 3D Red Border for Inactive */
+        .cp-card.is-inactive {
+            opacity: 0.8;
+            background-color: #fff5f5;
+            border: 2px solid var(--cp-red);
+            box-shadow: 4px 4px 0px var(--cp-red);
+            /* 3D Effect */
+            transform: translateY(0);
+        }
+
+        .cp-card.is-inactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px var(--cp-red);
+        }
+
+        /* Wallet Link Chips */
+        .cp-wallet-link-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .cp-wallet-link-chip:hover {
+            transform: translateY(-2px);
+        }
+
+        .cp-wallet-link-chip.faucetpay {
+            background: #1890ff;
+        }
+
+        .cp-wallet-link-chip.binance {
+            background: #F3BA2F;
+            color: #000;
+        }
+
+        .cp-wallet-link-chip.cwallet {
+            background: #13c2c2;
+        }
+
+        .cp-wallet-link-chip.payeer {
+            background: #0056b3;
+        }
+
+        .cp-wallet-link-chip.paytm {
+            background: #00b9f1;
+        }
+
+        .cp-wallet-link-chip.paypal {
+            background: #003087;
+        }
+
+        /* Filter Wrappers */
+        .cp-filter-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: var(--cp-card-bg);
+            border-radius: 12px;
+            box-shadow: var(--cp-shadow);
+            padding: 0 15px;
+            border: 1px solid var(--cp-border-color);
+        }
+
+        .cp-filter-wrapper i {
+            color: var(--cp-secondary-text);
+            margin-right: 10px;
+        }
+
+        .cp-filter-wrapper select {
+            border: none;
+            background: transparent;
+            padding: 14px 0;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--cp-primary-text);
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .cp-filter-wrapper .cp-custom-dropdown {
+            width: 100%;
+            position: relative;
+        }
+
+        .cp-dropdown-btn {
+            padding: 14px 0;
+            background: transparent;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--cp-primary-text);
+            width: 100%;
+        }
+
+        .cp-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 100%;
+            /* Ensure it's at least as wide as parent */
+            width: max-content;
+            /* Allow it to grow to fit content */
+            background: var(--cp-card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 5px 0;
+            /* Adjusted padding */
+            z-index: 100;
+            max-height: 280px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* Fix horizontal scroll */
+            border: 1px solid var(--cp-border-color);
+            margin-top: 5px;
+        }
+
+        .cp-custom-dropdown.active .cp-dropdown-content {
+            display: block;
+            animation: modal-pop-in 0.2s ease;
+        }
+
+        .cp-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            /* More comfortable active area */
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--cp-primary-text);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            /* Prevent wrapping */
+        }
+
+        .cp-dropdown-item:hover {
+            background-color: rgba(106, 90, 224, 0.1);
+            /* Light purple hover */
+            color: var(--cp-purple);
+        }
+
+        .cp-dropdown-item input {
+            margin-right: 12px;
+            accent-color: var(--cp-purple);
+            width: 16px;
+            height: 16px;
+        }
+
+        .cp-dropdown-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--cp-border-color);
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            gap: 15px;
+            /* Prevent cramping */
+        }
+
+        .cp-dropdown-action {
+            color: var(--cp-purple);
+            cursor: pointer;
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .cp-dropdown-action:hover {
+            text-decoration: underline;
+        }
+
+        /* Dynamic Wallet Link Box */
+        .cp-dynamic-wallet-box {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #0050b3;
+            animation: modal-pop-in 0.3s ease;
+        }
+
+        .cp-dynamic-wallet-box a {
+            font-weight: 700;
+            color: #096dd9;
+            text-decoration: underline;
+        }
+
+        /* IMPROVED Footer */
+        .cp-footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            /* Made bigger */
+            font-weight: 500;
+            color: var(--cp-secondary-text);
+            line-height: 1.7;
+            /* Improved line spacing */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === DOM Elements ===
+            const appContainer = document.querySelector('.cp-app-container');
+            const sourceTabsContainer = document.getElementById('cp-source-tabs');
+            const sourceTabsWrapper = document.getElementById('cp-source-tabs-wrapper');
+            const searchInput = document.getElementById('cp-search-input');
+            const searchClearBtn = document.getElementById('cp-search-clear-btn');
+            const sortSelect = document.getElementById('cp-sort-select');
+            // const walletSelect = document.getElementById('cp-wallet-select'); // Removed
+            // const categorySelect = document.getElementById('cp-category-select'); // Removed
+            const tokenSelect = document.getElementById('cp-token-select'); // NEW
+            const walletFilterWrapper = document.querySelector('.cp-wallet-filter-wrapper');
+            // const categoryFilterWrapper = document.querySelector('.cp-category-filter-wrapper'); // No longer needed to hide separately if we manage properly
+            const perPageSelect = document.getElementById('cp-per-page-select');
+            const listBody = document.getElementById('cp-list-body');
+            const feedbackMessage = document.getElementById('cp-feedback-message');
+            const paginationContainer = document.getElementById('cp-pagination-container');
+            const loadMoreBtn = document.getElementById('cp-load-more-btn');
+            const activeFilterContainer = document.getElementById('cp-active-filter-container');
+            const activeFilterTag = document.getElementById('cp-active-filter-tag');
+            const clearFilterBtn = document.getElementById('cp-clear-filter-btn');
+            const bannerSliderWrapper = document.getElementById('cp-banner-slider-wrapper');
+            const bannerSlider = document.getElementById('cp-banner-slider');
+            const bannerDots = document.getElementById('cp-banner-dots');
+            const allTagsSection = document.getElementById('cp-all-tags-section');
+
+            // === Modals ===
+            const chatModal = document.getElementById('cp-chat-modal');
+            const settingsModal = document.getElementById('cp-settings-modal');
+            const guideModal = document.getElementById('cp-guide-modal');
+            const aboutModal = document.getElementById('cp-about-modal');
+            const claimListModal = document.getElementById('cp-claim-list-modal');
+            const networkErrorModal = document.getElementById('cp-network-error-modal');
+
+            // === Buttons ===
+            const guideBtn = document.getElementById('cp-guide-btn');
+            const aboutBtn = document.getElementById('cp-about-btn');
+            const claimListBtn = document.getElementById('cp-claim-list-btn');
+            const clearCacheBtn = document.getElementById('cp-clear-cache-btn');
+            const navItems = document.querySelectorAll('.cp-nav-item');
+            const navLearn = document.getElementById('cp-nav-learn');
+            const navChat = document.getElementById('cp-nav-chat');
+            const navNews = document.getElementById('cp-nav-news');
+            const navSettings = document.getElementById('cp-nav-settings');
+
+            // === Config & State ===
+            const NEWS_SOURCE = { name: "News & Codes", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com" };
+            const LEARN_SOURCE = { name: "Learn", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com" };
+            const SOURCE_CONFIG = [
+                { name: "Earning", icon: "fa-rocket", url: "https://ttearncrypto.blogspot.com" },
+                { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com" },
+                { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com" },
+                { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com" }
+            ];
+            const BANNERS = [
+                { img: 'https://i.imgur.com/7qPyMe2_d.webp?maxwidth=520&shape=thumb&fidelity=high', url: '#' },
+                { img: 'https://i.imgur.com/Qrd6ERS.jpeg', url: '#' },
+                { img: 'https://i.imgur.com/UmgaqgB.jpeg', url: '#' },
+            ];
+            // This array is used for display logic, 'Direct Wallet' is handled as a special case.
+            const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'PhonePe', 'Payeer', 'Paypal'];
+
+            const WALLET_LINKS = {
+                'FaucetPay': 'https://faucetpay.io/?r=2921252',
+                'Binance': 'https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=en-IN&ref=GRO_28502_HU0O6&utm_source=default',
+                'Cwallet': 'https://cwallet.com',
+                'Payeer': 'https://payeer.com',
+                'Paytm': 'https://paytm.com',
+                'Paypal': 'https://www.paypal.com',
+                'PhonePe': 'https://phon.pe/y5y03a77'
+            };
+
+            let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
+            let currentPage = 1, projectsPerPage = 10;
+            let activeTag = null, searchDebounceTimer, bannerInterval;
+            // let isLoadingMore = false; // Auto Scroll Lock - Removed for button logic
+
+            // === Claim List (Todo) Logic ===
+            const CLAIM_LIST_KEY = 'cp-claimList';
+            const CLAIM_GUIDE_SEEN_KEY = 'cp-claimGuideSeen';
+
+            const getClaimList = () => JSON.parse(localStorage.getItem(CLAIM_LIST_KEY)) || [];
+            const saveClaimList = (list) => localStorage.setItem(CLAIM_LIST_KEY, JSON.stringify(list));
+
+            function addToClaimList(project) {
+                const list = getClaimList();
+                if (!list.some(p => p.id === project.id)) {
+                    list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '' });
+                    saveClaimList(list);
+                }
+            }
+
+            function removeFromClaimList(projectId) {
+                saveClaimList(getClaimList().filter(p => p.id !== projectId));
+            }
+
+            function updateClaimNote(projectId, notes) {
+                const list = getClaimList();
+                const item = list.find(p => p.id === projectId);
+                if (item) { item.notes = notes; saveClaimList(list); }
+            }
+
+            function updateClaimDate(projectId, date) {
+                const list = getClaimList();
+                const item = list.find(p => p.id === projectId);
+                if (item) { item.claimDate = date; saveClaimList(list); }
+            }
+
+            function renderClaimList() {
+                const contentEl = document.getElementById('cp-claim-list-content');
+                const list = getClaimList();
+
+                if (list.length === 0) {
+                    contentEl.innerHTML = `<div class="cp-feedback-message"><i class="far fa-folder-open"></i><p>Your claim list is empty.</p></div>`;
+                    return;
+                }
+
+                contentEl.innerHTML = list.map(item => `
             <div class="cp-claim-item" data-id="${item.id}">
                 <div class="cp-claim-item-header">
                     <h4 class="cp-claim-item-title">${item.name}</h4>
@@ -694,83 +2267,83 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `).join('');
-    }
-
-    // === Main Functions ===
-    
-    const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
-        if (!navigator.onLine) {
-            handleNetworkChange();
-            return reject(new Error('No internet connection'));
-        }
-        const script = document.createElement('script'); 
-        window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); }; 
-        script.src = `${url}&callback=${callbackName}`; 
-        script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); }; 
-        document.body.appendChild(script); 
-    });
-
-    const processEntries = (entries, source) => (entries || []).map((entry) => { 
-        const name = entry.title.$t.trim(); 
-        const link = (entry.link.find(l => l.rel === 'alternate') || {}).href; 
-        const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http")); 
-        const iconClass = source ? `fas ${source.icon}` : 'fas fa-shield-alt'; 
-        return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t), iconClass, sourceName: source.name }; 
-    });
-
-    function renderSkeletonLoaders() {
-        listBody.innerHTML = '';
-        const skeletonHTML = `<div class="cp-skeleton-card"><div class="cp-skeleton-header"><div class="cp-skeleton-icon skeleton"></div><div class="cp-skeleton-title-group"><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line short skeleton"></div></div></div><div class="cp-skeleton-tags"><div class="cp-skeleton-tag skeleton"></div><div class="cp-skeleton-tag skeleton"></div></div><div class="cp-skeleton-button skeleton"></div></div>`;
-        for (let i = 0; i < 5; i++) listBody.innerHTML += skeletonHTML;
-    }
-    
-    const cardObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
             }
-        });
-    }, { rootMargin: '0px', threshold: 0.1 });
 
+            // === Main Functions ===
 
-    function renderListItems(projects, append = false) {
-        if (!append) listBody.innerHTML = '';
-        hideFeedback();
-        if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
-        
-        const fragment = document.createDocumentFragment();
-        const claimList = getClaimList();
-
-        projects.forEach(project => {
-            const card = document.createElement('div');
-            const isInactive = project.tags.includes('NotActive');
-            card.className = `cp-card ${isInactive ? 'is-inactive' : ''}`;
-            
-            const isInformational = project.sourceName === NEWS_SOURCE.name || project.sourceName === LEARN_SOURCE.name;
-
-            let walletType = 'Direct Wallet';
-            let walletClass = 'direct-wallet';
-            for (const w of WALLETS) {
-                if (project.tags.includes(w)) {
-                    walletType = w;
-                    walletClass = w.toLowerCase();
-                    break;
+            const fetchJsonp = (url, callbackName) => new Promise((resolve, reject) => {
+                if (!navigator.onLine) {
+                    handleNetworkChange();
+                    return reject(new Error('No internet connection'));
                 }
+                const script = document.createElement('script');
+                window[callbackName] = (data) => { delete window[callbackName]; script.remove(); resolve(data); };
+                script.src = `${url}&callback=${callbackName}`;
+                script.onerror = (err) => { delete window[callbackName]; script.remove(); reject(err); };
+                document.body.appendChild(script);
+            });
+
+            const processEntries = (entries, source) => (entries || []).map((entry) => {
+                const name = entry.title.$t.trim();
+                const link = (entry.link.find(l => l.rel === 'alternate') || {}).href;
+                const tags = (entry.category || []).map(cat => cat.term.trim()).filter(cat => cat && !cat.startsWith("http"));
+                const iconClass = source ? `fas ${source.icon}` : 'fas fa-shield-alt';
+                return { id: entry.id.$t, name, url: link, tags, publishedDate: new Date(entry.published.$t), iconClass, sourceName: source.name };
+            });
+
+            function renderSkeletonLoaders() {
+                listBody.innerHTML = '';
+                const skeletonHTML = `<div class="cp-skeleton-card"><div class="cp-skeleton-header"><div class="cp-skeleton-icon skeleton"></div><div class="cp-skeleton-title-group"><div class="cp-skeleton-line skeleton"></div><div class="cp-skeleton-line short skeleton"></div></div></div><div class="cp-skeleton-tags"><div class="cp-skeleton-tag skeleton"></div><div class="cp-skeleton-tag skeleton"></div></div><div class="cp-skeleton-button skeleton"></div></div>`;
+                for (let i = 0; i < 5; i++) listBody.innerHTML += skeletonHTML;
             }
 
-            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
-            const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
-            const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            
-            const buttonText = isInformational ? 'Read More' : 'View Project';
-            const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
-            const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
-            
-            const isSaved = claimList.some(item => item.id === project.id);
-            const saveButtonHTML = !isInformational ? `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>` : '';
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px', threshold: 0.1 });
 
-            card.innerHTML = `
+
+            function renderListItems(projects, append = false) {
+                if (!append) listBody.innerHTML = '';
+                hideFeedback();
+                if (projects.length === 0 && !append) { showFeedback('No projects found.', 'fa-search-minus'); return; }
+
+                const fragment = document.createDocumentFragment();
+                const claimList = getClaimList();
+
+                projects.forEach(project => {
+                    const card = document.createElement('article'); // Semantic HTML
+                    const isInactive = project.tags.includes('NotActive');
+                    card.className = `cp-card ${isInactive ? 'is-inactive' : ''}`;
+
+                    const isInformational = project.sourceName === NEWS_SOURCE.name || project.sourceName === LEARN_SOURCE.name;
+
+                    let walletType = 'Direct Wallet';
+                    let walletClass = 'direct-wallet';
+                    for (const w of WALLETS) {
+                        if (project.tags.includes(w)) {
+                            walletType = w;
+                            walletClass = w.toLowerCase();
+                            break;
+                        }
+                    }
+
+                    const tagsToRender = project.tags.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
+                    const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
+                    const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                    const buttonText = isInformational ? 'Read More' : 'View Project';
+                    const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
+                    const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
+
+                    const isSaved = claimList.some(item => item.id === project.id);
+                    const saveButtonHTML = !isInformational ? `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>` : '';
+
+                    card.innerHTML = `
                 <div class="cp-card-header">
                     <div class="cp-card-icon"><i class="${project.iconClass}"></i></div>
                     <div class="cp-card-title-section">
@@ -789,328 +2362,516 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${saveButtonHTML}
                     </div>
                 </div>`;
-            fragment.appendChild(card);
-            cardObserver.observe(card);
-        });
-        listBody.appendChild(fragment);
-    }
-    
-    function applyFiltersAndSort(isNewData = false) {
-        if (isNewData) currentPage = 1;
-        let projects = [...allProjects];
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const sortOrder = sortSelect.value;
-        const selectedWallet = walletSelect.value;
-        const selectedCategory = categorySelect.value; // NEW
-
-        if (activeTag) { 
-            projects = projects.filter(p => p.tags.includes(activeTag)); 
-            activeFilterTag.textContent = activeTag; 
-            activeFilterContainer.style.display = 'inline-flex'; 
-        } else { 
-            activeFilterContainer.style.display = 'none'; 
-        }
-        if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
-        
-        if (selectedWallet !== 'all') {
-            if (selectedWallet === 'Direct Wallet') {
-                projects = projects.filter(p => !WALLETS.some(w => p.tags.includes(w)));
-            } else {
-                projects = projects.filter(p => p.tags.includes(selectedWallet));
+                    fragment.appendChild(card);
+                    cardObserver.observe(card);
+                });
+                listBody.appendChild(fragment);
             }
-        }
-        
-        // NEW: Filter by category
-        if (selectedCategory !== 'all') {
-            projects = projects.filter(p => p.tags.some(tag => tag.toLowerCase() === selectedCategory.toLowerCase()));
-        }
 
-        switch (sortOrder) { 
-            case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break; 
-            case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break; 
-            case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break; 
-            default: projects.sort((a, b) => b.publishedDate - a.publishedDate); break; 
-        }
-        
-        displayedProjects = projects;
-        const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
-        renderListItems(paginatedProjects, false);
-        paginationContainer.style.display = displayedProjects.length > paginatedProjects.length ? 'block' : 'none';
-    }
-
-    const loadSourceData = async (source, forceReload = false) => {
-        currentSource = source;
-        listBody.innerHTML = ''; 
-        renderSkeletonLoaders();
-        hideFeedback();
-        
-        let projects;
-        if (dataCache[source.url] && !forceReload) { 
-            projects = dataCache[source.url]; 
-        } else {
-            try { 
-                const callbackName = `cpJsonpCallback_${Date.now()}`; 
-                const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName); 
-                projects = processEntries(data.feed.entry, source); 
-                dataCache[source.url] = projects; 
-            } catch (error) { 
-                console.error("Fetch Error:", error);
-                showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
-                return; 
+            function getSelectedValues(dropdownId) {
+                const inputs = document.getElementById(dropdownId).querySelectorAll('input[type="checkbox"]:checked');
+                return Array.from(inputs).map(input => input.value);
             }
-        }
-        allProjects = projects; 
-        applyFiltersAndSort(true);
-        renderSourceSpecificTags(allProjects);
-    };
-    
-    function renderSourceTabs() {
-        sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
-    }
 
-    // Helper to adjust UI based on the selected source
-    const updateLayoutForSource = (source) => {
-        const isInformational = source.name === NEWS_SOURCE.name || source.name === LEARN_SOURCE.name;
-        const showFilters = !isInformational;
-        walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
-        categoryFilterWrapper.style.display = showFilters ? 'flex' : 'none'; // NEW
-        
-        // Auto-scroll to the content area
-        setTimeout(() => {
-            sourceTabsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-    };
+            function applyFiltersAndSort(isNewData = false) {
+                if (isNewData) currentPage = 1;
+                let projects = [...allProjects];
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const sortInput = document.querySelector('input[name="sort"]:checked');
+                const sortOrder = sortInput ? sortInput.value : 'date-desc';
 
-    function setupBanners() {
-        if (BANNERS.length === 0) { bannerSliderWrapper.style.display = 'none'; return; }
-        bannerSlider.innerHTML = BANNERS.map(b => `<a href="${b.url}" target="_blank" class="cp-banner-slide"><img src="${b.img}" alt="Promotional Banner"></a>`).join('');
-        bannerDots.innerHTML = BANNERS.map((_, i) => `<div class="cp-banner-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></div>`).join('');
-        
-        let currentSlide = 0;
-        const slides = bannerSlider.children, dots = bannerDots.children, images = bannerSlider.querySelectorAll('img');
+                const selectedWallets = getSelectedValues('cp-wallet-custom');
+                const selectedCategories = getSelectedValues('cp-category-custom');
+                const selectedToken = tokenSelect.value; // Single select for token
 
-        const setSliderHeight = (img) => { if (!img || !img.naturalWidth) return; bannerSliderWrapper.style.height = `${bannerSliderWrapper.offsetWidth * (img.naturalHeight / img.naturalWidth)}px`; };
-        images.forEach((img, i) => { if (img.complete) { if(i===0) setSliderHeight(img); } else { img.onload = () => { if(i===0) setSliderHeight(img); }; } });
-        const showSlide = i => { bannerSlider.style.transform = `translateX(-${i*100}%)`; [...dots].forEach(d=>d.classList.remove('active')); dots[i].classList.add('active'); setSliderHeight(images[i]); currentSlide=i; };
-        const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
-        const resetBannerInterval = () => { clearInterval(bannerInterval); bannerInterval = setInterval(nextSlide, 5000); };
-        bannerDots.addEventListener('click', e => { if (e.target.matches('.cp-banner-dot')) { showSlide(parseInt(e.target.dataset.slide)); resetBannerInterval(); } });
-        window.addEventListener('resize', () => setSliderHeight(images[currentSlide]));
-        resetBannerInterval();
-    }
-    
-    function renderSourceSpecificTags(projects) {
-        const container = document.getElementById('cp-all-tags-container');
-        const tagsHeader = document.querySelector('#cp-all-tags-section h2');
-    
-        if (!currentSource || !projects) {
-            allTagsSection.style.display = 'none';
-            return;
-        }
-        
-        allTagsSection.style.display = 'block';
-        tagsHeader.childNodes[0].nodeValue = `Tags for ${currentSource.name} `;
+                if (activeTag) {
+                    projects = projects.filter(p => p.tags.includes(activeTag));
+                    activeFilterTag.textContent = activeTag;
+                    activeFilterContainer.style.display = 'inline-flex';
+                } else {
+                    activeFilterContainer.style.display = 'none';
+                }
 
-        const categories = [...categorySelect.options].map(opt => opt.value.toLowerCase());
-        const tags = new Set();
-        const excluded = [...WALLETS, 'NotActive', ...categories];
-        projects.forEach(p => p.tags.forEach(t => { 
-            if (!excluded.includes(t) && !excluded.includes(t.toLowerCase())) tags.add(t); 
-        }));
-        
-        const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b));
-        
-        if (sorted.length > 0) {
-            container.innerHTML = sorted.map(t => `<button class="cp-tag" data-tag="${t}">${t}</button>`).join('');
-        } else {
-            container.innerHTML = `<p class="cp-secondary-text">No specific tags for this source.</p>`;
-        }
-    }
+                if (searchTerm) { projects = projects.filter(p => p.name.toLowerCase().includes(searchTerm)); }
 
-    // === Horizontal Date Picker Logic ===
-    const renderDatePicker = () => {
-        const picker = document.getElementById('cp-date-picker');
-        if (!picker) return;
+                // Wallet Filter (Multi-select)
+                if (!selectedWallets.includes('all')) {
+                    if (selectedWallets.includes('Direct Wallet')) {
+                        // Logic for Direct Wallet + others if selected
+                        projects = projects.filter(p => {
+                            const hasDirect = !WALLETS.some(w => p.tags.includes(w));
+                            const hasOther = selectedWallets.some(w => w !== 'Direct Wallet' && p.tags.includes(w));
+                            return hasDirect || hasOther;
+                        });
+                    } else {
+                        projects = projects.filter(p => selectedWallets.some(w => p.tags.includes(w)));
+                    }
+                }
 
-        let content = '';
-        const today = new Date();
-        const startDate = new Date();
-        startDate.setDate(today.getDate() - 10); // Show dates from 10 days ago
-        const endDate = new Date();
-        endDate.setDate(today.getDate() + 20); // To 20 days in the future
+                // Category Filter (Multi-select)
+                if (!selectedCategories.includes('all')) {
+                    projects = projects.filter(p => selectedCategories.some(cat => p.tags.some(tag => tag.toLowerCase() === cat.toLowerCase())));
+                }
 
-        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-            const day = d.getDate();
-            const month = d.toLocaleDateString('en-US', { month: 'short' });
-            const isToday = d.toDateString() === today.toDateString();
+                // NEW: Token Filter (Single select for now, based on request "Add option for users to select token")
+                if (selectedToken !== 'all') {
+                    // Check if Token is in tags (case insensitive)
+                    projects = projects.filter(p => p.tags.some(tag => tag.toUpperCase() === selectedToken));
+                }
 
-            content += `
+                switch (sortOrder) {
+                    case 'name-asc': projects.sort((a, b) => a.name.localeCompare(b.name)); break;
+                    case 'name-desc': projects.sort((a, b) => b.name.localeCompare(a.name)); break;
+                    case 'date-asc': projects.sort((a, b) => a.publishedDate - b.publishedDate); break;
+                    default: projects.sort((a, b) => b.publishedDate - a.publishedDate); break;
+                }
+
+                // Update Dynamic Wallet Link
+                const walletLinkContainer = document.getElementById('cp-wallet-dynamic-link-container');
+                walletLinkContainer.innerHTML = '';
+                walletLinkContainer.style.display = 'none';
+
+                if (selectedWallets.length === 1 && selectedWallets[0] !== 'all' && selectedWallets[0] !== 'Direct Wallet') {
+                    const walletName = selectedWallets[0];
+                    const walletLink = WALLET_LINKS[walletName];
+                    if (walletLink) {
+                        walletLinkContainer.innerHTML = `
+                            <div class="cp-dynamic-wallet-box">
+                                Don't have an account on <strong>${walletName}</strong>? <a href="${walletLink}" target="_blank">Click here to create one</a>.
+                            </div>
+                        `;
+                        walletLinkContainer.style.display = 'block';
+                    }
+                }
+
+                displayedProjects = projects;
+                const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
+                renderListItems(paginatedProjects, false);
+
+                // Show/Hide Load More Button
+                if (displayedProjects.length > paginatedProjects.length) {
+                    paginationContainer.style.display = 'block';
+                    loadMoreBtn.style.display = 'inline-block';
+                } else {
+                    paginationContainer.style.display = 'none';
+                }
+            }
+
+            const loadSourceData = async (source, forceReload = false) => {
+                currentSource = source;
+                listBody.innerHTML = '';
+                renderSkeletonLoaders();
+                hideFeedback();
+
+                let projects;
+                if (dataCache[source.url] && !forceReload) {
+                    projects = dataCache[source.url];
+                } else {
+                    try {
+                        const callbackName = `cpJsonpCallback_${Date.now()}`;
+                        const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=150`, callbackName);
+                        projects = processEntries(data.feed.entry, source);
+                        dataCache[source.url] = projects;
+                    } catch (error) {
+                        console.error("Fetch Error:", error);
+                        showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
+                        return;
+                    }
+                }
+                allProjects = projects;
+                applyFiltersAndSort(true);
+                renderSourceSpecificTags(allProjects);
+            };
+
+            function renderSourceTabs() {
+                sourceTabsContainer.innerHTML = SOURCE_CONFIG.map(source => `<button class="cp-source-tab" data-url="${source.url}" data-name="${source.name}">${source.name}</button>`).join('');
+            }
+
+            // Helper to adjust UI based on the selected source
+            const updateLayoutForSource = (source) => {
+                const isInformational = source.name === NEWS_SOURCE.name || source.name === LEARN_SOURCE.name;
+                const showFilters = !isInformational;
+
+                // Hide/Show Filters
+                walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
+                document.querySelector('.cp-category-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
+                document.querySelector('.cp-token-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
+
+                // Auto-scroll to the content area
+                setTimeout(() => {
+                    sourceTabsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            };
+
+            function setupBanners() {
+                if (BANNERS.length === 0) { bannerSliderWrapper.style.display = 'none'; return; }
+                bannerSlider.innerHTML = BANNERS.map(b => `<a href="${b.url}" target="_blank" class="cp-banner-slide"><img src="${b.img}" alt="Promotional Banner" loading="lazy"></a>`).join('');
+                bannerDots.innerHTML = BANNERS.map((_, i) => `<div class="cp-banner-dot ${i === 0 ? 'active' : ''}" data-slide="${i}"></div>`).join('');
+
+                let currentSlide = 0;
+                const slides = bannerSlider.children, dots = bannerDots.children, images = bannerSlider.querySelectorAll('img');
+
+                const setSliderHeight = (img) => { if (!img || !img.naturalWidth) return; bannerSliderWrapper.style.height = `${bannerSliderWrapper.offsetWidth * (img.naturalHeight / img.naturalWidth)}px`; };
+                images.forEach((img, i) => { if (img.complete) { if (i === 0) setSliderHeight(img); } else { img.onload = () => { if (i === 0) setSliderHeight(img); }; } });
+                const showSlide = i => { bannerSlider.style.transform = `translateX(-${i * 100}%)`;[...dots].forEach(d => d.classList.remove('active')); dots[i].classList.add('active'); setSliderHeight(images[i]); currentSlide = i; };
+                const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
+                const resetBannerInterval = () => { clearInterval(bannerInterval); bannerInterval = setInterval(nextSlide, 5000); };
+                bannerDots.addEventListener('click', e => { if (e.target.matches('.cp-banner-dot')) { showSlide(parseInt(e.target.dataset.slide)); resetBannerInterval(); } });
+                window.addEventListener('resize', () => setSliderHeight(images[currentSlide]));
+                resetBannerInterval();
+            }
+
+            function renderSourceSpecificTags(projects) {
+                const container = document.getElementById('cp-all-tags-container');
+                const tagsHeader = document.querySelector('#cp-all-tags-section h2');
+
+                if (!currentSource || !projects) {
+                    allTagsSection.style.display = 'none';
+                    return;
+                }
+
+                allTagsSection.style.display = 'block';
+                tagsHeader.childNodes[0].nodeValue = `Tags for ${currentSource.name} `;
+
+                // Fix: Get categories from custom dropdown inputs
+                const categoryInputs = document.querySelectorAll('#cp-category-custom input[type="checkbox"]');
+                const categories = Array.from(categoryInputs).map(input => input.value.toLowerCase()).filter(v => v !== 'all');
+
+                const tags = new Set();
+                const excluded = [...WALLETS, 'NotActive', ...categories];
+                projects.forEach(p => p.tags.forEach(t => {
+                    if (!excluded.includes(t) && !excluded.includes(t.toLowerCase())) tags.add(t);
+                }));
+
+                const sorted = Array.from(tags).sort((a, b) => a.localeCompare(b));
+
+                if (sorted.length > 0) {
+                    container.innerHTML = sorted.map(t => `<button class="cp-tag" data-tag="${t}">${t}</button>`).join('');
+                } else {
+                    container.innerHTML = `<p class="cp-secondary-text">No specific tags for this source.</p>`;
+                }
+            }
+
+            // === Horizontal Date Picker Logic ===
+            const renderDatePicker = () => {
+                const picker = document.getElementById('cp-date-picker');
+                if (!picker) return;
+
+                let content = '';
+                const today = new Date();
+                const startDate = new Date();
+                startDate.setDate(today.getDate() - 10); // Show dates from 10 days ago
+                const endDate = new Date();
+                endDate.setDate(today.getDate() + 20); // To 20 days in the future
+
+                for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                    const day = d.getDate();
+                    const month = d.toLocaleDateString('en-US', { month: 'short' });
+                    const isToday = d.toDateString() === today.toDateString();
+
+                    content += `
                 <div class="cp-date-item ${isToday ? 'active' : ''}" data-date="${d.toISOString()}">
                     <span class="cp-date-day">${day}</span>
                     <span class="cp-date-month">${month}</span>
                 </div>
             `;
-        }
-        picker.innerHTML = content;
+                }
+                picker.innerHTML = content;
 
-        const activeItem = picker.querySelector('.active');
-        if (activeItem) {
-            setTimeout(() => {
-                activeItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }, 100);
-        }
-    };
-    
-    const showFeedback = (message, icon) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
-    const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
-    const applySetting = (key, value) => { const prop = `--cp-${key.replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
-    const loadSettings = () => { applySetting('color', localStorage.getItem('cp-setting-color') || '#6A5AE0'); applySetting('font-family', localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"); applySetting('font-size', localStorage.getItem('cp-setting-font-size') || '16px'); document.getElementById('cp-setting-color').value = localStorage.getItem('cp-setting-color') || '#6A5AE0'; document.getElementById('cp-setting-font-family').value = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; document.getElementById('cp-setting-font-size').value = localStorage.getItem('cp-setting-font-size') || '16px'; };
+                const activeItem = picker.querySelector('.active');
+                if (activeItem) {
+                    setTimeout(() => {
+                        activeItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }, 100);
+                }
+            };
 
-    function handleNetworkChange() { networkErrorModal.style.display = navigator.onLine ? 'none' : 'flex'; }
+            const showFeedback = (message, icon) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
+            const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
+            const applySetting = (key, value) => { const prop = `--cp-${key.replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
+            const loadSettings = () => { applySetting('color', localStorage.getItem('cp-setting-color') || '#6A5AE0'); applySetting('font-family', localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"); applySetting('font-size', localStorage.getItem('cp-setting-font-size') || '16px'); document.getElementById('cp-setting-color').value = localStorage.getItem('cp-setting-color') || '#6A5AE0'; document.getElementById('cp-setting-font-family').value = localStorage.getItem('cp-setting-font-family') || "'Inter', sans-serif"; document.getElementById('cp-setting-font-size').value = localStorage.getItem('cp-setting-font-size') || '16px'; };
 
-    function setupPullToRefresh() {
-        let startY=0, isPulling=false; const threshold=80, indicator=document.getElementById('cp-pull-to-refresh-indicator'), main=document.querySelector('.cp-main-content');
-        const reset = () => { indicator.style.transition = 'transform 0.3s'; indicator.style.transform = 'translateY(-100%)'; main.style.transition = 'transform 0.3s'; main.style.transform = 'translateY(0)'; setTimeout(() => indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`, 300); };
-        appContainer.addEventListener('touchstart', e => { if (window.scrollY===0) { startY = e.touches[0].pageY; isPulling=true; indicator.style.transition='transform 0s'; main.style.transition='transform 0s';}}, {passive:true});
-        appContainer.addEventListener('touchmove', e => { if (!isPulling || !e.touches[0]) return; const dist=e.touches[0].pageY-startY; if (dist > 0) { e.preventDefault(); const val=Math.min(dist*0.5, threshold*1.2); indicator.style.transform=`translateY(${val - indicator.offsetHeight}px)`; main.style.transform=`translateY(${val}px)`; indicator.innerHTML = `<i class="fas ${dist > threshold ? 'fa-sync-alt fa-spin' : 'fa-arrow-down'}"></i>`; }}, {passive:false});
-        appContainer.addEventListener('touchend', e => { if (!isPulling) return; isPulling=false; if ((e.changedTouches[0].pageY-startY) > threshold) { indicator.innerHTML=`<i class="fas fa-spinner fa-spin"></i>`; if (currentSource) { loadSourceData(currentSource, true).finally(reset); } else { setTimeout(reset, 500); }} else { reset(); }});
-    }
+            function handleNetworkChange() { networkErrorModal.style.display = navigator.onLine ? 'none' : 'flex'; }
 
-    function init() {
-        loadSettings();
-        renderSourceTabs();
-        setupBanners();
-        setupPullToRefresh();
-        renderDatePicker();
-
-        sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
-            navItems.forEach(i => i.classList.remove('active'));
-            sourceTabsContainer.querySelector('.active')?.classList.remove('active');
-            e.currentTarget.classList.add('active');
-            const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
-            if (source) {
-                loadSourceData(source);
-                updateLayoutForSource(source);
+            function setupPullToRefresh() {
+                let startY = 0, isPulling = false; const threshold = 80, indicator = document.getElementById('cp-pull-to-refresh-indicator'), main = document.querySelector('.cp-main-content');
+                const reset = () => { indicator.style.transition = 'transform 0.3s'; indicator.style.transform = 'translateY(-100%)'; main.style.transition = 'transform 0.3s'; main.style.transform = 'translateY(0)'; setTimeout(() => indicator.innerHTML = `<i class="fas fa-arrow-down"></i>`, 300); };
+                appContainer.addEventListener('touchstart', e => { if (window.scrollY === 0) { startY = e.touches[0].pageY; isPulling = true; indicator.style.transition = 'transform 0s'; main.style.transition = 'transform 0s'; } }, { passive: true });
+                appContainer.addEventListener('touchmove', e => { if (!isPulling || !e.touches[0]) return; const dist = e.touches[0].pageY - startY; if (dist > 0) { e.preventDefault(); const val = Math.min(dist * 0.5, threshold * 1.2); indicator.style.transform = `translateY(${val - indicator.offsetHeight}px)`; main.style.transform = `translateY(${val}px)`; indicator.innerHTML = `<i class="fas ${dist > threshold ? 'fa-sync-alt fa-spin' : 'fa-arrow-down'}"></i>`; } }, { passive: false });
+                appContainer.addEventListener('touchend', e => { if (!isPulling) return; isPulling = false; if ((e.changedTouches[0].pageY - startY) > threshold) { indicator.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`; if (currentSource) { loadSourceData(currentSource, true).finally(reset); } else { setTimeout(reset, 500); } } else { reset(); } });
             }
-        }));
 
-        const setupNavLink = (el, action, isModal = false, source = null) => {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (!isModal) {
-                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+            function init() {
+                loadSettings();
+                renderSourceTabs();
+                setupBanners();
+                // Refresh Button Logic
+                const refreshBtn = document.getElementById('cp-refresh-btn');
+                refreshBtn.addEventListener('click', () => {
+                    refreshBtn.querySelector('i').classList.add('fa-spin');
+                    if (currentSource) {
+                        loadSourceData(currentSource, true).then(() => {
+                            setTimeout(() => refreshBtn.querySelector('i').classList.remove('fa-spin'), 500);
+                        });
+                    } else {
+                        window.location.reload();
+                    }
+                });
+
+                setupPullToRefresh();
+                renderDatePicker();
+
+                sourceTabsContainer.querySelectorAll('.cp-source-tab').forEach(tab => tab.addEventListener('click', (e) => {
                     navItems.forEach(i => i.classList.remove('active'));
-                    el.classList.add('active');
+                    sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                    e.currentTarget.classList.add('active');
+                    const source = SOURCE_CONFIG.find(s => s.url === e.currentTarget.dataset.url);
                     if (source) {
+                        loadSourceData(source);
                         updateLayoutForSource(source);
                     }
-                }
-                action();
-            });
-        };
+                }));
 
-        setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE), false, LEARN_SOURCE);
-        setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE), false, NEWS_SOURCE);
-        setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
-        setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
+                const setupNavLink = (el, action, isModal = false, source = null) => {
+                    el.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (!isModal) {
+                            sourceTabsContainer.querySelector('.active')?.classList.remove('active');
+                            navItems.forEach(i => i.classList.remove('active'));
+                            el.classList.add('active');
+                            if (source) {
+                                updateLayoutForSource(source);
+                            }
+                        }
+                        action();
+                    });
+                };
 
-        perPageSelect.addEventListener('change', () => {
-            projectsPerPage = parseInt(perPageSelect.value, 10);
-            applyFiltersAndSort(true);
-        });
+                setupNavLink(navLearn, () => loadSourceData(LEARN_SOURCE), false, LEARN_SOURCE);
+                setupNavLink(navNews, () => loadSourceData(NEWS_SOURCE), false, NEWS_SOURCE);
+                setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
+                setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
 
-        searchInput.addEventListener('input', () => { searchClearBtn.style.display=searchInput.value.length > 0?'block':'none'; clearTimeout(searchDebounceTimer); searchDebounceTimer=setTimeout(() => applyFiltersAndSort(true), 300); });
-        searchClearBtn.addEventListener('click', () => { searchInput.value=''; applyFiltersAndSort(true); searchClearBtn.style.display='none'; searchInput.focus(); });
-        sortSelect.addEventListener('change', () => applyFiltersAndSort(true));
-        walletSelect.addEventListener('change', () => applyFiltersAndSort(true));
-        categorySelect.addEventListener('change', () => applyFiltersAndSort(true)); // NEW
-        loadMoreBtn.addEventListener('click', () => { currentPage++; const newProjects = displayedProjects.slice((currentPage-1)*projectsPerPage, currentPage*projectsPerPage); renderListItems(newProjects, true); if(displayedProjects.length <= currentPage*projectsPerPage) { paginationContainer.style.display='none'; } });
-        clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
+                perPageSelect.addEventListener('change', () => {
+                    projectsPerPage = parseInt(perPageSelect.value, 10);
+                    applyFiltersAndSort(true);
+                });
 
-        listBody.addEventListener('click', (e) => {
-            const tagBtn = e.target.closest('.cp-tag');
-            if (tagBtn) { activeTag = tagBtn.dataset.tag; applyFiltersAndSort(true); return; }
-            const copyBtn = e.target.closest('.cp-copy-btn');
-            if (copyBtn) { navigator.clipboard.writeText(copyBtn.dataset.url).then(() => { copyBtn.innerHTML='<i class="fas fa-check"></i>'; copyBtn.disabled=true; setTimeout(() => { copyBtn.innerHTML='<i class="fas fa-copy"></i>'; copyBtn.disabled=false; }, 1500); }); return; }
-            const shareBtn = e.target.closest('.cp-share-btn');
-            if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
-            const saveBtn = e.target.closest('.cp-save-btn');
-            if (saveBtn) {
-                const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url };
-                const i = saveBtn.querySelector('i');
-                if (getClaimList().some(item => item.id === p.id)) {
-                    removeFromClaimList(p.id);
-                    i.className = 'far fa-bookmark';
-                    saveBtn.title = 'Add to Claim List';
-                } else {
-                    addToClaimList(p);
-                    i.className = 'fas fa-bookmark';
-                    saveBtn.title = 'Remove from Claim List';
-                    renderClaimList();
-                    claimListModal.style.display = 'flex';
-                }
-                return;
+                searchInput.addEventListener('input', () => { searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none'; clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); });
+                searchClearBtn.addEventListener('click', () => { searchInput.value = ''; applyFiltersAndSort(true); searchClearBtn.style.display = 'none'; searchInput.focus(); });
+                // sortSelect.addEventListener('change', () => applyFiltersAndSort(true)); // Removed
+                tokenSelect.addEventListener('change', () => applyFiltersAndSort(true));
+
+                // Custom Dropdown Initialization
+                const setupDropdown = (id, btnId, label, isSingleSelect = false) => {
+                    const dropdown = document.getElementById(id);
+                    const btn = document.getElementById(btnId);
+                    const inputs = dropdown.querySelectorAll('input');
+                    const controls = dropdown.querySelector('.cp-dropdown-controls');
+
+                    // Toggle Dropdown
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Close others
+                        document.querySelectorAll('.cp-custom-dropdown').forEach(d => { if (d !== dropdown) d.classList.remove('active'); });
+                        dropdown.classList.toggle('active');
+                    });
+
+                    const updateButtonText = () => {
+                        if (isSingleSelect) {
+                            const checked = dropdown.querySelector('input:checked');
+                            const text = checked ? checked.parentElement.textContent.trim() : label;
+                            btn.innerHTML = `${text} <i class="fas fa-chevron-down"></i>`;
+                            return;
+                        }
+
+                        const allInput = dropdown.querySelector('input[value="all"]');
+                        const otherInputs = Array.from(inputs).filter(i => i.value !== 'all');
+                        const checkedCount = otherInputs.filter(i => i.checked).length;
+
+                        if (allInput && allInput.checked) {
+                            btn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+                        } else if (checkedCount === 0) {
+                            // Fallback if nothing checked (shouldn't happen with logic below but good for safety)
+                            btn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+                        } else if (checkedCount < 3) {
+                            // Chips-like text: "Binance, Paytm"
+                            const names = otherInputs.filter(i => i.checked).map(i => i.parentElement.textContent.trim()).join(', ');
+                            btn.innerHTML = `${names} <i class="fas fa-chevron-down"></i>`;
+                        } else {
+                            btn.innerHTML = `${checkedCount} Selected <i class="fas fa-chevron-down"></i>`;
+                        }
+                    };
+
+                    // Control Actions (Select All / Clear All)
+                    if (controls && !isSingleSelect) {
+                        controls.addEventListener('click', (e) => {
+                            if (e.target.dataset.action === 'select-all') {
+                                inputs.forEach(i => i.checked = true);
+                                // If "All" is checked, individual logic might vary, but usually "All Wallets" implies everything or strict content.
+                                // In this code "all" value logic is: if 'all' is checked, ignore others.
+                                // But "Select All" usually means check every box. 
+                                // Let's check everything including 'all'.
+                            } else if (e.target.dataset.action === 'clear-all') {
+                                inputs.forEach(i => i.checked = false);
+                                // Default to 'all' if clearing? Or empty? User request says "Clear All". 
+                                // If empty, filter might show nothing. Let's default to check 'all' so user sees data.
+                                // Actually, standard behavior is clear selection. If empty = show nothing or everything?
+                                // Let's check 'all' input to be safe so user sees data.
+                                const allInput = dropdown.querySelector('input[value="all"]');
+                                if (allInput) allInput.checked = true;
+                            }
+                            updateButtonText();
+                            applyFiltersAndSort(true);
+                        });
+                    }
+
+                    // Input Change Logic
+                    inputs.forEach(input => {
+                        input.addEventListener('change', () => {
+                            if (isSingleSelect) {
+                                // Ensure only one is checked for single select
+                                inputs.forEach(i => {
+                                    if (i !== input) i.checked = false;
+                                });
+                                // Close on selection
+                                dropdown.classList.remove('active');
+                            } else {
+                                if (input.value === 'all') {
+                                    if (input.checked) {
+                                        inputs.forEach(i => { if (i !== input) i.checked = false; });
+                                    }
+                                } else {
+                                    if (input.checked) {
+                                        const allInput = dropdown.querySelector('input[value="all"]');
+                                        if (allInput) allInput.checked = false;
+                                    } else {
+                                        const anyChecked = Array.from(inputs).some(i => i.value !== 'all' && i.checked);
+                                        if (!anyChecked) {
+                                            const allInput = dropdown.querySelector('input[value="all"]');
+                                            if (allInput) allInput.checked = true;
+                                        }
+                                    }
+                                }
+                            }
+                            updateButtonText();
+                            applyFiltersAndSort(true);
+                        });
+                    });
+                    updateButtonText(); // Initial button text setup
+                };
+
+                setupDropdown('cp-wallet-custom', 'cp-wallet-btn', 'All Wallets');
+                setupDropdown('cp-category-custom', 'cp-category-btn', 'All Categories');
+                setupDropdown('cp-sort-custom', 'cp-sort-btn', 'Newest First', true); // Custom Sort Init
+
+                // Close dropdowns on outside click
+                window.addEventListener('click', () => {
+                    document.querySelectorAll('.cp-custom-dropdown').forEach(d => d.classList.remove('active'));
+                });
+
+                // Replaced Infinite Scroll with Load More Button
+                loadMoreBtn.addEventListener('click', () => {
+                    currentPage++;
+                    const newProjects = displayedProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
+                    renderListItems(newProjects, true);
+
+                    if (displayedProjects.length <= currentPage * projectsPerPage) {
+                        paginationContainer.style.display = 'none';
+                    }
+                });
+
+                // Ensure button is initially visible/hidden correctly in applyFiltersAndSort
+                if (loadMoreBtn) loadMoreBtn.style.display = 'none'; // Initial state before data loads
+
+                clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
+                clearFilterBtn.addEventListener('click', () => { activeTag = null; applyFiltersAndSort(true); });
+
+                listBody.addEventListener('click', (e) => {
+                    const tagBtn = e.target.closest('.cp-tag');
+                    if (tagBtn) { activeTag = tagBtn.dataset.tag; applyFiltersAndSort(true); return; }
+                    const copyBtn = e.target.closest('.cp-copy-btn');
+                    if (copyBtn) { navigator.clipboard.writeText(copyBtn.dataset.url).then(() => { copyBtn.innerHTML = '<i class="fas fa-check"></i>'; copyBtn.disabled = true; setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy"></i>'; copyBtn.disabled = false; }, 1500); }); return; }
+                    const shareBtn = e.target.closest('.cp-share-btn');
+                    if (shareBtn && navigator.share) { navigator.share({ title: shareBtn.dataset.name, text: `Check out: ${shareBtn.dataset.name}`, url: shareBtn.dataset.url }); return; }
+                    const saveBtn = e.target.closest('.cp-save-btn');
+                    if (saveBtn) {
+                        const p = { id: saveBtn.dataset.id, name: saveBtn.dataset.name, url: saveBtn.dataset.url };
+                        const i = saveBtn.querySelector('i');
+                        if (getClaimList().some(item => item.id === p.id)) {
+                            removeFromClaimList(p.id);
+                            i.className = 'far fa-bookmark';
+                            saveBtn.title = 'Add to Claim List';
+                        } else {
+                            addToClaimList(p);
+                            i.className = 'fas fa-bookmark';
+                            saveBtn.title = 'Remove from Claim List';
+                            renderClaimList();
+                            claimListModal.style.display = 'flex';
+                        }
+                        return;
+                    }
+                });
+
+                document.getElementById('cp-tags-header').addEventListener('click', () => {
+                    allTagsSection.classList.toggle('collapsed');
+                });
+
+                allTagsSection.addEventListener('click', e => { if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+
+                document.querySelector('.cp-features-grid').addEventListener('click', e => {
+                    e.preventDefault(); const card = e.target.closest('.cp-feature-card'); if (!card) return;
+                    switch (card.id) {
+                        case 'feature-latest': sortSelect.value = 'date-desc'; sortSelect.dispatchEvent(new Event('change')); window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+                        case 'feature-filter': searchInput.focus(); searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); break;
+                        case 'feature-customize': settingsModal.style.display = 'flex'; break;
+                        case 'feature-mobile': guideModal.style.display = 'flex'; break;
+                    }
+                });
+
+                guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
+                aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
+                claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; if (!localStorage.getItem(CLAIM_GUIDE_SEEN_KEY)) { document.getElementById('cp-claim-list-guide').style.display = 'block'; localStorage.setItem(CLAIM_GUIDE_SEEN_KEY, 'true'); } else { document.getElementById('cp-claim-list-guide').style.display = 'none'; } });
+
+                [chatModal, settingsModal, guideModal, aboutModal, claimListModal].forEach(m => { m.querySelector('.cp-modal-close-btn').addEventListener('click', () => { m.style.display = 'none'; }); m.addEventListener('click', e => { if (e.target === m) m.style.display = 'none'; }); });
+
+                claimListModal.addEventListener('click', e => { if (e.target.closest('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className = 'far fa-bookmark'; cardBtn.title = 'Add to Claim List'; } } });
+                claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
+                claimListModal.addEventListener('change', e => { if (e.target.matches('input[type="date"]')) { const id = e.target.closest('.cp-claim-item').dataset.id; updateClaimDate(id, e.target.value); } });
+
+                const annSection = document.getElementById('cp-announcement-section');
+                const annID = 'announcement_v2.6';
+                if (localStorage.getItem('closedAnnouncement') === annID) annSection.style.display = 'none';
+                document.getElementById('cp-announcement-close-btn').addEventListener('click', () => { annSection.style.display = 'none'; localStorage.setItem('closedAnnouncement', annID); });
+
+                document.getElementById('cp-setting-color').addEventListener('input', e => applySetting('color', e.target.value));
+                document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
+                document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
+
+                clearCacheBtn.addEventListener('click', () => {
+                    dataCache = {};
+                    const originalHTML = clearCacheBtn.innerHTML;
+                    clearCacheBtn.innerHTML = '<i class="fas fa-check"></i> Cache Cleared!';
+                    clearCacheBtn.disabled = true;
+
+                    setTimeout(() => {
+                        settingsModal.style.display = 'none';
+                        clearCacheBtn.innerHTML = originalHTML;
+                        clearCacheBtn.disabled = false;
+                    }, 1500);
+                });
+
+                window.addEventListener('online', handleNetworkChange);
+                window.addEventListener('offline', handleNetworkChange);
+                handleNetworkChange();
+
+                sourceTabsContainer.querySelector('.cp-source-tab')?.click();
             }
+
+            init();
         });
-        
-        document.getElementById('cp-tags-header').addEventListener('click', () => {
-            allTagsSection.classList.toggle('collapsed');
-        });
-
-        allTagsSection.addEventListener('click', e => { if (e.target.matches('.cp-tag')) { activeTag = e.target.dataset.tag; applyFiltersAndSort(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
-
-        document.querySelector('.cp-features-grid').addEventListener('click', e => {
-            e.preventDefault(); const card = e.target.closest('.cp-feature-card'); if (!card) return;
-            switch (card.id) {
-                case 'feature-latest': sortSelect.value = 'date-desc'; sortSelect.dispatchEvent(new Event('change')); window.scrollTo({top:0,behavior:'smooth'}); break;
-                case 'feature-filter': searchInput.focus(); searchInput.scrollIntoView({ behavior:'smooth', block:'center' }); break;
-                case 'feature-customize': settingsModal.style.display = 'flex'; break;
-                case 'feature-mobile': guideModal.style.display = 'flex'; break;
-            }
-        });
-        
-        guideBtn.addEventListener('click', () => { guideModal.style.display = 'flex'; });
-        aboutBtn.addEventListener('click', () => { aboutModal.style.display = 'flex'; });
-        claimListBtn.addEventListener('click', () => { renderClaimList(); claimListModal.style.display = 'flex'; if (!localStorage.getItem(CLAIM_GUIDE_SEEN_KEY)) { document.getElementById('cp-claim-list-guide').style.display = 'block'; localStorage.setItem(CLAIM_GUIDE_SEEN_KEY, 'true'); } else { document.getElementById('cp-claim-list-guide').style.display = 'none'; } });
-
-        [chatModal, settingsModal, guideModal, aboutModal, claimListModal].forEach(m => { m.querySelector('.cp-modal-close-btn').addEventListener('click', () => { m.style.display='none'; }); m.addEventListener('click', e => { if(e.target===m) m.style.display='none'; }); });
-
-        claimListModal.addEventListener('click', e => { if (e.target.closest('.cp-claim-item-remove-btn')) { const id = e.target.closest('.cp-claim-item').dataset.id; removeFromClaimList(id); renderClaimList(); const cardBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`); if (cardBtn) { cardBtn.querySelector('i').className='far fa-bookmark'; cardBtn.title='Add to Claim List'; }} });
-        claimListModal.addEventListener('input', e => { if (e.target.matches('.cp-claim-item-notes')) { updateClaimNote(e.target.closest('.cp-claim-item').dataset.id, e.target.value); } });
-        claimListModal.addEventListener('change', e => { if (e.target.matches('input[type="date"]')) { const id = e.target.closest('.cp-claim-item').dataset.id; updateClaimDate(id, e.target.value); } });
-
-        const annSection = document.getElementById('cp-announcement-section');
-        const annID = 'announcement_v2.6';
-        if (localStorage.getItem('closedAnnouncement') === annID) annSection.style.display = 'none';
-        document.getElementById('cp-announcement-close-btn').addEventListener('click', () => { annSection.style.display = 'none'; localStorage.setItem('closedAnnouncement', annID); });
-        
-        document.getElementById('cp-setting-color').addEventListener('input', e => applySetting('color', e.target.value));
-        document.getElementById('cp-setting-font-family').addEventListener('change', e => applySetting('font-family', e.target.value));
-        document.getElementById('cp-setting-font-size').addEventListener('change', e => applySetting('font-size', e.target.value));
-        
-        clearCacheBtn.addEventListener('click', () => {
-            dataCache = {}; 
-            const originalHTML = clearCacheBtn.innerHTML;
-            clearCacheBtn.innerHTML = '<i class="fas fa-check"></i> Cache Cleared!';
-            clearCacheBtn.disabled = true;
-
-            setTimeout(() => {
-                settingsModal.style.display = 'none';
-                clearCacheBtn.innerHTML = originalHTML;
-                clearCacheBtn.disabled = false;
-            }, 1500);
-        });
-
-        window.addEventListener('online', handleNetworkChange);
-        window.addEventListener('offline', handleNetworkChange);
-        handleNetworkChange();
-
-        sourceTabsContainer.querySelector('.cp-source-tab')?.click();
-    }
-    
-    init();
-});
-</script>
+    </script>
 
 </body>
+
 </html>
