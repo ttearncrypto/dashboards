@@ -235,6 +235,29 @@
     </div>
 
 
+    <!-- Search Modal -->
+    <div id="cp-search-modal" class="cp-modal-overlay" style="display: none;">
+        <div class="cp-modal-panel">
+            <button id="cp-search-close-btn" class="cp-modal-close-btn">×</button>
+            <h2>Search Projects</h2>
+            <div class="cp-modal-search-wrapper" style="position: relative; margin-top: 15px;">
+                <i class="fas fa-search"
+                    style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cp-secondary-text);"></i>
+                <input type="text" id="cp-search-input" placeholder="Type to search..."
+                    style="width: 100%; padding: 14px 15px 14px 45px; border-radius: 12px; border: 1px solid var(--cp-border-color); background: var(--cp-card-bg); font-family: inherit; font-size: 1rem; outline: none;">
+                <button id="cp-search-clear-input-btn"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--cp-secondary-text); cursor: pointer; display: none;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--cp-secondary-text);">Search by name or
+                keyword...</p>
+        </div>
+    </div>
+
+    <div class="cp-app-background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120,119,198,0.3), rgba(255,255,255,0)); pointer-events: none;">
+    </div>
+
     <div class="cp-app-container">
         <div id="cp-pull-to-refresh-indicator" class="cp-pull-to-refresh-indicator">
             <i class="fas fa-arrow-down"></i>
@@ -261,9 +284,9 @@
                 <div class="cp-announcement-content">
                     <i class="fas fa-bullhorn"></i>
                     <div class="cp-marquee-container">
-                        <p id="cp-announcement-text" class="cp-marquee-text">Welcome to iCryptos! 🚀 Check out the
-                            latest high-paying faucets and airdrops. Make sure to join our Telegram channel for instant
-                            updates!</p>
+                        <a href="https://t.me/CxO1NVTowno2Y2E1" target="_blank" id="cp-announcement-text"
+                            style="font-weight: bold; text-align: center; width: 100%; margin: 0; text-decoration: none; color: white; display: block;">Sponsored
+                            Space: Boost your project visibility here.</a>
                     </div>
                 </div>
                 <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
@@ -283,17 +306,12 @@
             </div>
 
             <div class="cp-filter-bar">
-                <!-- Search Bar with Clear Button -->
-                <div class="cp-search-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="cp-search-input" placeholder="Search projects...">
-                    <button id="cp-search-clear-btn" style="display: none;" title="Clear Search">×</button>
-                </div>
+                <!-- Search Bar Moved to Modal -->
 
                 <!-- Token Filter -->
                 <div class="cp-filter-wrapper cp-token-filter-wrapper">
                     <i class="fas fa-coins"></i>
-                    <select id="cp-token-select">
+                    <select id="cp-token-select" aria-label="Filter by Token">
                         <option value="all">All Tokens</option>
                         <option value="BTC">Bitcoin (BTC)</option>
                         <option value="ETH">Ethereum (ETH)</option>
@@ -389,7 +407,7 @@
                 <!-- Projects Per Page Filter -->
                 <div class="cp-filter-wrapper cp-per-page-filter-wrapper">
                     <i class="fas fa-list-ol"></i>
-                    <select id="cp-per-page-select">
+                    <select id="cp-per-page-select" aria-label="Projects per page">
                         <option value="10">10 / page</option>
                         <option value="25">25 / page</option>
                         <option value="50">50 / page</option>
@@ -407,6 +425,7 @@
                 </div>
             </div>
 
+            <h2 class="sr-only">Project List</h2>
             <div id="cp-list-body" class="cp-list-body"></div>
             <div id="cp-feedback-message" style="display: none;"></div>
             <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;">
@@ -415,7 +434,7 @@
 
             <!-- Video Embed -->
             <section class="cp-video-section" style="margin-bottom: 20px;">
-                <iframe id="odysee-iframe"
+                <iframe id="odysee-iframe" title="Odysee Video"
                     style="width:100%; aspect-ratio:16 / 9; border-radius: 12px; border: none; box-shadow: var(--cp-shadow);"
                     src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" allowfullscreen></iframe>
                 <div style="text-align: right; margin-top: 5px;">
@@ -480,6 +499,26 @@
                     <p class="cp-secondary-text">Loading tags...</p>
                 </div>
             </section>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="cp-stats-section"
+                style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.6); border-radius: 16px; text-align: center; backdrop-filter: blur(5px);">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <div class="cp-stat-item">
+                        <h3 id="cp-stat-projects" style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">0</h3>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Projects</p>
+                    </div>
+                    <div class="cp-stat-item">
+                        <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">4</h3>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Sources</p>
+                    </div>
+                    <div class="cp-stat-item">
+                        <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">10k+</h3>
+                        <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Users</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="cp-footer">
@@ -505,13 +544,14 @@
         </footer>
 
         <nav class="cp-bottom-nav">
-            <a href="#" class="cp-nav-item" id="cp-nav-learn"><i class="fas fa-graduation-cap"></i></a>
-            <a href="#" class="cp-nav-item" id="cp-nav-chat"><i class="fas fa-comments"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-learn" aria-label="Learn"><i
+                    class="fas fa-graduation-cap"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-chat" aria-label="Chat"><i class="fas fa-comments"></i></a>
             <a href="#" class="cp-nav-item-main"
-                onclick="document.getElementById('cp-search-input').focus(); return false;"><i
+                onclick="document.getElementById('cp-search-input').focus(); return false;" aria-label="Search"><i
                     class="fas fa-search"></i></a>
-            <a href="#" class="cp-nav-item" id="cp-nav-news"><i class="fas fa-newspaper"></i></a>
-            <a href="#" class="cp-nav-item" id="cp-nav-settings"><i class="fas fa-cog"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-news" aria-label="News"><i class="fas fa-newspaper"></i></a>
+            <a href="#" class="cp-nav-item" id="cp-nav-settings" aria-label="Settings"><i class="fas fa-cog"></i></a>
         </nav>
     </div>
 
@@ -520,7 +560,8 @@
             --cp-bg: #F8F9FE;
             --cp-card-bg: #FFFFFF;
             --cp-primary-text: #171725;
-            --cp-secondary-text: #8A8A9E;
+            --cp-secondary-text: #555566;
+            /* Darker for better contrast */
             --cp-purple: #6A5AE0;
             --cp-font-family: 'Inter', sans-serif;
             --cp-radius: 18px;
@@ -535,6 +576,18 @@
         html {
             font-size: 16px;
             scroll-behavior: smooth;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         body {
@@ -908,10 +961,20 @@
         .cp-filter-bar {
             display: flex;
             flex-wrap: wrap;
+            /* Reverted to wrap as search bar is gone */
             gap: 15px;
             align-items: center;
             margin-bottom: 15px;
-            /* Reduced spacing */
+            padding-bottom: 0;
+            /* overflow-x: auto; Removed for clipping fix */
+        }
+
+        .cp-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cp-filter-wrapper {
+            flex-shrink: 0;
         }
 
         .cp-search-wrapper {
@@ -1371,9 +1434,12 @@
             bottom: 20px;
             left: 20px;
             right: 20px;
+            width: auto;
+            /* Allow auto width based on constraints */
             max-width: 440px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.95);
+            /* Higher opacity for contrast */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
@@ -2141,8 +2207,14 @@
             const appContainer = document.querySelector('.cp-app-container');
             const sourceTabsContainer = document.getElementById('cp-source-tabs');
             const sourceTabsWrapper = document.getElementById('cp-source-tabs-wrapper');
+            const sorted = []; // placeholder
+
+            // Search Modal Elements
+            const searchModal = document.getElementById('cp-search-modal');
             const searchInput = document.getElementById('cp-search-input');
-            const searchClearBtn = document.getElementById('cp-search-clear-btn');
+            const searchClearBtn = document.getElementById('cp-search-clear-input-btn'); // Renamed ID in HTML
+            const searchCloseBtn = document.getElementById('cp-search-close-btn');
+
             const sortSelect = document.getElementById('cp-sort-select');
             // const walletSelect = document.getElementById('cp-wallet-select'); // Removed
             // const categorySelect = document.getElementById('cp-category-select'); // Removed
@@ -2444,6 +2516,10 @@
                     }
                 }
 
+                // Update Stats (Round 6)
+                const statsEl = document.getElementById('cp-stat-projects');
+                if (statsEl) statsEl.textContent = allProjects.length;
+
                 displayedProjects = projects;
                 const paginatedProjects = displayedProjects.slice(0, currentPage * projectsPerPage);
                 renderListItems(paginatedProjects, false);
@@ -2494,13 +2570,17 @@
 
                 // Hide/Show Filters
                 walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
-                document.querySelector('.cp-category-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
+                // Only show Category filter for Earning tab
+                document.querySelector('.cp-category-filter-wrapper').style.display = (showFilters && source.name === 'Earning') ? 'flex' : 'none';
                 document.querySelector('.cp-token-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
 
-                // Auto-scroll to the content area
-                setTimeout(() => {
-                    sourceTabsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                // Hide/Show Filters
+                walletFilterWrapper.style.display = showFilters ? 'flex' : 'none';
+                // Only show Category filter for Earning tab
+                document.querySelector('.cp-category-filter-wrapper').style.display = (showFilters && source.name === 'Earning') ? 'flex' : 'none';
+                document.querySelector('.cp-token-filter-wrapper').style.display = showFilters ? 'flex' : 'none';
+
+                // REMOVED Auto-scroll to the content area
             };
 
             function setupBanners() {
@@ -2652,13 +2732,32 @@
                 setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
                 setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
 
+                // Search Modal Trigger from Nav
+                document.querySelector('.cp-nav-item-main').onclick = (e) => {
+                    e.preventDefault();
+                    searchModal.style.display = 'flex';
+                    setTimeout(() => searchInput.focus(), 100); // Focus input
+                };
+
+                searchCloseBtn.onclick = () => searchModal.style.display = 'none';
+
                 perPageSelect.addEventListener('change', () => {
                     projectsPerPage = parseInt(perPageSelect.value, 10);
                     applyFiltersAndSort(true);
                 });
 
-                searchInput.addEventListener('input', () => { searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none'; clearTimeout(searchDebounceTimer); searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300); });
-                searchClearBtn.addEventListener('click', () => { searchInput.value = ''; applyFiltersAndSort(true); searchClearBtn.style.display = 'none'; searchInput.focus(); });
+                searchInput.addEventListener('input', () => {
+                    searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
+                    clearTimeout(searchDebounceTimer);
+                    searchDebounceTimer = setTimeout(() => applyFiltersAndSort(true), 300);
+                });
+
+                searchClearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    applyFiltersAndSort(true);
+                    searchClearBtn.style.display = 'none';
+                    searchInput.focus();
+                });
                 // sortSelect.addEventListener('change', () => applyFiltersAndSort(true)); // Removed
                 tokenSelect.addEventListener('change', () => applyFiltersAndSort(true));
 
