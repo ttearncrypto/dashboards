@@ -279,18 +279,7 @@
                 </div>
             </header>
 
-            <!-- Announcements Section -->
-            <section class="cp-announcement-section" id="cp-announcement-section">
-                <div class="cp-announcement-content">
-                    <i class="fas fa-bullhorn"></i>
-                    <div class="cp-marquee-container">
-                        <a href="https://t.me/CxO1NVTowno2Y2E1" target="_blank" id="cp-announcement-text"
-                            style="font-weight: bold; text-align: center; width: 100%; margin: 0; text-decoration: none; color: white; display: block;">Sponsored
-                            Space: Boost your project visibility here.</a>
-                    </div>
-                </div>
-                <button id="cp-announcement-close-btn" class="cp-announcement-close-btn" title="Dismiss">×</button>
-            </section>
+            <!-- Announcements Section REMOVED -->
 
             <!-- NEW Date Picker -->
             <section class="cp-date-picker-section">
@@ -433,7 +422,7 @@
             </div>
 
             <!-- Video Embed -->
-            <section class="cp-video-section" style="margin-bottom: 20px;">
+            <section class="cp-video-section" style="margin-bottom: 25px;">
                 <iframe id="odysee-iframe" title="Odysee Video"
                     style="width:100%; aspect-ratio:16 / 9; border-radius: 12px; border: none; box-shadow: var(--cp-shadow);"
                     src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" allowfullscreen></iframe>
@@ -510,7 +499,7 @@
                         <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Projects</p>
                     </div>
                     <div class="cp-stat-item">
-                        <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">4</h3>
+                        <h3 style="margin: 0; color: var(--cp-purple); font-size: 1.5rem;">15+</h3>
                         <p style="margin: 5px 0 0; font-size: 0.8rem; color: var(--cp-secondary-text);">Sources</p>
                     </div>
                     <div class="cp-stat-item">
@@ -599,12 +588,21 @@
         }
 
         .cp-app-container {
-            max-width: 480px;
+            max-width: 100%;
+            /* Ensure full width on mobile */
+            width: 100%;
             margin: 0 auto;
             background-color: var(--cp-bg);
             min-height: 100vh;
             position: relative;
             padding-bottom: 120px;
+        }
+
+        @media (min-width: 481px) {
+            .cp-app-container {
+                max-width: 480px;
+                /* Limit width on larger screens */
+            }
         }
 
         .cp-main-content {
@@ -646,7 +644,8 @@
         .cp-header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            /* Reduced gap for better fit */
         }
 
         .cp-icon-btn {
@@ -712,59 +711,10 @@
             cursor: pointer;
         }
 
-        /* Announcement Section */
-        .cp-announcement-section {
-            background: linear-gradient(45deg, var(--cp-purple), #8a7dff);
-            color: white;
-            padding: 12px 40px 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            /* Reduced spacing */
-            display: flex;
-            align-items: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(106, 90, 224, 0.3);
-        }
-
-        .cp-announcement-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .cp-announcement-content i {
-            font-size: 1.5rem;
-        }
-
-        .cp-announcement-content p {
-            margin: 0;
-            font-weight: 500;
-            line-height: 1.4;
-            font-size: 0.9rem;
-        }
-
-        .cp-announcement-close-btn {
-            position: absolute;
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.8rem;
-            cursor: pointer;
-            line-height: 1;
-            padding: 5px;
-        }
-
-        .cp-announcement-close-btn:hover {
-            color: white;
-        }
-
         /* Horizontal Date Picker */
         .cp-date-picker-section {
-            margin-bottom: 5px;
-            /* Minimal spacing */
+            margin-bottom: 25px;
+            /* Standardized spacing */
         }
 
         .cp-date-picker-wrapper {
@@ -828,8 +778,8 @@
         /* Banner Slider */
         .cp-banner-slider-wrapper {
             position: relative;
-            margin-bottom: 10px;
-            /* Reduced spacing */
+            margin-bottom: 25px;
+            /* Standardized spacing */
             border-radius: var(--cp-radius);
             overflow: hidden;
             box-shadow: var(--cp-shadow);
@@ -922,8 +872,8 @@
             overflow-x: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            margin-bottom: 10px;
-            /* Reduced spacing */
+            margin-bottom: 20px;
+            /* Standardized spacing */
             background-color: var(--cp-light-bg);
             padding: 5px;
             border-radius: 14px;
@@ -961,10 +911,10 @@
         .cp-filter-bar {
             display: flex;
             flex-wrap: wrap;
-            /* Reverted to wrap as search bar is gone */
             gap: 15px;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            /* Standardized spacing */
             padding-bottom: 0;
             /* overflow-x: auto; Removed for clipping fix */
         }
@@ -1428,28 +1378,28 @@
             font-size: 1rem;
         }
 
-        /* Bottom Nav */
+        /* Bottom Nav - Responsive Fix */
         .cp-bottom-nav {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            right: 20px;
-            width: auto;
-            /* Allow auto width based on constraints */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            /* Fluid width */
             max-width: 440px;
-            margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.95);
-            /* Higher opacity for contrast */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 10px 20px;
+            box-shadow: 0 10px 40px -10px rgba(23, 23, 37, 0.2);
             z-index: 1000;
-            border: 1px solid rgba(234, 235, 242, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-sizing: border-box;
+            /* IMPORTANT for padding */
         }
 
         .cp-nav-item,
@@ -1517,24 +1467,34 @@
             transition: opacity 0.3s ease;
         }
 
+        /* Modal Panel - Responsive Fix */
         .cp-modal-panel {
-            background: var(--cp-bg);
-            padding: 25px;
-            border-radius: var(--cp-radius);
+            background-color: var(--cp-card-bg);
             width: 90%;
+            /* Fluid width */
             max-width: 400px;
+            /* Cap width */
+            padding: 25px;
+            border-radius: 24px;
             position: relative;
-            box-sizing: border-box;
-            animation: modal-pop-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            transform: translateY(20px);
+            animation: modal-pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            max-height: 85vh;
+            /* Prevent overflow on small screens */
+            overflow-y: auto;
+            /* Scrollable if tall */
         }
 
         .cp-modal-panel-large {
-            max-width: 95%;
-            height: 80%;
-        }
-
-        .cp-modal-content {
-            height: 100%;
+            width: 95%;
+            /* Slightly wider for large modals */
+            max-width: 800px;
+            height: 85vh;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .cp-modal-close-btn {
@@ -1544,7 +1504,6 @@
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: var(--cp-secondary-text);
             cursor: pointer;
             z-index: 10;
         }
