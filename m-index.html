@@ -176,10 +176,7 @@
                 </select>
             </div>
             <!-- Clear Cache Button -->
-            <div style="border-top: 1px solid var(--cp-border-color); padding-top: 15px; margin-top: 15px;">
-                <button id="cp-clear-cache-btn" class="cp-info-link"><i class="fas fa-trash-alt"></i> Clear App
-                    Cache</button>
-            </div>
+
         </div>
     </div>
 
@@ -3364,13 +3361,7 @@
                 guideBtn.addEventListener('click', () => guideModal.style.display = 'flex');
                 aboutBtn.addEventListener('click', () => aboutModal.style.display = 'flex');
 
-                // Clear Cache
-                clearCacheBtn.addEventListener('click', () => {
-                    if (confirm('Clear all local data and cache?')) {
-                        localStorage.clear();
-                        window.location.reload();
-                    }
-                });
+
 
                 // Load More
                 loadMoreBtn.addEventListener('click', () => {
