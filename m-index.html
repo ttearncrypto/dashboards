@@ -223,8 +223,10 @@
     <div id="cp-claim-list-modal" class="cp-modal-overlay" style="display: none;">
         <div class="cp-modal-panel cp-modal-panel-large">
             <button id="cp-claim-list-close-btn" class="cp-modal-close-btn">×</button>
-            <h2>My Claim List</h2>
-            <div id="cp-claim-list-guide" class="cp-claim-list-guide" style="display: none;">
+            <h2>
+                <center>My Claim List</center>
+            </h2>
+            <div id="cp-claim-list-guide" class="cp-claim-list-guide">
                 <p><i class="fas fa-info-circle"></i> Welcome! Click the <i class="far fa-bookmark"></i> icon on any
                     project to save it here. You can add notes and set claim dates!</p>
             </div>
@@ -350,6 +352,17 @@
                     <input type="radio" name="sortOrder" value="name-desc"> Name (Z-A)
                 </label>
             </div>
+
+            <h3 style="font-size: 1rem; margin: 15px 0 10px 0; color: var(--cp-primary-text);">Projects Per Page</h3>
+            <!-- Projects Per Page Filter -->
+            <div class="cp-filter-wrapper cp-per-page-filter-wrapper">
+                <i class="fas fa-list-ol"></i>
+                <select id="cp-per-page-select" aria-label="Projects per page">
+                    <option value="10">10 / page</option>
+                    <option value="25">25 / page</option>
+                    <option value="50">50 / page</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -408,15 +421,7 @@
                 <!-- Chips injected by JS -->
             </div>
 
-            <!-- Projects Per Page Filter -->
-            <div class="cp-filter-wrapper cp-per-page-filter-wrapper" style="margin-bottom: 15px;">
-                <i class="fas fa-list-ol"></i>
-                <select id="cp-per-page-select" aria-label="Projects per page">
-                    <option value="10">10 / page</option>
-                    <option value="25">25 / page</option>
-                    <option value="50">50 / page</option>
-                </select>
-            </div>
+            <!-- Filter Removed from here -->
 
             <div id="cp-wallet-dynamic-link-container" style="width: 100%; margin-top: 15px; display: none;"></div>
 
@@ -424,7 +429,7 @@
 
             <div id="cp-active-filter-container" style="display: none;">
                 <span id="cp-active-filter-tag"></span>
-                <button id="cp-clear-filter-btn">×</button>
+                <button id="cp-clear-filter-btn"><i class="fas fa-times"></i></button>
             </div>
 
             <h2 class="sr-only">Project List</h2>
@@ -571,8 +576,8 @@
                     class="fas fa-graduation-cap"></i></a>
             <a href="#" class="cp-nav-item" id="cp-nav-chat" aria-label="Chat"><i class="fas fa-comments"></i></a>
             <a href="#" class="cp-nav-item-main"
-                onclick="document.getElementById('cp-search-input').focus(); return false;" aria-label="Search"><i
-                    class="fas fa-search"></i></a>
+                onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); document.getElementById('cp-inline-search-input').focus(); return false;"
+                aria-label="Search"><i class="fas fa-search"></i></a>
             <a href="#" class="cp-nav-item" id="cp-nav-news" aria-label="News"><i class="fas fa-newspaper"></i></a>
             <a href="#" class="cp-nav-item" id="cp-nav-settings" aria-label="Settings"><i class="fas fa-cog"></i></a>
         </nav>
@@ -678,8 +683,7 @@
         .cp-header-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
-            /* Increased gap for better separator spacing */
+            gap: 4px;
         }
 
         .cp-icon-btn {
@@ -694,18 +698,10 @@
             position: relative;
         }
 
-        /* Improved Vertical Separator for Header Icons */
+        /* Improved Vertical Separator for Header Icons - REMOVED */
         .cp-icon-btn:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -10px;
-            /* Centered in the 20px gap */
-            top: 50%;
-            transform: translateY(-50%);
-            height: 18px;
-            /* Taller separator */
-            width: 1px;
-            background-color: rgba(255, 255, 255, 0.4);
+            display: none;
+            content: none;
         }
 
         #cp-refresh-btn {
@@ -1367,7 +1363,7 @@
             padding-top: 15px;
             border-top: 1px solid var(--cp-border-color);
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: space-between;
         }
 
@@ -1656,6 +1652,8 @@
             align-items: center;
             z-index: 1100;
             transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         /* Modal Panel - Responsive Fix */
@@ -1690,13 +1688,26 @@
 
         .cp-modal-close-btn {
             position: absolute;
-            top: 10px;
+            top: 15px;
             right: 15px;
-            background: none;
+            background: rgba(0, 0, 0, 0.05);
             border: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             z-index: 10;
+            color: var(--cp-primary-text);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cp-modal-close-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.1) rotate(90deg);
         }
 
         .cp-setting-item {
@@ -2384,19 +2395,11 @@
             padding: 5px;
         }
 
-        .cp-card-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px solid var(--cp-border-color);
-            align-items: center;
-            flex-wrap: wrap;
-            /* Ensure wrapping on small screens */
-            justify-content: space-between;
-        }
+
 
         @media (max-width: 360px) {
+            /* Forced single row as per user request */
+            /*
             .cp-card-actions {
                 flex-wrap: wrap;
                 gap: 8px;
@@ -2412,6 +2415,7 @@
                 width: 100%;
                 text-align: center;
             }
+             */
         }
 
         /* Improved Claim List UI */
@@ -2459,7 +2463,52 @@
             display: none !important;
             content: none !important;
         }
+
+        /* Toast Notifications */
+        .cp-toast-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .cp-toast-message {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: toast-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .cp-toast-message i {
+            color: var(--cp-purple);
+            /* Or keep specific icon colors */
+        }
+
+        @keyframes toast-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
     </style>
+
+    <!-- Toast Container -->
+    <div id="cp-toast-container" class="cp-toast-container"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -2706,7 +2755,8 @@
 
                     const buttonText = isInformational ? 'Read More' : 'View Project';
                     const copyButtonHTML = !isInformational ? `<button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>` : '';
-                    const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
+                    // Hide Share button if Inactive
+                    const shareButtonHTML = !isInactive ? `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>` : '';
 
                     const isSaved = claimList.some(item => item.id === project.id);
                     // Hide save button if inactive
@@ -2883,6 +2933,7 @@
                             console.error("Fetch Error:", error);
                             showFeedback(!navigator.onLine ? 'You are offline.' : 'Could not load projects.', !navigator.onLine ? 'fa-wifi' : 'fa-exclamation-triangle');
                             return;
+                            return;
                         }
                     }
                 }
@@ -2891,6 +2942,13 @@
                 applyFiltersAndSort(true);
                 renderSourceSpecificTags(allProjects);
             };
+
+            // Clear Active Tag Filter Logic (Round 11)
+            clearFilterBtn.addEventListener('click', () => {
+                activeTag = null;
+                applyFiltersAndSort(true);
+                showToast('Filter removed', 'fa-times-circle');
+            });
 
             function renderChips() {
                 chipsWrapper.innerHTML = SOURCE_CONFIG.map(source =>
@@ -2999,6 +3057,27 @@
                 }
             };
 
+
+
+            // === Toast Logic ===
+            const showToast = (message, icon = 'fa-info-circle') => {
+                const container = document.getElementById('cp-toast-container');
+                if (!container) return;
+
+                const toast = document.createElement('div');
+                toast.className = 'cp-toast-message';
+                toast.innerHTML = `<i class="fas ${icon}" style="color: #4cd964;"></i><span>${message}</span>`; // Greenish icon default
+
+                container.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(10px)';
+                    toast.style.transition = 'all 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            };
+
             const showFeedback = (message, icon) => { listBody.innerHTML = ''; paginationContainer.style.display = 'none'; feedbackMessage.innerHTML = `<i class="fas ${icon}"></i><p>${message}</p>`; feedbackMessage.style.display = 'block'; };
             const hideFeedback = () => { feedbackMessage.style.display = 'none'; };
             const applySetting = (key, value) => { const prop = `--cp-${key.replace('color', 'purple')}`; if (key === 'font-size') document.documentElement.style.fontSize = value; else document.documentElement.style.setProperty(prop, value); localStorage.setItem(`cp-setting-${key}`, value); };
@@ -3070,8 +3149,7 @@
                         } else {
                             // Fallback to copy
                             navigator.clipboard.writeText(url).then(() => {
-                                showFeedback('Link copied to clipboard!', 'fa-check-circle');
-                                setTimeout(hideFeedback, 2000);
+                                showToast('Link copied to clipboard!', 'fa-check-circle'); // Use Toast
                             });
                         }
                     }
@@ -3080,8 +3158,7 @@
                     else if (copyBtn) {
                         e.preventDefault(); e.stopPropagation();
                         navigator.clipboard.writeText(copyBtn.dataset.url).then(() => {
-                            showFeedback('Link copied to clipboard!', 'fa-check-circle');
-                            setTimeout(hideFeedback, 2000);
+                            showToast('Link copied to clipboard!', 'fa-check-circle'); // Use Toast
                         });
                     }
 
@@ -3109,6 +3186,18 @@
                             renderClaimList();
                             document.getElementById('cp-claim-list-modal').style.display = 'flex';
                         }
+                    }
+
+                    // Tag Click (Round 10 Feature: Clickable Tags)
+                    if (e.target.classList.contains('cp-tag')) {
+                        e.stopPropagation();
+                        // Filter logic
+                        const tag = e.target.dataset.tag;
+                        activeTag = tag;
+                        // Scroll top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        applyFiltersAndSort(true);
+                        showToast(`Tag filter applied: ${tag}`, 'fa-filter');
                     }
                 });
 
@@ -3180,6 +3269,9 @@
                 const setupNavLink = (el, action, isModal = false, source = null) => {
                     el.addEventListener('click', (e) => {
                         e.preventDefault();
+                        // Auto-scroll to top (Round 10 Request)
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+
                         if (!isModal) {
                             chipsWrapper.querySelector('.active')?.classList.remove('active');
                             navItems.forEach(i => i.classList.remove('active'));
@@ -3195,8 +3287,30 @@
 
                 setupNavLink(navLearn, () => { }, false, LEARN_SOURCE); // Helper handles load
                 setupNavLink(navNews, () => { }, false, NEWS_SOURCE);
+
+
+
+
                 setupNavLink(navChat, () => { chatModal.style.display = 'flex'; }, true);
                 setupNavLink(navSettings, () => { settingsModal.style.display = 'flex'; }, true);
+
+                // Feature Grid Links (Round 11 Request)
+                const featureGuideBtn = document.getElementById('feature-mobile');
+                const featureCustomizeBtn = document.getElementById('feature-customize');
+
+                if (featureGuideBtn) {
+                    featureGuideBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        document.getElementById('cp-guide-modal').style.display = 'flex';
+                    });
+                }
+
+                if (featureCustomizeBtn) {
+                    featureCustomizeBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        settingsModal.style.display = 'flex';
+                    });
+                }
 
                 // Filter & Sort Triggers
                 filterTriggerBtn.onclick = () => filterModal.style.display = 'flex';
@@ -3289,7 +3403,50 @@
                     // Our filter logic checks for 'all' value specifically.
                     const allInput = document.querySelector(`#${containerId} input[value="all"]`);
                     if (allInput) allInput.checked = select;
+                    if (allInput) allInput.checked = select;
                 };
+
+                // === Dropdown Logic Check (Round 10 Fix) ===
+                const setupDropdown = (wrapperId, btnId) => {
+                    const wrapper = document.getElementById(wrapperId);
+                    const btn = document.getElementById(btnId);
+
+                    if (!wrapper || !btn) return;
+
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Close others
+                        document.querySelectorAll('.cp-custom-dropdown.active').forEach(d => {
+                            if (d !== wrapper) d.classList.remove('active');
+                        });
+                        wrapper.classList.toggle('active');
+                    });
+
+                    // Controls (Select All / Clear All)
+                    wrapper.querySelectorAll('.cp-dropdown-action').forEach(action => {
+                        action.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation(); // Keep dropdown open
+                            const type = action.dataset.action;
+                            const checkboxes = wrapper.querySelectorAll('input[type="checkbox"]');
+                            if (type === 'select-all') {
+                                checkboxes.forEach(cb => cb.checked = true);
+                            } else if (type === 'clear-all') {
+                                checkboxes.forEach(cb => cb.checked = false);
+                            }
+                        });
+                    });
+                };
+
+                setupDropdown('cp-wallet-custom', 'cp-wallet-filter-btn');
+                setupDropdown('cp-category-custom', 'cp-category-filter-btn');
+
+                // Close dropdowns when clicking outside
+                window.addEventListener('click', (e) => {
+                    if (!e.target.closest('.cp-custom-dropdown')) {
+                        document.querySelectorAll('.cp-custom-dropdown.active').forEach(d => d.classList.remove('active'));
+                    }
+                });
             }
 
             init();
