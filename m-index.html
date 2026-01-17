@@ -748,6 +748,22 @@
             /* Sticky Removed */
         }
 
+        /* Small Screen Responsiveness for Search Row */
+        @media (max-width: 360px) {
+            .cp-search-row-container {
+                flex-wrap: wrap;
+            }
+
+            .cp-search-input-wrapper {
+                width: 100%;
+            }
+
+            .cp-sort-trigger-btn {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+
         .cp-search-input-wrapper {
             flex-grow: 1;
             position: relative;
@@ -1299,36 +1315,12 @@
             margin-top: 8px;
         }
 
-        .cp-card-wallet.faucetpay {
-            background-color: #e6f7ff;
-            color: #1890ff;
-        }
-
-        .cp-card-wallet.cwallet {
-            background-color: #e6fffb;
-            color: #13c2c2;
-        }
-
-        .cp-card-wallet.binance {
-            background-color: #f0b90b26;
-            color: #b48909;
-        }
-
-        .cp-card-wallet.paytm {
-            background-color: #00b9f126;
-            color: #008ac4;
-        }
-
-        .cp-card-wallet.payeer {
-            background-color: #007bff26;
-            color: #0056b3;
-        }
-
-        .cp-card-wallet.paypal {
-            background-color: #00308726;
-            color: #003087;
-        }
-
+        .cp-card-wallet.faucetpay,
+        .cp-card-wallet.cwallet,
+        .cp-card-wallet.binance,
+        .cp-card-wallet.paytm,
+        .cp-card-wallet.payeer,
+        .cp-card-wallet.paypal,
         .cp-card-wallet.direct-wallet {
             background-color: var(--cp-light-bg);
             color: var(--cp-purple);
@@ -2406,18 +2398,53 @@
 
         @media (max-width: 360px) {
             .cp-card-actions {
-                flex-direction: column;
-                align-items: stretch;
+                flex-wrap: wrap;
+                gap: 8px;
             }
 
             .cp-card-action-buttons {
-                justify-content: space-between;
-                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+                margin-top: 5px;
             }
 
             .cp-view-btn {
                 width: 100%;
+                text-align: center;
             }
+        }
+
+        /* Improved Claim List UI */
+        .cp-claim-list-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--cp-border-color);
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .cp-claim-list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .cp-claim-list-separator {
+            border: 0;
+            border-top: 1px dashed var(--cp-border-color);
+            margin: 15px 0;
+            opacity: 0.6;
+        }
+
+        .cp-card-action-buttons {
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .cp-view-btn {
+            width: 100%;
+        }
         }
 
         /* Round 9 Tweaks - User Requests */
@@ -2525,7 +2552,7 @@
             let activeTag = null, searchDebounceTimer, bannerInterval;
             // let isLoadingMore = false; // Auto Scroll Lock - Removed for button logic
 
-            // === Claim List (Todo) Logic ===
+            // === Claim List Logic ===
             const CLAIM_LIST_KEY = 'cp-claimList';
             const CLAIM_GUIDE_SEEN_KEY = 'cp-claimGuideSeen';
 
@@ -2535,7 +2562,7 @@
             function addToClaimList(project) {
                 const list = getClaimList();
                 if (!list.some(p => p.id === project.id)) {
-                    list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '' });
+                    list.unshift({ id: project.id, name: project.name, url: project.url, notes: '', claimDate: '', claimDateadded: new Date().toISOString() });
                     saveClaimList(list);
                 }
             }
@@ -2577,28 +2604,36 @@
                     return;
                 }
 
-                list.forEach(item => {
+                list.forEach((item, index) => {
                     const el = document.createElement('div');
                     el.className = 'cp-claim-list-item';
                     el.setAttribute('data-id', item.id);
                     el.innerHTML = `
                         <div class="cp-claim-item-header">
                             <a href="${item.url}" target="_blank" class="cp-claim-item-title">${item.name}</a>
-                            <button class="cp-claim-remove-btn cp-claim-item-remove-btn" title="Remove"><i class="fas fa-trash-alt"></i></button>
+                            <button class="cp-claim-remove-btn cp-claim-item-remove-btn" data-id="${item.id}" title="Remove"><i class="fas fa-trash-alt"></i></button>
                         </div>
-                        <div style="font-size: 0.85rem; color: var(--cp-secondary-text);">
-                            Added: ${item.claimDate ? new Date(item.claimDate).toLocaleDateString() : 'No date set'}
+                        <div style="font-size: 0.85rem; color: var(--cp-secondary-text); margin-bottom: 8px;">
+                            <i class="far fa-clock"></i> Added: ${item.claimDateadded ? new Date(item.claimDateadded).toLocaleDateString() : 'Just now'}
                         </div>
-                        <textarea class="cp-claim-item-notes" placeholder="Notes...">${item.notes || ''}</textarea>
+                        <textarea class="cp-claim-item-notes" data-id="${item.id}" placeholder="Add notes here...">${item.notes || ''}</textarea>
                          <div class="cp-claim-item-date-picker">
-                            <label>Claim Date:</label>
-                            <input type="date" value="${item.claimDate || ''}">
+                            <label><i class="far fa-calendar-alt"></i> Set Claim Date:</label>
+                            <input type="date" class="cp-claim-item-date-input" data-id="${item.id}" value="${item.claimDate || ''}">
                         </div>
-                        <div style="display: flex; gap: 10px; margin-top: 5px;">
-                            <a href="${item.url}" target="_blank" class="cp-view-btn" style="padding: 8px; font-size: 0.85rem;">Visit Project</a>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <a href="${item.url}" target="_blank" class="cp-view-btn" style="padding: 8px; font-size: 0.85rem; width: 100%; text-align: center;">Visit Project</a>
                         </div>
                     `;
                     container.appendChild(el);
+
+                    // Add separator if NOT the last item
+                    if (index < list.length - 1) {
+                        const hr = document.createElement('hr');
+                        hr.className = 'cp-claim-list-separator';
+                        hr.style.cssText = "border: 0; border-top: 1px dashed var(--cp-border-color); margin: 15px 0; opacity: 0.6;";
+                        container.appendChild(hr);
+                    }
                 });
             }
 
@@ -2685,7 +2720,7 @@
                         <p class="cp-card-date">Added: ${formattedDate}</p>
                     </div>
                 </div>
-                ${!isInformational ? `<div><span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span></div>` : ''}
+                ${!isInformational && !isInactive ? `<div><span class="cp-card-wallet ${walletClass}"><i class="fas fa-wallet"></i> ${walletType}</span></div>` : ''}
                 ${tagsHTML.length > 0 ? `<div class="cp-card-tags">${tagsHTML}</div>` : ''}
                 <div class="cp-card-actions">
                     ${isInactive ? '<button class="cp-not-active-btn" disabled>Status: Not Active</button>' : ''}
@@ -3021,31 +3056,106 @@
 
                 // Event Delegation for Claim List Buttons on Cards
                 listBody.addEventListener('click', (e) => {
-                    const btn = e.target.closest('.cp-save-btn');
-                    if (btn) {
+                    const saveBtn = e.target.closest('.cp-save-btn');
+                    const copyBtn = e.target.closest('.cp-copy-btn');
+                    const shareBtn = e.target.closest('.cp-share-btn');
+
+                    // Share Button
+                    if (shareBtn) {
+                        e.preventDefault(); e.stopPropagation();
+                        const url = shareBtn.dataset.url;
+                        const name = shareBtn.dataset.name;
+                        if (navigator.share) {
+                            navigator.share({ title: name, text: `Check out this project: ${name}`, url: url }).catch(console.error);
+                        } else {
+                            // Fallback to copy
+                            navigator.clipboard.writeText(url).then(() => {
+                                showFeedback('Link copied to clipboard!', 'fa-check-circle');
+                                setTimeout(hideFeedback, 2000);
+                            });
+                        }
+                    }
+
+                    // Copy Button
+                    else if (copyBtn) {
+                        e.preventDefault(); e.stopPropagation();
+                        navigator.clipboard.writeText(copyBtn.dataset.url).then(() => {
+                            showFeedback('Link copied to clipboard!', 'fa-check-circle');
+                            setTimeout(hideFeedback, 2000);
+                        });
+                    }
+
+                    // Save/Claim List Toggle
+                    else if (saveBtn) {
                         e.preventDefault();
                         e.stopPropagation();
                         // Toggle Logic
-                        const id = btn.dataset.id;
+                        const id = saveBtn.dataset.id;
                         const currentList = getClaimList();
                         const isSaved = currentList.some(item => item.id === id);
 
                         if (isSaved) {
                             removeFromClaimList(id);
-                            btn.innerHTML = '<i class="far fa-bookmark"></i>';
-                            btn.title = "Add to Claim List";
+                            saveBtn.innerHTML = '<i class="far fa-bookmark"></i>';
+                            saveBtn.title = "Add to Claim List";
                         } else {
                             addToClaimList({
                                 id: id,
-                                name: btn.dataset.name,
-                                url: btn.dataset.url
+                                name: saveBtn.dataset.name,
+                                url: saveBtn.dataset.url
                             });
-                            btn.innerHTML = '<i class="fas fa-bookmark"></i>';
-                            btn.title = "Remove from Claim List";
-                            // Optional: Show quick feedback toast?
+                            saveBtn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                            saveBtn.title = "Remove from Claim List";
+                            renderClaimList();
+                            document.getElementById('cp-claim-list-modal').style.display = 'flex';
                         }
                     }
                 });
+
+                // Claim List Modal Event Delegation (Delete, Notes, Date)
+                const claimListContent = document.getElementById('cp-claim-list-content');
+                if (claimListContent) {
+                    claimListContent.addEventListener('click', (e) => {
+                        const removeBtn = e.target.closest('.cp-claim-remove-btn');
+                        if (removeBtn) {
+                            const id = removeBtn.dataset.id;
+                            if (confirm('Remove this project from your list?')) {
+                                removeFromClaimList(id);
+                                renderClaimList();
+                                // Also update any visible buttons locally if needed, but list re-render handles modal
+                                // Potentially update main list icons if visible? Nice to have.
+                                const mainBtn = document.querySelector(`.cp-save-btn[data-id="${id}"]`);
+                                if (mainBtn) {
+                                    mainBtn.innerHTML = '<i class="far fa-bookmark"></i>';
+                                    mainBtn.title = "Add to Claim List";
+                                }
+                            }
+                        }
+                    });
+
+                    // Notes Auto-Save
+                    claimListContent.addEventListener('input', (e) => {
+                        if (e.target.classList.contains('cp-claim-item-notes')) {
+                            const id = e.target.dataset.id;
+                            updateClaimNote(id, e.target.value);
+                        }
+                        if (e.target.classList.contains('cp-claim-item-date-input')) {
+                            const id = e.target.dataset.id;
+                            updateClaimDate(id, e.target.value);
+                        }
+                    });
+                }
+
+                // Pagination Dropdown Fix (Round 3)
+                const perPageSelect = document.getElementById('cp-per-page-select');
+                if (perPageSelect) {
+                    perPageSelect.addEventListener('change', (e) => {
+                        projectsPerPage = parseInt(e.target.value);
+                        currentPage = 1;
+                        applyFiltersAndSort(true);
+                        window.scrollTo({ top: 0, behavior: 'smooth' }); // Optional scroll to top
+                    });
+                }
 
                 // Simulate click on default (Fixed Order)
                 const initialChip = chipsWrapper.querySelector(`.cp-chip[data-url="${DEFAULT_SOURCE.url}"]`);
