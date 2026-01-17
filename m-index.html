@@ -562,7 +562,7 @@
                     cost to you.</p>
                 <p class="cp-creator-link" style="color: #444455;">Data provided "as is" for
                     informational purposes.
-                    Made By F9XR & AKM</p>
+                    Made By <a href="https://f9xr.github.io">F9XR Team</a></p>
             </div>
         </footer>
 
@@ -745,11 +745,7 @@
             gap: 12px;
             margin-bottom: 20px;
             padding: 0 5px;
-            position: sticky;
-            /* Sticky Search */
-            top: 70px;
-            /* Below header */
-            z-index: 99;
+            /* Sticky Removed */
         }
 
         .cp-search-input-wrapper {
@@ -874,6 +870,15 @@
             flex-direction: column;
             gap: 15px;
             padding-bottom: 20px;
+            overflow-x: hidden;
+            width: 100%;
+            /* Ensure it fits */
+            box-sizing: border-box;
+        }
+
+        /* Strict Fix for Filter Modal Scrollbar */
+        #cp-filter-modal .cp-modal-panel {
+            overflow-x: hidden !important;
         }
 
         /* Horizontal Date Picker */
@@ -1549,8 +1554,8 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            /* Fluid width */
+            width: 95%;
+            /* Responsive Width */
             max-width: 440px;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
@@ -1559,12 +1564,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 15px;
+            /* Reduced Padding */
             box-shadow: 0 10px 40px -10px rgba(23, 23, 37, 0.2);
             z-index: 1000;
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-sizing: border-box;
             /* IMPORTANT for padding */
+        }
+
+        /* Mobile First Bottom Nav Override */
+        @media (max-width: 480px) {
+            .cp-bottom-nav {
+                width: 100%;
+                max-width: 100%;
+                bottom: 0;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+                padding-bottom: env(safe-area-inset-bottom, 15px);
+                /* iOS Safe Area */
+            }
         }
 
         .cp-nav-item,
@@ -2653,7 +2674,8 @@
                     const shareButtonHTML = `<button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share Project"><i class="fas fa-share-alt"></i></button>`;
 
                     const isSaved = claimList.some(item => item.id === project.id);
-                    const saveButtonHTML = !isInformational ? `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>` : '';
+                    // Hide save button if inactive
+                    const saveButtonHTML = (!isInformational && !isInactive) ? `<button class="cp-save-btn" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Claim List' : 'Add to Claim List'}"><i class="${isSaved ? 'fas fa-bookmark' : 'far fa-bookmark'}"></i></button>` : '';
 
                     card.innerHTML = `
                 <div class="cp-card-header">
@@ -2891,7 +2913,11 @@
 
                 const tags = new Set();
                 const excluded = [...WALLETS, 'NotActive', ...categories];
-                projects.forEach(p => p.tags.forEach(t => {
+
+                // Filter out Inactive Projects for Tags Calculation
+                const activeProjects = projects.filter(p => !p.tags.includes('NotActive'));
+
+                activeProjects.forEach(p => p.tags.forEach(t => {
                     if (!excluded.includes(t) && !excluded.includes(t.toLowerCase())) tags.add(t);
                 }));
 
@@ -2959,14 +2985,20 @@
                 setupBanners();
 
                 // === First Load Logic (Round 9 Fix) ===
-                // Use "Earning" as default if nothing else selected, OR "All" if preferred? 
-                // Let's use "All" as default if intended, or "Earning" based on established default.
-                // Assuming "Earning" is the main source usually.
-                const DEFAULT_SOURCE = SOURCE_CONFIG.find(s => s.name === "Earning") || SOURCE_CONFIG[1];
+                // Fixed: Explicitly prefer Earning, fallback to non-All source, avoid All default
+                const earningSource = SOURCE_CONFIG.find(s => s.name === "Earning");
+                const fallbackSource = SOURCE_CONFIG.find(s => s.name !== "All" && s.url !== 'ALL_AGGREGATE');
+                const DEFAULT_SOURCE = earningSource || fallbackSource || SOURCE_CONFIG[1];
 
-                // Simulate click on default or "All"
-                const initialChip = chipsWrapper.querySelector(`.cp-chip[data-url="${DEFAULT_SOURCE.url}"]`);
-                if (initialChip) initialChip.click();
+                // (Click logic moved to after listeners)
+
+                // === Modal Close Logic Fix ===
+                document.querySelectorAll('.cp-modal-close-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const overlay = e.target.closest('.cp-modal-overlay');
+                        if (overlay) overlay.style.display = 'none';
+                    });
+                });
 
                 // Hook up Chips events
                 chipsWrapper.querySelectorAll('.cp-chip').forEach(chip => chip.addEventListener('click', (e) => {
@@ -2976,8 +3008,48 @@
                     if (source) {
                         loadSourceData(source);
                         updateLayoutForSource(source);
+
+                        // Auto-scroll to top of list
+                        const listBody = document.getElementById('cp-list-body');
+                        if (listBody) {
+                            // Scroll a bit above the list for better context
+                            const offset = listBody.getBoundingClientRect().top + window.scrollY - 180;
+                            window.scrollTo({ top: offset, behavior: 'smooth' });
+                        }
                     }
                 }));
+
+                // Event Delegation for Claim List Buttons on Cards
+                listBody.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.cp-save-btn');
+                    if (btn) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Toggle Logic
+                        const id = btn.dataset.id;
+                        const currentList = getClaimList();
+                        const isSaved = currentList.some(item => item.id === id);
+
+                        if (isSaved) {
+                            removeFromClaimList(id);
+                            btn.innerHTML = '<i class="far fa-bookmark"></i>';
+                            btn.title = "Add to Claim List";
+                        } else {
+                            addToClaimList({
+                                id: id,
+                                name: btn.dataset.name,
+                                url: btn.dataset.url
+                            });
+                            btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                            btn.title = "Remove from Claim List";
+                            // Optional: Show quick feedback toast?
+                        }
+                    }
+                });
+
+                // Simulate click on default (Fixed Order)
+                const initialChip = chipsWrapper.querySelector(`.cp-chip[data-url="${DEFAULT_SOURCE.url}"]`);
+                if (initialChip) initialChip.click();
 
                 // Refresh Button Logic
                 const refreshBtn = document.getElementById('cp-refresh-btn');
