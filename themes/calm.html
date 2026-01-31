@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCryptos Dashboard | Premium Earning & Crypto Tools</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Discover the best free crypto earning projects, investment opportunities, and blockchain tools. iCryptos Dashboard consolidates verified airdrops, faucets, and crypto news in one calm, focused workspace.">
+    <meta name="keywords"
+        content="crypto dashboard, free crypto, earn bitcoin, airdrops, faucetpay, crypto investments, blockchain tools, ttearncrypto">
+    <meta name="author" content="F9XR Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#F3E5F5">
+    <link rel="canonical" href="https://f9xr.github.io/dashboards/themes/purple.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://f9xr.github.io/dashboards/themes/purple.html">
+    <meta property="og:title" content="iCryptos Dashboard - Calm Crypto Intelligence">
+    <meta property="og:description"
+        content="A focused, clutter-free dashboard for crypto earners and investors. Verified projects, updated daily.">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="shortcut icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "iCryptos Dashboard",
+      "url": "https://f9xr.github.io/dashboards/themes/purple.html",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://f9xr.github.io/dashboards/themes/purple.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Crypto Earning Projects",
+      "description": "A curated collection of verified cryptocurrency earning websites and tools.",
+      "provider": {
+        "@type": "Organization",
+        "name": "F9XR Team",
+        "url": "https://f9xr.github.io"
+      }
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="assets/new/favicon-32x32.png"> (Replaced) -->
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FDFCF8',      /* Warm off-white */
+                            surface: '#FFFFFF',
+                            text: '#2D2A26',    /* Softer black */
+                            muted: '#9CA3AF',
+                            accent: '#9D84B7',  /* Muted Purple */
+                            pastelPurple: '#ECD4FF',
+                            pastelPink: '#FFD4E2',
+                            pastelBlue: '#D4E8FF',
+                            pastelYellow: '#FFF4D4',
+                            pastelGreen: '#D4FFD8',
+
+                            /* Card Stack Colors */
+                            stack1: '#F3E5F5',
+                            stack2: '#E1BEE7',
+                            stack3: '#CE93D8',
+                        },
+                        yale: '#00356B',
+                        dodger: '#1E90FF',
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.03)',
+                        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFCF8;
+            color: #2D2A26;
+        }
+
+        /* Calm Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D1D5DB;
+        }
+
+        /* Stacked Card Design */
+        .stacked-card {
+            background: white;
+            border-radius: 16px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #F3F4F6;
+        }
+
+        /* The "lip" effect at the bottom using pseudo elements or inner div */
+        .card-lip {
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            height: 12px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+
+        .stacked-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Custom HR */
+        .custom-hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(157, 132, 183, 0.4), rgba(0, 0, 0, 0));
+            margin: 1.5rem 0;
+        }
+
+        .sidebar-hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(157, 132, 183, 0.3), rgba(0, 0, 0, 0.05));
+            margin: 1rem 1rem;
+        }
+
+        /* Loader */
+        .calm-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #F3E5F5;
+            border-top-color: #9D84B7;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile Tap Targets */
+        .tap-target {
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        /* Sidebar Active indicator */
+        .nav-item.active {
+            background-color: #FDFCF8;
+            color: #6A1B9A;
+            font-weight: 600;
+            border: 1px solid #F3F4F6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border: 1px solid #F3F4F6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #E5E7EB;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2D2A26;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 1.25rem;
+            opacity: 0;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            /* Approximate max height */
+            padding-bottom: 1.25rem;
+            opacity: 1;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #9D84B7;
+        }
+
+        /* Toast Notification */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .toast {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-left: 4px solid #9D84B7;
+            min-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left-color: #10B981;
+        }
+
+        .toast.info {
+            border-left-color: #3B82F6;
+        }
+
+        .toast.warning {
+            border-left-color: #F59E0B;
+        }
+
+        .toast.danger {
+            border-left-color: #EF4444;
+        }
+
+        /* Pagination & Progress */
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid #F3F4F6;
+            background: white;
+            color: #6B7280;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #F9FAFB;
+            color: #1F2937;
+            border-color: #E5E7EB;
+        }
+
+        .pagination-btn.active {
+            background: #9D84B7;
+            color: white;
+            border-color: #9D84B7;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar-container {
+            height: 6px;
+            width: 100%;
+            background: #F3F4F6;
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        /* Skeleton Loader */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Toggletip */
+        .toggletip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .toggletip-content {
+            display: none;
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            max-width: 200px;
+            background: #2D2A26;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            z-index: 50;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggletip:hover .toggletip-content {
+            display: block;
+        }
+
+        .toggletip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #2D2A26 transparent transparent transparent;
+        }
+
+        /* Settings Modal */
+        #settings-modal {
+            transition: opacity 0.3s ease;
+        }
+
+        #settings-modal.hidden {
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #settings-modal:not(.hidden) {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        /* Not Active Styling */
+        .card-not-active {
+            border: 2px solid #FECACA !important;
+            /* Red-200 */
+            background-color: #FEF2F2 !important;
+            /* Red-50 */
+        }
+
+        .card-not-active .card-lip {
+            background-color: #F87171 !important;
+            /* Red-400 */
+        }
+
+        /* Sidebar Collapsed */
+        body.sidebar-collapsed #sidebar {
+            width: 5rem;
+            align-items: center;
+        }
+
+        body.sidebar-collapsed #sidebar .p-8 {
+            padding: 2rem 1rem;
+            justify-content: center;
+        }
+
+        body.sidebar-collapsed #sidebar .nav-item {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        body.sidebar-collapsed #sidebar .w-8.bg-brand-accent {
+            /* Logo icon container */
+            margin: 0;
+        }
+
+        body.sidebar-collapsed #sidebar .nav-text,
+        body.sidebar-collapsed #sidebar h1 {
+            display: none !important;
+        }
+
+        body.sidebar-collapsed main {
+            margin-left: 5rem;
+        }
+
+        /* Font Sizes */
+        body.font-small {
+            font-size: 0.875rem;
+        }
+
+        body.font-normal {
+            font-size: 1rem;
+        }
+
+        body.font-large {
+            font-size: 1.125rem;
+        }
+
+        /* Font Families */
+        body.font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body.font-serif {
+            font-family: 'Fraunces', serif;
+        }
+
+        body.font-mono {
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Chat Widget Details */
+        details.ap-chat-container {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        details.ap-chat-container summary {
+            padding: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            /* Hide default triangle */
+            background: #F9FAFB;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        details.ap-chat-container summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.2s;
+        }
+
+        details.ap-chat-container[open] summary::after {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased selection:bg-purple-100 selection:text-purple-900">
+
+    <div class="flex min-h-screen">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-100 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col shadow-soft">
+            <div class="p-8 flex items-center gap-3 justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="../assets/new/apple-touch-icon.png" alt="iCryptos Logo" class="w-8 h-8 rounded-lg">
+                    <h1 class="font-serif text-xl font-bold tracking-tight text-gray-800">iCryptos</h1>
+                </div>
+                <!-- Desktop Toggle -->
+                <button id="btn-desktop-toggle" class="hidden md:flex text-gray-400 hover:text-gray-600"><i
+                        class="fas fa-chevron-left"></i></button>
+            </div>
+
+            <nav id="nav-container" class="flex-1 px-4 space-y-1 overflow-y-auto pb-4">
+                <!-- Nav Items Injected Here -->
+            </nav>
+
+            <!-- Social Links -->
+            <div class="px-4 py-2 border-t border-gray-50">
+                <h4 class="px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Join our Community
+                </h4>
+                <div class="space-y-1">
+                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                        <span class="w-6 text-center"><i class="fab fa-telegram text-blue-500 text-sm"></i></span>
+                        <span class="font-medium nav-text">Telegram Channel</span>
+                    </a>
+                    <a href="https://twitter.com/ttearncrypto" target="_blank"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                        <span class="w-6 text-center"><i class="fab fa-twitter text-blue-400 text-sm"></i></span>
+                        <span class="font-medium nav-text">X / Twitter</span>
+                    </a>
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                        <span class="w-6 text-center"><i class="fab fa-discord text-indigo-500 text-sm"></i></span>
+                        <span class="font-medium nav-text">Discord Server</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-50 bg-gray-50/50">
+                <!-- Online Tools (Bottom) -->
+                <button
+                    class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-white hover:text-gray-900 transition-all tap-target text-left mb-2"
+                    data-source-id="tools">
+                    <span class="w-6 text-center"><i class="fas fa-toolbox"></i></span>
+                    <span class="font-medium nav-text">Online Tools</span>
+                </button>
+
+                <!-- My Saved -->
+                <button id="btn-show-saved"
+                    class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-white hover:text-gray-900 transition-all tap-target">
+                    <span class="w-6 text-center"><i class="fas fa-bookmark text-brand-accent"></i></span>
+                    <span class="font-medium nav-text">My Saved</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 md:ml-64 p-4 md:p-8 lg:p-12 max-w-7xl mx-auto w-full transition-all">
+
+            <!-- Mobile Header -->
+            <div class="md:hidden flex justify-between items-center mb-6">
+                <button id="btn-toggle-sidebar" class="text-gray-600 tap-target"><i
+                        class="fas fa-bars text-xl"></i></button>
+                <h1 class="font-serif text-xl font-bold">iCryptos</h1>
+                <div class="w-8"></div> <!-- Spacer -->
+            </div>
+
+            <!-- DYNAMIC HERO BANNER -->
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="flex items-center text-sm text-gray-500 mb-6 fade-in">
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fas fa-home"></i></a>
+                <span class="mx-2 text-gray-300">/</span>
+                <span id="breadcrumb-category" class="hover:text-gray-700">Category</span>
+                <span class="mx-2 text-gray-300">/</span>
+                <span id="breadcrumb-current" class="font-semibold text-gray-800">Current</span>
+
+                <div class="ml-auto flex items-center gap-2">
+                    <button id="btn-bookmark"
+                        class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:text-brand-accent hover:border-brand-accent transition-all shadow-sm">
+                        <i class="fas fa-star"></i> Bookmark
+                    </button>
+                    <a href="https://github.com/ttearncrypto/dashboards" target="_blank"
+                        class="flex items-center gap-2 px-3 py-1.5 bg-gray-800 text-white rounded-lg text-xs font-bold hover:bg-gray-700 transition-all shadow-sm">
+                        <i class="fab fa-github"></i> <span class="hidden sm:inline">Open Source</span>
+                    </a>
+                    <button id="btn-share"
+                        class="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:text-brand-accent hover:border-brand-accent transition-all shadow-sm">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <div class="w-px h-6 bg-gray-200 mx-1"></div>
+                    <button id="btn-open-settings" class="text-gray-400 hover:text-brand-accent transition-colors"
+                        title="Settings">
+                        <i class="fas fa-cog text-lg"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <header id="hero-section" class="mb-12 fade-in">
+                <div class="max-w-3xl">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-4">
+                        <i class="fas fa-sparkles"></i> <span>Curated Collection</span>
+                    </div>
+                    <h1 id="hero-title"
+                        class="font-serif text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+                        Discover the Best <br><span class="text-brand-accent italic">Crypto Tools</span>
+                    </h1>
+                    <p id="hero-desc" class="text-lg text-gray-500 max-w-xl leading-relaxed mb-8">
+                        A calm workspace to find verified earning projects, investment opportunities, and blockchain
+                        resources without the noise.
+                    </p>
+
+                    <!-- Search -->
+                    <div class="relative max-w-md group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i
+                                class="fas fa-search text-gray-400 group-focus-within:text-brand-accent transition-colors"></i>
+                        </div>
+                        <input type="text" id="search-input"
+                            class="block w-full pl-11 pr-4 py-4 bg-white border border-gray-100 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-100 focus:border-purple-200 transition-shadow shadow-soft"
+                            placeholder="Type to search projects...">
+                    </div>
+                </div>
+            </header>
+
+            <div class="custom-hr"></div>
+
+            <!-- CONTROLS -->
+            <div id="controls-area" class="flex flex-col xl:flex-row justify-between items-start gap-4 mb-8">
+                <div id="tag-container" class="flex flex-wrap gap-2 flex-grow">
+                    <!-- Tags -->
+                </div>
+
+                <div class="flex gap-3 flex-shrink-0 w-full xl:w-auto">
+                    <!-- Sort -->
+                    <div class="relative flex-grow xl:flex-grow-0">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-gray-400">
+                            <i class="fas fa-sort-amount-down text-xs"></i>
+                        </div>
+                        <select id="sort-select"
+                            class="w-full appearance-none bg-white border border-gray-100 pl-8 pr-10 py-2.5 rounded-xl text-sm font-medium text-gray-600 focus:outline-none shadow-sm cursor-pointer hover:border-gray-200">
+                            <option value="newest">Newest First</option>
+                            <option value="name">A-Z Name</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Per Page Filter -->
+                    <div class="relative flex-grow xl:flex-grow-0">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-gray-400">
+                            <i class="fas fa-list-ol text-xs"></i>
+                        </div>
+                        <select id="per-page-select"
+                            class="w-full appearance-none bg-white border border-gray-100 pl-8 pr-10 py-2.5 rounded-xl text-sm font-medium text-gray-600 focus:outline-none shadow-sm cursor-pointer hover:border-gray-200">
+                            <option value="12">12 per page</option>
+                            <option value="24">24 per page</option>
+                            <option value="48">48 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIST CONTAINER -->
+            <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Projects injected here -->
+            </div>
+
+            <!-- INFINITE SCROLL SENTINEL -->
+            <div id="infinite-sentinel" class="w-full h-10"></div>
+
+            <!-- FEEDBACK / LOADING -->
+            <div id="loader" class="hidden py-20 flex justify-center">
+                <div class="calm-loader"></div>
+            </div>
+            <div id="feedback" class="hidden py-20 text-center text-gray-500"></div>
+
+            <div id="pagination-area" class="hidden mt-12">
+                <!-- Progress Bar -->
+                <div class="max-w-md mx-auto mb-6">
+                    <div class="flex justify-between text-xs text-gray-400 mb-2 font-medium">
+                        <span>Showing <span id="progress-text-start">0</span>-<span id="progress-text-end">0</span> of
+                            <span id="progress-text-total">0</span></span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center flex-wrap gap-2" id="pagination-controls">
+                    <!-- Pagination Buttons Injected via JS -->
+                </div>
+            </div>
+
+            <!-- MEDIA SECTION (ODYSEE) -->
+            <div id="media-section" class="max-w-4xl mx-auto mt-12 mb-12 fade-in">
+                <div
+                    class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-6 border border-gray-100 bg-black">
+                    <iframe id="odysee-iframe" title="Featured Crypto Video" class="absolute inset-0 w-full h-full"
+                        src="https://odysee.com/$/embed/@ttearncrypto:5?feature=latest" allowfullscreen></iframe>
+                </div>
+                <div class="text-center">
+                    <a href="https://odysee.com/@ttearncrypto:5?view=content" target="_blank"
+                        class="inline-flex items-center gap-2 text-yale font-bold hover:text-dodger transition group text-lg"
+                        aria-label="Watch more on Odysee">Watch more on Odysee <i
+                            class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+            </div>
+
+            <div class="custom-hr"></div>
+
+            <!-- SAVED LIST (Initially Hidden) -->
+            <div id="saved-view" class="hidden">
+                <div class="flex items-center gap-4 mb-8">
+                    <button id="btn-back-to-list"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50"><i
+                            class="fas fa-arrow-left"></i></button>
+                    <h2 class="font-serif text-3xl text-gray-900">My Saved Collection</h2>
+                </div>
+                <div id="saved-list-container" class="grid gap-4">
+                    <!-- Saved Items -->
+                </div>
+            </div>
+
+            <!-- FAQ SECTION -->
+            <div id="faq-section" class="max-w-3xl mx-auto mt-20 mb-12">
+                <h2 class="font-serif text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h2>
+                <div class="space-y-4" id="faq-container">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left bg-transparent border-none focus:outline-none">
+                            <span>How do I claim these airdrops?</span>
+                            <i class="fas fa-chevron-down faq-icon text-gray-400"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Most airdrops require you to complete simple social tasks like following Twitter accounts or
+                            joining Telegram groups. Click "Visit" on any project to see specific instructions.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left bg-transparent border-none focus:outline-none">
+                            <span>Are these projects verified?</span>
+                            <i class="fas fa-chevron-down faq-icon text-gray-400"></i>
+                        </button>
+                        <div class="faq-answer">
+                            We do our best to vet every project listed on iCryptos. However, the crypto space works
+                            fast. Always do your own research (DYOR) before investing time or money.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left bg-transparent border-none focus:outline-none">
+                            <span>Is this dashboard free?</span>
+                            <i class="fas fa-chevron-down faq-icon text-gray-400"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! iCryptos Dashboard is 100% free to use. We aim to provide a clean, ad-free experience
+                            for the community.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left bg-transparent border-none focus:outline-none">
+                            <span>How does the 'My Saved' feature work?</span>
+                            <i class="fas fa-chevron-down faq-icon text-gray-400"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Your saved projects are stored locally on your browser. You can bookmark projects to revisit
+                            them later, even if you close the tab. No account needed!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="mt-20 text-gray-400 text-sm">
+                <div class="bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="font-serif font-bold text-gray-800 mb-4">Disclaimer</h5>
+                            <p class="leading-relaxed text-xs opacity-80 mb-4">
+                                By using this website, you agree to our Terms and Conditions. TTEarnCrypto is an
+                                informational aggregator and has no affiliation with listed projects unless stated.
+                                Content is not investment advice. Cryptocurrency trading involves high risk. Please do
+                                your own due diligence.
+                            </p>
+                            <p class="leading-relaxed text-xs opacity-80">
+                                <strong>Affiliate Disclosure:</strong> This site may contain affiliate links. We may
+                                earn a commission at no extra cost to you.
+                            </p>
+                        </div>
+                        <div class="flex flex-col justify-between items-start md:items-end">
+                            <div class="flex gap-4 mb-4">
+                                <a href="https://twitter.com/ttearncrypto"
+                                    class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a href="https://t.me/+CxO1NVTowno2Y2E1"
+                                    class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors"><i
+                                        class="fab fa-telegram"></i></a>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs">Data provided "as is".</p>
+                                <p class="text-xs font-semibold text-brand-accent">Made By <a
+                                        href="https://f9xr.github.io" class="hover:underline">F9XR Team</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settings-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/50 backdrop-blur-sm hidden transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md m-4 overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-lg text-gray-800">Settings</h3>
+                <button id="btn-close-settings" class="text-gray-400 hover:text-gray-600"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 space-y-6">
+                <!-- Appearance -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Appearance</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Font Family</label>
+                            <select id="setting-font-family"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:outline-none focus:border-brand-accent">
+                                <option value="font-sans">Inter (Modern)</option>
+                                <option value="font-serif">Fraunces (Elegant)</option>
+                                <option value="font-mono">Monospace (Code)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Font Size</label>
+                            <select id="setting-font-size"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm focus:outline-none focus:border-brand-accent">
+                                <option value="font-small">Compact</option>
+                                <option value="font-normal" selected>Normal</option>
+                                <option value="font-large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Data</h4>
+                    <button id="btn-refresh-data"
+                        class="w-full py-2 bg-brand-accent text-white rounded-lg text-sm font-bold hover:bg-purple-600 transition shadow-sm">
+                        <i class="fas fa-sync-alt mr-2"></i> Refresh Data Cache
+                    </button>
+                </div>
+
+                <!-- Shortcuts -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Keyboard Shortcuts</h4>
+                    <div class="bg-gray-50 rounded-lg p-3 text-xs text-gray-600 space-y-2 border border-gray-200">
+                        <div class="flex justify-between"><span>Search</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">f</kbd></div>
+                        <div class="flex justify-between"><span>Settings</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Shift + S</kbd></div>
+                        <div class="flex justify-between"><span>Close Modal</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Esc</kbd></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // STATE & CONFIG
+            const SOURCES = {
+                // Group 1
+                'earning': { name: "Earning Projects", icon: "fa-coins", url: "https://ttearncrypto.blogspot.com", title: "Start Earning <br><span class='text-brand-accent italic'>Free Crypto</span>", desc: "Verified faucets, PTC sites, and earning platforms." },
+                'investment': { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com", title: "Smart <br><span class='text-brand-accent italic'>Investments</span>", desc: "High-yield opportunities and staking platforms." },
+                'airdrops': { name: "Airdrops", icon: "fa-parachute-box", url: "https://ttairdropcentral.blogspot.com", title: "Latest <br><span class='text-brand-accent italic'>Airdrops</span>", desc: "Claim free tokens from the newest blockchain projects." },
+                'casinos': { name: "Casinos", icon: "fa-dice", url: "https://freecryptoshop.blogspot.com", title: "Best <br><span class='text-brand-accent italic'>Crypto Casinos</span>", desc: "Verified gambling and gaming platforms." },
+
+                // Group 2
+                'networks': { name: "Profit Network", icon: "fa-project-diagram", url: "https://networksradar.blogspot.com", title: "Explore <br><span class='text-brand-accent italic'>Networks</span>", desc: "Ad networks, affiliate programs, and monetization tools." },
+                'appstore': { name: "App Store", icon: "fa-mobile-alt", url: "https://ttappstore.blogspot.com", title: "Crypto <br><span class='text-brand-accent italic'>App Store</span>", desc: "Mobile applications for earning and trading." },
+
+                // Group 3
+                'news': { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptoradarnews.blogspot.com", title: "Daily <br><span class='text-brand-accent italic'>News</span>", desc: "Stay updated with the latest market trends." },
+                'guides': { name: "Crypto Guides", icon: "fa-graduation-cap", url: "https://tontufcs.blogspot.com", title: "Master the <br><span class='text-brand-accent italic'>Blockchain</span>", desc: "Educational guides, tutorials, and insights." },
+                'articles': { name: "Money Articles", icon: "fa-file-alt", url: "https://growwithguidance.blogspot.com", title: "Grow Your <br><span class='text-brand-accent italic'>Wealth</span>", desc: "Strategies and articles for financial success." },
+
+                // Special
+                'community': { name: "Community", icon: "fa-comments", url: "", title: "Join the <br><span class='text-brand-accent italic'>Conversation</span>", desc: "Chat with other earners in real-time." },
+
+                // Footer items
+                'tools': { name: "Online Tools", icon: "fa-toolbox", url: "https://tontuftools.blogspot.com", title: "Essential <br><span class='text-brand-accent italic'>Web Tools</span>", desc: "Utilities and resources to streamline your work." },
+            };
+
+            const NAV_LAYOUT = [
+                { type: 'group', items: ['earning', 'investment', 'airdrops', 'casinos'] },
+                { type: 'divider' },
+                { type: 'group', items: ['networks', 'appstore'] },
+                { type: 'divider' },
+                { type: 'group', items: ['news', 'guides', 'articles'] },
+                { type: 'divider' },
+                { type: 'group', items: ['community'] } // Added Community
+            ];
+
+            let state = {
+                currentId: 'earning',
+                projects: [],
+                filtered: [],
+                saved: JSON.parse(localStorage.getItem('icryptos_saved') || '[]'),
+                page: 0,
+                perPage: 12,
+                activeTag: 'All'
+            };
+
+            const DOM = {
+                sidebar: document.getElementById('sidebar'),
+                navContainer: document.getElementById('nav-container'),
+                heroTitle: document.getElementById('hero-title'),
+                heroDesc: document.getElementById('hero-desc'),
+                list: document.getElementById('project-list'),
+                loader: document.getElementById('loader'),
+                feedback: document.getElementById('feedback'),
+                searchInput: document.getElementById('search-input'),
+                tagContainer: document.getElementById('tag-container'),
+                sortSelect: document.getElementById('sort-select'),
+                perPageSelect: document.getElementById('per-page-select'),
+                paginationArea: document.getElementById('pagination-area'),
+                paginationControls: document.getElementById('pagination-controls'),
+                heroSection: document.getElementById('hero-section'),
+                controlsArea: document.getElementById('controls-area'),
+                savedView: document.getElementById('saved-view'),
+                savedListContainer: document.getElementById('saved-list-container'),
+                btnShowSaved: document.getElementById('btn-show-saved'),
+                btnBackToList: document.getElementById('btn-back-to-list'),
+                btnToggleSidebar: document.getElementById('btn-toggle-sidebar'),
+                breadcrumbCategory: document.getElementById('breadcrumb-category'),
+                breadcrumbCurrent: document.getElementById('breadcrumb-current'),
+                toastContainer: document.getElementById('toast-container'),
+                settingsModal: document.getElementById('settings-modal'),
+                btnCloseSettings: document.getElementById('btn-close-settings'),
+                btnOpenSettings: document.getElementById('btn-open-settings'),
+                settingFontFamily: document.getElementById('setting-font-family'),
+                settingFontSize: document.getElementById('setting-font-size'),
+                btnRefreshData: document.getElementById('btn-refresh-data'),
+                btnDesktopToggle: document.getElementById('btn-desktop-toggle'),
+                navTextItems: document.querySelectorAll('.nav-text'),
+                chatModal: document.getElementById('chat-modal'),
+                btnCloseChat: document.getElementById('btn-close-chat'),
+                btnBookmark: document.getElementById('btn-bookmark'),
+                btnShare: document.getElementById('btn-share'),
+                faqSection: document.getElementById('faq-section'),
+            };
+
+            // Helper for Bookmark
+            const showBookmarkHelp = () => {
+                const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                showToast(`Press ${isMac ? 'Cmd' : 'Ctrl'} + D to bookmark!`, 'info');
+            };
+
+            function toggleChat(show) {
+                if (show) {
+                    DOM.chatModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        DOM.chatModal.querySelector('div').classList.remove('scale-95');
+                        DOM.chatModal.querySelector('div').classList.add('scale-100');
+                    });
+                } else {
+                    DOM.chatModal.querySelector('div').classList.remove('scale-100');
+                    DOM.chatModal.querySelector('div').classList.add('scale-95');
+                    setTimeout(() => {
+                        DOM.chatModal.classList.add('hidden');
+                    }, 200);
+                }
+            }
+
+            // INIT
+            function init() {
+                renderNav();
+                loadSource(state.currentId);
+                setupEvents();
+            }
+
+            // NAVIGATION
+            function renderNav() {
+                let html = '';
+                NAV_LAYOUT.forEach(block => {
+                    if (block.type === 'divider') {
+                        html += '<hr class="sidebar-hr">';
+                    } else if (block.type === 'group') {
+                        block.items.forEach(id => {
+                            const src = SOURCES[id];
+                            if (!src) return;
+                            html += `
+                            <button class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors tap-target text-left" data-source-id="${id}">
+                                <span class="w-6 text-center"><i class="fas ${src.icon}"></i></span>
+                                <span class="font-medium">${src.name}</span>
+                            </button>`;
+                        });
+                    }
+                });
+                DOM.navContainer.innerHTML = html;
+            }
+
+            function updateActiveNav() {
+                // Main Nav Items
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    if (el.dataset.sourceId === state.currentId) {
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                });
+            }
+
+            function switchSource(id) {
+                if (!SOURCES[id]) return;
+
+                // Handle Modal Trigger
+                if (id === 'community') {
+                    toggleChat(true);
+                    return; // Do not switch content
+                }
+
+                if (id === state.currentId) return;
+                state.currentId = id;
+                updateActiveNav();
+
+                // Reset Views
+                DOM.savedView.classList.add('hidden');
+                // DOM.chatView line is removed as we use modal now
+                DOM.heroSection.classList.remove('hidden');
+                DOM.controlsArea.classList.remove('hidden');
+                DOM.list.classList.remove('hidden');
+                DOM.paginationArea.classList.add('hidden'); // Reset Pagination
+
+                // Show Media Section in default views, hide in specific ones if needed
+                if (['news', 'guides'].includes(id)) {
+                    // Maybe hide video for news/guides? keeping it for now as "Featured"
+                    document.getElementById('media-section').classList.remove('hidden');
+                } else {
+                    document.getElementById('media-section').classList.remove('hidden');
+                }
+
+                loadSource(id);
+
+                if (window.innerWidth < 768) {
+                    DOM.sidebar.classList.add('-translate-x-full');
+                }
+
+                // Toggle Grid Layout
+                if (id === 'news') {
+                    DOM.list.className = 'grid grid-cols-1 md:grid-cols-6 gap-6';
+                    document.querySelector('.custom-hr').nextElementSibling.classList.add('hidden');
+                } else {
+                    DOM.list.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+                    document.querySelector('.custom-hr').nextElementSibling.classList.remove('hidden');
+                }
+
+                // Toggle FAQ
+                if (id === 'news') DOM.faqSection.classList.add('hidden');
+                else DOM.faqSection.classList.remove('hidden');
+            }
+
+            // DATA LOADING
+            async function loadSource(id) {
+                updateActiveNav();
+                const source = SOURCES[id];
+
+                // Update Breadcrumbs
+                renderBreadcrumbs(source);
+
+                // Update Hero
+                DOM.heroTitle.innerHTML = source.title;
+                DOM.heroDesc.innerText = source.desc;
+
+                DOM.list.innerHTML = '';
+                //                DOM.tagContainer.innerHTML = '';
+                DOM.loader.classList.remove('hidden');
+                DOM.feedback.classList.add('hidden');
+                DOM.paginationArea.classList.add('hidden');
+
+                try {
+                    const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=500`);
+                    state.projects = processFeed(data.feed.entry);
+                    state.filtered = [...state.projects];
+                    state.page = 0;
+                    state.activeTag = 'All';
+
+                    renderTags();
+                    renderList();
+                } catch (err) {
+                    console.error(err);
+                    DOM.feedback.innerText = "Unable to load content.";
+                    DOM.feedback.classList.remove('hidden');
+                } finally {
+                    DOM.loader.classList.add('hidden');
+                }
+            }
+
+            function renderBreadcrumbs(source) {
+                // Find group for source to show correct "Category"
+                let groupName = "Explore";
+                // Simple logic to find group based on hardcoded ranges or checking NAV_LAYOUT
+                // For simplicity, we can mapping manually or just use a generic term if not critical
+                if (['earning', 'investment', 'airdrops', 'casinos'].includes(state.currentId)) groupName = "Finance";
+                if (['networks', 'appstore'].includes(state.currentId)) groupName = "Ecosystem";
+                if (['news', 'guides', 'articles'].includes(state.currentId)) groupName = "Resources";
+                if (state.currentId === 'tools') groupName = "Utilities";
+                if (state.currentId === 'community') groupName = "Connect";
+
+                DOM.breadcrumbCategory.innerText = groupName;
+                DOM.breadcrumbCurrent.innerText = source.name;
+            }
+
+            function fetchJsonp(url) {
+                return new Promise((resolve, reject) => {
+                    const callbackName = 'cb_' + Math.round(100000 * Math.random());
+                    window[callbackName] = (data) => {
+                        delete window[callbackName];
+                        document.body.removeChild(script);
+                        resolve(data);
+                    };
+                    const script = document.createElement('script');
+                    script.src = `${url}&callback=${callbackName}`;
+                    document.body.appendChild(script);
+                });
+            }
+
+            function processFeed(entries) {
+                return (entries || []).map(e => ({
+                    id: e.id.$t,
+                    title: e.title.$t,
+                    url: e.link.find(l => l.rel === 'alternate').href,
+                    tags: (e.category || []).map(c => c.term).filter(c => !c.startsWith('http')),
+                    date: new Date(e.published.$t),
+                    thumbnail: e.media$thumbnail ? e.media$thumbnail.url : null,
+                    snippet: (e.summary ? e.summary.$t : (e.content ? e.content.$t : '')).replace(/<[^>]+>/g, '').substring(0, 120) + '...'
+                }));
+            }
+
+            // RENDERING
+            function renderTags() {
+                const allTags = new Set(state.projects.flatMap(p => p.tags));
+                const tags = ['All', ...Array.from(allTags).sort()];
+
+                DOM.tagContainer.innerHTML = tags.map(tag => `
+                    <button class="px-4 py-1.5 rounded-full text-xs font-semibold border transition-all ${state.activeTag === tag ? 'bg-gray-800 text-white border-gray-800' : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'}" data-tag="${tag}">
+                        ${tag}
+                    </button>
+                `).join('');
+            }
+
+            function renderList(append = false) {
+                if (!append) DOM.list.innerHTML = '';
+
+                // Filtering & Sorting (Recalculate only if not appending)
+                if (!append) {
+                    let res = state.projects.filter(p => {
+                        const matchesTag = state.activeTag === 'All' || p.tags.includes(state.activeTag);
+                        const search = DOM.searchInput.value.toLowerCase();
+                        const matchesSearch = !search || p.title.toLowerCase().includes(search);
+                        return matchesTag && matchesSearch;
+                    });
+
+                    if (DOM.sortSelect.value === 'newest') res.sort((a, b) => b.date - a.date);
+                    else res.sort((a, b) => a.title.localeCompare(b.title));
+
+                    state.filtered = res;
+                }
+
+                if (state.filtered.length === 0) {
+                    DOM.feedback.innerText = "No projects found.";
+                    DOM.feedback.classList.remove('hidden');
+                    DOM.paginationArea.classList.add('hidden');
+                    return;
+                }
+
+                DOM.feedback.classList.add('hidden');
+
+                // Page Logic
+                const start = state.page * state.perPage;
+                const end = Math.min(start + state.perPage, state.filtered.length);
+                const slice = state.filtered.slice(start, end);
+
+                let absoluteIndex = start;
+
+                slice.forEach((p, idx) => {
+                    const card = createCard(p, absoluteIndex + idx);
+                    DOM.list.appendChild(card);
+                });
+
+                // Infinite Scroll vs Pagination
+                if (state.currentId === 'news') {
+                    DOM.paginationArea.classList.add('hidden');
+                    const sentinel = document.getElementById('infinite-sentinel');
+                    if (end < state.filtered.length) {
+                        sentinel.classList.remove('hidden');
+                    } else {
+                        sentinel.classList.add('hidden');
+                    }
+                } else {
+                    document.getElementById('infinite-sentinel').classList.add('hidden');
+                    renderPagination(start, end, state.filtered.length);
+                }
+            }
+
+            function renderPagination(start, end, total) {
+                DOM.paginationArea.classList.remove('hidden');
+
+                // Update text & progress bar
+                document.getElementById('progress-text-start').innerText = total === 0 ? 0 : start + 1;
+                document.getElementById('progress-text-end').innerText = end;
+                document.getElementById('progress-text-total').innerText = total;
+
+                const percent = total === 0 ? 0 : Math.round((end / total) * 100);
+                document.getElementById('progress-percentage').innerText = `${percent}%`;
+                document.getElementById('progress-fill').style.width = `${percent}%`;
+
+                // Render Buttons
+                const totalPages = Math.ceil(total / state.perPage);
+                let html = '';
+
+                // Prev
+                html += `<button class="pagination-btn" onclick="changePage(${state.page - 1})" ${state.page === 0 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+
+                // Logic for showing limited page numbers with ellipsis is better for UX, 
+                // but for simplicity in this artifact, we'll show a window around current page.
+
+                let minPage = Math.max(0, state.page - 2);
+                let maxPage = Math.min(totalPages - 1, state.page + 2);
+
+                if (minPage > 0) {
+                    html += `<button class="pagination-btn" onclick="changePage(0)">1</button>`;
+                    if (minPage > 1) html += `<span class="px-2 text-gray-400">...</span>`;
+                }
+
+                for (let i = minPage; i <= maxPage; i++) {
+                    html += `<button class="pagination-btn ${i === state.page ? 'active' : ''}" onclick="changePage(${i})">${i + 1}</button>`;
+                }
+
+                if (maxPage < totalPages - 1) {
+                    if (maxPage < totalPages - 2) html += `<span class="px-2 text-gray-400">...</span>`;
+                    html += `<button class="pagination-btn" onclick="changePage(${totalPages - 1})">${totalPages}</button>`;
+                }
+
+                // Next
+                html += `<button class="pagination-btn" onclick="changePage(${state.page + 1})" ${state.page >= totalPages - 1 ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+
+                DOM.paginationControls.innerHTML = html;
+            }
+
+            window.changePage = function (newPage) {
+                if (newPage < 0 || newPage >= Math.ceil(state.filtered.length / state.perPage)) return;
+                state.page = newPage;
+                renderList(); // Re-render logic handles scroll to top if needed, or we can add it here
+                DOM.list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            // CARD GENERATION DISPATCHER
+            function createCard(project, index = 0) {
+                // Determine Card Type based on Section
+                if (state.currentId === 'news') return createNewsCard(project, index);
+                if (project.tags.includes('RedPacketCodes')) return createRedPacketCard(project);
+                if (['guides', 'articles'].includes(state.currentId)) return createGuideCard(project);
+
+                // Default Stacked Card
+                return createStandardCard(project);
+            }
+
+            function createNewsCard(project, index) {
+                const div = document.createElement('div');
+
+                // Bento Logic (6 col grid)
+                // Index 0: Feature (4 cols, 2 rows)
+                // Index 1, 2: Stack (2 cols each)
+                // Default: 2 cols
+
+                let gridClass = 'md:col-span-2'; // Default small card
+                let isFeature = false;
+
+                if (index === 0) { gridClass = 'md:col-span-4 md:row-span-2'; isFeature = true; }
+                else if (index === 1 || index === 2) { gridClass = 'md:col-span-2'; }
+
+                div.className = `${gridClass} bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between h-full relative overflow-hidden`;
+                div.onclick = () => window.open(project.url, '_blank');
+
+                // Typography Scale
+                const titleSize = isFeature ? 'text-3xl md:text-4xl' : 'text-xl';
+                const showSnippet = isFeature || index < 4;
+
+                div.innerHTML = `
+                   <div>
+                        <div class="flex items-center justify-between mb-4">
+                             <div class="text-xs font-bold text-gray-400 uppercase tracking-widest">${project.date.toLocaleDateString()}</div>
+                             ${isFeature ? '<span class="px-2 py-1 bg-brand-accent text-white text-[10px] uppercase font-bold rounded">Featured</span>' : ''}
+                        </div>
+                        
+                        <h3 class="font-serif ${titleSize} font-bold text-gray-900 leading-tight mb-4 group-hover:text-brand-accent transition-colors">${project.title}</h3>
+                        
+                        ${showSnippet ? `<p class="text-gray-500 leading-relaxed mb-6 ${isFeature ? 'text-base line-clamp-4' : 'text-sm line-clamp-3'}">${project.snippet}</p>` : ''}
+                   </div>
+                   
+                   <div class="pt-4 border-t border-gray-50 flex items-center justify-between mt-auto">
+                        <div class="flex gap-2">
+                            ${project.tags.slice(0, 1).map(t => `<span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-wider rounded">${t}</span>`).join('')}
+                        </div>
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-wide group-hover:underline">Read Story</span>
+                   </div>
+                `;
+                return div;
+            }
+
+            function createRedPacketCard(project) {
+                const div = document.createElement('div');
+                div.className = 'stacked-card p-0 flex flex-col h-48 justify-between relative group cursor-pointer overflow-hidden border-none';
+                // Red Gradient Background
+                div.style.background = 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)';
+
+                div.onclick = () => window.open(project.url, '_blank');
+
+                div.innerHTML = `
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-yellow-400 rounded-full opacity-20 blur-xl"></div>
+
+                    <div class="relative z-10 p-6 flex flex-col h-full justify-between">
+                        <div class="flex justify-between items-start">
+                             <span class="px-2 py-1 bg-red-800 bg-opacity-30 text-yellow-100 text-[10px] font-bold uppercase tracking-widest rounded border border-red-400 border-opacity-30">Red Packet</span>
+                             <i class="fas fa-gift text-yellow-300 text-xl animate-bounce"></i>
+                        </div>
+                        
+                        <div class="text-center">
+                            <h3 class="font-serif font-bold text-white text-xl leading-tight mb-1 drop-shadow-md">${project.title}</h3>
+                            <p class="text-red-100 text-xs opacity-80">Tap to claim code</p>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                             <span class="px-4 py-1 bg-yellow-400 text-red-900 font-bold text-xs uppercase rounded-full shadow-lg transform group-hover:scale-105 transition-transform">Claim Now</span>
+                        </div>
+                    </div>
+                 `;
+                return div;
+            }
+
+            function createGuideCard(project) {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer group flex flex-col h-auto';
+                div.onclick = () => window.open(project.url, '_blank');
+
+                div.innerHTML = `
+                    <div class="mb-3 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center text-xs"><i class="fas fa-book-open"></i></span>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Guide</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-gray-800 mb-3 group-hover:text-yellow-600 transition-colors">${project.title}</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3">${project.snippet}</p>
+                    <div class="mt-auto flex justify-between items-center">
+                        <span class="text-xs text-gray-400">${project.date.toLocaleDateString()}</span>
+                        <div class="text-sm font-bold text-gray-900 flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Read Guide <i class="fas fa-arrow-right text-yellow-500"></i>
+                        </div>
+                    </div>
+                `;
+                return div;
+            }
+
+            function createStandardCard(project) {
+                const isSaved = state.saved.some(s => s.id === project.id);
+                // Tags Logic
+                const notActiveTags = ['NotActive', 'notactive', 'ended', 'scam', 'Closed', 'closed'];
+                const isActive = !project.tags.some(t => notActiveTags.includes(t) || notActiveTags.includes(t.replace(/\s/g, '')));
+
+                // Distinct Designs
+                let lipColor = '#F87171'; // Default Red for NotActive
+                if (isActive) {
+                    if (['earning', 'investment', 'airdrops', 'casinos'].includes(state.currentId)) lipColor = '#A78BFA'; // Purple (Finance)
+                    else if (['networks', 'appstore'].includes(state.currentId)) lipColor = '#34D399'; // Green (Ecosystem)
+                    else if (['news', 'guides', 'articles'].includes(state.currentId)) lipColor = '#FBBF24'; // Yellow (Resources) 
+                    else lipColor = '#D1D5DB'; // Gray (Tools/Other)
+                }
+
+                const div = document.createElement('div');
+                div.className = `stacked-card p-6 flex flex-col h-48 justify-between relative group cursor-pointer ${!isActive ? 'card-not-active' : ''}`;
+
+                // Click main card
+                div.onclick = (e) => {
+                    if (!e.target.closest('button') && !e.target.closest('.clickable-tag')) {
+                        if (isActive) window.open(project.url, '_blank');
+                    }
+                };
+
+                let tagsSection = '';
+                if (isActive) {
+                    // Tags - Display first 2, count rest
+                    const visibleTags = project.tags.slice(0, 2);
+                    const remaining = project.tags.length - 2;
+
+                    const tagsHtml = visibleTags.map(t =>
+                        `<span class="clickable-tag px-2 py-0.5 bg-gray-50 text-gray-500 text-[10px] font-bold rounded uppercase tracking-wide border border-gray-100 hover:bg-gray-200 transition-colors z-20 cursor-pointer" data-tag="${t}">${t}</span>`
+                    ).join('');
+
+                    const moreTagsHtml = remaining > 0 ?
+                        `<span class="toggletip px-2 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-bold rounded cursor-help">
+                            +${remaining}
+                            <span class="toggletip-content">${project.tags.slice(2).join(', ')}</span>
+                        </span>` : '';
+
+                    tagsSection = `
+                        <div class="flex gap-2 flex-wrap relative z-10">
+                            ${tagsHtml}
+                            ${moreTagsHtml}
+                        </div>
+                    `;
+                } else {
+                    tagsSection = `<div class="flex-1"></div>`; // Spacer - NO TAGS IF NOT ACTIVE
+                }
+
+                div.innerHTML = `
+                    <div>
+                         <div class="flex justify-between items-start mb-3">
+                            ${tagsSection}
+                            ${isActive ?
+                        `<button class="btn-like flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isSaved ? 'text-red-500 bg-red-50' : 'text-gray-300 hover:text-gray-500 hover:bg-gray-50'} z-20" data-id="${project.id}">
+                                    <i class="${isSaved ? 'fas' : 'far'} fa-heart"></i>
+                                </button>` :
+                        `<span class="text-red-500 text-xs font-bold border border-red-200 bg-white px-2 py-1 rounded">CLOSED</span>`
+                    }
+                        </div>
+                        <h3 class="font-serif font-bold text-lg ${isActive ? 'text-gray-800 group-hover:text-brand-accent' : 'text-gray-500'} leading-snug transition-colors line-clamp-2">${project.title}</h3>
+                    </div>
+                   
+                    <div class="relative z-10 flex justify-between items-end mt-4">
+                        <span class="text-xs text-gray-400 font-medium">${project.date.toLocaleDateString()}</span>
+                        ${isActive ? `<span class="text-xs font-bold text-gray-300 group-hover:text-gray-500 transition-colors">VISIT <i class="fas fa-arrow-right ml-1"></i></span>` : ''}
+                    </div>
+
+                    <div class="card-lip" style="background-color: ${lipColor};"></div>
+                `;
+
+                if (isActive) {
+                    const likeBtn = div.querySelector('.btn-like');
+                    likeBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        toggleLike(project, likeBtn);
+                    };
+                }
+
+                return div;
+            }
+
+            function renderSkeleton() {
+                DOM.list.innerHTML = '';
+                for (let i = 0; i < 6; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'bg-white rounded-2xl p-6 border border-gray-100 flex flex-col h-48';
+                    div.innerHTML = `
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="w-16 h-4 skeleton"></div>
+                            <div class="w-8 h-8 rounded-full skeleton"></div>
+                        </div>
+                        <div class="w-3/4 h-6 skeleton mb-2"></div>
+                        <div class="w-1/2 h-4 skeleton mt-auto"></div>
+                    `;
+                    DOM.list.appendChild(div);
+                }
+            }
+
+            function toggleLike(project, btnEl) {
+                const idx = state.saved.findIndex(s => s.id === project.id);
+                if (idx > -1) {
+                    state.saved.splice(idx, 1);
+                    btnEl.innerHTML = '<i class="far fa-heart"></i>';
+                    btnEl.className = 'btn-like flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors text-gray-300 hover:text-gray-500 hover:bg-gray-50';
+                    showToast(`Removed "${project.title}" from Saved`, 'info');
+                } else {
+                    state.saved.push({ ...project, notes: '' });
+                    btnEl.innerHTML = '<i class="fas fa-heart"></i>';
+                    btnEl.className = 'btn-like flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors text-red-500 bg-red-50';
+                    showToast(`Saved "${project.title}" to Collection`, 'success');
+                }
+                localStorage.setItem('icryptos_saved', JSON.stringify(state.saved));
+            }
+
+            // TOASTS
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+
+                let icon = 'fa-check-circle';
+                if (type === 'info') icon = 'fa-info-circle';
+                if (type === 'warning') icon = 'fa-exclamation-triangle';
+                if (type === 'danger') icon = 'fa-times-circle';
+
+                let color = 'text-green-500';
+                if (type === 'info') color = 'text-blue-500';
+                if (type === 'warning') color = 'text-yellow-500';
+                if (type === 'danger') color = 'text-red-500';
+
+                toast.innerHTML = `
+                    <i class="fas ${icon} ${color} text-xl"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-semibold text-gray-800">${message}</p>
+                    </div>
+                    <button class="text-gray-300 hover:text-gray-500" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+                `;
+
+                DOM.toastContainer.appendChild(toast);
+
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    toast.classList.add('show');
+                });
+
+                // Auto remove
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            // SAVED VIEW
+            function showSaved() {
+                DOM.savedView.classList.remove('hidden');
+                DOM.heroSection.classList.add('hidden');
+                DOM.controlsArea.classList.add('hidden');
+                DOM.list.classList.add('hidden');
+                DOM.paginationArea.classList.add('hidden');
+                document.getElementById('media-section').classList.add('hidden');
+                document.getElementById('faq-container').parentElement.classList.add('hidden');
+
+                if (window.innerWidth < 768) {
+                    DOM.sidebar.classList.add('-translate-x-full');
+                }
+
+                // Header of Saved View
+                DOM.savedView.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                        <div class="flex items-center gap-4">
+                            <button id="btn-back-to-list-inner" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"><i class="fas fa-arrow-left"></i></button>
+                            <div>
+                                <h2 class="font-serif text-3xl text-gray-900 leading-none">My Saved Collection</h2>
+                                <p class="text-xs text-gray-400 mt-1"><i class="fas fa-database mr-1"></i> Data saved locally in your browser</p>
+                            </div>
+                        </div>
+                        <button id="btn-export-csv" class="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 border border-green-200 rounded-xl text-sm font-bold hover:bg-green-100 transition-colors">
+                            <i class="fas fa-file-csv"></i> Export CSV
+                        </button>
+                    </div>
+                    <div id="saved-list-container" class="grid gap-4"></div>
+                `;
+
+                const container = document.getElementById('saved-list-container');
+
+                // Re-bind Back Button inside the dynamic HTML
+                document.getElementById('btn-back-to-list-inner').addEventListener('click', () => {
+                    DOM.btnBackToList.click();
+                });
+
+                document.getElementById('btn-export-csv').addEventListener('click', exportCSV);
+
+                if (state.saved.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-16 bg-white rounded-3xl border-2 border-dashed border-gray-100">
+                            <div class="w-16 h-16 bg-gray-50 text-gray-300 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">Your List is Empty</h3>
+                            <p class="text-gray-400 max-w-xs mx-auto mb-6">Start exploring projects and click the <i class="fas fa-heart text-red-500 mx-1"></i> icon to save them here.</p>
+                            <button id="btn-browse-empty" class="px-6 py-2.5 bg-brand-accent text-white rounded-xl font-bold shadow-soft hover:bg-purple-600 transition-transform hover:-translate-y-0.5">
+                                Browse Projects
+                            </button>
+                        </div>
+                    `;
+                    document.getElementById('btn-browse-empty').addEventListener('click', () => {
+                        DOM.btnBackToList.click();
+                    });
+                    return;
+                }
+
+                state.saved.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-white p-6 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 shadow-sm transition-shadow hover:shadow-md';
+
+                    div.innerHTML = `
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-2">
+                                 <div>
+                                    <h4 class="font-bold text-lg text-gray-900"><a href="${p.url}" target="_blank" class="hover:text-brand-accent hover:underline decoration-2 underline-offset-2">${p.title}</a></h4>
+                                    <div class="flex gap-2 mt-1">
+                                        ${p.tags.slice(0, 3).map(t => `<span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded">${t}</span>`).join('')}
+                                    </div>
+                                 </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mt-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Notes</label>
+                                    <textarea class="w-full bg-gray-50 border border-transparent focus:border-brand-accent focus:bg-white rounded-lg p-3 text-sm text-gray-700 focus:outline-none resize-none h-20 transition-all placeholder-gray-300" placeholder="Add personal notes...">${p.notes || ''}</textarea>
+                                </div>
+                                <div>
+                                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Next Claim / Reminder</label>
+                                     <input type="date" class="w-full bg-gray-50 border border-transparent focus:border-brand-accent focus:bg-white rounded-lg p-2.5 text-sm text-gray-700 focus:outline-none transition-all" value="${p.nextClaim || ''}">
+                                     <p class="text-[10px] text-gray-400 mt-1 italic">Set a date to remind yourself.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex md:flex-col gap-2 justify-between md:justify-start flex-shrink-0 min-w-[120px]">
+                             <a href="${p.url}" target="_blank" class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-900 text-white rounded-xl text-xs font-bold hover:bg-gray-800 transition-transform active:scale-95 shadow-soft">
+                                Visit <i class="fas fa-external-link-alt"></i>
+                             </a>
+                             <button class="btn-remove flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 border border-red-100 text-red-500 bg-red-50 rounded-xl text-xs font-bold hover:bg-red-100 transition-colors">
+                                Remove <i class="fas fa-trash-alt"></i>
+                             </button>
+                        </div>
+                    `;
+
+                    // Bind Logic
+                    const ta = div.querySelector('textarea');
+                    const dateInput = div.querySelector('input[type="date"]');
+
+                    const updateStorage = () => {
+                        localStorage.setItem('icryptos_saved', JSON.stringify(state.saved));
+                    };
+
+                    ta.oninput = () => { p.notes = ta.value; updateStorage(); };
+                    dateInput.onchange = () => { p.nextClaim = dateInput.value; updateStorage(); };
+
+                    div.querySelector('.btn-remove').onclick = () => {
+                        const idx = state.saved.findIndex(s => s.id === p.id);
+                        if (idx > -1) {
+                            state.saved.splice(idx, 1);
+                            updateStorage();
+                            showToast('Project removed', 'info');
+                            // Animate removal
+                            div.style.opacity = '0';
+                            div.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                div.remove();
+                                if (state.saved.length === 0) showSaved(); // Re-render empty state
+                            }, 200);
+                        }
+                    };
+
+                    container.appendChild(div);
+                });
+            }
+
+            function exportCSV() {
+                if (state.saved.length === 0) {
+                    showToast('Nothing to export!', 'warning');
+                    return;
+                }
+                const headers = ['Title', 'URL', 'Tags', 'Notes', 'Next Claim Date'];
+                const rows = state.saved.map(p => [
+                    `"${p.title.replace(/"/g, '""')}"`,
+                    `"${p.url}"`,
+                    `"${p.tags.join(', ')}"`,
+                    `"${(p.notes || '').replace(/"/g, '""')}"`,
+                    `"${p.nextClaim || ''}"`
+                ]);
+
+                const csvContent = "data:text/csv;charset=utf-8,"
+                    + headers.join(",") + "\n"
+                    + rows.map(e => e.join(",")).join("\n");
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "icryptos-saved.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // EVENTS
+            function setupEvents() {
+                DOM.sidebar.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.nav-item');
+                    if (btn && btn.dataset.sourceId) switchSource(btn.dataset.sourceId);
+                });
+
+                // Header Buttons
+                if (DOM.btnBookmark) {
+                    DOM.btnBookmark.addEventListener('click', showBookmarkHelp);
+                }
+                if (DOM.btnShare) {
+                    DOM.btnShare.addEventListener('click', () => {
+                        try {
+                            if (navigator.clipboard) {
+                                navigator.clipboard.writeText(window.location.href).then(() => {
+                                    showToast('Link copied to clipboard!', 'info');
+                                }).catch(() => {
+                                    prompt("Copy this link:", window.location.href);
+                                });
+                            } else {
+                                prompt("Copy this link:", window.location.href);
+                            }
+                        } catch (e) {
+                            prompt("Copy this link:", window.location.href);
+                        }
+                    });
+                }
+
+                // Chat Modal
+                if (DOM.btnCloseChat) {
+                    DOM.btnCloseChat.addEventListener('click', () => toggleChat(false));
+                }
+                if (DOM.chatModal) {
+                    DOM.chatModal.addEventListener('click', (e) => {
+                        if (e.target === DOM.chatModal) toggleChat(false);
+                    });
+                }
+
+                DOM.tagContainer.addEventListener('click', (e) => {
+                    const btn = e.target.closest('button');
+                    if (btn) {
+                        state.activeTag = btn.dataset.tag;
+                        state.page = 0;
+                        renderTags();
+                        renderList();
+                    }
+                });
+
+                let debounce;
+                DOM.searchInput.addEventListener('input', () => {
+                    clearTimeout(debounce);
+                    debounce = setTimeout(() => {
+                        state.page = 0;
+                        renderList();
+                    }, 300);
+                });
+
+                DOM.sortSelect.addEventListener('change', () => {
+                    state.page = 0;
+                    renderList();
+                });
+
+                // Per Page Filter Event
+                DOM.perPageSelect.addEventListener('change', (e) => {
+                    state.perPage = parseInt(e.target.value);
+                    state.page = 0;
+                    renderList();
+                });
+
+                /* Load More removed in favor of Pagination */
+
+                DOM.btnShowSaved.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        DOM.sidebar.classList.add('-translate-x-full');
+                    }
+                    showSaved();
+                });
+
+                DOM.btnBackToList.addEventListener('click', () => {
+                    DOM.savedView.classList.add('hidden');
+                    DOM.heroSection.classList.remove('hidden');
+                    DOM.controlsArea.classList.remove('hidden');
+                    DOM.list.classList.remove('hidden');
+                    document.getElementById('media-section').classList.remove('hidden'); // Show Media
+                    document.getElementById('faq-container').parentElement.classList.remove('hidden'); // Show FAQ
+                });
+
+                DOM.btnToggleSidebar.addEventListener('click', () => {
+                    DOM.sidebar.classList.toggle('-translate-x-full');
+                });
+
+                // FAQ Accordion Logic
+                document.querySelectorAll('.faq-question').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const item = btn.parentElement;
+                        const isActive = item.classList.contains('active');
+
+                        // Close all others (optional - can also allow multiple open)
+                        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+
+                // Settings Modal
+                const toggleSettings = (show) => {
+                    DOM.settingsModal.classList.toggle('hidden', !show);
+                };
+                DOM.btnOpenSettings.addEventListener('click', () => toggleSettings(true));
+                DOM.btnCloseSettings.addEventListener('click', () => toggleSettings(false));
+
+                // Settings - Font Family
+                DOM.settingFontFamily.addEventListener('change', (e) => {
+                    document.body.classList.remove('font-sans', 'font-serif', 'font-mono');
+                    document.body.classList.add(e.target.value);
+                });
+
+                // Settings - Font Size
+                DOM.settingFontSize.addEventListener('change', (e) => {
+                    document.body.classList.remove('font-small', 'font-normal', 'font-large');
+                    document.body.classList.add(e.target.value);
+                });
+
+                // Settings - Refresh
+                DOM.btnRefreshData.addEventListener('click', () => {
+                    loadSource(state.currentId);
+                    showToast("Data refreshed", "success");
+                    toggleSettings(false);
+                });
+
+                // Desktop Sidebar Toggle
+                DOM.btnDesktopToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('sidebar-collapsed');
+                    const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+                    DOM.btnDesktopToggle.innerHTML = isCollapsed ? '<i class="fas fa-chevron-right"></i>' : '<i class="fas fa-chevron-left"></i>';
+
+                    // Force Layout Update for Grid if needed (optional)
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 300);
+                });
+
+                // Keyboard Shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        toggleSettings(false);
+                        toggleChat(false); // Close Chat on Escape
+                        DOM.sidebar.classList.add('-translate-x-full'); // Close mobile sidebar too
+                    }
+                    if ((e.metaKey || e.ctrlKey) && e.key === 's') { /* Ignore browser save? no, Shift+S assigned in UI */ }
+                    if (e.shiftKey && e.key.toLowerCase() === 's') {
+                        e.preventDefault();
+                        toggleSettings(true);
+                    }
+                    if (e.key.toLowerCase() === 'f' && document.activeElement !== DOM.searchInput) {
+                        e.preventDefault();
+                        DOM.searchInput.focus();
+                    }
+                });
+
+                // Tag Click delegation
+                DOM.list.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('clickable-tag')) {
+                        e.stopPropagation();
+                        state.activeTag = e.target.dataset.tag;
+                        state.page = 0;
+                        renderTags();
+                        renderList();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+
+                // Infinite Scroll Observer
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && state.currentId === 'news' && !DOM.loader.classList.contains('hidden') === false) {
+                        const totalPages = Math.ceil(state.filtered.length / state.perPage);
+                        if (state.page < totalPages - 1) {
+                            state.page++;
+                            renderList(true); // Append
+                        }
+                    }
+                }, { rootMargin: '200px' });
+
+                const sentinel = document.getElementById('infinite-sentinel');
+                if (sentinel) observer.observe(sentinel);
+            }
+
+            init();
+        });
+    </script>
+
+    <!-- CHAT MODAL -->
+    <div id="chat-modal"
+        class="fixed inset-0 z-[60] bg-black bg-opacity-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        <div
+            class="bg-white w-full max-w-4xl h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-200">
+            <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-white"><i
+                            class="fas fa-comments"></i></div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 leading-tight">Community Chat</h3>
+                        <p class="text-xs text-gray-500">Connect with other earners</p>
+                    </div>
+                </div>
+                <button id="btn-close-chat"
+                    class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-200 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex-1 bg-gray-100 relative">
+                <center class="h-full">
+                    <script defer src="https://minnit.chat/js/embed.js"></script>
+                    <minnit-chat
+                        data-chatname="https://organizations.minnit.chat/436125458391812/Main?embed&amp;nickname="
+                        data-style="width:100%;height:100%;"></minnit-chat>
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
