@@ -538,27 +538,38 @@
                 <!-- Nav Items Injected Here -->
             </nav>
 
-            <!-- Social Links -->
+            <!-- Social Links Dropdown -->
             <div class="px-4 py-2 border-t border-gray-50">
-                <h4 class="px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Join our Community
-                </h4>
-                <div class="space-y-1">
-                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank"
-                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
-                        <span class="w-6 text-center"><i class="fab fa-telegram text-blue-500 text-sm"></i></span>
-                        <span class="font-medium nav-text">Telegram Channel</span>
-                    </a>
-                    <a href="https://twitter.com/ttearncrypto" target="_blank"
-                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
-                        <span class="w-6 text-center"><i class="fab fa-twitter text-blue-400 text-sm"></i></span>
-                        <span class="font-medium nav-text">X / Twitter</span>
-                    </a>
-                    <a href="https://discord.gg/D6hAEEumtx" target="_blank"
-                        class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
-                        <span class="w-6 text-center"><i class="fab fa-discord text-indigo-500 text-sm"></i></span>
-                        <span class="font-medium nav-text">Discord Server</span>
-                    </a>
-                </div>
+                <details class="group">
+                    <summary
+                        class="list-none flex items-center justify-between px-4 py-3 rounded-xl text-gray-400 font-bold text-[10px] uppercase tracking-widest cursor-pointer hover:bg-gray-50 hover:text-gray-600 transition-colors">
+                        <span>Join Community</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-xs"></i>
+                    </summary>
+                    <div class="mt-2 space-y-1 pl-2">
+                        <button onclick="toggleChat(true)"
+                            class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target text-left">
+                            <span class="w-6 text-center"><i
+                                    class="fas fa-comments text-brand-accent text-sm"></i></span>
+                            <span class="font-medium nav-text">Community Chat</span>
+                        </button>
+                        <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank"
+                            class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                            <span class="w-6 text-center"><i class="fab fa-telegram text-blue-500 text-sm"></i></span>
+                            <span class="font-medium nav-text">Telegram Channel</span>
+                        </a>
+                        <a href="https://twitter.com/ttearncrypto" target="_blank"
+                            class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                            <span class="w-6 text-center"><i class="fab fa-twitter text-blue-400 text-sm"></i></span>
+                            <span class="font-medium nav-text">X / Twitter</span>
+                        </a>
+                        <a href="https://discord.gg/D6hAEEumtx" target="_blank"
+                            class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target">
+                            <span class="w-6 text-center"><i class="fab fa-discord text-indigo-500 text-sm"></i></span>
+                            <span class="font-medium nav-text">Discord Server</span>
+                        </a>
+                    </div>
+                </details>
             </div>
 
             <div class="p-4 border-t border-gray-50 bg-gray-50/50">
@@ -905,6 +916,9 @@
         </div>
     </div>
 
+    <!-- TOAST CONTAINER (Essential for Bookmark Feedback) -->
+    <div id="toast-container"></div>
+
     <!-- SCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -937,9 +951,7 @@
                 { type: 'divider' },
                 { type: 'group', items: ['networks', 'appstore'] },
                 { type: 'divider' },
-                { type: 'group', items: ['news', 'guides', 'articles'] },
-                { type: 'divider' },
-                { type: 'group', items: ['community'] } // Added Community
+                { type: 'group', items: ['news', 'guides', 'articles'] }
             ];
 
             let state = {
@@ -1725,19 +1737,30 @@
                     DOM.btnBookmark.addEventListener('click', showBookmarkHelp);
                 }
                 if (DOM.btnShare) {
-                    DOM.btnShare.addEventListener('click', () => {
+                    DOM.btnShare.addEventListener('click', async () => {
+                        const shareData = {
+                            title: 'iCryptos Dashboard',
+                            text: 'Discover the best crypto earning projects and tools.',
+                            url: window.location.href
+                        };
+
                         try {
-                            if (navigator.clipboard) {
-                                navigator.clipboard.writeText(window.location.href).then(() => {
-                                    showToast('Link copied to clipboard!', 'info');
-                                }).catch(() => {
-                                    prompt("Copy this link:", window.location.href);
-                                });
+                            if (navigator.share) {
+                                await navigator.share(shareData);
                             } else {
+                                await navigator.clipboard.writeText(window.location.href);
+                                showToast('Link copied to clipboard!', 'info');
+                            }
+                        } catch (err) {
+                            console.error('Share failed:', err);
+                            // Fallback for cancellation or errors
+                            try {
+                                const successful = document.execCommand('copy');
+                                if (!successful) throw new Error('Copy failed');
+                                showToast('Link copied to clipboard!', 'info');
+                            } catch (e) {
                                 prompt("Copy this link:", window.location.href);
                             }
-                        } catch (e) {
-                            prompt("Copy this link:", window.location.href);
                         }
                     });
                 }
