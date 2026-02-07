@@ -553,7 +553,7 @@
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-xs"></i>
                     </summary>
                     <div class="mt-2 space-y-1 pl-2">
-                        <button onclick="toggleChat(true)"
+                        <button data-source-id="community"
                             class="nav-item w-full flex items-center gap-3 px-4 py-2 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors text-xs tap-target text-left">
                             <span class="w-6 text-center"><i
                                     class="fas fa-comments text-brand-accent text-sm"></i></span>
@@ -1318,11 +1318,48 @@
             function createCard(project, index = 0) {
                 // Determine Card Type based on Section
                 if (state.currentId === 'news') return createNewsCard(project, index);
+                if (state.currentId === 'tools') return createToolCard(project);
                 if (project.tags.includes('RedPacketCodes')) return createRedPacketCard(project);
                 if (['guides', 'articles'].includes(state.currentId)) return createGuideCard(project);
 
                 // Default Stacked Card
                 return createStandardCard(project);
+            }
+
+            function createToolCard(project) {
+                const div = document.createElement('div');
+                div.className = 'group relative bg-white rounded-xl border border-gray-200 p-5 hover:border-brand-accent hover:shadow-lg transition-all cursor-pointer flex flex-col h-full min-h-[12rem]';
+                div.onclick = () => window.open(project.url, '_blank');
+
+                // Tool Icon Logic (Random or specific based on tag/title if we had it, using generic for now)
+                let iconClass = 'fa-tools';
+                if (project.title.toLowerCase().includes('calculator')) iconClass = 'fa-calculator';
+                if (project.title.toLowerCase().includes('converter')) iconClass = 'fa-exchange-alt';
+                if (project.title.toLowerCase().includes('tracker')) iconClass = 'fa-chart-pie';
+                if (project.title.toLowerCase().includes('scanner')) iconClass = 'fa-search-dollar';
+
+                div.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:bg-brand-accent transition-colors shadow-sm">
+                            <i class="fas ${iconClass} text-xl"></i>
+                        </div>
+                        <div class="px-2 py-1 rounded-md bg-gray-50 border border-gray-100 text-[10px] font-mono text-gray-500 font-bold uppercase tracking-wider">
+                           TOOL
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1">
+                         <h3 class="font-bold text-gray-800 text-lg group-hover:text-brand-accent transition-colors mb-2 leading-tight">${project.title}</h3>
+                    </div>
+
+                    <div class="pt-4 mt-auto border-t border-gray-50 flex items-center justify-between">
+                         <span class="text-xs font-semibold text-gray-400 group-hover:text-gray-600 transition-colors">Open Tool</span>
+                         <div class="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-brand-accent group-hover:text-white transition-all transform group-hover:translate-x-1">
+                            <i class="fas fa-arrow-right text-xs"></i>
+                         </div>
+                    </div>
+                `;
+                return div;
             }
 
             function createNewsCard(project, index) {
