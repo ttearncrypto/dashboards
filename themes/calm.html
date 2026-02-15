@@ -525,7 +525,32 @@
     </style>
 </head>
 
-<body class="font-sans antialiased selection:bg-purple-100 selection:text-purple-900">
+<body
+    class="bg-brand-bg text-brand-text font-sans antialiased selection:bg-purple-100 selection:text-purple-900 transition-colors duration-300">
+
+    <!-- STICKY BANNER -->
+    <div id="sticky-banner" tabindex="-1"
+        class="sticky top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-white/90 backdrop-blur-md shadow-sm transition-transform duration-300">
+        <div class="flex items-center mx-auto">
+            <p class="flex items-center text-sm font-normal text-gray-600">
+                <span
+                    class="inline-flex items-center justify-center w-6 h-6 shrink-0 me-2.5 bg-purple-100 text-purple-600 rounded-full">
+                    <i class="fab fa-telegram-plane text-xs"></i>
+                    <span class="sr-only">Telegram</span>
+                </span>
+                <span>Join our Telegram Channel for daily updates: <a href="https://t.me/+CxO1NVTowno2Y2E1"
+                        class="inline font-medium text-brand-accent hover:underline decoration-brand-accent">Click Here
+                        to Join</a></span>
+            </p>
+        </div>
+        <div class="flex items-center">
+            <button data-dismiss-target="#sticky-banner" type="button"
+                class="shrink-0 inline-flex justify-center text-sm w-7 h-7 items-center text-gray-400 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors">
+                <i class="fas fa-times"></i>
+                <span class="sr-only">Close banner</span>
+            </button>
+        </div>
+    </div>
 
     <div class="flex min-h-screen">
 
@@ -839,6 +864,11 @@
                 </div>
             </div>
 
+            <!-- CoinGecko Heatmap Widget -->
+            <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
+            <gecko-coin-heatmap-widget locale="en" transparent-background="true" top="100"
+                class="mb-8"></gecko-coin-heatmap-widget>
+
             <!-- CoinGecko Coin List Widget -->
             <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
             <gecko-coin-list-widget locale="en" transparent-background="true"
@@ -863,6 +893,20 @@
                             </p>
                         </div>
                         <div class="flex flex-col justify-between items-start md:items-end">
+                            <div class="mb-6 flex flex-col items-end">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-300 mb-2">Join
+                                    Telegram</span>
+                                <div class="w-24 h-24 bg-white p-1 rounded-lg border border-gray-100 shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41"
+                                        shape-rendering="crispEdges" class="w-full h-full text-gray-800">
+                                        <path fill="none" d="M0 0h41v41H0z"></path>
+                                        <path stroke="currentColor"
+                                            d="M4 4.5h7m4 0h2m2 0h1m2 0h5m1 0h1m1 0h7M4 5.5h1m5 0h1m1 0h1m1 0h1m1 0h3m6 0h1m4 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h2m1 0h2m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m7 0h3m2 0h4m1 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m6 0h1m3 0h2m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h1m2 0h2m1 0h1m1 0h7m1 0h1m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M14 11.5h1m3 0h1m2 0h3M6 12.5h1m2 0h5m1 0h2m2 0h2m1 0h1m1 0h1m2 0h3m1 0h5M5 13.5h1m2 0h2m4 0h1m1 0h1m1 0h8m1 0h5m4 0h1M6 14.5h1m3 0h1m2 0h4m2 0h1m1 0h1m2 0h1m2 0h1m2 0h3m1 0h3M8 15.5h1m3 0h1m1 0h1m3 0h1m1 0h3m2 0h1m1 0h3m1 0h1m1 0h1M4 16.5h2m2 0h8m3 0h1m1 0h2m2 0h1m1 0h4m2 0h2m1 0h1M6 17.5h3m3 0h3m1 0h4m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h1M7 18.5h1m1 0h2m1 0h3m1 0h2m2 0h2m1 0h2m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1M4 19.5h1m1 0h2m3 0h5m2 0h2m2 0h1m1 0h1m1 0h2m3 0h1m4 0h1M4 20.5h1m3 0h3m1 0h1m3 0h1m1 0h2m1 0h2m3 0h1m3 0h1m1 0h1M4 21.5h2m1 0h1m1 0h1m4 0h2m1 0h1m6 0h2m1 0h1m2 0h2m2 0h2M4 22.5h4m1 0h6m1 0h3m1 0h1m2 0h5m1 0h3m1 0h2m1 0h1M5 23.5h3m1 0h1m2 0h1m1 0h2m6 0h2m3 0h1m1 0h1m1 0h1m1 0h1m2 0h1M5 24.5h1m1 0h1m1 0h4m7 0h1m1 0h4m1 0h5m3 0h2M5 25.5h2m1 0h2m3 0h1m2 0h1m1 0h2m1 0h1m3 0h1m2 0h1m2 0h1m1 0h4M4 26.5h2m1 0h1m2 0h1m1 0h1m3 0h3m5 0h1m3 0h3m1 0h2m1 0h2M7 27.5h1m4 0h2m5 0h2m2 0h1m2 0h3m2 0h3m1 0h2M4 28.5h2m2 0h1m1 0h1m7 0h1m1 0h2m2 0h1m1 0h1m1 0h6M12 29.5h5m2 0h1m2 0h1m1 0h1m1 0h3m3 0h5M4 30.5h7m1 0h5m1 0h6m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1M4 31.5h1m5 0h1m1 0h1m5 0h2m2 0h1m3 0h3m3 0h2m1 0h2M4 32.5h1m1 0h3m1 0h1m2 0h3m2 0h5m2 0h8m1 0h1M4 33.5h1m1 0h3m1 0h1m3 0h2m1 0h1m3 0h2m1 0h6m1 0h2m2 0h1M4 34.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h1m4 0h3m5 0h2m1 0h2M4 35.5h1m5 0h1m2 0h4m3 0h3m5 0h3m2 0h1M4 36.5h7m3 0h1m1 0h1m1 0h2m3 0h6m3 0h3m1 0h1">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+
                             <div class="flex gap-4 mb-4">
                                 <a href="https://github.com/ttearncrypto/dashboards" target="_blank"
                                     class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-colors"><i
@@ -955,6 +999,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             // STATE & CONFIG
             const SOURCES = {
+                // Special - ALL
+                'all': { name: "All Projects", icon: "fa-layer-group", url: "", title: "Explore <br><span class='text-brand-accent italic'>Everything</span>", desc: "Browse all verified projects from our entire network." },
+
                 // Group 1
                 'earning': { name: "Earning Projects", icon: "fa-coins", url: "https://ttearncrypto.blogspot.com", title: "Start Earning <br><span class='text-brand-accent italic'>Free Crypto</span>", desc: "Verified faucets, PTC sites, and earning platforms." },
                 'investment': { name: "Investments", icon: "fa-chart-line", url: "https://freecryptoradar.blogspot.com", title: "Smart <br><span class='text-brand-accent italic'>Investments</span>", desc: "High-yield opportunities and staking platforms." },
@@ -979,6 +1026,8 @@
             };
 
             const NAV_LAYOUT = [
+                { type: 'group', items: ['all'] },
+                { type: 'divider' },
                 { type: 'group', items: ['earning', 'investment', 'airdrops', 'casinos'] },
                 { type: 'divider' },
                 { type: 'group', items: ['networks', 'appstore'] },
@@ -1149,6 +1198,7 @@
             }
 
             // DATA LOADING
+            // DATA LOADING
             async function loadSource(id) {
                 updateActiveNav();
                 const source = SOURCES[id];
@@ -1162,13 +1212,40 @@
 
                 DOM.list.innerHTML = '';
                 //                DOM.tagContainer.innerHTML = '';
-                DOM.loader.classList.remove('hidden');
+                DOM.loader.classList.add('hidden'); // Hide default loader
                 DOM.feedback.classList.add('hidden');
                 DOM.paginationArea.classList.add('hidden');
 
+                // SKELETON LOADING
+                renderSkeleton();
+
                 try {
-                    const data = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=500`);
-                    state.projects = processFeed(data.feed.entry);
+                    let data = { feed: { entry: [] } };
+
+                    if (id === 'all') {
+                        // Aggregate Data
+                        const sourcesToFetch = ['earning', 'investment', 'airdrops', 'casinos', 'networks', 'appstore', 'news', 'guides', 'articles', 'games'];
+                        const promises = sourcesToFetch.map(sId => {
+                            const url = SOURCES[sId].url;
+                            if (!url) return Promise.resolve([]);
+                            return fetchJsonp(`${url}/feeds/posts/summary?alt=json-in-script&max-results=50`).then(d => {
+                                // Process immediately to add source tag/ID if needed, but for now just merging formatted
+                                return processFeed(d.feed.entry).map(item => ({ ...item, _sourceId: sId }));
+                            }).catch(() => []);
+                        });
+
+                        const results = await Promise.all(promises);
+                        let allProjects = results.flat();
+                        // Sort by date new to old
+                        allProjects.sort((a, b) => b.date - a.date);
+
+                        state.projects = allProjects;
+                    } else {
+                        // Single Source
+                        const rawData = await fetchJsonp(`${source.url}/feeds/posts/summary?alt=json-in-script&max-results=500`);
+                        state.projects = processFeed(rawData.feed.entry);
+                    }
+
                     state.filtered = [...state.projects];
                     state.page = 0;
                     state.activeTag = 'All';
@@ -1227,6 +1304,12 @@
 
             // RENDERING
             function renderTags() {
+                if (state.currentId === 'all') {
+                    DOM.tagContainer.style.display = 'none';
+                    return;
+                }
+                DOM.tagContainer.style.display = '';
+
                 const allTags = new Set(state.projects.flatMap(p => p.tags));
                 const tags = ['All', ...Array.from(allTags).sort()];
 
@@ -1980,6 +2063,14 @@
                     setTimeout(() => {
                         window.dispatchEvent(new Event('resize'));
                     }, 300);
+                });
+
+                // Banner Logic
+                document.querySelectorAll('[data-dismiss-target]').forEach(trigger => {
+                    const targetEl = document.querySelector(trigger.getAttribute('data-dismiss-target'));
+                    trigger.addEventListener('click', () => {
+                        if (targetEl) targetEl.remove();
+                    });
                 });
 
                 // Keyboard Shortcuts
