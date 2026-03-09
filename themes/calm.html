@@ -192,6 +192,10 @@
             }
         }
 
+        .animate-spin-slow {
+            animation: spin 12s linear infinite;
+        }
+
         /* Mobile Tap Targets */
         .tap-target {
             min-height: 48px;
@@ -635,11 +639,13 @@
 
         <!-- MAIN CONTENT -->
         <main class="flex-1 md:ml-64 p-4 md:p-8 lg:p-12 max-w-7xl mx-auto w-full transition-all">
-            <!-- CoinGecko Widget -->
-            <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
-            <gecko-coin-price-marquee-widget locale="en" transparent-background="true" outlined="true"
-                coin-ids="bitcoin,aster-2,hyperliquid,polygon,sui,pudgy-penguins,bittensor,solana,chainlink,ethereum,pi-network,bankercoin-2,ondo-finance,avalanche-2,pax-gold,zama"
-                initial-currency="usd"></gecko-coin-price-marquee-widget><br>
+            <!-- CoinGecko Marquee Widget -->
+            <div class="mb-6">
+                <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
+                <gecko-coin-price-marquee-widget locale="en" transparent-background="true" outlined="true"
+                    coin-ids="bitcoin,aster-2,hyperliquid,polygon,sui,pudgy-penguins,bittensor,solana,chainlink,ethereum,pi-network,bankercoin-2,ondo-finance,avalanche-2,pax-gold,zama"
+                    initial-currency="usd"></gecko-coin-price-marquee-widget>
+            </div>
 
             <!-- Mobile Header -->
             <div class="md:hidden flex justify-between items-center mb-6">
@@ -680,7 +686,7 @@
                 <div class="max-w-3xl">
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-4">
-                        <i class="fas fa-sparkles"></i> <span>Curated Collection</span>
+                        <i class="fas fa-magic-wand-sparkles"></i> <span>Curated Collection</span>
                     </div>
                     <h1 id="hero-title"
                         class="font-serif text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
@@ -813,6 +819,174 @@
                 </div>
             </div>
 
+            <!-- IMPACT STATS SECTION -->
+            <section class="max-w-6xl mx-auto mt-24 mb-24 px-4 fade-in">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center bg-white rounded-3xl p-10 border border-gray-100 shadow-sm relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-full blur-3xl -mr-16 -mt-16 opacity-50">
+                    </div>
+                    <div class="relative">
+                        <div class="text-4xl font-bold text-gray-900 mb-2">500+</div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-widest">Verified Projects</div>
+                    </div>
+                    <div class="relative">
+                        <div class="text-4xl font-bold text-brand-accent mb-2">Daily</div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-widest">Fresh Updates</div>
+                    </div>
+                    <div class="relative">
+                        <div class="text-4xl font-bold text-gray-900 mb-2">10k+</div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Users</div>
+                    </div>
+                    <div class="relative">
+                        <div class="text-4xl font-bold text-brand-accent mb-2">Safe</div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-widest">Vetted Resources</div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- PREMIUM FEATURES (BENTO STYLE) -->
+            <section class="max-w-6xl mx-auto mb-24 px-4 fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Giant Main Feature -->
+                    <div class="md:col-span-2 relative bg-gray-900 rounded-[2.5rem] p-12 overflow-hidden group">
+                        <div
+                            class="absolute bottom-0 right-0 w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -mb-32 -mr-32 group-hover:scale-150 transition-transform duration-700">
+                        </div>
+                        <div class="relative z-10 max-w-md">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-brand-accent flex items-center justify-center text-white mb-8 shadow-lg shadow-brand-accent/30">
+                                <i class="fas fa-bolt text-xl"></i>
+                            </div>
+                            <h3 class="text-4xl font-serif text-white mb-6 leading-tight">Lightning Fast <br><span
+                                    class="text-brand-accent">Data Aggregation</span></h3>
+                            <p class="text-gray-400 text-lg leading-relaxed mb-8">Experience the power of our real-time
+                                engine, merging hundreds of crypto sources into one seamless, calm interface.</p>
+                            <button
+                                class="px-8 py-3 bg-white text-gray-900 rounded-2xl font-bold hover:bg-brand-accent hover:text-white transition-all shadow-xl">Get
+                                Started Free</button>
+                        </div>
+                        <!-- Abstract Illustration Replacement -->
+                        <div class="absolute top-12 right-12 hidden lg:block opacity-20">
+                            <svg width="240" height="240" viewBox="0 0 240 240" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="120" cy="120" r="100" stroke="white" stroke-width="2"
+                                    stroke-dasharray="10 10" />
+                                <circle cx="120" cy="120" r="60" stroke="#9D84B7" stroke-width="4" />
+                                <rect x="110" y="40" width="20" height="160" fill="white" fill-opacity="0.1" />
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Small Feature 1 -->
+                    <div
+                        class="bg-purple-100 rounded-[2.5rem] p-10 flex flex-col justify-between group overflow-hidden relative">
+                        <div
+                            class="absolute -top-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500">
+                        </div>
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-purple-600 mb-6 shadow-sm">
+                                <i class="fas fa-shield-halved text-lg"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif text-gray-900 mb-4">Vetted Safety</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Every project is manually reviewed by our
+                                expert team to ensure your safety and time are protected.</p>
+                        </div>
+                    </div>
+                    <!-- Small Feature 2 -->
+                    <div
+                        class="bg-gray-50 rounded-[2.5rem] p-10 border border-gray-100 flex flex-col justify-between group">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-brand-accent mb-6 shadow-sm">
+                                <i class="fas fa-keyboard text-lg"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif text-gray-900 mb-4">Power Shortcuts</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Navigate the entire dashboard like a pro
+                                with built-in keyboard shortcuts designed for efficiency.</p>
+                        </div>
+                        <div class="mt-8 pt-8 border-t border-gray-200/50 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Master
+                                Workflow</span>
+                            <div class="flex gap-1">
+                                <kbd
+                                    class="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-[10px] text-gray-500">Alt</kbd>
+                                <kbd
+                                    class="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-[10px] text-gray-500">A</kbd>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Half Feature 1 -->
+                    <div
+                        class="md:col-span-2 bg-brand-bg rounded-[2.5rem] p-10 border border-gray-100 flex flex-col md:flex-row items-center gap-10 group relative overflow-hidden">
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-serif text-gray-900 mb-4">Advanced Heatmaps</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Visualize market sentiment at a glance with
+                                integrated price heatmaps for top 100 cryptocurrencies.</p>
+                        </div>
+                        <div
+                            class="w-full md:w-64 h-32 bg-gray-50 rounded-2xl border border-gray-100 relative shadow-inner overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                                <i class="fas fa-chart-pie text-6xl"></i>
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-8 h-8 rounded bg-green-400/20 border border-green-500/30">
+                            </div>
+                            <div class="absolute top-4 left-14 w-12 h-8 rounded bg-red-400/20 border border-red-500/30">
+                            </div>
+                            <div
+                                class="absolute top-14 left-4 w-20 h-12 rounded bg-green-400/10 border border-green-500/20">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Keyboard Shortcuts Bento Card (Bigger & Better) -->
+                    <div
+                        class="md:col-span-2 bg-indigo-600 rounded-[2.5rem] p-10 border border-indigo-500/20 flex flex-col md:flex-row justify-between group relative overflow-hidden shadow-2xl shadow-indigo-200">
+                        <div
+                            class="absolute -bottom-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="relative z-10 flex-1">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white mb-8 shadow-xl">
+                                <i class="fas fa-keyboard text-xl"></i>
+                            </div>
+                            <h4 class="text-3xl font-serif text-white mb-6">Master Productivity</h4>
+                            <p class="text-indigo-100 text-sm leading-relaxed max-w-xs mb-8">Navigate the cryptoverse
+                                with surgical precision using our expert-tuned keyboard workflows.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <div
+                                    class="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-xl text-white text-xs font-bold">
+                                    <span class="opacity-60 mr-2">SEARCH</span> <kbd class="font-mono">/</kbd>
+                                </div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-xl text-white text-xs font-bold">
+                                    <span class="opacity-60 mr-2">SOURCE</span> <kbd class="font-mono">ALT</kbd> + <kbd
+                                        class="font-mono">A-G</kbd>
+                                </div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-xl text-white text-xs font-bold">
+                                    <span class="opacity-60 mr-2">SETTINGS</span> <kbd class="font-mono">ALT</kbd> +
+                                    <kbd class="font-mono">S</kbd>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative z-10 mt-10 md:mt-0 flex items-center justify-center">
+                            <div
+                                class="w-48 h-48 bg-white/5 rounded-full border border-white/10 flex items-center justify-center relative">
+                                <div class="absolute inset-0 animate-spin-slow">
+                                    <div
+                                        class="h-4 w-4 bg-white rounded-full absolute -top-2 left-1/2 -ml-2 shadow-[0_0_15px_white]">
+                                    </div>
+                                </div>
+                                <i class="fas fa-rocket text-5xl text-white/40"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- FAQ SECTION -->
             <div id="faq-section" class="max-w-3xl mx-auto mt-20 mb-12">
                 <h2 class="font-serif text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h2>
@@ -864,16 +1038,191 @@
                 </div>
             </div>
 
-            <!-- CoinGecko Heatmap Widget -->
-            <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
-            <gecko-coin-heatmap-widget locale="en" transparent-background="true" top="100"
-                class="mb-8"></gecko-coin-heatmap-widget>
+            <!-- TRUSTED PARTNERS SECTION -->
+            <section class="max-w-6xl mx-auto mt-24 mb-12 px-4 fade-in">
+                <div class="text-center mb-12">
+                    <span class="text-[10px] font-bold text-brand-accent uppercase tracking-[0.3em] mb-4 block">Our
+                        Trusted Partners</span>
+                    <h2 class="font-serif text-3xl text-gray-900">Wallet We Support</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 transition-all">
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/idKzmFfrAl.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244709"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/id-Wd4a4TS/theme/dark/id31tBizMM.svg?c=1bxid64Mup7aczewSAYMX&t=1727787879793"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idwDWo4ONQ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667593749615"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idO-tKGZ90/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667844274624"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idVmyDyyyZ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667571027582"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idXd3lPhGZ/w/306/h/63/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1769686626007"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/idtOJajvjr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1769140647782"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                    <div
+                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
+                        <img src="https://cdn.brandfetch.io/iduoYOFKED/w/420/h/149/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1764420064123"
+                            alt="Partner" class="max-h-8 w-auto">
+                    </div>
+                </div>
+            </section>
 
-            <!-- CoinGecko Coin List Widget -->
-            <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
-            <gecko-coin-list-widget locale="en" transparent-background="true"
-                coin-ids="bitcoin,ethereum,solana,dogecoin,ripple,chainlink,sui,monad,dusk-network,lighter,canton-network,pi-network,bittensor,aster-2,hyperliquid"
-                initial-currency="usd"></gecko-coin-list-widget>
+            <!-- MARKET INSIGHTS DYNAMIC SECTION -->
+            <section class="max-w-6xl mx-auto mt-24 mb-12 px-4 fade-in">
+                <div class="flex items-center gap-4 mb-8">
+                    <div
+                        class="w-10 h-10 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="font-serif text-3xl text-gray-900">Market Performance</h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8">
+                    <!-- Heatmap Card -->
+                    <div
+                        class="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="font-serif text-xl text-gray-800">Global Crypto Heatmap</h3>
+                            <span
+                                class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-50 px-3 py-1.5 rounded-full">Top
+                                100 Assets</span>
+                        </div>
+                        <div class="relative z-10">
+                            <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
+                            <gecko-coin-heatmap-widget locale="en" transparent-background="true" top="100"
+                                class="w-full"></gecko-coin-heatmap-widget>
+                        </div>
+                    </div>
+
+                    <!-- Coin List Card -->
+                    <div
+                        class="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="font-serif text-xl text-gray-800">Real-time Asset Tracker</h3>
+                            <button class="text-brand-accent hover:underline text-xs font-bold">Refresh Feed</button>
+                        </div>
+                        <div class="relative z-10 overflow-x-auto">
+                            <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
+                            <gecko-coin-list-widget locale="en" transparent-background="true"
+                                coin-ids="bitcoin,ethereum,solana,dogecoin,ripple,chainlink,sui,monad,dusk-network,lighter,canton-network,pi-network,bittensor,aster-2,hyperliquid"
+                                initial-currency="usd"></gecko-coin-list-widget>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CUSTOMER TESTIMONIALS (Moved to bottom) -->
+            <section class="max-w-6xl mx-auto mb-24 px-4 fade-in">
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="font-serif text-3xl text-gray-900">What Our Users Say</h2>
+                    <div class="flex gap-2">
+                        <button id="testimonial-prev"
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 cursor-pointer hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-chevron-left"></i></button>
+                        <button id="testimonial-next"
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 cursor-pointer hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden">
+                    <div id="testimonial-slider"
+                        class="flex transition-transform duration-500 ease-out gap-6 items-stretch">
+                        <!-- Testimonials (3 per view on desktop, 1 on mobile) -->
+                        <!-- Testimonial 1 -->
+                        <div
+                            class="bg-gray-50/50 p-8 rounded-3xl border border-gray-100 hover:bg-white hover:shadow-xl transition-all">
+                            <div class="flex gap-1 text-yellow-400 mb-4 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6 italic leading-relaxed text-sm">"The cleanest dashboard in the
+                                crypto space. No ads, just pure data. Saved me hours of research."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-brand-accent font-bold">
+                                    JD</div>
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">John Doe</div>
+                                    <div class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Crypto
+                                        Trader</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div
+                            class="bg-gray-50/50 p-8 rounded-3xl border border-gray-100 hover:bg-white hover:shadow-xl transition-all">
+                            <div class="flex gap-1 text-yellow-400 mb-4 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6 italic leading-relaxed text-sm">"I love the Bento style cards
+                                and
+                                the Rubik font. It makes earning crypto feel like a premium experience."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 font-bold">
+                                    AS</div>
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">Alice Smith</div>
+                                    <div class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Yield
+                                        Farmer</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div
+                            class="bg-gray-50/50 p-8 rounded-3xl border border-gray-100 hover:bg-white hover:shadow-xl transition-all">
+                            <div class="flex gap-1 text-yellow-400 mb-4 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6 italic leading-relaxed text-sm">"The bookmarks feature is a
+                                lifesaver. Finally, I have one place for all my favorite faucets and airdrops."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500 font-bold">
+                                    MK</div>
+                                <div>
+                                    <div class="text-sm font-bold text-gray-900">Mark K.</div>
+                                    <div class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Casual
+                                        Earner</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
 
             <!-- FOOTER -->
             <footer class="mt-20 text-gray-400 text-sm">
@@ -980,9 +1329,19 @@
                     <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Keyboard Shortcuts</h4>
                     <div class="bg-gray-50 rounded-lg p-3 text-xs text-gray-600 space-y-2 border border-gray-200">
                         <div class="flex justify-between"><span>Search</span> <kbd
-                                class="font-mono border bg-white px-1 rounded">f</kbd></div>
+                                class="font-mono border bg-white px-1 rounded">/</kbd></div>
+                        <div class="flex justify-between"><span>All Projects</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Alt + A</kbd></div>
+                        <div class="flex justify-between"><span>Earning</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Alt + E</kbd></div>
+                        <div class="flex justify-between"><span>Investments</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Alt + I</kbd></div>
+                        <div class="flex justify-between"><span>Airdrops</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Alt + L</kbd></div>
+                        <div class="flex justify-between"><span>Games</span> <kbd
+                                class="font-mono border bg-white px-1 rounded">Alt + G</kbd></div>
                         <div class="flex justify-between"><span>Settings</span> <kbd
-                                class="font-mono border bg-white px-1 rounded">Shift + S</kbd></div>
+                                class="font-mono border bg-white px-1 rounded">Alt + S</kbd></div>
                         <div class="flex justify-between"><span>Close Modal</span> <kbd
                                 class="font-mono border bg-white px-1 rounded">Esc</kbd></div>
                     </div>
@@ -1111,6 +1470,54 @@
                 renderNav();
                 loadSource(state.currentId);
                 setupEvents();
+                setupTestimonialSlider();
+            }
+
+            function setupTestimonialSlider() {
+                const slider = document.getElementById('testimonial-slider');
+                const prevBtn = document.getElementById('testimonial-prev');
+                const nextBtn = document.getElementById('testimonial-next');
+
+                if (!slider || !prevBtn || !nextBtn) return;
+
+                let index = 0;
+                const total = slider.children.length;
+
+                // On desktop we show 3, so we can slide 1 by 1 or 3 by 3. 
+                // Let's do 1 by 1 for smoothness.
+                const updateSlider = () => {
+                    const cardWidth = slider.children[0].offsetWidth + 24; // width + gap
+                    slider.style.transform = `translateX(-${index * cardWidth}px)`;
+
+                    // Update button states
+                    prevBtn.style.opacity = index === 0 ? '0.5' : '1';
+                    prevBtn.style.cursor = index === 0 ? 'not-allowed' : 'pointer';
+
+                    // Simple logic for next button visibility
+                    const visibleCards = window.innerWidth >= 768 ? 3 : 1;
+                    const canGoNext = index < total - visibleCards;
+                    nextBtn.style.opacity = canGoNext ? '1' : '0.5';
+                    nextBtn.style.cursor = canGoNext ? 'pointer' : 'not-allowed';
+                };
+
+                prevBtn.onclick = () => {
+                    if (index > 0) {
+                        index--;
+                        updateSlider();
+                    }
+                };
+
+                nextBtn.onclick = () => {
+                    const visibleCards = window.innerWidth >= 768 ? 3 : 1;
+                    if (index < total - visibleCards) {
+                        index++;
+                        updateSlider();
+                    }
+                };
+
+                window.addEventListener('resize', updateSlider);
+                // Initial state
+                updateSlider();
             }
 
             // NAVIGATION
@@ -1223,8 +1630,8 @@
                     let data = { feed: { entry: [] } };
 
                     if (id === 'all') {
-                        // Aggregate Data
-                        const sourcesToFetch = ['earning', 'investment', 'airdrops', 'casinos', 'networks', 'appstore', 'news', 'guides', 'articles', 'games'];
+                        // Aggregate Data - ONLY Earning, Investment, Casinos, Airdrops
+                        const sourcesToFetch = ['earning', 'investment', 'casinos', 'airdrops'];
                         const promises = sourcesToFetch.map(sId => {
                             const url = SOURCES[sId].url;
                             if (!url) return Promise.resolve([]);
@@ -2075,6 +2482,24 @@
 
                 // Keyboard Shortcuts
                 document.addEventListener('keydown', (e) => {
+                    // Search Focus
+                    if (e.key === '/' && document.activeElement !== DOM.searchInput) {
+                        e.preventDefault();
+                        DOM.searchInput.focus();
+                    }
+
+                    // Alt Shortcuts
+                    if (e.altKey) {
+                        switch (e.key.toLowerCase()) {
+                            case 'a': switchSource('all'); break;
+                            case 'e': switchSource('earning'); break;
+                            case 'i': switchSource('investment'); break;
+                            case 'l': switchSource('airdrops'); break;
+                            case 'g': switchSource('games'); break;
+                            case 's': toggleSettings(!DOM.settingsModal.classList.contains('hidden') ? false : true); break;
+                        }
+                    }
+
                     if (e.key === 'Escape') {
                         toggleSettings(false);
                         toggleChat(false); // Close Chat on Escape
