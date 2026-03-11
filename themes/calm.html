@@ -409,6 +409,51 @@
             border-color: #2D2A26 transparent transparent transparent;
         }
 
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 2rem 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-row {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .marquee-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 1.5rem;
+            animation: marquee 40s linear infinite;
+        }
+
+        .marquee-row.reverse .marquee-content {
+            animation-direction: reverse;
+        }
+
+        .marquee-item:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 0.75rem));
+            }
+        }
+
         /* Settings Modal */
         #settings-modal {
             transition: opacity 0.3s ease;
@@ -1045,56 +1090,122 @@
                         Trusted Partners</span>
                     <h2 class="font-serif text-3xl text-gray-900">Wallet We Support</h2>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 transition-all">
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/idKzmFfrAl.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244709"
-                            alt="Partner" class="max-h-8 w-auto">
+
+                <div class="marquee-container">
+                    <!-- Row 1 -->
+                    <div class="marquee-row">
+                        <div class="marquee-content">
+                            <!-- Original set -->
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/idKzmFfrAl.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244709"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/id-Wd4a4TS/theme/dark/id31tBizMM.svg?c=1bxid64Mup7aczewSAYMX&t=1727787879793"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idwDWo4ONQ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667593749615"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idO-tKGZ90/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667844274624"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <!-- Duplicate set for seamless loop -->
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/idKzmFfrAl.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244709"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/id-Wd4a4TS/theme/dark/id31tBizMM.svg?c=1bxid64Mup7aczewSAYMX&t=1727787879793"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idwDWo4ONQ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667593749615"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idO-tKGZ90/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667844274624"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/id-Wd4a4TS/theme/dark/id31tBizMM.svg?c=1bxid64Mup7aczewSAYMX&t=1727787879793"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idwDWo4ONQ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667593749615"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idO-tKGZ90/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667844274624"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idVmyDyyyZ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667571027582"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idXd3lPhGZ/w/306/h/63/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1769686626007"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/idtOJajvjr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1769140647782"
-                            alt="Partner" class="max-h-8 w-auto">
-                    </div>
-                    <div
-                        class="flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24">
-                        <img src="https://cdn.brandfetch.io/iduoYOFKED/w/420/h/149/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1764420064123"
-                            alt="Partner" class="max-h-8 w-auto">
+
+                    <!-- Row 2 (Reverse) -->
+                    <div class="marquee-row reverse">
+                        <div class="marquee-content">
+                            <!-- Original set -->
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idVmyDyyyZ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667571027582"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idXd3lPhGZ/w/306/h/63/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1769686626007"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idtOJajvjr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1769140647782"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/iduoYOFKED/w/420/h/149/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1764420064123"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <!-- Duplicate set for seamless loop -->
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idVmyDyyyZ/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667571027582"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idXd3lPhGZ/w/306/h/63/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1769686626007"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/idtOJajvjr/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1769140647782"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                            <div
+                                class="marquee-item flex items-center justify-center p-6 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all h-24 w-64">
+                                <img src="https://cdn.brandfetch.io/iduoYOFKED/w/420/h/149/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1764420064123"
+                                    alt="Partner" class="max-h-8 w-auto">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
