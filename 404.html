@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | F9XR's TTEarnCrypto Dashboard</title>
-
-    <!-- SEO & Meta Tags -->
+    <title>404 - Page Not Found | TTEarnCrypto</title>
     <meta name="description" content="Oops! We couldn't find the page you're looking for on TTEarnCrypto.">
     <meta name="robots" content="noindex, follow">
 
@@ -17,135 +14,345 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Fonts -->
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg-dark: #080A0F;
+            --text-muted: #8E9BAE;
+            --accent-teal: #38bdf8;
+            --accent-green: #34d399;
+            --wave-color: rgba(56, 189, 248, 0.4);
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F8F8F8;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(to right, #9333ea, #2563eb);
+        /* Abstract Wavy Background */
+        #waves-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
         }
 
-        .btn-primary-gradient {
-            background-image: linear-gradient(to right, #9333ea, #2563eb);
+        svg.waves {
+            width: 100%;
+            height: 60vh;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.2));
+        }
+
+        .wave-path {
+            fill: none;
+            stroke-width: 1.5;
+            stroke-dasharray: 4 8; /* Dashed line effect matching design */
+        }
+
+        /* Gradient Button */
+        .btn-teal {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(20, 184, 166, 0.39);
+        }
+        
+        .btn-teal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(20, 184, 166, 0.5);
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
         }
 
-        .btn-primary-gradient:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+        /* Footer Borders */
+        .footer-line {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            color: #d1d5db;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: white;
         }
 
-        .btn-secondary-outline {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(4px);
-            border: 2px solid #1f2937;
-            color: #1f2937;
-            transition: all 0.3s ease;
+        .hero-section {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
         }
 
-        .btn-secondary-outline:hover {
-            background: #1f2937;
-            color: #ffffff;
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px -5px rgba(31, 41, 55, 0.4);
+        .footer-column-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .footer-column-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        .footer-link {
+            color: var(--text-muted);
+            transition: color 0.2s;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .footer-link:hover {
+            color: white;
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+        .product-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #38bdf8;
+            margin-right: 8px;
         }
     </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Background Elements -->
-    <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        <div
-            class="absolute w-[500px] h-[500px] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 top-[-15%] left-[-15%]">
-        </div>
-        <div
-            class="absolute w-[500px] h-[500px] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 bottom-[-15%] right-[-15%]">
-        </div>
-    </div>
+<body>
+    <!-- Top Navigation -->
+    <header class="w-full py-6 px-8 relative z-20 flex justify-between items-center footer-line border-b border-gray-800">
+        <a href="/dashboards/" class="text-2xl font-light tracking-wide text-white">
+            TTEarnCrypto
+        </a>
+        <nav class="hidden md:flex gap-8 text-sm">
+            <a href="#" class="nav-link">Products</a>
+            <a href="#" class="nav-link">Use Cases</a>
+            <a href="#" class="nav-link">Pricing</a>
+            <a href="#" class="nav-link">Resources</a>
+            <a href="#" class="nav-link">Company</a>
+        </nav>
+        <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- Background Waves Container -->
+    <div id="waves-container"></div>
 
     <!-- Main Content -->
-    <div class="relative z-10 w-full max-w-2xl mx-auto px-6 text-center">
-        <div class="glass-card rounded-[2rem] p-10 md:p-16 shadow-2xl">
-            <!-- Icon -->
-            <div class="mb-6 flex justify-center float-animation">
-                <div
-                    class="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-gray-50">
-                    <i
-                        class="fas fa-satellite-dish text-[4rem] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600"></i>
+    <main class="hero-section text-center px-4 w-full">
+        <h1 class="text-9xl md:text-[140px] font-medium text-white tracking-tight mb-6">
+            404
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-gray-300 mb-2 font-light">
+            Don't worry - the stock market hasn't crashed.
+        </p>
+        <p class="text-xl md:text-2xl text-gray-400 mb-10 font-light">
+            It's just the page that's run into problems.
+        </p>
+
+        <a href="/dashboards/" class="btn-teal text-white px-8 py-3.5 rounded-full font-medium inline-block text-lg">
+            Back to Home Page
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full relative z-20 px-8 pt-16 pb-8 bg-transparent">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 lg:gap-8 mb-16">
+            
+            <!-- Left Brand Side -->
+            <div class="md:w-1/4">
+                <a href="/dashboards/" class="text-2xl font-light tracking-wide text-white block mb-6">
+                    TTEarnCrypto
+                </a>
+                <div class="text-[0.8rem] text-gray-500 leading-relaxed">
+                    Org. nr.: 913 919 971 MVA<br>
+                    TTEarnCrypto Systems AS<br>
+                    Christian Krohgs gate 16, 0186, Oslo, Norway
                 </div>
             </div>
 
-            <h1
-                class="text-7xl md:text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-2 tracking-tighter">
-                404
-            </h1>
+            <!-- Links Grid -->
+            <div class="md:w-3/4 grid grid-cols-2 md:grid-cols-5 gap-8">
+                <!-- Products -->
+                <div>
+                    <h3 class="footer-column-title">Products</h3>
+                    <a href="#" class="footer-link flex items-center"><span class="product-icon">D</span> Dashboard</a>
+                    <a href="#" class="footer-link flex items-center"><span class="product-icon">P</span> Portfolio</a>
+                    <a href="#" class="footer-link flex items-center"><span class="product-icon">L</span> Live Center</a>
+                </div>
+                
+                <!-- Use Cases -->
+                <div>
+                    <h3 class="footer-column-title">Use Cases</h3>
+                    <a href="#" class="footer-link">Media & Publishers</a>
+                    <a href="#" class="footer-link">Financial Services</a>
+                    <a href="#" class="footer-link">Crypto Market</a>
+                </div>
 
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                Lost in the Blockchain?
-            </h2>
+                <!-- Pricing -->
+                <div>
+                    <h3 class="footer-column-title">Pricing</h3>
+                    <a href="#" class="footer-link">Dashboard</a>
+                    <a href="#" class="footer-link">Portfolio</a>
+                    <a href="#" class="footer-link">Live Center</a>
+                </div>
 
-            <p class="text-gray-600 mb-10 text-lg max-w-md mx-auto leading-relaxed">
-                The content you're looking for doesn't exist, has been moved, or is temporarily unavailable. Let's get
-                you back on track.
-            </p>
+                <!-- Resources -->
+                <div>
+                    <h3 class="footer-column-title">Resources</h3>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Case Studies</a>
+                    <a href="#" class="footer-link">Events</a>
+                </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="/dashboards/"
-                    class="btn-primary-gradient px-8 py-4 rounded-xl text-white font-bold text-lg shadow-lg flex items-center justify-center w-full sm:w-auto gap-2">
-                    <i class="fas fa-home"></i> Return Home
-                </a>
-                <a href="javascript:history.back()"
-                    class="btn-secondary-outline px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center w-full sm:w-auto gap-2 shadow-sm">
-                    <i class="fas fa-arrow-left"></i> Go Back
-                </a>
+                <!-- Company -->
+                <div>
+                    <h3 class="footer-column-title">Company</h3>
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                </div>
+            </div>
+            
+            <!-- Contact (Far Right) -->
+            <div class="md:w-[15%] hidden lg:block">
+                 <h3 class="footer-column-title">Contact Us</h3>
+                 <a href="mailto:contact@ttearncrypto.com" class="footer-link">contact@ttearncrypto.com</a>
+                 <a href="mailto:support@ttearncrypto.com" class="footer-link">support@ttearncrypto.com</a>
+                 <a href="mailto:sales@ttearncrypto.com" class="footer-link">sales@ttearncrypto.com</a>
             </div>
         </div>
 
-        <div class="mt-10 text-gray-500 text-sm font-medium">
-            &copy;
-            <script>document.write(new Date().getFullYear())</script> TTEarnCrypto. All Rights Reserved.
+        <!-- Bottom Bar -->
+        <div class="max-w-7xl mx-auto footer-line pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <div class="flex gap-6 mb-4 md:mb-0">
+                <span>Copyright 2024 &copy; TTEarnCrypto</span>
+                <a href="#" class="hover:text-gray-300 transition">Terms & Conditions</a>
+                <a href="#" class="hover:text-gray-300 transition">Privacy Policy</a>
+            </div>
+            <div class="flex gap-4 text-base">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-    </div>
-</body>
+    </footer>
 
+    <!-- Wavy Background Generation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('waves-container');
+            const svgNS = "http://www.w3.org/2000/svg";
+            
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("class", "waves");
+            svg.setAttribute("viewBox", "0 0 1000 400");
+            svg.setAttribute("preserveAspectRatio", "none");
+            
+            const numWaves = 18; // Number of wave lines
+            const width = 1000;
+            const points = 100; // Resolution of the curve
+            
+            // Generate multiple paths
+            for (let i = 0; i < numWaves; i++) {
+                const path = document.createElementNS(svgNS, "path");
+                
+                // Calculate wave properties with slight variations per line
+                const progress = i / (numWaves - 1); // 0 to 1
+                const amplitude = 60 + Math.sin(progress * Math.PI) * 40; 
+                const frequency = 0.008 + (progress * 0.002);
+                const phaseSq = progress * Math.PI * 4;
+                
+                // Generate path data
+                let d = `M 0,200`;
+                for(let x = 0; x <= width; x += (width/points)) {
+                    // Complex sine wave function incorporating primary wave, secondary ripple, and vertical staggering
+                    const y = 200 
+                            + Math.sin(x * frequency + phaseSq) * amplitude 
+                            + Math.cos(x * frequency * 2.5 + phaseSq * 0.5) * (amplitude * 0.3)
+                            - (numWaves/2 - i) * 12; // vertical gap between lines
+                    
+                    d += ` L ${x},${y}`;
+                }
+                
+                path.setAttribute("d", d);
+                path.setAttribute("class", "wave-path");
+                
+                // Color gradient based on depth/index. Blending from blue to a bit of purple to match the reference
+                const mixFactor = progress;
+                const r = Math.floor(56 + (80 * mixFactor));
+                const g = Math.floor(189 - (80 * mixFactor));
+                const b = Math.floor(248 + (7 * mixFactor));
+                
+                // Adjust opacity slightly for depth effect
+                const opacity = 0.15 + (Math.sin(progress * Math.PI) * 0.4);
+                
+                path.setAttribute("stroke", `rgba(${r}, ${g}, ${b}, ${opacity})`);
+                svg.appendChild(path);
+            }
+            
+            // Animation loop to slowly shift the phase for a subtle breathing effect
+            let gPhase = 0;
+            const paths = svg.querySelectorAll('.wave-path');
+            
+            function animate() {
+                gPhase += 0.01;
+                paths.forEach((p, i) => {
+                    const progress = i / (numWaves - 1);
+                    const amplitude = 60 + Math.sin(progress * Math.PI) * 40; 
+                    const frequency = 0.008 + (progress * 0.002);
+                    const phaseSq = (progress * Math.PI * 4) + gPhase * (0.5 + progress * 0.5); // Differential speed per line
+                    
+                    let d = `M 0,200`;
+                    for(let x = 0; x <= width; x += (width/points)) {
+                        const centralPinch = Math.sin((x/width) * Math.PI); // Pinches the waves at edges
+                        const y = 200 
+                                + Math.sin(x * frequency + phaseSq) * amplitude * centralPinch
+                                + Math.cos(x * frequency * 2.5 + phaseSq * 0.5) * (amplitude * 0.3) * centralPinch
+                                - (numWaves/2 - i) * 12;
+                        
+                        d += ` L ${x},${y}`;
+                    }
+                    p.setAttribute("d", d);
+                });
+                requestAnimationFrame(animate);
+            }
+            
+            container.appendChild(svg);
+            animate(); // Start the subtle animation
+        });
+    </script>
+</body>
 </html>
