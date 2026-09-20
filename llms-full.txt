@@ -1,0 +1,109 @@
+# iCryptos Dashboard — Full Reference
+
+## Overview
+
+iCryptos Dashboard is a web application that aggregates and displays crypto earning opportunities including faucets, airdrops, investments, mining platforms, and more. It fetches project data from multiple Blogger feeds and presents them in a sortable, filterable mobile-first interface.
+
+**URL:** https://ttearncrypto.github.io/dashboards/  
+**Author:** F9XR / TTEarnCrypto  
+**Language:** English (en-US)  
+**Category:** Cryptocurrency / Finance
+
+## Core Features
+
+- **Project Aggregation:** Fetches from 5 blog sources (Earning, Investments, Casinos, Airdrops, News).
+- **Filtering:** By token (BTC, ETH, USDT, TRX, etc.), wallet (Binance, FaucetPay, Paytm, etc.), category (Faucet, Airdrop, Mining, etc.), and tags.
+- **Sorting:** By date (newest/oldest) and name (A-Z/Z-A).
+- **Search:** Inline search with debounce.
+- **Claim List:** Bookmark projects with notes and next-claim-date tracking (stored in localStorage).
+- **Calendar:** Horizontal date picker showing 10 days past to 20 days ahead.
+- **Banner Slider:** Auto-rotating promotional banners.
+- **Customization:** Accent color picker, font family selector, font size selector.
+- **Pull to Refresh:** Swipe down gesture to reload data.
+- **Toast Notifications:** Non-intrusive feedback messages.
+- **Skeleton Loaders:** Shimmer placeholders during data fetch.
+
+## Page Structure
+
+### Dashboard (Desktop) — `index.html`
+Full-width layout with source tabs, filter bar, and project cards.
+
+### Dashboard (Mobile) — `m-index.html`
+Mobile-optimized version with:
+- Chips-based source selector (horizontal scroll)
+- Inline search + filter/sort buttons
+- Modal-based filter and sort panels
+- Fixed bottom navigation (Learn, Chat, Search, News, Settings)
+- 480px max-width on larger screens
+
+### Sitemap — `page/sitemap.html`
+Human-readable sitemap linking all discoverable pages.
+
+## Technical Details
+
+### Data Fetching
+- Method: JSONP via dynamically created `<script>` tags
+- Endpoint: Blogger `feeds/posts/summary?alt=json-in-script`
+- Max results: 50 per source (aggregated), 150 per source (single)
+- Caching: In-memory `dataCache` object
+
+### Data Model
+```json
+{
+  "id": "blogger-entry-id",
+  "name": "Project Name",
+  "url": "https://example.com",
+  "tags": ["Faucet", "BTC", "Binance", "Referral"],
+  "publishedDate": "2026-01-15T00:00:00.000Z",
+  "iconClass": "fas fa-rocket",
+  "sourceName": "Earning"
+}
+```
+
+### Storage (localStorage)
+- `cp-claimList`: Array of saved projects with notes and claim dates
+- `cp-claimGuideSeen`: Boolean flag
+- `cp-setting-color`: Accent color hex
+- `cp-setting-font-family`: Font family string
+- `cp-setting-font-size`: Font size string
+
+### Supported Wallets
+Binance, Paytm, FaucetPay, Cwallet, PhonePe, Payeer, Paypal, Direct Wallet
+
+### Supported Tokens
+BTC, ETH, USDT, TRX, LTC, DOGE, SOL, MATIC, BNB
+
+### Categories
+Faucet, MultiFaucet, AutoFaucet, Mining, Investment, TestNetFaucet, Gaming, Airdrop, TelegramBot, Investing, Other Projects
+
+## SEO & Metadata
+
+- Structured data: WebSite, WebApplication, BreadcrumbList (JSON-LD)
+- Open Graph: title, description, image (1200×630), locale, site_name
+- Twitter Cards: summary_large_image
+- Mobile: apple-mobile-web-app-capable, theme-color (#6A5AE0)
+- Icons: favicon (16/32), apple-touch-icon, shortcut icon
+- Sitemap: `sitemap.xml` (24 URLs)
+- Robots: `robots.txt`
+
+## Dependencies
+
+- **Fonts:** Google Fonts (Inter, Poppins, Roboto Mono) via `display=swap`
+- **Icons:** Font Awesome 5.15.4 (CSS, loaded non-blocking)
+- **Chat:** Minnit Chat embed
+
+## Performance Optimizations
+
+- Non-blocking CSS load for Google Fonts and Font Awesome
+- `content-visibility: auto` on below-fold sections
+- `loading="lazy"` on non-critical images
+- `fetchpriority="high"` on LCP image (logo)
+- `prefers-reduced-motion` support
+
+## Accessibility
+
+- Skip-to-content link
+- ARIA attributes on dropdowns (aria-expanded, aria-haspopup)
+- Keyboard support for date picker (Enter/Space)
+- `touch-action: manipulation` on body
+- Screen-reader-only elements (`.sr-only`)

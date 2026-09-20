@@ -1,0 +1,26 @@
+# iCryptos Dashboard
+
+> A mobile-friendly dashboard for discovering crypto earning projects, airdrops, faucets, and investment opportunities. Curated and updated daily by TTEarnCrypto.
+
+## Key Pages
+
+- Home: https://ttearncrypto.github.io/dashboards/
+- Dashboard (Desktop): https://ttearncrypto.github.io/dashboards/index.html
+- Dashboard (Mobile): https://ttearncrypto.github.io/dashboards/m-index.html
+- Themes Hub: https://ttearncrypto.github.io/dashboards/themes/
+- News Hub: https://ttearncrypto.github.io/dashboards/newshub/classic.html
+- Sitemap: https://ttearncrypto.github.io/dashboards/page/sitemap.html
+
+## External Sources
+
+- Earning Projects: https://ttearncrypto.blogspot.com
+- Investments: https://freecryptoradar.blogspot.com
+- Casinos: https://freecryptoshop.blogspot.com
+- Airdrops: https://ttairdropcentral.blogspot.com
+- News & Codes: https://cryptoradarnews.blogspot.com
+- Learn: https://tontufcs.blogspot.com
+- Home: https://ttearncrypto.github.io/Home/earncrypto.html
+
+## Data
+
+Projects are fetched via JSONP from Blogger feeds. Each project includes name, URL, published date, tags (category, wallet, token), and status (active/inactive).

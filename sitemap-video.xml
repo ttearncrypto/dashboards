@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://ttearncrypto.github.io/dashboards/m-index.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</video:thumbnail_loc>
+      <video:title>TTEarnCrypto Odysee Channel</video:title>
+      <video:description>Latest crypto earning tips, project reviews, and tutorials from TTEarnCrypto.</video:description>
+      <video:content_loc>https://odysee.com/%40ttearncrypto%3A5</video:content_loc>
+      <video:player_loc>https://odysee.com/%24/embed/%40ttearncrypto%3A5</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:uploader>TTEarnCrypto</video:uploader>
+      <video:uploader_info>https://odysee.com/@ttearncrypto:5</video:uploader_info>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>

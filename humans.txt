@@ -1,0 +1,17 @@
+/* TEAM */
+    Developer: F9XR
+    Twitter: @ttearncrypto
+    GitHub: https://github.com/ttearncrypto
+    Location: —
+
+/* SITE */
+    Project: iCryptos Dashboard
+    Language: English
+    Doctype: HTML5
+    Components: Vanilla JS, CSS3 Custom Properties
+
+/* THANKS */
+    Font Awesome — https://fontawesome.com
+    Google Fonts — https://fonts.google.com
+    Blogger — https://www.blogger.com
+    GitHub Pages — https://pages.github.com

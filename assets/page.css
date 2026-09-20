@@ -1,0 +1,376 @@
+/* ============================================================
+   F9XR iCryptos Dashboards — Shared Page Styles (Brand Green)
+   ============================================================ */
+
+@import url('ColourPalette.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--cp-font-body);
+  background: var(--cp-bg);
+  color: var(--cp-primary-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--cp-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--cp-primary-btn);
+  text-decoration: underline;
+}
+
+/* Header */
+.cp-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 40, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cp-border-color);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cp-page-header .cp-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cp-page-header .cp-header-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cp-accent);
+}
+
+.cp-page-header .cp-header-title {
+  font-family: var(--cp-font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cp-primary-text);
+}
+
+.cp-page-header .cp-header-nav a {
+  color: var(--cp-secondary-text);
+  font-size: 0.85rem;
+  margin-left: 16px;
+  font-weight: 500;
+}
+.cp-page-header .cp-header-nav a:hover {
+  color: var(--cp-live-text);
+  text-decoration: none;
+}
+
+/* Main Container */
+.cp-page-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Typography */
+.cp-page-container h1 {
+  font-family: var(--cp-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--cp-live-text);
+  text-shadow: 0 0 12px rgba(204, 255, 51, 0.3);
+}
+
+.cp-page-container .cp-last-updated {
+  font-family: var(--cp-font-mono);
+  font-size: 0.8rem;
+  color: var(--cp-secondary-text);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cp-border-color);
+}
+
+.cp-page-container h2 {
+  font-family: var(--cp-font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--cp-accent);
+}
+
+.cp-page-container h3 {
+  font-family: var(--cp-font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: var(--cp-primary-text);
+}
+
+.cp-page-container p,
+.cp-page-container li {
+  font-size: 0.95rem;
+  color: var(--cp-primary-text);
+  margin-bottom: 12px;
+}
+
+.cp-page-container ul,
+.cp-page-container ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.cp-page-container li {
+  margin-bottom: 6px;
+}
+
+.cp-page-container strong {
+  color: var(--cp-live-text);
+}
+
+.cp-page-container .cp-highlight-box {
+  background: var(--cp-card-bg);
+  border-left: 4px solid var(--cp-radioactive-grass);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+
+.cp-page-container .cp-highlight-box p {
+  margin-bottom: 0;
+}
+
+/* Back link */
+.cp-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cp-secondary-text);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+}
+.cp-back-link:hover {
+  color: var(--cp-live-text);
+  text-decoration: none;
+}
+
+/* Footer */
+.cp-page-footer {
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid var(--cp-border-color);
+  padding: 40px 24px 24px;
+  text-align: center;
+}
+
+.cp-page-footer .cp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-bottom: 20px;
+}
+
+.cp-page-footer .cp-footer-links a {
+  color: var(--cp-secondary-text);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.cp-page-footer .cp-footer-links a:hover {
+  color: var(--cp-live-text);
+  text-decoration: none;
+}
+
+.cp-page-footer .cp-footer-copy {
+  font-size: 0.75rem;
+  color: var(--cp-secondary-text);
+  opacity: 0.7;
+}
+
+.cp-page-footer .cp-footer-watermark {
+  font-family: var(--cp-font-heading);
+  font-size: 0.9rem;
+  background: var(--cp-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+/* Breadcrumb */
+.cp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--cp-secondary-text);
+  margin-bottom: 24px;
+}
+.cp-breadcrumb a {
+  color: var(--cp-secondary-text);
+}
+.cp-breadcrumb a:hover {
+  color: var(--cp-live-text);
+}
+.cp-breadcrumb .cp-bc-sep {
+  color: var(--cp-border-color);
+}
+
+/* Contact form */
+.cp-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.cp-contact-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cp-accent);
+}
+
+.cp-contact-form input,
+.cp-contact-form textarea {
+  background: var(--cp-card-bg);
+  border: 1px solid var(--cp-border-color);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: var(--cp-font-body);
+  font-size: 0.95rem;
+  color: var(--cp-primary-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cp-contact-form input:focus,
+.cp-contact-form textarea:focus {
+  border-color: var(--cp-accent);
+  box-shadow: 0 0 0 3px rgba(56, 176, 0, 0.2);
+}
+
+.cp-contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.cp-contact-form button {
+  background: var(--cp-primary-btn);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-family: var(--cp-font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  align-self: flex-start;
+}
+.cp-contact-form button:hover {
+  background: var(--cp-primary-btn-hover);
+  transform: translateY(-1px);
+}
+
+/* FAQ */
+.cp-faq-item {
+  border-bottom: 1px solid var(--cp-border-color);
+  padding: 16px 0;
+}
+
+.cp-faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--cp-primary-text);
+  user-select: none;
+  margin: 0;
+}
+.cp-faq-question i {
+  color: var(--cp-accent);
+  transition: transform 0.2s;
+}
+.cp-faq-question.open i {
+  transform: rotate(180deg);
+}
+
+.cp-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding-top: 0;
+}
+.cp-faq-answer.open {
+  max-height: 500px;
+  padding-top: 12px;
+}
+.cp-faq-answer p {
+  margin-bottom: 0;
+}
+
+/* Changelog */
+.cp-changelog-entry {
+  border-left: 2px solid var(--cp-accent);
+  padding: 8px 0 16px 20px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.cp-changelog-entry::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 12px;
+  width: 10px;
+  height: 10px;
+  background: var(--cp-radioactive-grass);
+  border-radius: 50%;
+}
+.cp-changelog-entry .cp-version {
+  font-family: var(--cp-font-mono);
+  color: var(--cp-live-text);
+  font-weight: 700;
+}
+.cp-changelog-entry .cp-date {
+  font-size: 0.8rem;
+  color: var(--cp-secondary-text);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .cp-page-header {
+    padding: 10px 16px;
+  }
+  .cp-page-header .cp-header-nav a {
+    font-size: 0.75rem;
+    margin-left: 10px;
+  }
+  .cp-page-container {
+    padding: 24px 16px 60px;
+  }
+  .cp-page-container h1 {
+    font-size: 1.5rem;
+  }
+  .cp-page-container h2 {
+    font-size: 1.15rem;
+  }
+  .cp-page-footer .cp-footer-links {
+    gap: 8px 16px;
+  }
+}

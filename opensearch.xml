@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>iCryptos</ShortName>
+  <Description>Search crypto earning projects, airdrops, and faucets on iCryptos Dashboard.</Description>
+  <Tags>crypto airdrops faucets earning bitcoin</Tags>
+  <Contact>tontufads@gmail.com</Contact>
+  <Url type="text/html" method="get" template="https://ttearncrypto.github.io/dashboards/m-index.html?q={searchTerms}"/>
+  <LongName>iCryptos Dashboard Search</LongName>
+  <Developer>F9XR / TTEarnCrypto</Developer>
+  <Attribution>Data provided by TTEarnCrypto. Not investment advice.</Attribution>
+  <Language>en-US</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Query role="example" searchTerms="faucet"/>
+</OpenSearchDescription>

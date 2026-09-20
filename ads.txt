@@ -1,0 +1,5 @@
+# Ads.txt for ttearncrypto.github.io
+# For more information, visit https://iabtechlab.com/ads-txt
+
+# The ads on this site are served directly or via affiliate networks.
+# No third-party ad exchanges are currently authorized.

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes - TTEarnCrypto iCryptos Dashboards</title>
+
+    <meta name="description" content="Browse all available iCryptos dashboard themes. Choose from Blue, Calm, Gray, Green, Old Blue, Pill, and Purple themes for your crypto earning experience.">
+    <meta name="keywords" content="crypto dashboard themes, icryptos themes, TTEarnCrypto, F9XR, blue, green, purple, calm, gray, pill, old blue">
+    <meta name="author" content="TTEarnCrypto">
+
+    <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/themes/">
+
+    <meta property="og:title" content="iCryptos Dashboard Themes">
+    <meta property="og:description" content="Choose your preferred iCryptos dashboard theme.">
+    <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <meta property="og:url" content="https://ttearncrypto.github.io/dashboards/themes/">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="shortcut icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <script src="https://cdn.tailwindcss.com" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="../assets/view-transitions.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <script>if(window.innerWidth<=768){location.replace("../m-index.html")}</script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #F8F8F8; }
+        .btn-primary-gradient { @apply px-10 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105; }
+        .btn-secondary-outline { @apply px-10 py-4 rounded-xl font-bold text-lg bg-white/80 backdrop-blur-sm border-2 border-gray-800 text-gray-800 shadow-lg transition-all duration-300 hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105; }
+        .filter-btn { @apply px-4 py-2 rounded-full text-sm font-medium border transition-colors; }
+        .filter-btn.active { @apply bg-black text-white border-black; }
+        .filter-btn:not(.active) { @apply bg-white text-gray-600 border-gray-300 hover:border-black; }
+        .kbd { @apply inline-block px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 border border-gray-300 rounded-md; }
+        .theme-card { @apply flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300; }
+        .color-swatch { @apply w-full h-24 rounded-lg mb-4 flex items-center justify-center text-white/80 text-sm font-medium; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "iCryptos Dashboard Themes",
+      "url": "https://ttearncrypto.github.io/dashboards/themes/",
+      "description": "Browse all available iCryptos dashboard themes."
+    }
+    </script>
+</head>
+<body class="text-gray-900">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 right-0 z-50 p-4 bg-transparent">
+        <div class="container mx-auto">
+            <div class="flex items-center w-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg p-2">
+                <a href="../index.html" class="flex items-center gap-2 flex-shrink-0 pr-4"><img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-11 h-11 rounded-full border-2 border-white"><span class="font-bold text-xl hidden sm:block">TTEarnCrypto</span></a>
+                <div class="flex-grow flex items-center gap-3 border-l border-r border-gray-200 px-4"><i class="fas fa-search text-gray-400"></i><input type="text" id="theme-search" placeholder="Search themes..." class="w-full bg-transparent focus:outline-none text-gray-700 placeholder-gray-400 hidden md:block"></div>
+                <nav class="hidden lg:flex items-center gap-2 px-4"><a href="../index.html#dashboards" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Dashboards</a><span class="text-gray-300">|</span><a href="../index.html#resources-hub" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Resources</a><span class="text-gray-300">|</span><a href="../index.html#community" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Community</a></nav>
+                <div class="flex items-center">
+                    <button id="shortcuts-toggle" class="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-black" title="Keyboard Shortcuts (?)"><i class="fas fa-keyboard"></i></button>
+                    <div class="relative ml-2" data-dropdown><button class="w-11 h-11 flex items-center justify-center border border-gray-300 rounded-full text-gray-600 hover:border-black hover:text-black transition-colors" data-dropdown-button><i class="fas fa-layer-group"></i></button><div class="absolute right-0 mt-3 w-64 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu><div class="lg:hidden"><a href="../index.html#dashboards" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Dashboards</a><a href="../index.html#resources-hub" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Resources</a><a href="../index.html#community" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Community</a><div class="border-t border-gray-200 my-1"></div></div><p class="px-5 pt-3 pb-1 text-xs text-gray-400 font-semibold uppercase">Versions</p><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">PC Dashboard (Flagship)</a><a href="https://ttearncrypto.github.io/dashboards/m-index.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Mobile Dashboard</a><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-blue-600 hover:bg-gray-100 font-medium">Download App (Beta) <i class="fas fa-download ml-1"></i></a></div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <section id="hero" class="relative min-h-[60vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+            <div class="relative z-10 container mx-auto px-6 py-24">
+                <div class="max-w-4xl mx-auto bg-white/70 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50">
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900">Dashboard Themes</h1>
+                    <p class="max-w-2xl mx-auto text-xl text-gray-600 my-8">Choose the look and feel that matches your style. Each theme is a fully featured dashboard with the same powerful crypto tools underneath.</p>
+                    <a href="#themes" class="btn-primary-gradient inline-flex items-center gap-2">Browse Themes <i class="fas fa-arrow-down text-sm"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== THEMES SECTION ===== -->
+        <section id="themes" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-4">Choose Your Theme</h2>
+                <p class="text-center text-gray-600 mb-10">Search or filter to find your perfect dashboard theme.</p>
+                <div class="flex flex-col md:flex-row gap-4 mb-8">
+                    <div class="relative flex-grow">
+                        <input type="text" id="theme-search-input" placeholder="Search by name..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <div id="filter-buttons" class="flex items-center gap-2 flex-wrap">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="light">Light</button>
+                        <button class="filter-btn" data-filter="dark">Dark</button>
+                        <button class="filter-btn" data-filter="colorful">Colorful</button>
+                    </div>
+                </div>
+                <div id="themes-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                    <!-- Blue -->
+                    <div class="theme-card" data-title="Blue Theme" data-tags="light blue">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Blue Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">A classic blue dashboard with clean typography and a focused workspace. Vanilla CSS, no Tailwind.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Light</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                        </div>
+                        <a href="blue.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Calm -->
+                    <div class="theme-card" data-title="Calm Theme" data-tags="light calm purple">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #F3E5F5, #CE93D8);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Calm Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">A focused, clutter-free dashboard with a soft lavender palette. Tailwind CSS with custom styles.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">Light</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
+                        </div>
+                        <a href="calm.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Gray -->
+                    <div class="theme-card" data-title="Gray Theme" data-tags="dark gray enterprise">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #374151, #111827);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Gray Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Enterprise-grade dark dashboard with slate tones. Tailwind CSS with custom animations.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-gray-800 text-gray-200 px-3 py-1 rounded-full font-medium">Dark</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
+                        </div>
+                        <a href="gray.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Green -->
+                    <div class="theme-card" data-title="Green Theme" data-tags="light green colorful">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #22C55E, #15803D);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Green Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">An all-in-one green dashboard for tracking assets, earning projects, and market stats.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Light</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Colorful</span>
+                        </div>
+                        <a href="green.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Old -->
+                    <div class="theme-card" data-title="Old Blue Theme" data-tags="light blue old">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #60A5FA, #2563EB);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Old Blue Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">The original blue dashboard theme. A classic look with the familiar earning tools you love.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Light</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Legacy</span>
+                        </div>
+                        <a href="old.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Pill -->
+                    <div class="theme-card" data-title="Pill Theme" data-tags="dark pill colorful">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #1F2937, #000000);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Pill Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Dark theme with pill-shaped UI elements and Montserrat typography. Modern and sleek.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-gray-800 text-gray-200 px-3 py-1 rounded-full font-medium">Dark</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
+                        </div>
+                        <a href="pill.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                    <!-- Purple -->
+                    <div class="theme-card" data-title="Purple Theme" data-tags="dark purple colorful">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #A855F7, #7C3AED);"><i class="fas fa-palette text-3xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Purple Theme</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Premium dark dashboard with a vibrant purple palette. Montserrat typography with Tailwind.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">Dark</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
+                        </div>
+                        <a href="purple.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="bg-black text-gray-400 mt-20 rounded-t-3xl">
+            <div class="container mx-auto px-8 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm">
+                    <div>
+                        <a href="../index.html" class="flex items-center gap-3 mb-4">
+                            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="TTEarnCrypto Footer Logo" class="w-8 h-8 rounded-full">
+                            <span class="font-bold text-lg text-white">TTEarnCrypto</span>
+                        </a>
+                        <p class="pr-8">Providing the best tools and resources for the crypto community.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white tracking-wider uppercase mb-4">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="../index.html" class="hover:text-white transition-colors">Home</a></li>
+                            <li><a href="../index.html#dashboards" class="hover:text-white transition-colors">Dashboards</a></li>
+                            <li><a href="../index.html#resources-hub" class="hover:text-white transition-colors">Resources</a></li>
+                            <li><a href="../index.html#community" class="hover:text-white transition-colors">Community</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white tracking-wider uppercase mb-4">Themes</h4>
+                        <ul class="space-y-3">
+                            <li><a href="blue.html" class="hover:text-white transition-colors">Blue</a></li>
+                            <li><a href="calm.html" class="hover:text-white transition-colors">Calm</a></li>
+                            <li><a href="gray.html" class="hover:text-white transition-colors">Gray</a></li>
+                            <li><a href="green.html" class="hover:text-white transition-colors">Green</a></li>
+                            <li><a href="purple.html" class="hover:text-white transition-colors">Purple</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white tracking-wider uppercase mb-4">Connect</h4>
+                        <div class="flex gap-4 text-lg">
+                            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Discord"><i class="fab fa-discord"></i></a>
+                            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://github.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
+                    <p>Copyright 2024 &copy; TTEarnCrypto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg transition-opacity opacity-0 pointer-events-none" title="Back to Top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Shortcuts Modal -->
+    <div id="shortcuts-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold"><i class="fas fa-keyboard mr-2"></i>Keyboard Shortcuts</h3>
+                <button id="shortcuts-close" class="text-gray-500 hover:text-black text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center justify-between"><p>Open this guide</p><kbd class="kbd">?</kbd></li>
+                    <li class="flex items-center justify-between"><p>Focus on search</p><kbd class="kbd">S</kbd></li>
+                    <li class="flex items-center justify-between"><p>Close this guide</p><kbd class="kbd">Esc</kbd></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dropdown Menu Logic
+            document.addEventListener('click', e => { const isDropdownButton = e.target.matches("[data-dropdown-button]") || e.target.closest("[data-dropdown-button]"); if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return; let currentDropdown; if (isDropdownButton) { currentDropdown = e.target.closest("[data-dropdown]"); currentDropdown.querySelector('[data-dropdown-menu]').classList.toggle("hidden"); } document.querySelectorAll("[data-dropdown-menu]").forEach(menu => { if (menu.closest("[data-dropdown]") === currentDropdown) return; menu.classList.add("hidden"); }); });
+
+            // Theme Search & Filter
+            const searchInput = document.getElementById('theme-search-input');
+            const headerSearch = document.getElementById('theme-search');
+            const filterBtns = document.getElementById('filter-buttons');
+            const themeCards = document.querySelectorAll('.theme-card');
+            let currentFilter = 'all';
+
+            function filterThemes() {
+                const term = searchInput.value.toLowerCase();
+                themeCards.forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    const tags = card.dataset.tags.split(' ');
+                    const matchesSearch = title.includes(term);
+                    const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
+                    card.style.display = (matchesSearch && matchesFilter) ? 'flex' : 'none';
+                });
+            }
+
+            [searchInput, headerSearch].forEach(input => {
+                if (!input) return;
+                input.addEventListener('input', e => {
+                    searchInput.value = e.target.value;
+                    headerSearch.value = e.target.value;
+                    filterThemes();
+                });
+            });
+
+            filterBtns.addEventListener('click', e => {
+                if (e.target.tagName === 'BUTTON') {
+                    filterBtns.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.filter;
+                    filterThemes();
+                }
+            });
+
+            // Back to Top
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > window.innerHeight * 0.6) {
+                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    backToTop.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            // Shortcuts Modal
+            const shortcutsModal = document.getElementById('shortcuts-modal');
+            const shortcutsToggle = document.getElementById('shortcuts-toggle');
+            const shortcutsClose = document.getElementById('shortcuts-close');
+            const openModal = (modal) => modal.classList.remove('hidden');
+            const closeModal = (modal) => modal.classList.add('hidden');
+
+            shortcutsToggle.addEventListener('click', () => openModal(shortcutsModal));
+            shortcutsClose.addEventListener('click', () => closeModal(shortcutsModal));
+            shortcutsModal.addEventListener('click', (e) => { if (e.target === shortcutsModal) closeModal(shortcutsModal); });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal(shortcutsModal);
+                const activeEl = document.activeElement;
+                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) return;
+                switch(e.key) {
+                    case '?': e.preventDefault(); openModal(shortcutsModal); break;
+                    case 's': case 'S': e.preventDefault(); document.getElementById('theme-search-input').focus(); break;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

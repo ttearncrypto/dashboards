@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://ttearncrypto.github.io/dashboards/m-index.html</loc>
+    <image:image>
+      <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
+      <image:title>iCryptos Dashboard Logo</image:title>
+      <image:caption>iCryptos Crypto Dashboard application logo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.appcreator24.com/srv/imgs/gen/3641044_ico.png</image:loc>
+      <image:title>iCryptos App Icon</image:title>
+      <image:caption>iCryptos Dashboard mobile app icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://i.imgur.com/7qPyMe2_d.webp?maxwidth=520&amp;shape=thumb&amp;fidelity=high</image:loc>
+      <image:title>Promotional Banner 1</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://i.imgur.com/Qrd6ERS.jpeg</image:loc>
+      <image:title>Promotional Banner 2</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://i.imgur.com/UmgaqgB.jpeg</image:loc>
+      <image:title>Promotional Banner 3</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ttearncrypto.github.io/dashboards/index.html</loc>
+    <image:image>
+      <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
+      <image:title>iCryptos Dashboard Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ttearncrypto.github.io/Home/earncrypto.html</loc>
+    <image:image>
+      <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
+      <image:title>TTEarnCrypto Logo</image:title>
+    </image:image>
+  </url>
+</urlset>

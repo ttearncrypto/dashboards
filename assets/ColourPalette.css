@@ -1,0 +1,87 @@
+/* ============================================================
+   F9XR's TTEarnCrypto : iCryptos Dashboards — Brand Colour Palette
+   Deep Tech-Green Color Tokens for Cyberpunk Financial Mainframe
+   ============================================================ */
+
+:root {
+  /* === Primary Palette === */
+  --cp-dark-spruce:       #004B23;
+  --cp-dark-green:        #006400;
+  --cp-forest-green:      #007200;
+  --cp-pure-green:        #008000;
+  --cp-bright-fern:       #38B000;
+  --cp-radioactive-grass: #70E000;
+  --cp-slime-lime:        #9EF01A;
+  --cp-chartreuse:        #CCFF33;
+
+  /* === Semantic Tokens === */
+  --cp-bg:                var(--cp-dark-spruce);
+  --cp-card-bg:           #0D5A2E;
+  --cp-primary-text:      #E8F5E9;
+  --cp-secondary-text:    #A5D6A7;
+  --cp-border-color:      #1B6E3A;
+  --cp-light-bg:          #0A4F26;
+  --cp-shadow:            0 8px 25px -10px rgba(0, 0, 0, 0.5);
+
+  --cp-accent:            var(--cp-bright-fern);
+  --cp-accent-hover:      #42C800;
+  --cp-primary-btn:       var(--cp-radioactive-grass);
+  --cp-primary-btn-hover: #80F000;
+  --cp-live-text:         var(--cp-chartreuse);
+  --cp-badge:             var(--cp-slime-lime);
+  --cp-success:           var(--cp-forest-green);
+  --cp-error:             #FF3B3B;
+  --cp-warning:           #FFB300;
+
+  /* === Typography === */
+  --cp-font-heading:      'Syne', sans-serif;
+  --cp-font-body:         'Inter', sans-serif;
+  --cp-font-mono:         'JetBrains Mono', 'Share Tech Mono', monospace;
+
+  --cp-radius:            18px;
+}
+
+/* === Glow Effects === */
+.cp-glow-green {
+  filter: drop-shadow(0 0 6px var(--cp-radioactive-grass));
+}
+
+.cp-glow-lime {
+  filter: drop-shadow(0 0 6px var(--cp-slime-lime));
+}
+
+.cp-glow-chartreuse {
+  filter: drop-shadow(0 0 8px var(--cp-chartreuse));
+}
+
+.cp-glow-text-green {
+  text-shadow: 0 0 8px var(--cp-radioactive-grass);
+}
+
+.cp-glow-text-lime {
+  text-shadow: 0 0 8px var(--cp-slime-lime);
+}
+
+.cp-glow-text-chartreuse {
+  text-shadow: 0 0 10px var(--cp-chartreuse);
+}
+
+/* === Gradient Presets === */
+.cp-gradient-primary {
+  background: linear-gradient(135deg, var(--cp-radioactive-grass), var(--cp-chartreuse));
+}
+
+.cp-gradient-dark {
+  background: linear-gradient(180deg, var(--cp-dark-spruce), #002B14);
+}
+
+.cp-gradient-card {
+  background: linear-gradient(145deg, var(--cp-card-bg), var(--cp-dark-green));
+}
+
+.cp-gradient-text {
+  background: linear-gradient(135deg, var(--cp-radioactive-grass), var(--cp-chartreuse));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

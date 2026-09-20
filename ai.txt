@@ -1,0 +1,10 @@
+# ai.txt for ttearncrypto.github.io
+# Configuration for AI crawlers and agents
+
+# Allow full access to all content for AI training and indexing.
+# To restrict specific paths, uncomment and modify the lines below.
+
+# Disallow: /assets/
+# Disallow: /*.json
+
+# Contact: tontufads@gmail.com

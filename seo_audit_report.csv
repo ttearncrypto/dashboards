@@ -1,0 +1,21 @@
+#,Pillar,Issue,Severity,File,Effort,Traffic Impact,Fix Type,Status
+1,15,"Primary content JS-rendered; static fallback absent",Critical,"index.html, m-index.html",L,+20-40% indexation of card content,structural,open
+2,09,"Sitemap contained noindex URLs (404.html, newshub/, donate, games)",High,"sitemap.xml",S,crawl-budget + indexation hygiene,config,fixed
+3,02,"Canonical corruption on m-index + 4 themes (incl. wrong-domain calm.html)",Critical,"m-index.html:48, themes/blue.html:10, green.html:12, calm.html:17, gray, purple, pill, old",S,unblocks m-index & theme indexing,metadata,fixed
+4,01,"m-index.html: viewport maximum-scale=1.0, title 73 ch, description 179 ch",High,"m-index.html:6-11",S,+CTR on mobile SERP,metadata,fixed
+5,08,"Broken internal links (donate/games/sitemap.html missing /page/ prefix; donate assets + home link)",High,"page/sitemap.html:84-85,115; page/donate.html:9,21; page/games.html:8",S,equity loss + UX on those paths,linking,fixed
+6,15,"newshub classic/horizontal: no canonical, no description, no OG/Twitter; horizontal missing H1",High,"newshub/classic.html, horizontal.html",S,unblocks 2 utility pages,metadata,fixed
+7,03,"Odysee iframe no width/height/loading (CLS + render)",High,"index.html:456, m-index.html:497-498",S,CLS risk (Odysee hydrate),performance,fixed
+8,06,"Hero/logo images missing explicit dimensions (CLS)",High,"index.html:817 (footer logo); themes/*.html",S,CLS risk on images,performance,fixed
+9,03,"Tailwind CDN loaded as render-blocking sync script in head (prod)",High,"index.html:39, 404.html:16, themes (gray:41, calm:81, green, old:49, pill:37, purple:45, blue)",M,LCP/FCP regression,performance,open
+10,01,"Short/weak titles + descriptions on sitemap.html (title 32 ch), donate, games",Medium,"page/sitemap.html:6-7, page/donate.html:6-7, page/games.html:6",S,+CTR on those pages,metadata,open
+11,17,"FAQPage schema had 5 Qs (7 visible); questions not wrapped in headings",Medium,"page/faq.html:16-26",S,FAQ rich-result eligibility,schema,fixed
+12,17,"Missing BreadcrumbList + og:image + twitter on all page/ and legal/ templates",Medium,"6x page/*.html + 6x page/legal/*.html",S,breadcrumb rich result + social CTR,schema,fixed
+13,09,"IndexNow key file absent; key-file + submission docs not configured",Medium,"repo root (new <key>.txt)",S,faster Bing/Yandex indexing,config,open
+14,10,"og:url trailing-slash mismatch on index.html (canonical uses /dashboards/)",Low,"index.html:22",S,social share correctness,metadata,fixed
+15,02,"site.webmanifest empty name/short_name, root-absolute icons, wrong theme-color",Low,"assets/new/site.webmanifest",S,PWA install/branding signal,config,fixed
+16,18,"llms.txt / llms-full.txt references dead listing.html; sitemap count 19 wrong",Low,"llms.txt:11, llms-full.txt:39-43,89",S,AI-reader accuracy,content,fixed
+17,02,"robots.txt malformed (space-prefixed user-agent, whitespace line, no AI governance)",High,"robots.txt",S,crawl governance,config,fixed
+18,16,"YMYL: no static disclaimer/provenance near third-party earning offers on dashboards",Medium,"index.html, m-index.html content regions",L,trust/quality bar for finance,content,open
+19,22,"CoinGecko widget scripts load synchronously in body (CLS on hydrate)",High,"index.html:645,716,722; themes/calm.html:695,1240,1254",S,CLS + main-thread impact,performance,open
+20,24,"No VideoObject schema on pages with Odysee embeds",Low,"index.html (L450-460), m-index.html (~L495-500)",S,video rich-result eligibility,schema,open

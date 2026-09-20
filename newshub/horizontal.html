@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tontuf News Hub | Dashboard</title>
+    <title>Tontuf News Hub | The Tontuf Star Dashboard</title>
+    <meta name="description" content="The Tontuf Star news dashboard by TTEarnCrypto. Browse the latest crypto, airdrop, and earning news in a modern horizontal layout.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/newshub/horizontal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ttearncrypto.github.io/dashboards/newshub/horizontal.html">
+    <meta property="og:title" content="Tontuf News Hub | The Tontuf Star Dashboard">
+    <meta property="og:description" content="Latest crypto, airdrop, and earning news in a modern horizontal layout from TTEarnCrypto.">
+    <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tontuf News Hub | The Tontuf Star Dashboard">
+    <meta name="twitter:description" content="Latest crypto, airdrop, and earning news from TTEarnCrypto.">
+    <meta name="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     
     <!-- FONT AWESOME for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,6 +24,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- View Transition API -->
+    <link rel="stylesheet" href="../assets/view-transitions.css">
     
     <style>
         :root {
@@ -50,6 +65,7 @@
             flex-shrink: 0;
         }
         .logo { font-family: 'Times New Roman', Times, serif; font-size: 1.75rem; font-weight: 700; margin-bottom: 2.5rem; color: var(--sidebar-text-hover); border-bottom: 1px solid #495057; padding-bottom: 1rem; }
+        .logo h1 { margin: 0; font-size: inherit; font-family: inherit; font-weight: inherit; line-height: inherit; }
         .nav-links { list-style: none; }
         .nav-links a { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem; text-decoration: none; color: var(--sidebar-text); font-weight: 500; border-radius: 8px; transition: all 0.2s; margin-bottom: 0.5rem; }
         .nav-links a:hover { background-color: #2c3136; color: var(--sidebar-text-hover); }
@@ -136,7 +152,7 @@
     <div class="app-container">
         <!-- LEFT SIDEBAR -->
         <nav class="left-sidebar" id="left-sidebar">
-            <div class="logo">The Tontuf Star</div>
+            <div class="logo"><h1>The Tontuf Star</h1></div>
             <ul class="nav-links">
                 <li><a href="#" class="active" id="dashboard-link"><i class="fa-solid fa-table-columns"></i><span>Dashboard</span></a></li>
                 <li><a href="#" id="bookmarks-link"><i class="fa-solid fa-bookmark"></i><span>Bookmarks</span></a></li>

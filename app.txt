@@ -1,0 +1,346 @@
+================================================================================
+PROMPT FOR GOOGLE AI STUDIO — GENERATE FULL KOTLIN ANDROID APP
+================================================================================
+
+Generate a complete Android Kotlin app called "iCryptos Dashboard" that replicates this web app exactly: https://ttearncrypto.github.io/dashboards/m-index.html
+
+Read the full HTML/JS/CSS source at that URL (all 3735 lines) and convert every feature into a native Android app. Below is the complete specification.
+
+================================================================================
+APP OVERVIEW
+================================================================================
+
+A mobile-first dashboard that aggregates crypto earning opportunities (faucets, airdrops, mining, investments, casinos) from 5 Blogger blogs. Users browse, search, filter, sort, bookmark projects with notes/claim dates, and share them.
+
+================================================================================
+DATA SOURCES (Blogger Feeds)
+================================================================================
+
+Fetch from these 5 Blogger blogs via their Atom XML feeds:
+
+1. Earning:      https://ttearncrypto.blogspot.com/feeds/posts/summary?max-results=50
+2. Investments:  https://freecryptoradar.blogspot.com/feeds/posts/summary?max-results=50
+3. Casinos:      https://freecryptoshop.blogspot.com/feeds/posts/summary?max-results=50
+4. Airdrops:     https://ttairdropcentral.blogspot.com/feeds/posts/summary?max-results=50
+5. News/Learn:   https://cryptoradarnews.blogspot.com/feeds/posts/summary?max-results=50
+                 https://tontufcs.blogspot.com/feeds/posts/summary?max-results=50
+
+Use Retrofit + OkHttp to fetch these. Parse the Atom XML with XmlPullParser or SimpleXml.
+Each feed entry contains: <title>, <link rel="alternate">, <category term="">, <published>, <id>.
+
+The category terms are used as "tags" on each project. Tags encode everything:
+- Category: Faucet, MultiFaucet, AutoFaucet, Mining, Investment, TestNetFaucet, Gaming, Airdrop, TelegramBot, Investing, Other Projects
+- Wallet: Binance, Paytm, FaucetPay, PhonePe, Cwallet, Payeer, Paypal
+- Token: BTC, ETH, USDT, TRX, LTC, DOGE, SOL, MATIC, BNB
+- Status: NotActive (if present, project is shown as inactive/disabled)
+
+The "All" tab fetches all 4 main sources concurrently and merges them sorted by date.
+
+WALLET_LINKS (shown when a single wallet filter is selected):
+- FaucetPay: https://faucetpay.io/?r=2921252
+- Binance: https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=en-IN&ref=GRO_28502_HU0O6&utm_source=default
+- Cwallet: https://cwallet.com
+- Payeer: https://payeer.com
+- Paytm: https://paytm.com
+- Paypal: https://www.paypal.com
+- PhonePe: https://phon.pe/y5y03a77
+
+BANNERS (3 rotating promo images):
+1. https://i.imgur.com/7qPyMe2_d.webp?maxwidth=520&shape=thumb&fidelity=high
+2. https://i.imgur.com/Qrd6ERS.jpeg
+3. https://i.imgur.com/UmgaqgB.jpeg
+
+ICONS:
+- FontAwesome 5 Free icons are used. Use Material Icons or Coil for icon mapping.
+- App logo: https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg
+
+================================================================================
+DATA MODEL (Kotlin)
+================================================================================
+
+data class Project(
+    val id: String,              // Blogger entry ID
+    val name: String,            // title
+    val url: String,             // alternate link
+    val tags: List<String>,      // categories
+    val publishedDate: Date,     // published date
+    val sourceName: String,      // which blog it came from
+    val sourceIcon: String       // FontAwesome icon name per source
+)
+
+data class ClaimItem(
+    val id: String,
+    val name: String,
+    val url: String,
+    val notes: String,
+    val claimDate: String?,
+    val dateAdded: Long
+)
+
+enum class SortOrder { DATE_DESC, DATE_ASC, NAME_ASC, NAME_DESC }
+
+================================================================================
+FILTERING PIPELINE
+================================================================================
+
+applyFiltersAndSort must apply in this order:
+1. activeTag filter (single tag clicked on a card)
+2. searchTerm filter (debounced 300ms, matches against project name)
+3. wallet multi-select filter (tags contain selected wallet names)
+   Special: "Direct Wallet" means project has NO wallet tag matching WALLETS list
+4. category multi-select filter (tags contain selected category names, case-insensitive)
+5. token single-select filter (tags contain token name, uppercase comparison)
+6. sort: DATE_DESC / DATE_ASC / NAME_ASC / NAME_DESC
+7. pagination: slice by currentPage * projectsPerPage (options: 10, 25, 50)
+
+================================================================================
+ROOM DATABASE
+================================================================================
+
+@Entity(tableName = "claim_items")
+data class ClaimItemEntity(
+    @PrimaryKey val id: String,
+    val name: String,
+    val url: String,
+    val notes: String,
+    val claimDate: String?,
+    val dateAdded: Long
+)
+
+@Dao interface ClaimItemDao with: insert, delete, updateNotes, updateClaimDate, getAll (Flow), getById
+
+Settings stored in DataStore (Preferences): accentColor (#38B000 default), fontFamily (Inter default), fontSize (16 default)
+
+================================================================================
+UI — JETPACK COMPOSE SCREENS
+================================================================================
+
+=== 1. Main Dashboard Screen ===
+
+Header: Logo (circular, 45dp) + "iCryptos" title (Syne font, green glow) + Claim List icon + Refresh icon + Guide icon
+
+Source Chips Row: Horizontal LazyRow of chips: All, Earning, Investments, Casinos, Airdrops
+- Active chip: green background (#70E000), dark text
+- Inactive: card background (#0D5A2E), light text
+
+Date Picker Row: Horizontal LazyRow of date items (10 days past to 20 days future)
+- Each item: 65dp wide, 80dp tall, rounded card showing day number + month abbreviation
+- Today: green active state
+
+Search Row: Rounded search bar (pill shape) with search icon + inline TextField + filter icon button + sort icon button (green square)
+
+Filter Bottom Sheet: Token dropdown (single select), Wallet multi-select dropdown (with Select All / Clear All controls), Category multi-select dropdown, Apply + Clear All buttons
+
+Sort Bottom Sheet: Radio buttons (Newest/Oldest/Name A-Z/Name Z-A) + Projects per page selector (10/25/50)
+
+Active Filter Chip: When a tag is active, show a small bar with the tag name and an X to clear it
+
+Project List (LazyColumn):
+- Each card shows: icon, name, date, wallet badge (colored pill), tags row (clickable), action buttons row
+- Action buttons: Share, Copy Link, Bookmark (toggle)
+- If tags contain "NotActive": red border, disabled link, "Status: Not Active" badge
+- Cards animate in with fade-in-up on first appearance
+- Skeleton shimmer loaders while fetching
+- IntersectionObserver equivalent: use LazyColumn item animations
+
+Load More: Show at bottom of list when there are more pages. "Load More" button. When tapped, append next page. When all loaded, hide.
+
+Banner Slider: Auto-rotating image carousel (5s interval) with dot indicators. Uses Coil for images. HorizontalPager or manual.
+
+=== 2. Claim List Screen ===
+
+Full screen showing bookmarked projects.
+Each item: project name (link), notes TextField, "Next Claim" date picker, remove button, "Visit Project" button
+Export button at top downloads JSON file
+Empty state: bookmark icon + "No projects saved yet."
+
+=== 3. Settings Screen ===
+
+Accent color picker (color palette/dialog)
+Font family selector (Inter, Syne, JetBrains Mono, Arial)
+Font size selector (Small 14, Normal 16, Large 18)
+
+=== 4. Bottom Navigation ===
+
+5 items: Learn, Chat, Search (center prominent circle button with green glow), News, Settings
+Learn and News open WebView or Custom Tab to their respective Blogger blog URLs
+Chat opens a WebView with Minnit chat: https://organizations.minnit.chat/436125458391812/Main?embed&nickname=
+Search center button scrolls to top and focuses search bar
+
+================================================================================
+COLOR SCHEME
+================================================================================
+
+--cp-dark-spruce: #004B23       (background)
+--cp-dark-green: #006400
+--cp-forest-green: #007200
+--cp-pure-green: #008000
+--cp-bright-fern: #38B000      (accent)
+--cp-radioactive-grass: #70E000 (primary button, active states)
+--cp-slime-lime: #9EF01A
+--cp-chartreuse: #CCFF33        (title text, live text)
+--cp-card-bg: #0D5A2E
+--cp-primary-text: #E8F5E9
+--cp-secondary-text: #A5D6A7
+--cp-light-bg: #0A4F26
+--cp-border-color: #1B6E3A
+--cp-red: #FF3B3B
+--cp-green: #2ECC71
+--cp-blue: #3498DB
+
+FONTS:
+- Headings: 'Syne' (sans-serif, bold 700-800)
+- Body: 'Inter' (sans-serif)
+- Mono/Data: 'JetBrains Mono' (for dates, stats)
+
+Use Google Fonts Android library or bundle them.
+
+BORDER RADIUS:
+- Cards: 18dp
+- Search bar: 999dp (pill)
+- Buttons/chips: 12dp
+- Modals/bottom sheets: 24dp top corners
+
+GLOW EFFECTS:
+- Text shadow on title (green glow)
+- Box shadow on active/refresh elements (green glow)
+- Neon glow on stats numbers
+
+================================================================================
+ANDROID TECH STACK
+================================================================================
+
+- Language: Kotlin
+- UI: Jetpack Compose + Material 3
+- Architecture: MVVM with Repository pattern
+- DI: Hilt
+- Navigation: Navigation Compose with bottom nav bar
+- Networking: Retrofit + OkHttp (for Blogger Atom XML feeds)
+- XML Parsing: XmlPullParser
+- Image Loading: Coil (for banners, logos)
+- Database: Room (claim list persistence)
+- Preferences: DataStore (settings)
+- Animation: Compose animation APIs (fadeIn, slideInVertically, animateItemPlacement)
+- Pull-to-refresh: Compose material pullToRefresh modifier
+- WebView: For Learn, News, Chat screens
+- Share: Intent.ACTION_SEND
+- Background sync: WorkManager (optional, for periodic feed refresh)
+- Testing: JUnit, Compose UI tests
+
+================================================================================
+PROJECT FILE STRUCTURE
+================================================================================
+
+app/src/main/java/com/icryptos/dashboard/
+├── MainActivity.kt
+├── iCryptosApp.kt (@HiltAndroidApp)
+├── di/
+│   ├── AppModule.kt
+│   ├── DatabaseModule.kt
+│   └── NetworkModule.kt
+├── data/
+│   ├── model/
+│   │   ├── Project.kt
+│   │   ├── ClaimItem.kt
+│   │   ├── SortOrder.kt
+│   │   └── Source.kt
+│   ├── remote/
+│   │   ├── BloggerApi.kt (Retrofit interface)
+│   │   ├── BloggerFeedParser.kt (XmlPullParser)
+│   │   └── SourceConfig.kt (source URLs, banners, wallet links)
+│   ├── local/
+│   │   ├── AppDatabase.kt
+│   │   ├── ClaimItemDao.kt
+│   │   └── ClaimItemEntity.kt
+│   ├── datastore/
+│   │   └── SettingsDataStore.kt
+│   └── repository/
+│       ├── ProjectRepository.kt
+│       └── ClaimRepository.kt
+├── ui/
+│   ├── navigation/
+│   │   ├── NavGraph.kt
+│   │   └── BottomNavItem.kt
+│   ├── theme/
+│   │   ├── Color.kt
+│   │   ├── Theme.kt
+│   │   ├── Type.kt
+│   │   └── Dimens.kt
+│   ├── dashboard/
+│   │   ├── DashboardScreen.kt
+│   │   ├── DashboardViewModel.kt
+│   │   ├── components/
+│   │   │   ├── SourceChipsRow.kt
+│   │   │   ├── DatePickerRow.kt
+│   │   │   ├── SearchBar.kt
+│   │   │   ├── ProjectCard.kt
+│   │   │   ├── BannerCarousel.kt
+│   │   │   ├── SkeletonCard.kt
+│   │   │   ├── ActiveFilterChip.kt
+│   │   │   ├── StatsSection.kt
+│   │   │   └── FeaturesGrid.kt
+│   │   └── filter/
+│   │       ├── FilterBottomSheet.kt
+│   │       ├── SortBottomSheet.kt
+│   │       └── WalletCategoryDropdown.kt
+│   ├── claimlist/
+│   │   ├── ClaimListScreen.kt
+│   │   └── ClaimListViewModel.kt
+│   ├── settings/
+│   │   ├── SettingsScreen.kt
+│   │   └── SettingsViewModel.kt
+│   ├── webview/
+│   │   └── WebViewScreen.kt
+│   └── common/
+│       ├── ToastHelper.kt
+│       └── Extensions.kt
+└── util/
+    ├── Constants.kt
+    └── NetworkMonitor.kt
+
+res/
+├── values/
+│   ├── strings.xml
+│   ├── colors.xml
+│   └── themes.xml
+├── drawable/ (app icon, splash)
+└── fonts/ (Inter, Syne, JetBrains Mono .ttf files)
+
+================================================================================
+BEHAVIORAL DETAILS TO REPLICATE EXACTLY
+================================================================================
+
+1. On first load, default to "Earning" source (not "All")
+2. Tags section at bottom: collapsible, shows unique tags from current source
+3. Stats section: shows total project count
+4. Features grid: 2x2 cards (Latest Projects, Filter & Search, Customize, App Guide)
+5. Social links section: Telegram, Facebook, Discord, Bento
+6. Footer: legal links (About, FAQ, Changelog, Contact, Terms, Privacy, Cookies, Disclaimer, Affiliates, DMCA, Accessibility, Sitemap) — can be WebViews
+7. Video embed section: Odysee iframe — can be WebView
+8. Toast notifications for: copy success, tag filter applied, filter cleared, bookmark added/removed, export
+9. Network error modal/dialog when offline
+10. Pull-to-refresh swipe gesture to reload current source
+11. All modals close on backdrop tap and have an X close button
+12. Sort dropdowns have Select All and Clear All controls
+13. When a single wallet is selected in filter, show a dynamic promo box: "Don't have an account on [Wallet]? Click here to create one" with the affiliate link
+14. Tag filtering: clicking any tag on any card activates it as the activeTag filter
+15. When a bookmark is added, automatically open the claim list modal
+16. Export claim list as a downloadable JSON file
+17. Settings changes (accent color, font, font size) apply immediately and persist
+18. Cache fetched data in memory so switching sources doesn't re-fetch unless forced (refresh button or pull-to-refresh)
+19. "All" tab fetches all 4 main sources concurrently and merges by date descending
+20. Share button uses Android share intent; Copy button copies URL to clipboard
+
+================================================================================
+PLEASE GENERATE ALL FILES
+================================================================================
+
+Generate every single file listed above with complete, production-ready Kotlin code.
+Use Hilt for dependency injection.
+Use proper MVVM with StateFlow in ViewModels.
+Use sealed classes for UI states (Loading, Success, Error).
+Make sure all Compose previews are annotated where sensible.
+Add proguard-rules.pro for Retrofit/OkHttp if needed.
+Include a build.gradle.kts (app-level and project-level) with all dependencies.
+
+The app should compile and run on Android API 24+ (Android 7.0) with targetSdk 34.
