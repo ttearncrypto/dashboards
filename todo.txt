@@ -3,6 +3,34 @@ website like: https://www.foundrlist.com/feed
 landing page like: https://www.bytebase.com/
 
 
-https://marketplace.affonso.io/
 
-https://mewe.com/
+dont use long dashes (—) in our website.
+in footer add: Made by F9XR Team (url linked to f9xr.org)
+
+
+also add: Open Source at GitHub linked to https://github.com/ttearncrypto/dashboards
+
+add dropdown to top navbar
+
+in footer, add our F9XR Team section with below links:
+https://f9xr.org/articles/
+https://f9xr.org/troolify/
+https://f9xr.org/directories/
+https://f9xr.org/seo-audit-report-skill/
+https://f9xr.org/boredpup/
+https://f9xr.org/dev9b/
+https://f9xr.org/resumio/
+
+
+create HTML Sitemap page and link it to footer
+
+use icons from lucide 
+
+And, of course, each preceding stage in the hierarchy links to the next stage & vice versa! So, the authority juice flows to all the different pages & all the pages also are indexed by Google!
+
+It sounds like you are trying to create a "footer reveal" effect. In this effect, the footer stays fixed behind the main content, and as the user scrolls to the bottom, the content slides up to uncover it.
+
+Complete CSS View Transitions API setup
+
+
+Hey Opencode, As you already know about our site, so now research, how to get FREE backlinks for this site in, create a .md file with a table with list of sites where I can get free backlinks In according to our niche which can help us to grow our website and boost our ranking on google. 

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://ttearncrypto.github.io/dashboards/m-index.html</loc>
+    <loc>https://ttearncrypto.f9xr.org/dashboards/m-index.html</loc>
     <image:image>
       <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
       <image:title>iCryptos Dashboard Logo</image:title>
@@ -27,14 +27,14 @@
     </image:image>
   </url>
   <url>
-    <loc>https://ttearncrypto.github.io/dashboards/index.html</loc>
+    <loc>https://ttearncrypto.f9xr.org/dashboards/index.html</loc>
     <image:image>
       <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
       <image:title>iCryptos Dashboard Logo</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://ttearncrypto.github.io/Home/earncrypto.html</loc>
+    <loc>https://ttearncrypto.f9xr.org/Home/earncrypto.html</loc>
     <image:image>
       <image:loc>https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg</image:loc>
       <image:title>TTEarnCrypto Logo</image:title>

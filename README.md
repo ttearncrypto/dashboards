@@ -46,7 +46,7 @@ python3 -m http.server 8000
 
 - Use the search box to find posts by title or tag.
 - Click tag buttons to filter by category.
-- Change the sort dropdown to reorder results (Newest, Oldest, A–Z).
+- Change the sort dropdown to reorder results (Newest, Oldest, A-Z).
 - Click "Load More" to paginate additional items.
 - Click the bookmark icon on a card to add/remove it from your watchlist (saved in `localStorage`).
 - Use the UI export button to download your watchlist as a CSV file.
@@ -74,11 +74,11 @@ python3 -m http.server 8000
 
 **Files & Structure**
 
-- `index.html` — Default dashboard entry point.
-- `m-index.html` — Mobile or alternative entry (if present).
-- `themes/` — Theme variants (see list above).
-- `assets/` — Static assets (icons, manifests).
-- `newshub/` — Alternative layouts or example pages.
+- `index.html` - Default dashboard entry point.
+- `m-index.html` - Mobile or alternative entry (if present).
+- `themes/` - Theme variants (see list above).
+- `assets/` - Static assets (icons, manifests).
+- `newshub/` - Alternative layouts or example pages.
 
 ---
 

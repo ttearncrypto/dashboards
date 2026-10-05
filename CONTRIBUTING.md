@@ -1,4 +1,4 @@
-# Contributing to F9XR TTEarnCrypto — iCryptos Dashboards
+# Contributing to F9XR TTEarnCrypto - iCryptos Dashboards
 
 Thanks for helping improve the dashboards. This document explains how to run the project locally, make changes, and submit a clean pull request.
 
@@ -48,7 +48,7 @@ When editing feed URLs, ensure the feed supports JSONP (append `?alt=json-in-scr
 ## Code style & scope
 
 - Keep changes localized: update a single theme or the shared script only if you understand the impact on other themes.
-- Avoid large refactors in the same PR — open an issue first for design/architecture discussions.
+- Avoid large refactors in the same PR - open an issue first for design/architecture discussions.
 - Minimize external dependencies; this project is intentionally client-only.
 
 HTML/CSS/JS notes:

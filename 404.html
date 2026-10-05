@@ -151,9 +151,11 @@
             margin-right: 8px;
         }
     </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 
-<body>
+<body class="cp-reveal-body cp-reveal-shell-ink">
+<div class="cp-reveal-shell cp-reveal-shell-ink">
     <!-- Top Navigation -->
     <header class="w-full py-6 px-8 relative z-20 flex justify-between items-center footer-line border-b border-gray-800">
         <a href="/dashboards/" class="text-2xl font-light tracking-wide text-white">
@@ -191,87 +193,91 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full relative z-20 px-8 pt-16 pb-8 bg-transparent">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 lg:gap-8 mb-16">
-            
-            <!-- Left Brand Side -->
-            <div class="md:w-1/4">
-                <a href="/dashboards/" class="text-2xl font-light tracking-wide text-white block mb-6">
-                    TTEarnCrypto
-                </a>
-                <div class="text-[0.8rem] text-gray-500 leading-relaxed">
-                    Org. nr.: 913 919 971 MVA<br>
-                    TTEarnCrypto Systems AS<br>
-                    Christian Krohgs gate 16, 0186, Oslo, Norway
-                </div>
-            </div>
+  <div class="cp-footer-reveal">
+<footer class="cp-footer" aria-label="Site footer">
+    <div class="cp-footer-inner">
+      <div class="cp-footer-grid">
 
-            <!-- Links Grid -->
-            <div class="md:w-3/4 grid grid-cols-2 md:grid-cols-5 gap-8">
-                <!-- Products -->
-                <div>
-                    <h3 class="footer-column-title">Products</h3>
-                    <a href="#" class="footer-link flex items-center"><span class="product-icon">D</span> Dashboard</a>
-                    <a href="#" class="footer-link flex items-center"><span class="product-icon">P</span> Portfolio</a>
-                    <a href="#" class="footer-link flex items-center"><span class="product-icon">L</span> Live Center</a>
-                </div>
-                
-                <!-- Use Cases -->
-                <div>
-                    <h3 class="footer-column-title">Use Cases</h3>
-                    <a href="#" class="footer-link">Media & Publishers</a>
-                    <a href="#" class="footer-link">Financial Services</a>
-                    <a href="#" class="footer-link">Crypto Market</a>
-                </div>
-
-                <!-- Pricing -->
-                <div>
-                    <h3 class="footer-column-title">Pricing</h3>
-                    <a href="#" class="footer-link">Dashboard</a>
-                    <a href="#" class="footer-link">Portfolio</a>
-                    <a href="#" class="footer-link">Live Center</a>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h3 class="footer-column-title">Resources</h3>
-                    <a href="#" class="footer-link">Blog</a>
-                    <a href="#" class="footer-link">Case Studies</a>
-                    <a href="#" class="footer-link">Events</a>
-                </div>
-
-                <!-- Company -->
-                <div>
-                    <h3 class="footer-column-title">Company</h3>
-                    <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Careers</a>
-                    <a href="#" class="footer-link">Contact Us</a>
-                </div>
-            </div>
-            
-            <!-- Contact (Far Right) -->
-            <div class="md:w-[15%] hidden lg:block">
-                 <h3 class="footer-column-title">Contact Us</h3>
-                 <a href="mailto:contact@ttearncrypto.com" class="footer-link">contact@ttearncrypto.com</a>
-                 <a href="mailto:support@ttearncrypto.com" class="footer-link">support@ttearncrypto.com</a>
-                 <a href="mailto:sales@ttearncrypto.com" class="footer-link">sales@ttearncrypto.com</a>
-            </div>
+        <div class="cp-footer-brand">
+          <a class="cp-footer-logo" href="index.html">
+            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
+            <span>iCryptos</span>
+          </a>
+          <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
+          <div class="cp-footer-social">
+            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
+          </div>
         </div>
 
-        <!-- Bottom Bar -->
-        <div class="max-w-7xl mx-auto footer-line pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-            <div class="flex gap-6 mb-4 md:mb-0">
-                <span>Copyright 2024 &copy; TTEarnCrypto</span>
-                <a href="#" class="hover:text-gray-300 transition">Terms & Conditions</a>
-                <a href="#" class="hover:text-gray-300 transition">Privacy Policy</a>
-            </div>
-            <div class="flex gap-4 text-base">
-                <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
-    </footer>
+        <nav class="cp-footer-col" aria-label="Platform">
+          <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
+          <ul>
+            <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
+            <li><a href="m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
+            <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
+            <li><a href="themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
+            <li><a href="newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
+            <li><a href="page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Resources">
+          <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
+          <ul>
+            <li><a href="page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
+            <li><a href="page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
+            <li><a href="page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
+            <li><a href="page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
+            <li><a href="page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
+            <li><a href="page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
+            <li><a href="page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Legal">
+          <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
+          <ul>
+            <li><a href="page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
+            <li><a href="page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
+            <li><a href="page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
+            <li><a href="page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
+            <li><a href="page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
+            <li><a href="page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
+          <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
+          <ul>
+            <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
+          <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
+          <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
+          <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
+          <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
+          <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
+          <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
+          <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="cp-footer-bottom">
+        <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
+        <ul class="cp-footer-meta">
+          <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
+          <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
+          <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="page/sitemap.html">HTML Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  </div>
+  </div>
 
     <!-- Wavy Background Generation Script -->
     <script>
@@ -357,5 +363,7 @@
             animate(); // Start the subtle animation
         });
     </script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.552.0/dist/umd/lucide.min.js" defer></script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

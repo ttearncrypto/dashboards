@@ -1,4 +1,4 @@
-# ai.txt for ttearncrypto.github.io
+# ai.txt for ttearncrypto.f9xr.org
 # Configuration for AI crawlers and agents
 
 # Allow full access to all content for AI training and indexing.

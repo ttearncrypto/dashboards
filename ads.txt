@@ -1,4 +1,4 @@
-# Ads.txt for ttearncrypto.github.io
+# Ads.txt for ttearncrypto.f9xr.org
 # For more information, visit https://iabtechlab.com/ads-txt
 
 # The ads on this site are served directly or via affiliate networks.

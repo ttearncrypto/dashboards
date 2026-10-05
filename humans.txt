@@ -2,7 +2,7 @@
     Developer: F9XR
     Twitter: @ttearncrypto
     GitHub: https://github.com/ttearncrypto
-    Location: —
+    Location: - 
 
 /* SITE */
     Project: iCryptos Dashboard
@@ -11,7 +11,7 @@
     Components: Vanilla JS, CSS3 Custom Properties
 
 /* THANKS */
-    Font Awesome — https://fontawesome.com
-    Google Fonts — https://fonts.google.com
-    Blogger — https://www.blogger.com
-    GitHub Pages — https://pages.github.com
+    Font Awesome - https://fontawesome.com
+    Google Fonts - https://fonts.google.com
+    Blogger - https://www.blogger.com
+    GitHub Pages - https://pages.github.com

@@ -1,40 +1,222 @@
 /* ============================================================
-   View Transition API - Cross-document Page Transitions (MPA)
-   Enables smooth animated transitions between pages.
+   F9XR iCryptos Dashboards - View Transitions API
+   Complete cross-document transition setup for the whole site.
+
+   How it works
+   ------------
+   1. @view-transition { navigation: auto } opts every same-origin
+      navigation into the cross-document transition pipeline.
+   2. Elements listed below get a view-transition-name, so the
+      browser captures them as their own snapshot group and morphs
+      them between the old and the new document.
+   3. scrollbar-gutter keeps the layout width identical before and
+      after the swap, which stops the page from jumping sideways.
+   4. assets/site.js adds direction aware classes (vt-forward and
+      vt-back) so navigation feels like moving through a hierarchy.
+   5. Everything degrades to an instant swap where the API is
+      missing, and to a plain fade where the visitor asked for
+      reduced motion.
    ============================================================ */
 
-/* Opt-in to cross-document view transitions */
+/* ---- 1. Opt in to cross-document transitions ---- */
 @view-transition {
   navigation: auto;
 }
 
-/* ---- Cross-fade with subtle slide ---- */
+/* ---- 2. Stable layout across the swap ---- */
+html {
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---- 3. Named groups ---- */
+
+/* Every page shares the same sticky top bar, so it stays put and
+   only cross-fades instead of sliding across the screen. */
+header.cp-page-header,
+header.cp-header,
+body > header:first-of-type {
+  view-transition-name: site-header;
+}
+
+/* The footer reveal parks the footer behind the shell. Give it its
+   own group so it fades up as the shell uncovers it. */
+footer.cp-footer,
+.cp-footer-reveal > footer {
+  view-transition-name: site-footer;
+}
+
+/* Page title morphs so the visitor keeps their bearings.
+   Only the first matching element in a document is captured, the
+   rest fall back to the root snapshot. */
+main h1 {
+  view-transition-name: page-title;
+}
+
+/* ---- 4. Root transition (page body) ---- */
 ::view-transition-old(root) {
-  animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out-slide-up;
+  animation: 320ms cubic-bezier(0.4, 0, 0.2, 1) both cp-vt-out-up;
 }
 
 ::view-transition-new(root) {
-  animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in-slide-up;
+  animation: 320ms cubic-bezier(0.4, 0, 0.2, 1) both cp-vt-in-up;
 }
 
-@keyframes fade-out-slide-up {
+/* Direction aware: moving deeper slides one way, going back the other */
+html.vt-back ::view-transition-old(root) {
+  animation-name: cp-vt-out-down;
+}
+
+html.vt-back ::view-transition-new(root) {
+  animation-name: cp-vt-in-down;
+}
+
+@keyframes cp-vt-out-up {
   from {
     opacity: 1;
     transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-24px);
   }
 }
 
-@keyframes fade-in-slide-up {
+@keyframes cp-vt-in-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes cp-vt-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes cp-vt-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- 5. Header group: stays anchored, cross-fades only ---- */
+::view-transition-group(site-header) {
+  animation-duration: 260ms;
+  z-index: 30;
+}
+
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+  mix-blend-mode: normal;
+  height: 100%;
+  overflow: clip;
+}
+
+/* ---- 6. Footer group: rises into place ---- */
+::view-transition-group(site-footer) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+::view-transition-old(site-footer) {
+  animation: 240ms ease both cp-vt-fade-out;
+}
+
+::view-transition-new(site-footer) {
+  animation: 420ms cubic-bezier(0.16, 1, 0.3, 1) both cp-vt-footer-up;
+}
+
+@keyframes cp-vt-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes cp-vt-footer-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- 7. Title group: subtle scale, no vertical travel ---- */
+::view-transition-group(page-title) {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(page-title) {
+  animation: 200ms ease both cp-vt-fade-out;
+}
+
+::view-transition-new(page-title) {
+  animation: 360ms cubic-bezier(0.16, 1, 0.3, 1) both cp-vt-title-in;
+}
+
+@keyframes cp-vt-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- 8. Shared catch-all for any other named group ---- */
+::view-transition-group(*) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- 9. Accessibility: honour reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- 10. Support probe: show a one time hint when unsupported ---- */
+@supports not (view-transition-name: none) {
+  .cp-reveal-shell {
+    /* footer reveal still works, it does not depend on the API */
+    min-height: 100vh;
   }
 }

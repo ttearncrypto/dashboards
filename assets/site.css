@@ -1,0 +1,850 @@
+/* ============================================================
+   F9XR iCryptos Dashboards - Shared Site Chrome
+   Nav dropdown, footer, footer reveal, pager, sitemap, icons
+   Framework agnostic. Works on light and dark pages.
+   ============================================================ */
+
+:root {
+  --cp-f-bg: #04150b;
+  --cp-f-surface: #061c10;
+  --cp-f-surface-2: #0a2416;
+  --cp-f-border: #14432a;
+  --cp-f-text: #e8f5e9;
+  --cp-f-muted: #a5d6a7;
+  --cp-f-dim: #7fae85;
+  --cp-f-accent: #70e000;
+  --cp-f-accent-2: #ccff33;
+  --cp-shell-bg: var(--cp-bg, #ffffff);
+  --cp-foot-h: 62vh;
+}
+
+/* ---------- Lucide icon normalisation ---------- */
+svg.lucide {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  stroke-width: 2;
+  vertical-align: -0.125em;
+}
+
+.cp-ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.cp-ic-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(112, 224, 0, 0.12);
+  border: 1px solid rgba(112, 224, 0, 0.28);
+  color: var(--cp-f-accent);
+  font-size: 1.05rem;
+}
+
+.cp-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   1. FOOTER REVEAL
+   The footer starts parked off the bottom of the viewport and
+   slides fully into view once the visitor reaches the end of the
+   page. assets/site.js adds .is-revealed and publishes the real
+   footer height as --cp-foot-h, which the shell uses as clearance
+   so the fixed footer never covers the last block of content or
+   the prev and next pager.
+   ============================================================ */
+
+.cp-reveal-body {
+  position: relative;
+  min-height: 100vh;
+  /* Matches the shell so overscroll bounce does not flash a dark band */
+  background-color: var(--cp-shell-bg, var(--cp-f-bg));
+}
+
+.cp-reveal-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  /* Clearance for the fixed footer once it is revealed */
+  padding-bottom: var(--cp-foot-h);
+  background-color: var(--cp-shell-bg);
+}
+
+.cp-reveal-shell-light {
+  --cp-shell-bg: #ffffff;
+}
+
+.cp-reveal-shell-dark {
+  --cp-shell-bg: #004b23;
+}
+
+.cp-reveal-shell-ink {
+  --cp-shell-bg: #080a0f;
+}
+
+.cp-footer-reveal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Above the page content and the pager, below dialogs */
+  z-index: 40;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    visibility 0s linear 0.5s;
+  will-change: transform;
+}
+
+.cp-footer-reveal.is-revealed {
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+/* Static fallback for pages with fixed bottom nav or modals */
+.cp-footer-static {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-footer-reveal {
+    transition: none;
+  }
+  .cp-footer-reveal.is-revealed {
+    transition: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .cp-footer-reveal {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+  .cp-reveal-body,
+  .cp-reveal-shell {
+    background-color: transparent;
+    min-height: 0;
+  }
+  .cp-reveal-shell {
+    padding-bottom: 0;
+  }
+}
+
+/* Printing must not clip the footer */
+@media print {
+  .cp-reveal-body,
+  .cp-reveal-shell {
+    min-height: 0;
+    background: transparent;
+  }
+  .cp-reveal-shell {
+    padding-bottom: 0;
+  }
+  .cp-footer-reveal {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    visibility: visible;
+  }
+  .cp-reveal-body {
+    padding-bottom: 0;
+  }
+  .cp-pager,
+  .cp-back-to-top,
+  #back-to-top {
+    display: none;
+  }
+}
+
+/* ============================================================
+   2. SHARED FOOTER
+   ============================================================ */
+
+.cp-footer {
+  background: var(--cp-f-surface);
+  background-image: linear-gradient(180deg, var(--cp-f-surface) 0%, var(--cp-f-bg) 100%);
+  border-top: 1px solid var(--cp-f-border);
+  color: var(--cp-f-dim);
+  font-family: var(--cp-font-body, 'Inter', system-ui, sans-serif);
+}
+
+.cp-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px 24px;
+}
+
+.cp-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(4, minmax(140px, 1fr));
+  gap: 32px 24px;
+}
+
+.cp-footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-family: var(--cp-font-heading, 'Syne', sans-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 14px;
+}
+.cp-footer-logo:hover {
+  color: var(--cp-f-accent);
+  text-decoration: none;
+}
+.cp-footer-logo img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--cp-f-accent);
+  object-fit: cover;
+}
+
+.cp-footer-blurb {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  max-width: 34ch;
+  margin-bottom: 20px;
+}
+
+.cp-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cp-footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--cp-f-border);
+  color: var(--cp-f-muted);
+  font-size: 1rem;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.cp-footer-social a:hover {
+  color: #04150b;
+  background: var(--cp-f-accent);
+  border-color: var(--cp-f-accent);
+  transform: translateY(-2px);
+}
+
+.cp-footer-col h2 {
+  font-family: var(--cp-font-heading, 'Syne', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cp-footer-col h2 svg.lucide {
+  color: var(--cp-f-accent);
+}
+
+.cp-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.cp-footer-col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.83rem;
+  color: var(--cp-f-dim);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+.cp-footer-col a:hover {
+  color: var(--cp-f-accent);
+  gap: 10px;
+  text-decoration: none;
+}
+.cp-footer-col a svg.lucide {
+  opacity: 0.55;
+}
+.cp-footer-col a:hover svg.lucide {
+  opacity: 1;
+}
+
+.cp-footer-team {
+  border-left: 1px solid var(--cp-f-border);
+  padding-left: 20px;
+}
+
+.cp-footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cp-f-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  font-size: 0.78rem;
+}
+
+.cp-footer-copy {
+  color: var(--cp-f-dim);
+}
+
+.cp-footer-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+}
+.cp-footer-meta > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.cp-footer-meta a {
+  color: var(--cp-f-muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+.cp-footer-meta a:hover {
+  color: var(--cp-f-accent);
+  text-decoration: underline;
+}
+.cp-footer-meta svg.lucide {
+  color: var(--cp-f-accent);
+}
+.cp-footer-madeby svg.lucide {
+  color: #ff4d6d;
+}
+.cp-footer-madeby a {
+  color: var(--cp-f-accent-2);
+}
+
+.cp-badge-new {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(112, 224, 0, 0.16);
+  border: 1px solid rgba(112, 224, 0, 0.4);
+  color: var(--cp-f-accent);
+  margin-left: 2px;
+}
+
+@media (max-width: 980px) {
+  .cp-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cp-footer-brand {
+    grid-column: 1 / -1;
+  }
+  .cp-footer-team {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .cp-footer-inner {
+    padding: 36px 16px 20px;
+  }
+  .cp-footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+  .cp-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   3. NAV DROPDOWN
+   Built on details and summary so it works without JavaScript.
+   ============================================================ */
+
+.cp-nav {
+  position: relative;
+}
+
+.cp-page-header .cp-header-nav .cp-nav-dd {
+  margin-left: 16px;
+}
+.cp-page-header .cp-header-nav .cp-nav-dd > summary {
+  color: inherit;
+}
+
+.cp-nav-dd {
+  position: relative;
+  display: inline-block;
+}
+
+.cp-nav-dd > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--cp-border-color, rgba(165, 214, 167, 0.35));
+  color: var(--cp-secondary-text, #a5d6a7);
+  background: rgba(255, 255, 255, 0.04);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.cp-nav-dd > summary::-webkit-details-marker {
+  display: none;
+}
+.cp-nav-dd > summary:hover,
+.cp-nav-dd[open] > summary {
+  color: var(--cp-live-text, #ccff33);
+  border-color: var(--cp-accent, #38b000);
+  background: rgba(112, 224, 0, 0.1);
+}
+.cp-nav-dd > summary:focus-visible {
+  outline: 2px solid var(--cp-accent, #38b000);
+  outline-offset: 2px;
+}
+.cp-nav-dd > summary svg.lucide {
+  font-size: 1rem;
+}
+.cp-dd-caret {
+  transition: transform 0.2s ease;
+}
+.cp-nav-dd[open] .cp-dd-caret {
+  transform: rotate(180deg);
+}
+
+.cp-nav-dd-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 120;
+  width: 300px;
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  padding: 14px;
+  border-radius: 16px;
+  background: #061c10;
+  border: 1px solid var(--cp-border-color, #14432a);
+  box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.75);
+}
+
+.cp-nav-dd-panel .cp-dd-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cp-f-dim);
+  margin: 12px 0 6px;
+}
+.cp-nav-dd-panel .cp-dd-label:first-child {
+  margin-top: 0;
+}
+
+.cp-nav-dd-panel a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cp-f-text, #e8f5e9);
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+.cp-nav-dd-panel a:hover {
+  background: rgba(112, 224, 0, 0.12);
+  color: var(--cp-f-accent, #70e000);
+}
+.cp-nav-dd-panel a svg.lucide {
+  color: var(--cp-f-accent, #70e000);
+  opacity: 0.85;
+}
+.cp-nav-dd-panel a span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.cp-nav-dd-panel a small {
+  font-size: 0.68rem;
+  color: var(--cp-f-dim);
+  font-weight: 400;
+}
+.cp-nav-dd-panel .cp-dd-sep {
+  height: 1px;
+  background: var(--cp-f-border);
+  margin: 12px 4px;
+}
+
+/* Light page variant */
+.cp-nav-dd-light > summary {
+  border-color: #e5e7eb;
+  color: #4b5563;
+  background: #ffffff;
+}
+.cp-nav-dd-light > summary:hover,
+.cp-nav-dd-light[open] > summary {
+  color: #006400;
+  border-color: #a5d6a7;
+  background: #e8f5e9;
+}
+.cp-nav-dd-light .cp-nav-dd-panel {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.18);
+}
+.cp-nav-dd-light .cp-nav-dd-panel a {
+  color: #374151;
+}
+.cp-nav-dd-light .cp-nav-dd-panel a:hover {
+  background: #f0fdf4;
+  color: #006400;
+}
+.cp-nav-dd-light .cp-nav-dd-panel a svg.lucide {
+  color: #38b000;
+}
+.cp-nav-dd-light .cp-nav-dd-panel small,
+.cp-nav-dd-light .cp-nav-dd-panel .cp-dd-label {
+  color: #6b7280;
+}
+.cp-nav-dd-light .cp-nav-dd-panel .cp-dd-sep {
+  background: #e5e7eb;
+}
+
+@media (max-width: 640px) {
+  .cp-nav-dd-panel {
+    width: min(84vw, 320px);
+  }
+  .cp-page-header .cp-header-nav .cp-nav-dd {
+    margin-left: 10px;
+  }
+}
+
+/* ============================================================
+   4. PREV / NEXT PAGER
+   Chains every page to its neighbour in the hierarchy.
+   ============================================================ */
+
+.cp-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 40px 0 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--cp-border-color, rgba(165, 214, 167, 0.25));
+  font-family: var(--cp-font-body, 'Inter', sans-serif);
+}
+
+.cp-pager-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--cp-border-color, rgba(165, 214, 167, 0.25));
+  background: var(--cp-card-bg, rgba(255, 255, 255, 0.04));
+  color: var(--cp-primary-text, #e8f5e9);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.cp-pager-link:hover {
+  border-color: var(--cp-accent, #38b000);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.cp-pager-link[aria-hidden="true"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+.cp-pager-link svg.lucide {
+  color: var(--cp-accent, #38b000);
+  font-size: 1.1rem;
+}
+.cp-pager-link .cp-pager-dir {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cp-secondary-text, #a5d6a7);
+}
+.cp-pager-link .cp-pager-title {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cp-pager-next {
+  text-align: right;
+  justify-content: flex-end;
+}
+.cp-pager-home {
+  flex: 0 0 auto;
+  align-self: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cp-border-color, rgba(165, 214, 167, 0.25));
+  color: var(--cp-live-text, #ccff33);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cp-pager-home:hover {
+  border-color: var(--cp-accent, #38b000);
+  text-decoration: none;
+}
+
+@media (max-width: 560px) {
+  .cp-pager {
+    flex-direction: column;
+  }
+  .cp-pager-link {
+    flex: 1 1 100%;
+  }
+}
+
+/* Light page variant */
+.cp-pager-light .cp-pager-link {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  color: #111827;
+}
+.cp-pager-light .cp-pager-link .cp-pager-dir {
+  color: #6b7280;
+}
+.cp-pager-light .cp-pager-link svg.lucide {
+  color: #38b000;
+}
+.cp-pager-light {
+  border-top-color: #e5e7eb;
+}
+.cp-pager-light .cp-pager-home {
+  border-color: #e5e7eb;
+  color: #006400;
+}
+
+/* ============================================================
+   5. HTML SITEMAP PAGE
+   ============================================================ */
+
+.cp-sm-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+}
+
+.cp-sm-hero {
+  border: 1px solid var(--cp-border-color);
+  border-radius: 20px;
+  background: linear-gradient(140deg, var(--cp-card-bg), var(--cp-bg));
+  padding: 28px 26px;
+  margin-bottom: 32px;
+}
+.cp-sm-hero h1 {
+  font-family: var(--cp-font-heading, 'Syne', sans-serif);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  margin: 12px 0 10px;
+  color: var(--cp-live-text, #ccff33);
+}
+.cp-sm-hero p {
+  color: var(--cp-secondary-text, #a5d6a7);
+  font-size: 0.95rem;
+  max-width: 62ch;
+}
+.cp-sm-stats {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cp-sm-stats li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--cp-font-mono, monospace);
+  font-size: 0.78rem;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--cp-border-color);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--cp-secondary-text, #a5d6a7);
+}
+.cp-sm-stats strong {
+  color: var(--cp-live-text, #ccff33);
+}
+
+.cp-sm-section {
+  margin-bottom: 26px;
+  border: 1px solid var(--cp-border-color);
+  border-radius: 20px;
+  background: var(--cp-card-bg);
+  overflow: hidden;
+}
+
+.cp-sm-section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--cp-font-heading, 'Syne', sans-serif);
+  font-size: 1.05rem;
+  color: var(--cp-primary-text, #e8f5e9);
+  margin: 0;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cp-border-color);
+  background: rgba(0, 0, 0, 0.18);
+}
+.cp-sm-section > h2 svg.lucide {
+  color: var(--cp-accent, #38b000);
+  font-size: 1.15rem;
+}
+.cp-sm-section > h2 .cp-sm-count {
+  margin-left: auto;
+  font-family: var(--cp-font-mono, monospace);
+  font-size: 0.7rem;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(112, 224, 0, 0.14);
+  border: 1px solid rgba(112, 224, 0, 0.3);
+  color: var(--cp-live-text, #ccff33);
+}
+
+.cp-sm-list {
+  list-style: none;
+  padding: 8px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 4px;
+}
+
+.cp-sm-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  color: var(--cp-primary-text, #e8f5e9);
+  text-decoration: none;
+  transition: background 0.18s, transform 0.18s;
+}
+.cp-sm-list a:hover {
+  background: rgba(112, 224, 0, 0.12);
+  transform: translateX(3px);
+  text-decoration: none;
+}
+.cp-sm-list a svg.lucide {
+  color: var(--cp-accent, #38b000);
+  font-size: 1.1rem;
+}
+.cp-sm-list a .cp-sm-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.cp-sm-list a .cp-sm-url {
+  font-family: var(--cp-font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--cp-secondary-text, #a5d6a7);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cp-sm-list a .cp-sm-tag {
+  margin-left: auto;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--cp-secondary-text, #a5d6a7);
+  white-space: nowrap;
+}
+
+.cp-sm-note {
+  border-left: 4px solid var(--cp-radioactive-grass, #70e000);
+  border-radius: 0 14px 14px 0;
+  background: rgba(112, 224, 0, 0.07);
+  padding: 16px 20px;
+  margin-bottom: 26px;
+}
+.cp-sm-note p:last-child {
+  margin-bottom: 0;
+}
+.cp-sm-note a {
+  color: var(--cp-live-text, #ccff33);
+}
+
+@media (max-width: 560px) {
+  .cp-sm-page {
+    padding: 24px 16px 56px;
+  }
+  .cp-sm-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

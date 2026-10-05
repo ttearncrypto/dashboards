@@ -61,7 +61,7 @@ Your palette is designed to resemble an advanced financial operations mainframe 
 
 ## 2. Heading Scale Example
 
-* H1 (Dashboard Header): 32pt Syne Extra Bold — Used for main screen welcomes.
+* H1 (Dashboard Header): 32pt Syne Extra Bold - Used for main screen welcomes.
 * Data Counter Numbers: 48pt JetBrains Mono Bold (Set in #CCFF33 Chartreuse).
 * Body / Label Text: 14pt Inter Regular (Set in muted silver-white for readability).
 

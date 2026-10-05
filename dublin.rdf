@@ -4,7 +4,7 @@
   xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:dcterms="http://purl.org/dc/terms/">
 
-  <rdf:Description rdf:about="https://ttearncrypto.github.io/dashboards/">
+  <rdf:Description rdf:about="https://ttearncrypto.f9xr.org/dashboards/">
     <dc:title>iCryptos Dashboard</dc:title>
     <dc:description>A comprehensive dashboard for discovering crypto earning projects, airdrops, faucets, and investments. Updated daily.</dc:description>
     <dc:language>en-US</dc:language>
@@ -14,11 +14,11 @@
     <dc:rights>Copyright 2026 TTEarnCrypto. All rights reserved.</dc:rights>
     <dc:date>2026</dc:date>
     <dc:subject>cryptocurrency, airdrops, faucets, bitcoin, earning, investments</dc:subject>
-    <dc:identifier>https://ttearncrypto.github.io/dashboards/</dc:identifier>
+    <dc:identifier>https://ttearncrypto.f9xr.org/dashboards/</dc:identifier>
     <dcterms:license>https://github.com/ttearncrypto/dashboards/blob/main/LICENSE</dcterms:license>
   </rdf:Description>
 
-  <rdf:Description rdf:about="https://ttearncrypto.github.io/">
+  <rdf:Description rdf:about="https://ttearncrypto.f9xr.org/">
     <dc:title>TTEarnCrypto Home</dc:title>
     <dc:description>Home page for crypto earning opportunities and resources.</dc:description>
     <dc:language>en-US</dc:language>

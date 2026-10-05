@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iCryptos — Crypto Earning, Simplified. | TTEarnCrypto</title>
+    <title>iCryptos - Crypto Earning, Simplified. | TTEarnCrypto</title>
 
     <!-- SEO & Meta Tags -->
-    <meta name="description" content="iCryptos Dashboard by TTEarnCrypto: Your flagship hub for discovering verified crypto earning opportunities, airdrops, and investments. Trusted by 15,000+ users.">
+    <meta name="description" content="iCryptos by TTEarnCrypto: discover verified crypto earning opportunities, airdrops, and investments. Trusted by 15,000+ users.">
     <meta name="keywords" content="crypto, earn crypto, airdrops, crypto dashboard, iCryptos, TTEarnCrypto, crypto opportunities, pc dashboard v2, mobile dashboard, free crypto, faucet list, B2B crypto tools">
     <meta name="author" content="F9XR, TTEarnCrypto">
+    <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="eUs3gO62-qye1PfAW79eLM5uws1KN7DXKVM8bjPADLM" />
-    <meta name="theme-color" content="#004B23">
+    <meta name="theme-color" content="#007200">
 
     <!-- Canonical Tag -->
-    <link rel="canonical" href="https://ttearncrypto.github.io/dashboards/">
+    <link rel="canonical" href="https://ttearncrypto.f9xr.org/dashboards/">
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="iCryptos — Crypto Earning, Simplified.">
+    <meta property="og:title" content="iCryptos - Crypto Earning, Simplified.">
     <meta property="og:description" content="Stop guessing. Start Earning. Discover verified crypto airdrops, investments, and more with our curated dashboards.">
     <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
-    <meta property="og:url" content="https://ttearncrypto.github.io/dashboards/">
+    <meta property="og:url" content="https://ttearncrypto.f9xr.org/dashboards/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="iCryptos Dashboard by TTEarnCrypto">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="iCryptos — Crypto Earning, Simplified.">
+    <meta name="twitter:title" content="iCryptos - Crypto Earning, Simplified.">
     <meta name="twitter:description" content="Discover verified crypto earning opportunities, airdrops, and investments.">
     <meta name="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     <meta name="twitter:site" content="@ttearncrypto">
@@ -78,29 +80,26 @@
     <link rel="stylesheet" href="assets/ColourPalette.css">
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F8F8F8; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Syne', sans-serif; }
-        .kbd { @apply inline-block px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 border border-gray-300 rounded-md; }
-        .filter-btn { @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200; }
-        .filter-btn.active { @apply bg-brand-800 text-white border-brand-800; }
-        .filter-btn:not(.active) { @apply bg-white text-gray-600 border-gray-300 hover:border-brand-500 hover:text-brand-700; }
-        .partner-logo { @apply grayscale opacity-50 transition-all duration-300 hover:grayscale-0 hover:opacity-100; }
-        .glow-card { transition: box-shadow 0.3s ease, transform 0.3s ease; }
-        .glow-card:hover { box-shadow: 0 0 30px rgba(112, 224, 0, 0.15); transform: translateY(-4px); }
-        .hero-gradient { background: linear-gradient(135deg, #001A0D 0%, #004B23 40%, #006400 70%, #001A0D 100%); }
-        .hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
-        .section-fade { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .kbd { display: inline-block; padding: 4px 8px; font-size: 12px; font-weight: 600; color: #374151; background: #F3F4F6; border: 1px solid #D1D5DB; border-radius: 6px; }
+        .tabs-btn { cursor: pointer; padding: 10px 18px; border-radius: 9999px; font-size: 14px; font-weight: 600; color: #6B7280; background: #ffffff; border: 1px solid #E5E7EB; transition: all .2s ease; }
+        .tabs-btn:hover { color: #006400; border-color: #A5D6A7; }
+        .tabs-btn.active { color: #ffffff; background: #004B23; border-color: #004B23; }
+        .filter-btn { cursor: pointer; padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 500; color: #6B7280; background: #ffffff; border: 1px solid #E5E7EB; transition: all .2s ease; }
+        .filter-btn:hover { color: #006400; border-color: #81C784; }
+        .filter-btn.active { color: #ffffff; background: #004B23; border-color: #004B23; }
+        .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 12px; background: #ffffff; border: 1px solid #E5E7EB; font-size: 13px; font-weight: 600; color: #374151; }
+        .hover-card { transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+        .hover-card:hover { border-color: #A5D6A7; box-shadow: 0 12px 24px -12px rgba(0,75,35,0.15); transform: translateY(-3px); }
+        .section-fade { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
         .section-fade.visible { opacity: 1; transform: translateY(0); }
-        .cyber-grid { background-image: linear-gradient(rgba(112,224,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(112,224,0,0.06) 1px, transparent 1px); background-size: 40px 40px; }
-        .cyber-glow { box-shadow: 0 0 30px rgba(112,224,0,0.08), inset 0 0 30px rgba(112,224,0,0.02); }
-        .text-cyber { color: #CCFF33; }
-        .border-cyber { border-color: rgba(112,224,0,0.2); }
-        .glass-card { background: rgba(0,100,0,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(112,224,0,0.15); }
-        .glass-card-strong { background: rgba(0,100,0,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(112,224,0,0.25); }
-        @keyframes pulse-glow { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-        @keyframes tick-up { 0% { transform: translateY(4px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-        .tick-anim { animation: tick-up 0.3s ease-out; }
+        .gradient-text { background: linear-gradient(120deg, #006400, #70E000); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .section-fade { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hover-card { transform: none !important; transition: none !important; }
+        }
     </style>
 
     <!-- SEO Schema Markup -->
@@ -112,71 +111,75 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
       "description": "Verified crypto earning opportunities, airdrops, and investment tracking dashboard.",
-      "url": "https://ttearncrypto.github.io/dashboards",
+      "url": "https://ttearncrypto.f9xr.org/dashboards",
       "author": {
         "@type": "Organization",
         "name": "TTEarnCrypto",
-        "url": "https://ttearncrypto.github.io"
+        "url": "https://ttearncrypto.f9xr.org"
       }
     }
     </script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
-<body class="text-gray-100 bg-[#004B23]">
+<body class="bg-white text-gray-700 antialiased cp-reveal-body cp-reveal-shell-light">
+<div class="cp-reveal-shell cp-reveal-shell-light">
 
     <!-- =================================================================== -->
-    <!-- HEADER — Pill-Shape Cyberpunk Nav                                   -->
+    <!-- HEADER - Clean Light Pill Nav                                       -->
     <!-- =================================================================== -->
     <header class="fixed top-0 left-0 right-0 z-50 p-4">
         <div class="container mx-auto">
-            <nav class="flex items-center w-full bg-[#004B23]/90 backdrop-blur-xl border border-[#006400]/60 rounded-full shadow-lg shadow-black/30 p-1.5 cyber-glow">
-                <a href="#" class="flex items-center gap-2.5 flex-shrink-0 pl-3 pr-4">
-                    <span class="w-9 h-9 rounded-lg border border-[#70E000]/40 flex items-center justify-center bg-[#006400]/50">
-                        <svg class="w-5 h-5 text-[#70E000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <nav class="flex items-center w-full bg-white/90 backdrop-blur-xl border border-gray-200 rounded-full shadow-sm shadow-black/5 p-1.5">
+                <a href="#hero" class="flex items-center gap-2.5 flex-shrink-0 pl-3 pr-4" aria-label="F9XR - back to top">
+                    <span class="w-9 h-9 rounded-lg bg-brand-800 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-[#70E000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </span>
-                    <span class="font-heading font-bold text-lg text-white hidden sm:block">F9XR</span>
-                    <button id="beta-tag" class="bg-[#70E000]/15 text-[#CCFF33] text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#70E000]/30">Beta</button>
+                    <span class="font-heading font-bold text-lg text-gray-900 hidden sm:block">F9XR</span>
                 </a>
+                    <button id="beta-tag" class="bg-brand-600/10 text-brand-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-brand-200 hover:bg-brand-600/20 transition-colors" aria-label="Show beta notice">Beta</button>
 
-                <div class="hidden lg:flex items-center gap-1 px-3 border-l border-r border-[#006400] flex-1 justify-center">
-                    <a href="#" class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-[#70E000] hover:bg-[#006400]/50 rounded-full transition-all">Home</a>
-                    <a href="#dashboards" class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-[#70E000] hover:bg-[#006400]/50 rounded-full transition-all">Features</a>
-                    <a href="page/about.html" class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-[#70E000] hover:bg-[#006400]/50 rounded-full transition-all">About</a>
-                    <a href="page/contact.html" class="px-4 py-1.5 text-sm font-medium text-gray-400 hover:text-[#70E000] hover:bg-[#006400]/50 rounded-full transition-all">Services</a>
+                <div class="hidden lg:flex items-center gap-1 px-3 border-l border-r border-gray-100 flex-1 justify-center">
+                    <a href="#hero" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">Home</a>
+                    <a href="#dashboards" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">Dashboards</a>
+                    <a href="#resources-hub" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">Resources</a>
+                    <a href="#community" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">Community</a>
+                    <a href="page/about.html" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">About</a>
+                    <a href="page/contact.html" class="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-2 pl-3 ml-auto">
-                    <button id="shortcuts-toggle" class="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-[#70E000] hover:bg-[#006400]/50 rounded-full transition-all" title="Keyboard Shortcuts (?)">
-                        <i class="fas fa-keyboard text-sm"></i>
+                    <button id="shortcuts-toggle" class="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-brand-700 hover:bg-brand-50 rounded-full transition-all" title="Keyboard Shortcuts (?)" aria-label="Keyboard shortcuts">
+                    <i class="fas fa-keyboard text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="relative" data-dropdown>
-                        <button class="w-9 h-9 flex items-center justify-center border border-[#006400] rounded-full text-gray-400 hover:border-[#70E000]/40 hover:text-[#70E000] hover:bg-[#006400]/50 transition-all" data-dropdown-button>
-                            <i class="fas fa-layer-group text-sm"></i>
+                        <button class="w-9 h-9 flex items-center justify-center border border-gray-200 rounded-full text-gray-500 hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50 transition-all" data-dropdown-button title="Versions" aria-label="Open versions menu" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-layer-group text-sm" aria-hidden="true"></i>
                         </button>
-                        <div class="absolute right-0 mt-2.5 w-64 bg-[#004B23] border border-[#006400] rounded-2xl shadow-2xl shadow-black/40 hidden text-left overflow-hidden" data-dropdown-menu>
+                        <div class="absolute right-0 mt-2.5 w-64 bg-white border border-gray-200 rounded-2xl shadow-xl shadow-black/10 hidden text-left overflow-hidden" data-dropdown-menu>
                             <div class="lg:hidden">
-                                <a href="#dashboards" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-semibold text-sm">Features</a>
-                                <a href="#resources-hub" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-semibold text-sm">Resources</a>
-                                <a href="#community" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-semibold text-sm">Community</a>
-                                <div class="border-t border-[#006400] mx-4"></div>
-                                <a href="page/about.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">About</a>
-                                <a href="page/contact.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Services</a>
-                                <a href="page/faq.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">FAQs</a>
-                                <div class="border-t border-[#006400] mx-4"></div>
+                                <a href="#dashboards" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-semibold text-sm">Dashboards</a>
+                                <a href="#resources-hub" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-semibold text-sm">Resources</a>
+                                <a href="#community" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-semibold text-sm">Community</a>
+                                <div class="border-t border-gray-100 mx-4"></div>
+                                <a href="page/about.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">About</a>
+                                <a href="page/contact.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Contact</a>
+                                <a href="page/faq.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">FAQs</a>
+                                <div class="border-t border-gray-100 mx-4"></div>
                             </div>
-                            <p class="px-5 pt-3 pb-1 text-[10px] text-gray-500 font-semibold uppercase tracking-widest">Versions</p>
-                            <a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">PC Dashboard <span class="text-[#CCFF33] text-xs ml-1">Flagship</span></a>
-                            <a href="m-index.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Mobile Dashboard</a>
-                            <a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-[#CCFF33] hover:bg-[#006400]/50 font-medium text-sm">Download App (Beta) <i class="fas fa-download ml-1 text-xs"></i></a>
-                            <div class="border-t border-[#006400] mx-4"></div>
-                            <p class="px-5 pt-3 pb-1 text-[10px] text-gray-500 font-semibold uppercase tracking-widest">More</p>
-                            <a href="page/changelog.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Changelog</a>
-                            <a href="page/games.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Games</a>
-                            <a href="page/accessibility.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Accessibility</a>
-                            <a href="page/donate.html" class="block px-5 py-3 text-gray-300 hover:bg-[#006400]/50 hover:text-[#70E000] font-medium text-sm">Donate</a>
+                            <p class="px-5 pt-3 pb-1 text-[10px] text-gray-400 font-semibold uppercase tracking-widest">Versions</p>
+                            <a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">PC Dashboard <span class="text-brand-600 text-xs ml-1">Flagship</span></a>
+                            <a href="m-index.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Mobile Dashboard</a>
+                            <a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-brand-700 hover:bg-brand-50 font-medium text-sm">Download App (Beta) <i class="fas fa-download ml-1 text-xs"></i></a>
+                            <div class="border-t border-gray-100 mx-4"></div>
+                            <p class="px-5 pt-3 pb-1 text-[10px] text-gray-400 font-semibold uppercase tracking-widest">More</p>
+                            <a href="page/changelog.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Changelog</a>
+                            <a href="page/games.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Games</a>
+                            <a href="page/accessibility.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Accessibility</a>
+                            <a href="page/donate.html" class="block px-5 py-3 text-gray-600 hover:bg-brand-50 hover:text-brand-700 font-medium text-sm">Donate</a>
                         </div>
                     </div>
-                    <span class="hidden sm:block text-sm text-gray-400 font-medium">Login</span>
-                    <a href="#dashboards" class="hidden sm:inline-flex items-center px-4 py-2 bg-transparent text-[#70E000] font-bold text-xs rounded-full border border-[#70E000] hover:bg-[#70E000]/10 transition-all">
+                    <span class="hidden sm:block text-sm text-gray-500 font-medium">Login</span>
+                    <a href="#dashboards" class="hidden sm:inline-flex items-center px-4 py-2 bg-brand-800 text-white font-semibold text-xs rounded-full hover:bg-brand-700 transition-all">
                         Register
                     </a>
                 </div>
@@ -186,177 +189,156 @@
 
     <main>
         <!-- =================================================================== -->
-        <!-- HERO SECTION — Centralized Data-Heavy Web3 Mainframe               -->
+        <!-- HERO - Clean Centered Value Prop                                    -->
         <!-- =================================================================== -->
-        <section id="hero" class="relative min-h-screen overflow-hidden hero-gradient">
-            <div class="hero-glow bg-[#70E000] top-[-10%] left-[10%]"></div>
-            <div class="hero-glow bg-[#CCFF33] bottom-[-5%] right-[15%]"></div>
-            <div class="absolute inset-0 cyber-grid"></div>
+        <section id="hero" class="relative overflow-hidden pt-40 pb-20 sm:pt-44">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-50/70 via-white to-white pointer-events-none"></div>
+            <div class="absolute top-[-20%] left-[15%] w-[420px] h-[420px] rounded-full bg-brand-100/60 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-[-30%] right-[10%] w-[480px] h-[480px] rounded-full bg-[#CCFF33]/30 blur-3xl pointer-events-none"></div>
 
-            <div class="relative z-10 container mx-auto px-6 min-h-screen flex flex-col items-center justify-center py-32 lg:py-0">
-
-                <!-- Central Text Block -->
-                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
-                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#006400]/60 border border-[#70E000]/20 rounded-full text-[#70E000] text-xs font-medium mb-6">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#70E000] pulse-glow"></span>
+            <div class="relative z-10 container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-brand-200 rounded-full text-brand-700 text-xs font-semibold mb-8 shadow-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
                         Official Client-Side Dashboards
                     </span>
 
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-tight text-white mb-5">
-                        Maximize Potential With<br>
-                        <span class="text-[#CCFF33]">Secure iCryptos</span>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold leading-tight text-gray-900 mb-6">
+                        The standard for<br>
+                        <span class="gradient-text">crypto earning dashboards</span>
                     </h1>
 
-                    <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                        Monitor your assets with absolute confidence using our advanced client-side solution, engineered to provide unparalleled yield tracking.
+                    <p class="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
+                        TTEarnCrypto's iCryptos is a unified, browser-only platform for discovering, tracking, and claiming
+                        verified airdrops, faucets, and earning opportunities - every major coin, one place.
                     </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="m-index.html" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-800 hover:bg-brand-700 text-white font-bold text-sm rounded-full transition-all shadow-lg shadow-brand-800/20">
+                            Mobile Dashboard <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white hover:bg-brand-50 text-gray-800 border border-gray-300 rounded-full font-semibold text-sm transition-all">
+                            PC Dashboard <span class="text-[10px] font-bold text-brand-700 bg-brand-100 border border-brand-200 rounded-full px-2 py-0.5">Flagship</span>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 mt-12 text-sm text-gray-500">
+                        <span class="font-heading font-bold text-gray-900">15M+ <span class="font-body font-normal text-gray-500">wallets connected</span></span>
+                        <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                        <span class="font-heading font-bold text-gray-900">250+ <span class="font-body font-normal text-gray-500">vetted opportunities</span></span>
+                        <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                        <span class="font-heading font-bold text-gray-900">4.9<span class="text-amber-400">★</span> <span class="font-body font-normal text-gray-500">200k reviews</span></span>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Dashboard Collage Grid -->
-                <div class="w-full max-w-6xl mx-auto">
-                    <!-- Desktop Grid -->
-                    <div class="hidden lg:grid lg:grid-cols-12 gap-0 relative" style="min-height: 420px;">
+        <!-- =================================================================== -->
+        <!-- PRODUCT SHOWCASE - Bytebase-style Tabs                             -->
+        <!-- =================================================================== -->
+        <section id="product" class="py-12 pb-24 section-fade">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-wrap justify-center gap-3 mb-10" data-tabs>
+                        <button class="tabs-btn active" data-tab="pc"><i class="fas fa-desktop mr-2"></i>PC Dashboard</button>
+                        <button class="tabs-btn" data-tab="mobile"><i class="fas fa-mobile-screen-button mr-2"></i>Mobile Dashboard</button>
+                        <button class="tabs-btn" data-tab="airdrop"><i class="fas fa-parachute-box mr-2"></i>Airdrop Radar</button>
+                    </div>
 
-                        <!-- Left: Social Proof Column -->
-                        <div class="col-span-3 row-span-2 flex flex-col justify-center z-10">
-                            <div class="flex -space-x-3 mb-4">
-                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="User" class="w-12 h-12 rounded-full border-2 border-[#004B23]" loading="lazy">
-                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User" class="w-12 h-12 rounded-full border-2 border-[#004B23]" loading="lazy">
-                                <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User" class="w-12 h-12 rounded-full border-2 border-[#004B23]" loading="lazy">
-                                <div class="w-12 h-12 rounded-full border-2 border-[#70E000]/50 bg-[#006400] flex items-center justify-center text-[#70E000] font-mono text-xs font-bold">+</div>
+                    <div class="relative" data-tab-panel="pc">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">One dashboard. Every opportunity.</h2>
+                                <p class="text-gray-500 leading-relaxed mb-8">Our most powerful desktop experience. Plan, review, and track verified airdrops and faucets with live market data, so you never waste time on dead ends.</p>
+                                <a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand-700 font-semibold text-sm hover:text-brand-600">
+                                    Learn more <i class="fas fa-arrow-right text-xs"></i>
+                                </a>
                             </div>
-                            <p class="font-heading font-bold text-3xl text-white">15M+</p>
-                            <p class="text-xs text-gray-500 mt-1">Active Cryptos Wallets Connected</p>
-                        </div>
-
-                        <!-- Center-Left: Profile + Data Transfer Overlay -->
-                        <div class="col-span-3 col-start-3 row-span-1 -ml-10 z-20">
-                            <div class="relative inline-block">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Operator" class="w-44 h-44 rounded-2xl object-cover border-2 border-[#70E000]/20" loading="lazy">
-                                <div class="absolute -bottom-4 -right-4 w-36 bg-[#004B23]/95 backdrop-blur-xl border border-[#70E000]/20 rounded-xl p-3 shadow-xl">
-                                    <div class="flex items-center justify-between text-[10px] text-gray-400 font-mono mb-2">
-                                        <span>Data Transfer</span>
-                                        <span class="text-[#9EF01A]">Live</span>
-                                    </div>
-                                    <svg class="w-full h-8" viewBox="0 0 100 20" fill="none">
-                                        <path d="M0 10 Q15 3 30 10 T60 8 T100 12" stroke="#9EF01A" stroke-width="1.5" fill="none" opacity="0.6"/>
-                                        <circle cx="60" cy="8" r="2.5" fill="#9EF01A"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Center-Right: Main Earning Mainframe Box -->
-                        <div class="col-span-5 col-start-4 row-span-2 -ml-16 z-30">
-                            <div class="bg-white rounded-2xl p-6 shadow-2xl shadow-black/20">
+                            <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg shadow-black/5">
                                 <div class="flex items-center justify-between mb-4">
                                     <span class="text-sm font-heading font-bold text-gray-900">Crypto Yield</span>
                                     <span class="text-[10px] text-gray-400 font-mono bg-gray-100 px-2 py-1 rounded-full">ID: iC-9X2F</span>
                                 </div>
                                 <p class="font-mono text-4xl font-bold text-gray-900 tracking-tight mb-4">$32,234</p>
-                                <div class="bg-[#9EF01A] rounded-xl p-4 -mx-2">
+                                <div class="bg-brand-800 rounded-xl p-4">
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="text-xs font-heading font-bold text-black">New Wallets</span>
-                                        <span class="font-mono text-sm font-bold text-black">45,234</span>
+                                        <span class="text-xs font-heading font-bold text-white">New Wallets</span>
+                                        <span class="font-mono text-sm font-bold text-[#9EF01A]">45,234</span>
                                     </div>
                                     <div class="flex items-end gap-1.5 h-16">
-                                        <div class="flex-1 bg-black/20 rounded-t-md h-[30%]"></div>
-                                        <div class="flex-1 bg-black/20 rounded-t-md h-[45%]"></div>
-                                        <div class="flex-1 bg-black/20 rounded-t-md h-[55%]"></div>
-                                        <div class="flex-1 bg-black/20 rounded-t-md h-[70%]"></div>
-                                        <div class="flex-1 bg-black rounded-t-md h-full"></div>
+                                        <div class="flex-1 bg-white/20 rounded-t-md h-[30%]"></div>
+                                        <div class="flex-1 bg-white/20 rounded-t-md h-[45%]"></div>
+                                        <div class="flex-1 bg-white/20 rounded-t-md h-[55%]"></div>
+                                        <div class="flex-1 bg-white/20 rounded-t-md h-[70%]"></div>
+                                        <div class="flex-1 bg-[#9EF01A] rounded-t-md h-full"></div>
                                     </div>
-                                    <div class="flex justify-between mt-1.5 text-[10px] font-mono text-black/60">
+                                    <div class="flex justify-between mt-1.5 text-[10px] font-mono text-white/60">
                                         <span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Right Top: Network Allocation -->
-                        <div class="col-span-2 col-start-9 row-span-1 -ml-8 z-20">
-                            <div class="bg-[#006400]/90 backdrop-blur-xl border border-[#70E000]/15 rounded-xl p-4 shadow-lg">
-                                <p class="text-[10px] text-gray-400 font-mono mb-3">Network Allocation</p>
-                                <div class="relative h-2 bg-[#004B23] rounded-full overflow-hidden mb-2">
-                                    <div class="absolute left-0 top-0 h-full w-[38%] bg-[#70E000] rounded-full"></div>
-                                </div>
-                                <div class="flex justify-between text-[10px] font-mono">
-                                    <span class="text-gray-500">38.00Gb</span>
-                                    <span class="text-gray-500">100Gb</span>
-                                </div>
+                    <div class="relative hidden" data-tab-panel="mobile">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">The same rules. Everywhere you go.</h2>
+                                <p class="text-gray-500 leading-relaxed mb-8">Optimized for on-the-go earning. Track opportunities, check payouts, and claim rewards from your phone - the UI stays clean, fast, and consistent.</p>
+                                <a href="m-index.html" class="inline-flex items-center gap-2 text-brand-700 font-semibold text-sm hover:text-brand-600">
+                                    Learn more <i class="fas fa-arrow-right text-xs"></i>
+                                </a>
                             </div>
-                        </div>
-
-                        <!-- Right Bottom: Rating Container -->
-                        <div class="col-span-2 col-start-9 row-span-1 -ml-8 mt-28 z-20">
-                            <div class="bg-[#CCFF33] rounded-xl p-4 shadow-lg">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="font-heading font-bold text-2xl text-black">4.9</span>
-                                    <div class="flex gap-0.5">
-                                        <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                        <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                        <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                        <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                        <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <div class="flex justify-center">
+                                <div class="w-56 bg-gray-900 rounded-[2rem] border-8 border-gray-900 shadow-2xl p-4">
+                                    <div class="h-1.5 w-16 bg-white/20 rounded-full mx-auto mb-4"></div>
+                                    <div class="flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-3 py-2 mb-4">
+                                        <i class="fas fa-search text-[10px] text-white/50"></i>
+                                        <span class="text-[10px] text-white/50">Search opportunities...</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white rounded-xl p-3">
+                                            <p class="text-[10px] font-heading font-bold text-gray-900">Crypto Yield</p>
+                                            <p class="font-mono text-lg font-bold text-gray-900">$32,234</p>
+                                        </div>
+                                        <div class="bg-brand-100 rounded-xl p-3">
+                                            <p class="text-[10px] font-heading font-bold text-brand-900">New Wallets</p>
+                                            <p class="font-mono text-lg font-bold text-brand-900">45,234</p>
+                                        </div>
+                                        <div class="bg-[#CCFF33] rounded-xl p-3">
+                                            <p class="text-[10px] font-heading font-bold text-gray-900">Rating</p>
+                                            <p class="font-heading text-lg font-bold text-gray-900">4.9 <span class="text-xs">200k reviews</span></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="text-[10px] text-black/60 font-medium">200k global reviews</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Mobile Stacked Layout -->
-                    <div class="lg:hidden space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="flex -space-x-2">
-                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="User" class="w-10 h-10 rounded-full border-2 border-[#004B23]" loading="lazy">
-                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User" class="w-10 h-10 rounded-full border-2 border-[#004B23]" loading="lazy">
-                                <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User" class="w-10 h-10 rounded-full border-2 border-[#004B23]" loading="lazy">
-                            </div>
+                    <div class="relative hidden" data-tab-panel="airdrop">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
                             <div>
-                                <p class="font-heading font-bold text-xl text-white">15M+</p>
-                                <p class="text-[10px] text-gray-500">Active Wallets</p>
+                                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">Never miss a token distribution.</h2>
+                                <p class="text-gray-500 leading-relaxed mb-8">Real-time airdrop tracker curated by our team. Every listing is vetted for legitimacy, risk-flagged, and updated daily.</p>
+                                <a href="https://ttairdropcentral.blogspot.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand-700 font-semibold text-sm hover:text-brand-600">
+                                    Learn more <i class="fas fa-arrow-right text-xs"></i>
+                                </a>
                             </div>
-                        </div>
-
-                        <div class="bg-white rounded-2xl p-5 shadow-2xl">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-sm font-heading font-bold text-gray-900">Crypto Yield</span>
-                                <span class="font-mono text-lg font-bold text-gray-900">$32,234</span>
-                            </div>
-                            <div class="bg-[#9EF01A] rounded-xl p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-[11px] font-heading font-bold text-black">New Wallets</span>
-                                    <span class="font-mono text-xs font-bold text-black">45,234</span>
+                            <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-lg shadow-black/5">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between border border-gray-100 rounded-xl p-3">
+                                        <div><p class="text-sm font-semibold text-gray-900">Solaris Protocol</p><p class="text-xs text-gray-400">Solana · Ends in 6d</p></div>
+                                        <span class="text-[10px] font-bold text-brand-700 bg-brand-100 rounded-full px-2 py-1">Vetted</span>
+                                    </div>
+                                    <div class="flex items-center justify-between border border-gray-100 rounded-xl p-3">
+                                        <div><p class="text-sm font-semibold text-gray-900">Quantum Drop</p><p class="text-xs text-gray-400">Ethereum · Ends in 2d</p></div>
+                                        <span class="text-[10px] font-bold text-amber-600 bg-amber-100 rounded-full px-2 py-1">High Risk</span>
+                                    </div>
+                                    <div class="flex items-center justify-between border border-gray-100 rounded-xl p-3">
+                                        <div><p class="text-sm font-semibold text-gray-900">Ink Whale</p><p class="text-xs text-gray-400">Multi-chain · Ends in 12h</p></div>
+                                        <span class="text-[10px] font-bold text-brand-700 bg-brand-100 rounded-full px-2 py-1">Vetted</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-end gap-1 h-10">
-                                    <div class="flex-1 bg-black/20 rounded-t-sm h-[30%]"></div>
-                                    <div class="flex-1 bg-black/20 rounded-t-sm h-[45%]"></div>
-                                    <div class="flex-1 bg-black/20 rounded-t-sm h-[55%]"></div>
-                                    <div class="flex-1 bg-black/20 rounded-t-sm h-[70%]"></div>
-                                    <div class="flex-1 bg-black rounded-t-sm h-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-[#006400]/80 backdrop-blur border border-[#70E000]/15 rounded-xl p-4">
-                                <p class="text-[10px] text-gray-400 font-mono mb-2">Network</p>
-                                <div class="relative h-1.5 bg-[#004B23] rounded-full overflow-hidden mb-1">
-                                    <div class="w-[38%] h-full bg-[#70E000] rounded-full"></div>
-                                </div>
-                                <p class="text-[10px] font-mono text-gray-500">38Gb / 100Gb</p>
-                            </div>
-                            <div class="bg-[#CCFF33] rounded-xl p-4">
-                                <div class="flex items-center gap-1.5 mb-0.5">
-                                    <span class="font-heading font-bold text-xl text-black">4.9</span>
-                                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                </div>
-                                <p class="text-[10px] text-black/60">200k reviews</p>
                             </div>
                         </div>
                     </div>
@@ -365,11 +347,29 @@
         </section>
 
         <!-- =================================================================== -->
+        <!-- COINS / INTEGRATIONS STRIP                                          -->
+        <!-- =================================================================== -->
+        <section class="py-16 bg-gray-50 border-y border-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-8">Live data across every major coin</p>
+                <div class="flex flex-wrap justify-center items-center gap-3 max-w-3xl mx-auto">
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#F7931A]"></span>Bitcoin</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#627EEA]"></span>Ethereum</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#14F195]"></span>Solana</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#0033AD]"></span>Cardano</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#C2A633]"></span>Dogecoin</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-[#210966]"></span>Shiba Inu</span>
+                    <span class="chip"><span class="w-2 h-2 rounded-full bg-brand-500"></span>+ 90 more</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
         <!-- STATISTICS SECTION                                                  -->
         <!-- =================================================================== -->
-        <section id="stats" class="py-20 -mt-20 relative z-10">
+        <section id="stats" class="py-20 section-fade">
             <div class="container mx-auto px-6">
-                <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl shadow-black/5 border border-gray-100 p-8 md:p-10">
+                <div class="max-w-5xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         <div>
                             <h3 class="text-3xl md:text-4xl font-heading font-bold mb-1 text-brand-800" data-count="250">0</h3>
@@ -395,46 +395,46 @@
         <!-- =================================================================== -->
         <!-- FEATURES SECTION                                                    -->
         <!-- =================================================================== -->
-        <section id="features" class="py-24">
+        <section id="features" class="py-24 bg-gray-50 border-y border-gray-100 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold text-[#CCFF33] bg-[#006400]/60 border border-[#70E000]/20 rounded-full mb-4">Why iCryptos</span>
-                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Supercharge Your Crypto Workflow</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Everything you need to discover, track, and capitalize on earning opportunities — all in one place.</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Why iCryptos</span>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">Supercharge your crypto workflow</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Everything you need to discover, track, and capitalize on earning opportunities - all in one place.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-compass"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Curated Opportunities</h3>
                         <p class="text-gray-500 text-sm leading-relaxed">Our team manually vets every airdrop, faucet, and earning site so you never waste time on dead ends.</p>
                     </div>
 
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-chart-line"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Real-Time Market Data</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Live price feeds, heatmaps, and converters powered by CoinGecko — make informed decisions instantly.</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Live price feeds, heatmaps, and converters powered by CoinGecko - make informed decisions instantly.</p>
                     </div>
 
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-layer-group"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Multi-Platform Dashboards</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Desktop flagship, mobile-optimized, and Android app — access your tools anywhere, on any device.</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Desktop flagship, mobile-optimized, and Android app - access your tools anywhere, on any device.</p>
                     </div>
 
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-users"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Active Community</h3>
                         <p class="text-gray-500 text-sm leading-relaxed">Join thousands of earners on Discord, Telegram, and Facebook. Share alpha and grow together.</p>
                     </div>
 
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-shield-halved"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Trust & Verification</h3>
                         <p class="text-gray-500 text-sm leading-relaxed">Every opportunity is checked for legitimacy. We flag risks and highlight the most reliable earners.</p>
                     </div>
 
-                    <div class="glow-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <div class="hover-card relative p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                         <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-100 text-brand-700 text-xl mb-5"><i class="fas fa-bolt"></i></span>
                         <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">Lightning Fast Updates</h3>
                         <p class="text-gray-500 text-sm leading-relaxed">Opportunities added daily. Our team works around the clock to keep your dashboard fresh and relevant.</p>
@@ -446,27 +446,27 @@
         <!-- =================================================================== -->
         <!-- VIDEO & PARTNERS SECTION                                            -->
         <!-- =================================================================== -->
-        <section id="showcase" class="py-20 bg-white">
+        <section id="showcase" class="py-20 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">See It In Action</h2>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">See it in action</h2>
                     <p class="text-gray-500 max-w-xl mx-auto">Watch our latest walkthrough and discover how iCryptos helps you find earning opportunities fast.</p>
                 </div>
-                <div class="max-w-4xl mx-auto bg-gray-900 p-3 rounded-2xl shadow-2xl">
+                <div class="max-w-4xl mx-auto bg-gray-100 border border-gray-200 p-3 rounded-2xl">
                     <iframe id="odysee-iframe" class="w-full aspect-video rounded-xl" title="Latest video from TTEarnCrypto on Odysee" src="https://odysee.com/%24/embed/%40ttearncrypto%3A5?feature=latest" width="560" height="315" loading="lazy" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <section id="partners" class="py-14 bg-white border-t border-gray-100">
+        <section id="partners" class="py-14 border-t border-gray-100 section-fade">
             <div class="container mx-auto px-6">
                 <p class="text-center text-gray-400 text-xs font-semibold uppercase tracking-widest mb-8">Trusted by the community</p>
                 <div class="flex justify-center items-center gap-12 md:gap-16 flex-wrap">
-                    <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244018" alt="Partner Logo" class="h-7 md:h-9 partner-logo" loading="lazy" decoding="async" width="120" height="40">
-                    <img src="https://cdn.brandfetch.io/idst-2-NAE/idAo223oRQ.svg?c=1bxid64Mup7aczewSAYMX&t=1747723664034" alt="Partner Logo" class="h-7 md:h-9 partner-logo" loading="lazy" decoding="async" width="120" height="40">
-                    <img src="https://cdn.brandfetch.io/id6yhu9VjO/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1746453709335" alt="Partner Logo" class="h-7 md:h-9 partner-logo" loading="lazy" decoding="async" width="120" height="40">
-                    <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597" alt="Partner Logo" class="h-7 md:h-9 partner-logo" loading="lazy" decoding="async" width="120" height="40">
-                    <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274" alt="Partner Logo" class="h-7 md:h-9 partner-logo" loading="lazy" decoding="async" width="120" height="40">
+                    <img src="https://cdn.brandfetch.io/id-pjrLx_q/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1675846244018" alt="Partner Logo" class="h-7 md:h-9 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async" width="120" height="40">
+                    <img src="https://cdn.brandfetch.io/idst-2-NAE/idAo223oRQ.svg?c=1bxid64Mup7aczewSAYMX&t=1747723664034" alt="Partner Logo" class="h-7 md:h-9 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async" width="120" height="40">
+                    <img src="https://cdn.brandfetch.io/id6yhu9VjO/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1746453709335" alt="Partner Logo" class="h-7 md:h-9 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async" width="120" height="40">
+                    <img src="https://cdn.brandfetch.io/idcE0OdG8i/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667569122597" alt="Partner Logo" class="h-7 md:h-9 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async" width="120" height="40">
+                    <img src="https://cdn.brandfetch.io/idRNBjXRVq/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1700163042274" alt="Partner Logo" class="h-7 md:h-9 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" decoding="async" width="120" height="40">
                 </div>
             </div>
         </section>
@@ -474,18 +474,18 @@
         <!-- =================================================================== -->
         <!-- DASHBOARDS SECTION                                                  -->
         <!-- =================================================================== -->
-        <section id="dashboards" class="py-24">
+        <section id="dashboards" class="py-24 bg-gray-50 border-y border-gray-100 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold text-[#CCFF33] bg-[#006400]/60 border border-[#70E000]/20 rounded-full mb-4">Dashboards</span>
-                    <h2 class="text-4xl font-heading font-bold text-white mb-3">Choose Your Dashboard</h2>
-                    <p class="text-gray-400 max-w-xl mx-auto">Search or filter to find the perfect tool for your crypto earning strategy.</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Dashboards</span>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Choose your dashboard</h2>
+                    <p class="text-gray-500 max-w-xl mx-auto">Search or filter to find the perfect tool for your crypto earning strategy.</p>
                 </div>
 
                 <div class="max-w-4xl mx-auto">
                     <div class="flex flex-col md:flex-row gap-4 mb-8">
                         <div class="relative flex-grow">
-                            <input type="text" id="dashboard-search" placeholder="Search dashboards..." class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 text-sm">
+                            <input type="text" id="dashboard-search" placeholder="Search dashboards..." aria-label="Search dashboards" class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 text-sm">
                             <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"></i>
                         </div>
                         <div id="filter-buttons" class="flex items-center gap-2 flex-wrap">
@@ -498,16 +498,16 @@
                     </div>
 
                     <div id="dashboard-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="dashboard-card glow-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="PC Dashboard v2" data-tags="pc flagship earning">
+                        <div class="dashboard-card hover-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="PC Dashboard v2" data-tags="pc flagship earning">
                             <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 text-lg mb-4"><i class="fas fa-desktop"></i></div>
                             <h3 class="text-base font-heading font-bold text-gray-900 mb-2">PC Dashboard v2</h3>
                             <p class="text-gray-500 text-sm mb-5 flex-grow">Our most powerful desktop experience, recommended for all serious users on PC.</p>
-                            <a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="self-start inline-flex items-center gap-2 bg-brand-800 text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-brand-700 transition-colors">
+                            <a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="self-start inline-flex items-center gap-2 bg-brand-800 text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-brand-700 transition-colors">
                                 Launch <i class="fas fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
 
-                        <div class="dashboard-card glow-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="Mobile Dashboard" data-tags="mobile earning">
+                        <div class="dashboard-card hover-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="Mobile Dashboard" data-tags="mobile earning">
                             <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 text-lg mb-4"><i class="fas fa-mobile-screen-button"></i></div>
                             <h3 class="text-base font-heading font-bold text-gray-900 mb-2">Mobile Dashboard</h3>
                             <p class="text-gray-500 text-sm mb-5 flex-grow">Optimized for on-the-go earning. Track opportunities anywhere from your phone.</p>
@@ -516,7 +516,7 @@
                             </a>
                         </div>
 
-                        <div class="dashboard-card glow-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="Airdrop Radar" data-tags="airdrop earning">
+                        <div class="dashboard-card hover-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="Airdrop Radar" data-tags="airdrop earning">
                             <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 text-lg mb-4"><i class="fas fa-parachute-box"></i></div>
                             <h3 class="text-base font-heading font-bold text-gray-900 mb-2">Airdrop Radar</h3>
                             <p class="text-gray-500 text-sm mb-5 flex-grow">Real-time airdrop tracker. Never miss a token distribution again.</p>
@@ -525,11 +525,11 @@
                             </a>
                         </div>
 
-                        <div class="dashboard-card glow-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="App (Beta)" data-tags="mobile earning app">
+                        <div class="dashboard-card hover-card flex flex-col bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300" data-title="App (Beta)" data-tags="mobile earning app">
                             <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 text-lg mb-4"><i class="fas fa-download"></i></div>
                             <h3 class="text-base font-heading font-bold text-gray-900 mb-2">Android App</h3>
                             <p class="text-gray-500 text-sm mb-5 flex-grow">Native Android experience. Push notifications for new opportunities.</p>
-                            <a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="self-start inline-flex items-center gap-2 bg-brand-500 text-brand-900 px-4 py-2 rounded-full text-xs font-semibold hover:bg-brand-400 transition-colors">
+                            <a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="self-start inline-flex items-center gap-2 bg-brand-700 text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-brand-600 transition-colors">
                                 Download <i class="fas fa-download text-[10px]"></i>
                             </a>
                         </div>
@@ -541,78 +541,66 @@
         <!-- =================================================================== -->
         <!-- RESOURCES HUB SECTION                                                -->
         <!-- =================================================================== -->
-        <section id="resources-hub" class="py-24 bg-white">
+        <section id="resources-hub" class="py-24 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-14">
                     <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Resources</span>
-                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Crypto Resources Hub</h2>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Crypto resources hub</h2>
                     <p class="text-gray-500 max-w-xl mx-auto">Curated directory of tools, communities, and platforms to accelerate your crypto journey.</p>
                 </div>
 
                 <div class="max-w-5xl mx-auto">
                     <h3 class="text-lg font-heading font-bold text-gray-700 mb-5">Directory & Listing Sites</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-                        <a href="https://ttearncrypto.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://ttearncrypto.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-compass text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">TTEarnCrypto Main</span>
                         </a>
-                        <a href="https://ttappstore.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://ttappstore.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-store text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">TTAppStore</span>
                         </a>
-                        <a href="https://ttairdropcentral.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://ttairdropcentral.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-parachute-box text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">TTAirdropCentral</span>
                         </a>
-                        <a href="https://freecryptoradar.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://freecryptoradar.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-broadcast-tower text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">FreeCryptoRadar</span>
                         </a>
-                        <a href="https://cryptoradarnews.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://cryptoradarnews.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-newspaper text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">CryptoRadarNews</span>
                         </a>
-                        <a href="https://freecryptoshopping.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="https://freecryptoshopping.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-shopping-cart text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">FreeCryptoShopping</span>
-                        </a>
-                        <a href="https://ttdashboardv2.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
-                            <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-chart-simple text-sm"></i></span>
-                            <span class="text-sm font-medium text-gray-700">TTDashboardV2</span>
-                        </a>
-                        <a href="https://ttdashboardv3.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
-                            <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-chart-simple text-sm"></i></span>
-                            <span class="text-sm font-medium text-gray-700">TTDashboardV3</span>
-                        </a>
-                        <a href="https://ttairdropv2.blogspot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
-                            <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-boxes-stacked text-sm"></i></span>
-                            <span class="text-sm font-medium text-gray-700">TTAirdropV2</span>
                         </a>
                     </div>
 
                     <h3 class="text-lg font-heading font-bold text-gray-700 mb-5">Guides & Support</h3>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <a href="page/about.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/about.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-info-circle text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">About iCryptos</span>
                         </a>
-                        <a href="page/faq.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/faq.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-circle-question text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">FAQ</span>
                         </a>
-                        <a href="page/contact.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/contact.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-envelope text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">Contact Us</span>
                         </a>
-                        <a href="page/changelog.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/changelog.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-clock-rotate-left text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">Changelog</span>
                         </a>
-                        <a href="page/games.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/games.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-gamepad text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">Games</span>
                         </a>
-                        <a href="page/donate.html" class="flex items-center gap-4 p-4 border border-gray-100 rounded-xl hover:border-brand-200 hover:bg-brand-50/50 transition-all group">
+                        <a href="page/donate.html" class="hover-card flex items-center gap-4 p-4 border border-gray-100 rounded-xl transition-all group">
                             <span class="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-200 transition-colors"><i class="fas fa-heart text-sm"></i></span>
                             <span class="text-sm font-medium text-gray-700">Donate</span>
                         </a>
@@ -624,26 +612,26 @@
         <!-- =================================================================== -->
         <!-- COMMUNITY + MARKET TOOLS SECTION                                    -->
         <!-- =================================================================== -->
-        <section id="community" class="py-24">
+        <section id="community" class="py-24 bg-gray-50 border-y border-gray-100 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-14">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold text-[#CCFF33] bg-[#006400]/60 border border-[#70E000]/20 rounded-full mb-4">Community</span>
-                    <h2 class="text-4xl font-heading font-bold text-white mb-3">Join Our Community</h2>
-                    <p class="text-gray-400 max-w-xl mx-auto">Connect with thousands of fellow crypto enthusiasts. Get support, share alpha, and grow with us.</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Community</span>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Join our community</h2>
+                    <p class="text-gray-500 max-w-xl mx-auto">Connect with thousands of fellow crypto enthusiasts. Get support, share alpha, and grow with us.</p>
                 </div>
 
-                <div class="flex justify-center gap-6 text-2xl mb-16">
-                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#5865F2] hover:border-[#5865F2] hover:shadow-lg transition-all" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#0088cc] hover:border-[#0088cc] hover:shadow-lg transition-all" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-black hover:border-black hover:shadow-lg transition-all" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#1877F2] hover:border-[#1877F2] hover:shadow-lg transition-all" title="Facebook Group"><i class="fab fa-facebook"></i></a>
-                    <a href="https://bento.me/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-brand-700 hover:border-brand-400 hover:shadow-lg transition-all" title="More Socials"><i class="fas fa-link"></i></a>
+                <div class="flex justify-center gap-6 text-xl mb-16">
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#5865F2] hover:border-[#5865F2] hover:shadow-lg transition-all" title="Discord" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
+                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#0088cc] hover:border-[#0088cc] hover:shadow-lg transition-all" title="Telegram" aria-label="Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-black hover:border-black hover:shadow-lg transition-all" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-[#1877F2] hover:border-[#1877F2] hover:shadow-lg transition-all" title="Facebook Group" aria-label="Facebook group"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://bento.me/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-brand-700 hover:border-brand-400 hover:shadow-lg transition-all" title="More Socials" aria-label="More socials"><i class="fas fa-link" aria-hidden="true"></i></a>
                 </div>
 
                 <div class="max-w-3xl mx-auto">
                     <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
                         <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
-                        <gecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,solana,cardano,dogecoin,shiba-inu" currency="usd" background-color="#ffffff" locale="en" font-color="#000000"></gecko-coin-price-marquee-widget>
+                        <gecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,solana,cardano,dogecoin,shiba-inu" currency="usd" background-color="#ffffff" locale="en" font-color="#111827"></gecko-coin-price-marquee-widget>
                     </div>
                 </div>
             </div>
@@ -652,44 +640,44 @@
         <!-- =================================================================== -->
         <!-- TESTIMONIALS SECTION                                                -->
         <!-- =================================================================== -->
-        <section id="testimonials" class="py-24 bg-white">
+        <section id="testimonials" class="py-24 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-14">
                     <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Testimonials</span>
-                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Loved by the Community</h2>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Loved by the community</h2>
                     <p class="text-gray-500 max-w-xl mx-auto">Don't just take our word for it. Here's what our users are saying.</p>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover-card">
                         <div class="text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-gray-600 text-sm italic mb-6 leading-relaxed">"Finally, a single place for legit airdrops. iCryptos saved me countless hours of research and helped me find gems I would've missed."</p>
                         <div class="flex items-center gap-3">
                             <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Johnson" loading="lazy" decoding="async" width="40" height="40">
                             <div>
-                                <p class="font-semibold text-sm">Alex Johnson</p>
+                                <p class="font-semibold text-sm text-gray-900">Alex Johnson</p>
                                 <p class="text-xs text-gray-400">Crypto Enthusiast</p>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover-card">
                         <div class="text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-gray-600 text-sm italic mb-6 leading-relaxed">"The mobile dashboard is a game-changer. I can check for new opportunities on the go. The UI is clean, fast, and incredibly easy to use."</p>
                         <div class="flex items-center gap-3">
                             <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Lee" loading="lazy" decoding="async" width="40" height="40">
                             <div>
-                                <p class="font-semibold text-sm">Sarah Lee</p>
+                                <p class="font-semibold text-sm text-gray-900">Sarah Lee</p>
                                 <p class="text-xs text-gray-400">Crypto Enthusiast</p>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover-card">
                         <div class="text-amber-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-gray-600 text-sm italic mb-6 leading-relaxed">"The community is what sets this apart. Between the Discord and Telegram groups, I always find help when I need it."</p>
                         <div class="flex items-center gap-3">
                             <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Marcus Chen" loading="lazy" decoding="async" width="40" height="40">
                             <div>
-                                <p class="font-semibold text-sm">Marcus Chen</p>
+                                <p class="font-semibold text-sm text-gray-900">Marcus Chen</p>
                                 <p class="text-xs text-gray-400">Active Trader</p>
                             </div>
                         </div>
@@ -701,24 +689,24 @@
         <!-- =================================================================== -->
         <!-- MARKET TOOLS                                                        -->
         <!-- =================================================================== -->
-        <section id="market-tools" class="py-24">
+        <section id="market-tools" class="py-24 bg-gray-50 border-y border-gray-100 section-fade">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-14">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold text-[#CCFF33] bg-[#006400]/60 border border-[#70E000]/20 rounded-full mb-4">Live Data</span>
-                    <h2 class="text-4xl font-heading font-bold text-white mb-3">Live Market Tools</h2>
-                    <p class="text-gray-400 max-w-xl mx-auto">Real-time market overview powered by CoinGecko — make informed decisions.</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Live Data</span>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Live market tools</h2>
+                    <p class="text-gray-500 max-w-xl mx-auto">Real-time market overview powered by CoinGecko - make informed decisions.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     <div class="lg:col-span-2 bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                        <h3 class="text-lg font-heading font-bold mb-4">Top 100 Coin Heatmap</h3>
+                        <h3 class="text-lg font-heading font-bold mb-4 text-gray-900">Top 100 Coin Heatmap</h3>
                         <div class="rounded-xl overflow-hidden">
                             <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
                             <gecko-coin-heatmap-widget locale="en" dark-mode="false" top="100"></gecko-coin-heatmap-widget>
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                        <h3 class="text-lg font-heading font-bold mb-4">Price Converter</h3>
+                        <h3 class="text-lg font-heading font-bold mb-4 text-gray-900">Price Converter</h3>
                         <script src="https://widgets.coingecko.com/gecko-coin-converter-widget.js"></script>
                         <gecko-coin-converter-widget locale="en" dark-mode="false" outlined="true" initial-currency="usd"></gecko-coin-converter-widget>
                     </div>
@@ -729,58 +717,58 @@
         <!-- =================================================================== -->
         <!-- CTA SECTION                                                         -->
         <!-- =================================================================== -->
-        <section class="py-24 hero-gradient relative overflow-hidden">
-            <div class="hero-glow bg-brand-400 top-[-20%] left-[10%]"></div>
-            <div class="hero-glow bg-brand-200 bottom-[-20%] right-[10%]"></div>
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
-            <div class="relative z-10 container mx-auto px-6 text-center">
-                <div class="max-w-3xl mx-auto">
-                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Ready to Simplify Your Crypto Journey?</h2>
-                    <p class="text-gray-300 text-lg mb-8">Join 15,000+ users already using iCryptos to find and capitalize on earning opportunities.</p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="#dashboards" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-400 hover:bg-brand-500 text-brand-900 font-bold rounded-full transition-all shadow-lg shadow-brand-500/25">
-                            Get Started Free
-                            <i class="fas fa-arrow-right text-sm"></i>
-                        </a>
-                        <a href="page/contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full font-semibold transition-all hover:bg-white/20">
-                            Contact Sales
-                        </a>
+        <section class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto bg-gradient-to-br from-brand-900 to-brand-700 rounded-3xl px-8 py-16 md:py-20 text-center relative overflow-hidden">
+                    <div class="absolute top-[-30%] left-[-10%] w-96 h-96 rounded-full bg-[#70E000]/20 blur-3xl pointer-events-none"></div>
+                    <div class="absolute bottom-[-30%] right-[-10%] w-96 h-96 rounded-full bg-[#CCFF33]/20 blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Ready to simplify your crypto journey?</h2>
+                        <p class="text-gray-300 text-lg mb-8 max-w-xl mx-auto">Join 15,000+ users already using iCryptos to find and capitalize on earning opportunities.</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="#dashboards" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#CCFF33] hover:bg-[#9EF01A] text-brand-900 font-bold rounded-full transition-all">
+                                Get Started Free <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                            <a href="page/contact.html" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/10 text-white border border-white/20 rounded-full font-semibold transition-all hover:bg-white/20">
+                                Contact Sales
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- =================================================================== -->
-        <!-- FOOTER FEATURE BAR — Web3 Value Propositions                       -->
+        <!-- VALUE PROPOSITIONS                                                  -->
         <!-- =================================================================== -->
-        <div class="bg-[#001A0D] border-t border-[#006400]/40">
+        <div class="bg-gray-50 border-t border-gray-100">
             <div class="container mx-auto px-6 py-14">
                 <div class="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
                     <div class="flex items-start gap-4">
-                        <span class="w-11 h-11 rounded-xl bg-[#006400]/60 border border-[#70E000]/20 flex items-center justify-center text-[#70E000] flex-shrink-0">
+                        <span class="w-11 h-11 rounded-xl bg-white border border-brand-200 flex items-center justify-center text-brand-700 flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
                         </span>
                         <div>
-                            <h4 class="font-heading font-bold text-sm text-white mb-1.5">Web3 Sandbox Security</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed">Client-side encryption with protected local storage. Your keys, your data — always under your control.</p>
+                            <h4 class="font-heading font-bold text-sm text-gray-900 mb-1.5">Web3 Sandbox Security</h4>
+                            <p class="text-xs text-gray-500 leading-relaxed">Client-side encryption with protected local storage. Your keys, your data - always under your control.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <span class="w-11 h-11 rounded-xl bg-[#006400]/60 border border-[#70E000]/20 flex items-center justify-center text-[#70E000] flex-shrink-0">
+                        <span class="w-11 h-11 rounded-xl bg-white border border-brand-200 flex items-center justify-center text-brand-700 flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
                         </span>
                         <div>
-                            <h4 class="font-heading font-bold text-sm text-white mb-1.5">Instant Claim Protocols</h4>
+                            <h4 class="font-heading font-bold text-sm text-gray-900 mb-1.5">Instant Claim Protocols</h4>
                             <p class="text-xs text-gray-500 leading-relaxed">Fast, tap-to-claim reward distribution. Minimal latency, maximum efficiency for your earning workflow.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <span class="w-11 h-11 rounded-xl bg-[#006400]/60 border border-[#70E000]/20 flex items-center justify-center text-[#70E000] flex-shrink-0">
+                        <span class="w-11 h-11 rounded-xl bg-white border border-brand-200 flex items-center justify-center text-brand-700 flex-shrink-0">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
                         </span>
                         <div>
-                            <h4 class="font-heading font-bold text-sm text-white mb-1.5">Universal Access</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed">Multi-token support accessible globally. Desktop, mobile, and app — your dashboards follow you everywhere.</p>
+                            <h4 class="font-heading font-bold text-sm text-gray-900 mb-1.5">Universal Access</h4>
+                            <p class="text-xs text-gray-500 leading-relaxed">Multi-token support accessible globally. Desktop, mobile, and app - your dashboards follow you everywhere.</p>
                         </div>
                     </div>
                 </div>
@@ -790,97 +778,122 @@
         <!-- =================================================================== -->
         <!-- SUBSCRIPTION / NEWSLETTER                                           -->
         <!-- =================================================================== -->
-        <section id="subscribe" class="py-24 bg-white">
+        <section id="subscribe" class="py-24 bg-white section-fade">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-2xl mx-auto">
                     <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-700 bg-brand-100 rounded-full mb-4">Stay Updated</span>
-                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Subscribe to Our Newsletter</h2>
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-3">Subscribe to our newsletter</h2>
                     <p class="text-gray-500 mb-8">Get the latest airdrops, dashboard updates, and earning opportunities delivered to your inbox.</p>
                     <div class="max-w-lg mx-auto">
-                        <iframe width="100%" height="400" title="Newsletter Subscription Form" src="https://1d71c02a.sibforms.com/serve/MUIFABwpI4Hy1DIYrWsh2h0zUvvc4oNE3RvBKbaBs9ymHl7bBJUPX-d-5eDnKZD-MOG9gnQyfYTA8UIXSs_Lzd74_jEn4rqUphrOsNIO0Bi6-vzESsjeXQ8frYmhkApgnD80biiZlF9KKxljL8lmlCXOlzJECfkBoBVOPPpaKLbVt_fKr7f6WY81uTraO9mdy1_9H0J3T6fAe8OY" frameborder="0" scrolling="auto" allowfullscreen style="display: block; width:100%; max-width: 540px; border-radius: 12px; margin: 0 auto;"></iframe>
+                        <iframe width="100%" height="400" title="Newsletter Subscription Form" loading="lazy" src="https://1d71c02a.sibforms.com/serve/MUIFABwpI4Hy1DIYrWsh2h0zUvvc4oNE3RvBKbaBs9ymHl7bBJUPX-d-5eDnKZD-MOG9gnQyfYTA8UIXSs_Lzd74_jEn4rqUphrOsNIO0Bi6-vzESsjeXQ8frYmhkApgnD80biiZlF9KKxljL8lmlCXOlzJECfkBoBVOPPpaKLbVt_fKr7f6WY81uTraO9mdy1_9H0J3T6fAe8OY" frameborder="0" scrolling="auto" allowfullscreen style="display: block; width:100%; max-width: 540px; border-radius: 12px; margin: 0 auto;"></iframe>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+        <nav class="cp-pager" aria-label="Page navigation">
+<span class="cp-pager-link cp-pager-prev" aria-hidden="true"></span>
+      <a class="cp-pager-link cp-pager-next" href="m-index.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Mobile Dashboard</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </main>
 
     <!-- =================================================================== -->
     <!-- FOOTER                                                              -->
     <!-- =================================================================== -->
-    <footer class="bg-brand-900 text-gray-400">
-        <div class="container mx-auto px-8 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 text-sm">
+  <div class="cp-footer-reveal">
+<footer class="cp-footer" aria-label="Site footer">
+    <div class="cp-footer-inner">
+      <div class="cp-footer-grid">
 
-                <!-- Brand -->
-                <div class="lg:col-span-2">
-                    <a href="#" class="flex items-center gap-3 mb-4">
-                        <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos Footer Logo" class="w-8 h-8 rounded-full ring-2 ring-brand-600" width="32" height="32" decoding="async">
-                        <span class="font-heading font-bold text-lg text-white">iCryptos</span>
-                    </a>
-                    <p class="pr-8 text-gray-500 leading-relaxed">Your flagship hub for verified crypto earning opportunities. Built by F9XR & TTEarnCrypto.</p>
-                    <div class="flex gap-3 mt-6">
-                        <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-700 transition-all"><i class="fab fa-discord text-xs"></i></a>
-                        <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-700 transition-all"><i class="fab fa-telegram-plane text-xs"></i></a>
-                        <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-700 transition-all"><i class="fab fa-twitter text-xs"></i></a>
-                        <a href="https://github.com/ttearncrypto" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-700 transition-all"><i class="fab fa-github text-xs"></i></a>
-                    </div>
-                </div>
-
-                <!-- Platform -->
-                <div>
-                    <h4 class="font-heading font-bold text-white tracking-wider uppercase text-xs mb-5">Platform</h4>
-                    <ul class="space-y-3">
-                        <li><a href="https://ttearncrypto.github.io/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">PC Dashboard</a></li>
-                        <li><a href="m-index.html" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">Mobile Dashboard</a></li>
-                        <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">Android App</a></li>
-                        <li><a href="page/changelog.html" class="hover:text-brand-300 transition-colors">Changelog</a></li>
-                        <li><a href="page/games.html" class="hover:text-brand-300 transition-colors">Games</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="font-heading font-bold text-white tracking-wider uppercase text-xs mb-5">Resources</h4>
-                    <ul class="space-y-3">
-                        <li><a href="page/about.html" class="hover:text-brand-300 transition-colors">About</a></li>
-                        <li><a href="page/contact.html" class="hover:text-brand-300 transition-colors">Contact</a></li>
-                        <li><a href="page/faq.html" class="hover:text-brand-300 transition-colors">FAQ</a></li>
-                        <li><a href="page/accessibility.html" class="hover:text-brand-300 transition-colors">Accessibility</a></li>
-                        <li><a href="page/donate.html" class="hover:text-brand-300 transition-colors">Donate</a></li>
-                        <li><a href="page/sitemap.html" class="hover:text-brand-300 transition-colors">Sitemap</a></li>
-                    </ul>
-                </div>
-
-                <!-- Legal -->
-                <div>
-                    <h4 class="font-heading font-bold text-white tracking-wider uppercase text-xs mb-5">Legal</h4>
-                    <ul class="space-y-3">
-                        <li><a href="page/legal/terms-of-service.html" class="hover:text-brand-300 transition-colors">Terms of Service</a></li>
-                        <li><a href="page/legal/privacy-policy.html" class="hover:text-brand-300 transition-colors">Privacy Policy</a></li>
-                        <li><a href="page/legal/disclaimer.html" class="hover:text-brand-300 transition-colors">Disclaimer</a></li>
-                        <li><a href="page/legal/dmca.html" class="hover:text-brand-300 transition-colors">DMCA</a></li>
-                        <li><a href="page/legal/cookie-policy.html" class="hover:text-brand-300 transition-colors">Cookie Policy</a></li>
-                        <li><a href="page/legal/affiliate-disclosure.html" class="hover:text-brand-300 transition-colors">Affiliate Disclosure</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-brand-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
-                <p>&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
-                <a href="#hero" class="hover:text-brand-300 transition-colors"><i class="fas fa-arrow-up mr-1"></i> Back to top</a>
-            </div>
+        <div class="cp-footer-brand">
+          <a class="cp-footer-logo" href="index.html">
+            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
+            <span>iCryptos</span>
+          </a>
+          <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
+          <div class="cp-footer-social">
+            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
+          </div>
         </div>
-    </footer>
+
+        <nav class="cp-footer-col" aria-label="Platform">
+          <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
+          <ul>
+            <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
+            <li><a href="m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
+            <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
+            <li><a href="themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
+            <li><a href="newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
+            <li><a href="page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Resources">
+          <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
+          <ul>
+            <li><a href="page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
+            <li><a href="page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
+            <li><a href="page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
+            <li><a href="page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
+            <li><a href="page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
+            <li><a href="page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
+            <li><a href="page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Legal">
+          <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
+          <ul>
+            <li><a href="page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
+            <li><a href="page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
+            <li><a href="page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
+            <li><a href="page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
+            <li><a href="page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
+            <li><a href="page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
+          <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
+          <ul>
+            <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
+          <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
+          <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
+          <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
+          <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
+          <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
+          <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
+          <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="cp-footer-bottom">
+        <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
+        <ul class="cp-footer-meta">
+          <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
+          <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
+          <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="page/sitemap.html">HTML Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  </div>
+  </div>
 
     <!-- Back to Top Button -->
-    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-11 h-11 bg-brand-800 text-white rounded-full flex items-center justify-center shadow-lg shadow-brand-900/20 transition-all opacity-0 pointer-events-none hover:bg-brand-700" title="Back to Top"><i class="fas fa-arrow-up"></i></a>
+    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-11 h-11 bg-gray-900 text-white rounded-full flex items-center justify-center shadow-lg shadow-black/20 transition-all opacity-0 pointer-events-none hover:bg-brand-700" title="Back to Top" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
 
     <!-- Modals -->
-    <div id="shortcuts-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div id="shortcuts-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
             <div class="flex items-center justify-between p-5 border-b border-gray-100">
-                <h3 class="text-base font-heading font-bold flex items-center gap-2"><i class="fas fa-keyboard text-brand-600"></i>Keyboard Shortcuts</h3>
-                <button id="shortcuts-close" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-200 transition-all" title="Close modal">&times;</button>
+                <h3 class="text-base font-heading font-bold flex items-center gap-2 text-gray-900" id="shortcuts-title"><i class="fas fa-keyboard text-brand-600" aria-hidden="true"></i>Keyboard Shortcuts</h3>
+                <button id="shortcuts-close" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-200 transition-all" title="Close modal" aria-label="Close keyboard shortcuts">&times;</button>
             </div>
             <div class="p-6">
                 <ul class="space-y-3 text-sm text-gray-700">
@@ -895,11 +908,11 @@
         </div>
     </div>
 
-    <div id="beta-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div id="beta-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="beta-title">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
             <div class="flex items-center justify-between p-5 border-b border-gray-100">
-                <h3 class="text-base font-heading font-bold flex items-center gap-2"><i class="fas fa-flask text-amber-500"></i>Beta Notice</h3>
-                <button id="beta-modal-close" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-200 transition-all" title="Close modal">&times;</button>
+                <h3 class="text-base font-heading font-bold flex items-center gap-2 text-gray-900" id="beta-title"><i class="fas fa-flask text-amber-500" aria-hidden="true"></i>Beta Notice</h3>
+                <button id="beta-modal-close" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-200 transition-all" title="Close modal" aria-label="Close beta notice">&times;</button>
             </div>
             <div class="p-6">
                 <p class="text-gray-600 text-sm leading-relaxed">This project is currently in Beta. We are actively developing and improving our features. While we strive for a smooth experience, you may occasionally encounter bugs or changes. We appreciate your feedback during this phase!</p>
@@ -916,11 +929,27 @@
                 let currentDropdown;
                 if (isDropdownButton) {
                     currentDropdown = e.target.closest("[data-dropdown]");
-                    currentDropdown.querySelector('[data-dropdown-menu]').classList.toggle("hidden");
+                    const menu = currentDropdown.querySelector('[data-dropdown-menu]');
+                    const isOpen = !menu.classList.contains("hidden");
+                    menu.classList.toggle("hidden");
+                    currentDropdown.querySelector('[data-dropdown-button]').setAttribute('aria-expanded', String(!isOpen));
                 }
                 document.querySelectorAll("[data-dropdown-menu]").forEach(menu => {
                     if (menu.closest("[data-dropdown]") === currentDropdown) return;
                     menu.classList.add("hidden");
+                });
+            });
+
+            // Product Tabs Logic
+            const tabBtns = document.querySelectorAll('[data-tab]');
+            const tabPanels = document.querySelectorAll('[data-tab-panel]');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    tabPanels.forEach(p => p.classList.add('hidden'));
+                    const panel = document.querySelector(`[data-tab-panel="${btn.dataset.tab}"]`);
+                    if (panel) panel.classList.remove('hidden');
                 });
             });
 
@@ -1012,7 +1041,7 @@
             betaModal.addEventListener('click', (e) => { if (e.target === betaModal) closeModal(betaModal); });
 
             // Keyboard Shortcuts
-            const heroDropdownBtn = document.querySelector('#hero [data-dropdown-button]');
+            const heroDropdownBtn = document.querySelector('[data-dropdown-button]');
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') { closeModal(shortcutsModal); closeModal(betaModal); }
                 const activeEl = document.activeElement;
@@ -1040,5 +1069,7 @@
         });
     </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.552.0/dist/umd/lucide.min.js" defer></script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

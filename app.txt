@@ -1,8 +1,8 @@
 ================================================================================
-PROMPT FOR GOOGLE AI STUDIO — GENERATE FULL KOTLIN ANDROID APP
+PROMPT FOR GOOGLE AI STUDIO - GENERATE FULL KOTLIN ANDROID APP
 ================================================================================
 
-Generate a complete Android Kotlin app called "iCryptos Dashboard" that replicates this web app exactly: https://ttearncrypto.github.io/dashboards/m-index.html
+Generate a complete Android Kotlin app called "iCryptos Dashboard" that replicates this web app exactly: https://ttearncrypto.f9xr.org/dashboards/m-index.html
 
 Read the full HTML/JS/CSS source at that URL (all 3735 lines) and convert every feature into a native Android app. Below is the complete specification.
 
@@ -112,7 +112,7 @@ data class ClaimItemEntity(
 Settings stored in DataStore (Preferences): accentColor (#38B000 default), fontFamily (Inter default), fontSize (16 default)
 
 ================================================================================
-UI — JETPACK COMPOSE SCREENS
+UI - JETPACK COMPOSE SCREENS
 ================================================================================
 
 === 1. Main Dashboard Screen ===
@@ -315,8 +315,8 @@ BEHAVIORAL DETAILS TO REPLICATE EXACTLY
 3. Stats section: shows total project count
 4. Features grid: 2x2 cards (Latest Projects, Filter & Search, Customize, App Guide)
 5. Social links section: Telegram, Facebook, Discord, Bento
-6. Footer: legal links (About, FAQ, Changelog, Contact, Terms, Privacy, Cookies, Disclaimer, Affiliates, DMCA, Accessibility, Sitemap) — can be WebViews
-7. Video embed section: Odysee iframe — can be WebView
+6. Footer: legal links (About, FAQ, Changelog, Contact, Terms, Privacy, Cookies, Disclaimer, Affiliates, DMCA, Accessibility, Sitemap) - can be WebViews
+7. Video embed section: Odysee iframe - can be WebView
 8. Toast notifications for: copy success, tag filter applied, filter cleared, bookmark added/removed, export
 9. Network error modal/dialog when offline
 10. Pull-to-refresh swipe gesture to reload current source

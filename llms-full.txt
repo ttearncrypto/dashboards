@@ -1,10 +1,10 @@
-# iCryptos Dashboard — Full Reference
+# iCryptos Dashboard - Full Reference
 
 ## Overview
 
 iCryptos Dashboard is a web application that aggregates and displays crypto earning opportunities including faucets, airdrops, investments, mining platforms, and more. It fetches project data from multiple Blogger feeds and presents them in a sortable, filterable mobile-first interface.
 
-**URL:** https://ttearncrypto.github.io/dashboards/  
+**URL:** https://ttearncrypto.f9xr.org/dashboards/  
 **Author:** F9XR / TTEarnCrypto  
 **Language:** English (en-US)  
 **Category:** Cryptocurrency / Finance
@@ -25,10 +25,10 @@ iCryptos Dashboard is a web application that aggregates and displays crypto earn
 
 ## Page Structure
 
-### Dashboard (Desktop) — `index.html`
+### Dashboard (Desktop) - `index.html`
 Full-width layout with source tabs, filter bar, and project cards.
 
-### Dashboard (Mobile) — `m-index.html`
+### Dashboard (Mobile) - `m-index.html`
 Mobile-optimized version with:
 - Chips-based source selector (horizontal scroll)
 - Inline search + filter/sort buttons
@@ -36,7 +36,7 @@ Mobile-optimized version with:
 - Fixed bottom navigation (Learn, Chat, Search, News, Settings)
 - 480px max-width on larger screens
 
-### Sitemap — `page/sitemap.html`
+### Sitemap - `page/sitemap.html`
 Human-readable sitemap linking all discoverable pages.
 
 ## Technical Details

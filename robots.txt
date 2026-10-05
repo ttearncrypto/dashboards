@@ -25,4 +25,4 @@ Allow: /
 # User-agent: Bytespider
 # Disallow: /
 
-Sitemap: https://ttearncrypto.github.io/dashboards/sitemap.xml
+Sitemap: https://ttearncrypto.f9xr.org/dashboards/sitemap.xml
