@@ -32,6 +32,10 @@
     <link rel="icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Curated data (Excel) support -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+    <script src="../assets/icryptos-data.js" defer></script>
+
     <!-- View Transition API -->
     <link rel="stylesheet" href="../assets/view-transitions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,7 +109,7 @@
         </div>
         <button id="pc-nav-settings" class="sidebar-footer-btn" title="Settings (s)"><i class="fas fa-cog"></i> <span class="nav-text">Settings</span></button>
         <button id="pc-nav-chat" class="sidebar-footer-btn"><i class="fas fa-comments"></i> <span class="nav-text">Community</span></button>
-        <div class="cp-footer"><span class="nav-text">With Love ❤, from F9XR</span></div>
+        <div class="cp-sidebar-note"><span class="nav-text">With Love ❤, from F9XR</span></div>
     </div>
 </aside>
 
@@ -126,6 +130,8 @@
             <button class="header-icon-btn" id="cp-about-btn" title="About"><i class="fas fa-info-circle"></i></button>
         </div>
     </header>
+
+    <div id="cp-data-notice" class="cp-data-notice" role="status" aria-live="polite" style="display: none;"></div>
 
     <!-- ===== HOME-ONLY SECTIONS ===== -->
     <div id="home-content-wrapper">
@@ -190,6 +196,91 @@
       <a class="cp-pager-home" href="../index.html"><i data-lucide="home" aria-hidden="true"></i> Home</a>
       <a class="cp-pager-link cp-pager-next" href="calm.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Calm Theme</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
     </nav>
+
+    <div class="cp-footer-static">
+  <footer class="cp-footer" aria-label="Site footer">
+    <div class="cp-footer-inner">
+      <div class="cp-footer-grid">
+
+        <div class="cp-footer-brand">
+          <a class="cp-footer-logo" href="../index.html">
+            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
+            <span>iCryptos</span>
+          </a>
+          <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
+          <div class="cp-footer-social">
+            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <nav class="cp-footer-col" aria-label="Platform">
+          <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
+          <ul>
+            <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
+            <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
+            <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
+            <li><a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
+            <li><a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
+            <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Resources">
+          <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
+          <ul>
+            <li><a href="../page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
+            <li><a href="../page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
+            <li><a href="../page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
+            <li><a href="../page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
+            <li><a href="../page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
+            <li><a href="../page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
+            <li><a href="../page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col" aria-label="Legal">
+          <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
+          <ul>
+            <li><a href="../page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
+            <li><a href="../page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
+            <li><a href="../page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
+            <li><a href="../page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
+            <li><a href="../page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
+            <li><a href="../page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
+          </ul>
+        </nav>
+
+        <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
+          <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
+          <ul>
+            <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
+          <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
+          <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
+          <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
+          <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
+          <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
+          <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
+          <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="cp-footer-bottom">
+        <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
+        <ul class="cp-footer-meta">
+          <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
+          <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
+          <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="../page/sitemap.html">HTML Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+    </div>
   </main>
 
 
@@ -243,7 +334,18 @@ body { background-color: var(--cp-bg); font-family: var(--cp-font-family); margi
 .social-icons a:hover { color: var(--cp-primary-text); }
 .sidebar-footer-btn { padding: 12px; border: 1px solid var(--cp-border-color); background-color: transparent; color: var(--cp-secondary-text); font-family: inherit; font-size: 0.9rem; border-radius: var(--cp-radius-md); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s ease; }
 .sidebar-footer-btn:hover { background-color: var(--cp-card-bg); color: var(--cp-primary-text); }
-.cp-footer { padding-top: 15px; text-align: center; font-size: 0.8rem; color: var(--cp-secondary-text); opacity: 0.7; }
+.cp-sidebar-note { padding-top: 15px; text-align: center; font-size: 0.8rem; color: var(--cp-secondary-text); opacity: 0.7; }
+
+/* Shared site footer sits at the end of the scrolling content area and
+   spans the full width of the main column. */
+.main-content > .cp-footer-static { margin: 40px -35px -25px; }
+.main-content > .cp-footer-static .cp-footer { margin: 0; }
+
+/* Curated (Excel) data load notice */
+.cp-data-notice { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding: 14px 18px; border-radius: var(--cp-radius-md); border: 1px solid color-mix(in srgb, var(--cp-accent) 40%, var(--cp-border-color)); background-color: color-mix(in srgb, var(--cp-accent) 12%, var(--cp-card-bg)); color: var(--cp-primary-text); font-size: 0.9rem; line-height: 1.5; }
+.cp-data-notice i { color: var(--cp-accent); margin-top: 2px; }
+.cp-data-notice code { background: var(--cp-surface); padding: 2px 6px; border-radius: 6px; font-size: 0.85em; }
+.cp-data-notice a { color: var(--cp-accent); }
 
 /* === COLLAPSED SIDEBAR === */
 body.sidebar-collapsed .sidebar { width: var(--sidebar-width-collapsed); }
@@ -379,6 +481,25 @@ body.sidebar-collapsed #sidebar-toggle-btn i { transform: rotate(180deg); }
 .calendar-days .today { background-color: var(--cp-accent); color: white; font-weight: bold; }
 .calendar-days .has-claim::after { content: ''; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 5px; height: 5px; border-radius: 50%; background-color: var(--cp-red); }
 
+/* === RICH CARDS (Curated / Excel data) === */
+.cp-card.is-rich { border-color: color-mix(in srgb, var(--cp-accent) 35%, var(--cp-border-color)); }
+.cp-card-logo { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.cp-card-icon.has-logo { position: relative; overflow: hidden; background-color: var(--cp-surface); }
+.cp-card-icon .cp-card-initial { font-size: 1.3rem; font-weight: 700; color: var(--cp-accent); }
+.cp-card-sub { font-size: 0.8rem; color: var(--cp-secondary-text); }
+.cp-card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.cp-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid var(--cp-border-color); background-color: var(--cp-surface); color: var(--cp-secondary-text); }
+.cp-badge.cp-badge-platform { color: var(--cp-accent); border-color: color-mix(in srgb, var(--cp-accent) 45%, transparent); }
+.cp-badge.cp-badge-proof { color: #E0A800; border-color: #E0A80055; }
+.cp-badge.cp-badge-unverified { color: #E67E22; border-color: #E67E2255; }
+.cp-card-desc { font-size: 0.85rem; line-height: 1.5; color: var(--cp-secondary-text); margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cp-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.cp-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cp-meta-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cp-secondary-text); }
+.cp-meta-value { font-size: 0.82rem; font-weight: 500; color: var(--cp-primary-text); overflow: hidden; text-overflow: ellipsis; }
+.cp-card-referral { font-size: 0.8rem; color: var(--cp-secondary-text); border-left: 2px solid color-mix(in srgb, var(--cp-accent) 45%, transparent); padding-left: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cp-card-referral strong { color: var(--cp-primary-text); }
+
 /* --- Light theme --- */
 body.light-theme {
     --cp-bg: #F8F9FE;
@@ -409,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allTagsSection = document.getElementById('cp-all-tags-section');
     const cryptoStatsContainer = document.getElementById('crypto-stats-container');
     const homeContentWrapper = document.getElementById('home-content-wrapper');
+    const dataNotice = document.getElementById('cp-data-notice');
 
     // === Modals & Buttons ===
     const modals = {
@@ -439,7 +561,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "CryptoNews": { name: "Crypto News", icon: "fa-newspaper", url: "https://cryptonewsandcodes.blogspot.com" }
     };
     const WALLETS = ['Binance', 'Paytm', 'FaucetPay', 'Cwallet', 'Payeer', 'Paypal'];
+    const EXCEL_DATA_URL = '../assets/data.xlsx';
     let dataCache = {}, allProjects = [], displayedProjects = [], currentSource = null;
+    let excelProjects = [], excelLoaded = false;
     let currentPage = 1, projectsPerPage = 12;
     let activeTag = null, searchDebounceTimer;
 
@@ -477,11 +601,38 @@ document.addEventListener('DOMContentLoaded', () => {
         sourceName: source.name
     }));
     
+    // === Excel (curated) data ===
+    function showDataNotice(html) { if (!dataNotice) return; dataNotice.innerHTML = html; dataNotice.style.display = 'flex'; }
+    function clearDataNotice() { if (!dataNotice) return; dataNotice.style.display = 'none'; }
+    function getExcelErrorNotice() {
+        if (location.protocol === 'file:') {
+            return '<i class="fas fa-circle-info"></i><span>Curated project details (<code>assets/data.xlsx</code>) cannot be read when this page is opened directly from a file. Start a local server with <code>npm run serve</code> and open <a href="http://localhost:8000/themes/green.html">http://localhost:8000/themes/green.html</a> to see them.</span>';
+        }
+        return '<i class="fas fa-triangle-exclamation"></i><span>Could not load curated project data from <code>assets/data.xlsx</code>. Showing Blogger results only.</span>';
+    }
+
+    const loadExcelProjects = async (forceReload = false) => {
+        if (excelLoaded && !forceReload) return excelProjects;
+        if (!window.ICryptosData) { console.warn('ICryptosData helper not loaded.'); excelLoaded = true; showDataNotice('<i class="fas fa-triangle-exclamation"></i><span>Curated project support could not load. Showing Blogger results only.</span>'); return excelProjects; }
+        try {
+            excelProjects = await window.ICryptosData.loadExcel(EXCEL_DATA_URL, { wallets: WALLETS });
+            excelLoaded = true;
+            clearDataNotice();
+        } catch (error) {
+            console.warn('Could not load curated Excel data:', error);
+            excelLoaded = true;
+            showDataNotice(getExcelErrorNotice());
+        }
+        return excelProjects;
+    };
+
     const loadSourceData = async (source, forceReload = false) => {
         currentSource = source;
         renderSkeletonLoaders();
         hideFeedback();
-        
+
+        const curated = await loadExcelProjects(forceReload);
+
         let projects;
         if (dataCache[source.url] && !forceReload) { 
             projects = dataCache[source.url]; 
@@ -493,17 +644,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 dataCache[source.url] = projects; 
                 renderGlobalTags();
             } catch (error) { 
-                showFeedback(!navigator.onLine ? 'You are offline.' : `Could not load projects from ${source.name}.`, 'fa-exclamation-triangle');
-                return; 
+                console.warn('Blogger feed failed:', error);
+                if (!curated.length) {
+                    showFeedback(!navigator.onLine ? 'You are offline.' : `Could not load projects from ${source.name}.`, 'fa-exclamation-triangle');
+                    return; 
+                }
+                projects = [];
             }
         }
-        allProjects = projects; 
+        // Curated (Excel) data enriches matching Blogger entries everywhere and is
+        // appended as new projects on the home feed.
+        const appendNew = source.name === 'Earnings';
+        allProjects = (window.ICryptosData && curated.length)
+            ? window.ICryptosData.mergeProjects(projects, curated, { appendNew })
+            : projects;
         applyFiltersAndSort(true);
     };
 
     // === Global Tags ===
     function renderGlobalTags() {
-        const allCachedProjects = Object.values(dataCache).flat();
+        const allCachedProjects = Object.values(dataCache).flat().concat(excelProjects);
         const tagCounts = {};
         allCachedProjects.forEach(project => {
             project.tags.forEach(tag => {
@@ -522,6 +682,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { rootMargin: '0px', threshold: 0.1 });
 
+    const escapeHtml = (value) => String(value == null ? '' : value)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+    function buildIconHtml(project) {
+        const initial = escapeHtml((project.name || '?').charAt(0).toUpperCase());
+        if (project.icon) {
+            return `<div class="cp-card-icon has-logo"><span class="cp-card-initial">${initial}</span><img class="cp-card-logo" src="${escapeHtml(project.icon)}" alt="" loading="lazy" onerror="this.remove()"></div>`;
+        }
+        return `<div class="cp-card-icon"><i class="${project.iconClass || 'fas fa-star'}"></i></div>`;
+    }
+
+    function buildRichDetails(project) {
+        const badges = [];
+        if (project.platform) badges.push(`<span class="cp-badge cp-badge-platform"><i class="fas fa-layer-group"></i>${escapeHtml(project.platform)}</span>`);
+        if (project.paymentProof) badges.push(`<span class="cp-badge cp-badge-proof"><i class="fas fa-shield-halved"></i>Proof: ${escapeHtml(project.paymentProof)}</span>`);
+        if (project.unverified) badges.push(`<span class="cp-badge cp-badge-unverified"><i class="fas fa-triangle-exclamation"></i>Unverified</span>`);
+        const badgesHTML = badges.length ? `<div class="cp-card-badges">${badges.join('')}</div>` : '';
+
+        const descHTML = project.desc ? `<p class="cp-card-desc">${escapeHtml(project.desc)}</p>` : '';
+
+        const meta = [];
+        if (project.earningWays && project.earningWays.length) meta.push(`<div class="cp-meta"><span class="cp-meta-label">Earning ways</span><span class="cp-meta-value" title="${escapeHtml(project.earningWays.join(', '))}">${escapeHtml(project.earningWays.join(', '))}</span></div>`);
+        if (project.currencies && project.currencies.length) meta.push(`<div class="cp-meta"><span class="cp-meta-label">Currencies</span><span class="cp-meta-value" title="${escapeHtml(project.currencies.join(', '))}">${escapeHtml(project.currencies.join(', '))}</span></div>`);
+        if (project.minWithdrawal) meta.push(`<div class="cp-meta"><span class="cp-meta-label">Min withdrawal</span><span class="cp-meta-value" title="${escapeHtml(project.minWithdrawal)}">${escapeHtml(project.minWithdrawal)}</span></div>`);
+        if (project.payoutsVia && project.payoutsVia.length) meta.push(`<div class="cp-meta"><span class="cp-meta-label">Payouts via</span><span class="cp-meta-value" title="${escapeHtml(project.payoutsVia.join(', '))}">${escapeHtml(project.payoutsVia.join(', '))}</span></div>`);
+        const metaHTML = meta.length ? `<div class="cp-meta-grid">${meta.join('')}</div>` : '';
+
+        const referralHTML = project.referralProg ? `<div class="cp-card-referral"><strong>Referral:</strong> ${escapeHtml(project.referralProg)}</div>` : '';
+
+        return `${badgesHTML}${descHTML}${metaHTML}${referralHTML}`;
+    }
+
+    function buildTagsHtml(project) {
+        const source = project.rich ? (project.displayTags || []) : project.tags;
+        const tagsToRender = source.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
+        const limit = project.rich ? 4 : tagsToRender.length;
+        const shown = tagsToRender.slice(0, limit);
+        const extra = tagsToRender.length - shown.length;
+        let html = shown.map(tag => `<button class="cp-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`).join('');
+        if (extra > 0) html += `<span class="cp-badge">+${extra}</span>`;
+        return html.length > 0 ? `<div class="cp-card-tags">${html}</div>` : '';
+    }
+
     function renderListItems(projects, append = false) {
         if (!append) listBody.innerHTML = '';
         hideFeedback();
@@ -530,26 +734,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const claimList = getClaimList();
         projects.forEach(project => {
             const card = document.createElement('div');
-            card.className = `cp-card`;
-            const tagsToRender = project.tags.filter(tag => tag !== 'NotActive' && !WALLETS.includes(tag));
-            const tagsHTML = tagsToRender.map(tag => `<button class="cp-tag" data-tag="${tag}">${tag}</button>`).join('');
+            const isRich = !!project.rich;
+            card.className = isRich ? 'cp-card is-rich' : 'cp-card';
+            const tagsHTML = buildTagsHtml(project);
             const formattedDate = project.publishedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const subtitle = isRich
+                ? ([project.author ? `by ${escapeHtml(project.author)}` : '', project.platform ? escapeHtml(project.platform) : ''].filter(Boolean).join(' • ') || 'Curated project')
+                : `Added: ${formattedDate}`;
             const isSaved = claimList.some(item => item.id === project.id);
             card.innerHTML = `
                 <div class="cp-card-header">
-                    <div class="cp-card-icon"><i class="${project.iconClass}"></i></div>
+                    ${buildIconHtml(project)}
                     <div class="cp-card-title-section">
-                        <h3 class="cp-card-title">${project.name}</h3>
-                        <p class="cp-card-date">Added: ${formattedDate}</p>
+                        <h3 class="cp-card-title">${escapeHtml(project.name)}</h3>
+                        <p class="cp-card-date">${subtitle}</p>
                     </div>
                 </div>
-                ${tagsHTML.length > 0 ? `<div class="cp-card-tags">${tagsHTML}</div>` : ''}
+                ${isRich ? buildRichDetails(project) : ''}
+                ${tagsHTML}
                 <div class="cp-card-actions">
-                    <a href="${project.url}" target="_blank" class="cp-view-btn">View Project</a>
+                    <a href="${escapeHtml(project.url)}" target="_blank" class="cp-view-btn">View Project</a>
                     <div class="cp-card-action-buttons">
-                        <button class="cp-share-btn" data-url="${project.url}" data-name="${project.name}" title="Share"><i class="fas fa-share-alt"></i></button>
-                        <button class="cp-copy-btn" data-url="${project.url}" title="Copy Link"><i class="fas fa-copy"></i></button>
-                        <button class="cp-save-btn ${isSaved ? 'saved' : ''}" data-id="${project.id}" data-name="${project.name}" data-url="${project.url}" title="${isSaved ? 'Remove from Watchlist' : 'Add to Watchlist'}"><i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i></button>
+                        <button class="cp-share-btn" data-url="${escapeHtml(project.url)}" data-name="${escapeHtml(project.name)}" title="Share"><i class="fas fa-share-alt"></i></button>
+                        <button class="cp-copy-btn" data-url="${escapeHtml(project.url)}" title="Copy Link"><i class="fas fa-copy"></i></button>
+                        <button class="cp-save-btn ${isSaved ? 'saved' : ''}" data-id="${escapeHtml(project.id)}" data-name="${escapeHtml(project.name)}" data-url="${escapeHtml(project.url)}" title="${isSaved ? 'Remove from Watchlist' : 'Add to Watchlist'}"><i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i></button>
                     </div>
                 </div>`;
             fragment.appendChild(card);
@@ -603,7 +811,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let projects = [...allProjects];
         // Filters...
         if (activeTag) projects = projects.filter(p => p.tags.includes(activeTag));
-        if (searchInput.value) projects = projects.filter(p => p.name.toLowerCase().includes(searchInput.value.toLowerCase().trim()));
+        if (searchInput.value) {
+            const q = searchInput.value.toLowerCase().trim();
+            projects = projects.filter(p => {
+                if (p.name.toLowerCase().includes(q)) return true;
+                if ((p.author || '').toLowerCase().includes(q)) return true;
+                if ((p.desc || '').toLowerCase().includes(q)) return true;
+                return (p.tags || []).some(t => t.toLowerCase().includes(q));
+            });
+        }
         if (walletSelect.value !== 'all') {
             if (walletSelect.value === 'Direct Wallet') projects = projects.filter(p => !WALLETS.some(w => p.tags.includes(w)));
             else projects = projects.filter(p => p.tags.includes(walletSelect.value));
@@ -749,88 +965,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.552.0/dist/umd/lucide.min.js" defer></script>
   <script src="../assets/site.js" defer></script>
-
-<footer class="cp-footer" aria-label="Site footer">
-    <div class="cp-footer-inner">
-      <div class="cp-footer-grid">
-
-        <div class="cp-footer-brand">
-          <a class="cp-footer-logo" href="../index.html">
-            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
-            <span>iCryptos</span>
-          </a>
-          <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
-          <div class="cp-footer-social">
-            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
-            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
-            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-        <nav class="cp-footer-col" aria-label="Platform">
-          <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
-          <ul>
-            <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
-            <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
-            <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
-            <li><a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
-            <li><a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
-            <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col" aria-label="Resources">
-          <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
-          <ul>
-            <li><a href="../page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
-            <li><a href="../page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
-            <li><a href="../page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
-            <li><a href="../page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
-            <li><a href="../page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
-            <li><a href="../page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
-            <li><a href="../page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col" aria-label="Legal">
-          <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
-          <ul>
-            <li><a href="../page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
-            <li><a href="../page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
-            <li><a href="../page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
-            <li><a href="../page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
-            <li><a href="../page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
-            <li><a href="../page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
-          <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
-          <ul>
-            <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
-          <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
-          <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
-          <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
-          <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
-          <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
-          <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
-          <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
-          </ul>
-        </nav>
-
-      </div>
-
-      <div class="cp-footer-bottom">
-        <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
-        <ul class="cp-footer-meta">
-          <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
-          <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
-          <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="../page/sitemap.html">HTML Sitemap</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
