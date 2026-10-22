@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faucet Directory - iCryptos</title>
+    <title>Crypto Faucet Directory | Free Bitcoin & Crypto Faucets List - iCryptos</title>
 
     <!-- SEO -->
-    <meta name="description" content="Curated faucet directory powered by iCryptos. Browse free crypto faucets, earning ways, payout methods, and referral programs from the curated list.">
-    <meta name="keywords" content="faucet directory, crypto faucets, free crypto, faucetpay, earning, airdrops, ttearncrypto, f9xr">
+    <meta name="description" content="Browse the curated crypto faucet directory with verified free Bitcoin, Ethereum, Dogecoin & altcoin faucets. Filter by earning methods, payout wallets like FaucetPay, and find the best paying faucets.">
+    <meta name="keywords" content="crypto faucet directory, free bitcoin faucet, free crypto faucets, faucet list, best crypto faucets, faucetpay faucets, earn crypto free, crypto airdrops, ttearncrypto">
     <meta name="author" content="F9XR, TTEarnCrypto">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://ttearncrypto.f9xr.org/dashboards/themes/faucets-v1.html">
+    <meta name="theme-color" content="#2563EB">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="iCryptos Dashboard">
     <meta property="og:url" content="https://ttearncrypto.f9xr.org/dashboards/themes/faucets-v1.html">
-    <meta property="og:title" content="Faucet Directory - iCryptos">
-    <meta property="og:description" content="Curated faucet directory with filters by earning ways, payout methods, and more.">
+    <meta property="og:title" content="Crypto Faucet Directory | Free Bitcoin & Crypto Faucets List">
+    <meta property="og:description" content="Curated directory of verified crypto faucets with filters by earning ways, payout methods (FaucetPay, Direct Wallet), and more.">
     <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
 
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/new/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/new/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="../assets/new/apple-touch-icon.png">
     <link rel="manifest" href="../assets/new/site.webmanifest">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ttearncrypto.f9xr.org/dashboards/themes/faucets-v1.html">
-    <meta property="twitter:title" content="Faucet Directory - iCryptos">
-    <meta property="twitter:description" content="Curated faucet directory with filters by earning ways, payout methods, and more.">
-    <meta property="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ttearncrypto">
+    <meta name="twitter:url" content="https://ttearncrypto.f9xr.org/dashboards/themes/faucets-v1.html">
+    <meta name="twitter:title" content="Crypto Faucet Directory | Free Bitcoin & Crypto Faucets List">
+    <meta name="twitter:description" content="Curated directory of verified crypto faucets with filters by earning ways, payout methods, and more.">
+    <meta name="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Crypto Faucet Directory",
+      "description": "Curated directory of verified crypto faucets with filters by earning methods and payout wallets.",
+      "url": "https://ttearncrypto.f9xr.org/dashboards/themes/faucets-v1.html",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "iCryptos Dashboard",
+        "url": "https://ttearncrypto.f9xr.org/dashboards/"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "F9XR / TTEarnCrypto",
+        "url": "https://f9xr.org"
+      }
+    }
+    </script>
 
     <link rel="icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -107,14 +136,22 @@
 
     <div id="cp-data-notice" class="cp-data-notice" role="status" aria-live="polite" style="display: none;"></div>
 
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><span aria-current="page">Faucet Directory</span></li>
+        </ol>
+    </nav>
+
     <section class="directory-hero">
         <div>
-            <p class="directory-eyebrow">Curated from assets/data.xlsx</p>
-            <h1 class="directory-title">Faucet Directory</h1>
-            <p class="directory-subtitle">A clean directory of crypto faucets and earning projects. Filter by earning ways, payout methods, platform, and more.</p>
+            <p class="directory-eyebrow">Curated Faucet List</p>
+            <h1 class="directory-title">Crypto Faucet Directory</h1>
+            <p class="directory-subtitle">Browse verified free crypto faucets and earning sites. Filter by earning methods (PTC, Shortlinks, Offerwalls), payout wallets (FaucetPay, Direct Wallet), and platform.</p>
             <div class="directory-stats">
-                <span><i class="fas fa-list"></i> <span id="dir-count">0</span> projects</span>
-                <span><i class="fas fa-coins"></i> Excel-only (no Blogger feeds)</span>
+                <span><i class="fas fa-list"></i> <span id="dir-count">0</span> faucets listed</span>
+                <span><i class="fas fa-shield-alt"></i> Curated from verified sources</span>
+                <span><i class="fas fa-database"></i> Excel-powered directory</span>
             </div>
         </div>
     </section>
@@ -159,12 +196,23 @@
         <div id="cp-active-filter-container" style="display: none;"><span id="cp-active-filter-tag"></span><button id="cp-clear-filter-btn" title="Clear Tag Filter">×</button></div>
     </div>
 
+    <section class="results-header">
+        <div>
+            <h2 class="results-title">Available Faucets</h2>
+            <p class="results-subtitle">Showing curated results from the directory</p>
+        </div>
+        <div class="results-meta">
+            <span><i class="fas fa-filter"></i> Use filters to narrow down results</span>
+        </div>
+    </section>
+
     <div id="cp-list-body" class="cp-list-body"></div>
     <div id="cp-feedback-message" style="display: none;"></div>
-    <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;"><button id="cp-load-more-btn">Load More</button></div>
+    <div id="cp-pagination-container" class="cp-pagination-container" style="display: none;"><button id="cp-load-more-btn">Load More Faucets</button></div>
 
     <section class="cp-info-section" id="cp-all-tags-section">
-        <h2 id="cp-tags-header">All Tags <i class="fas fa-chevron-down cp-chevron"></i></h2>
+        <h2 id="cp-tags-header">Browse by Tag <i class="fas fa-chevron-down cp-chevron"></i></h2>
+        <p class="section-hint">Quickly filter faucets by earning method, wallet, or category</p>
         <div id="cp-all-tags-container" class="cp-all-tags-container"><p class="cp-secondary-text">Loading tags...</p></div>
     </section>
 
@@ -302,13 +350,25 @@ body.sidebar-collapsed #sidebar-toggle-btn i { transform: rotate(180deg); }
 #pc-reload-btn.reloading i { animation: spin 1s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+/* Breadcrumb */
+.breadcrumb { margin-bottom: 18px; }
+.breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: var(--cp-secondary-text); }
+.breadcrumb li { display: flex; align-items: center; gap: 10px; }
+.breadcrumb li:not(:last-child)::after { content: '/'; opacity: 0.5; }
+.breadcrumb a { color: var(--cp-secondary-text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.breadcrumb a:hover { color: var(--cp-accent); }
+.breadcrumb [aria-current="page"] { color: var(--cp-primary-text); font-weight: 500; }
+
 /* Hero */
-.directory-hero { background: radial-gradient(circle at top right, rgba(37,99,235,0.12), transparent 55%), linear-gradient(135deg, #FFFFFF, #F8FAFF); border: 1px solid var(--cp-border-color); border-radius: var(--cp-radius-lg); padding: 28px 32px; margin-bottom: 22px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 12px; }
-.directory-eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.75rem; color: var(--cp-accent); font-weight: 600; margin: 0; }
-.directory-title { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0; font-weight: 700; }
-.directory-subtitle { margin: 0; color: var(--cp-secondary-text); max-width: 720px; line-height: 1.7; }
-.directory-stats { display: flex; flex-wrap: wrap; gap: 16px; color: var(--cp-secondary-text); font-size: 0.9rem; }
-.directory-stats span { display: flex; align-items: center; gap: 8px; }
+.directory-hero { background: radial-gradient(circle at top right, rgba(37,99,235,0.14), transparent 55%), linear-gradient(135deg, #FFFFFF, #F8FAFF); border: 1px solid var(--cp-border-color); border-radius: var(--cp-radius-lg); padding: clamp(24px, 4vw, 36px); margin-bottom: 24px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; }
+.directory-hero::after { content: ''; position: absolute; right: -80px; top: -120px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(37,99,235,0.12), transparent 70%); pointer-events: none; }
+.directory-hero > div { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+.directory-eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.75rem; color: var(--cp-accent); font-weight: 600; margin: 0; }
+.directory-title { font-size: clamp(2.2rem, 5vw, 3.8rem); margin: 0; font-weight: 700; letter-spacing: -0.02em; }
+.directory-subtitle { margin: 0; color: var(--cp-secondary-text); max-width: 780px; line-height: 1.8; font-size: clamp(1rem, 1.2vw, 1.05rem); }
+.directory-stats { display: flex; flex-wrap: wrap; gap: 18px; color: var(--cp-secondary-text); font-size: 0.92rem; margin-top: 4px; }
+.directory-stats span { display: flex; align-items: center; gap: 9px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.8); border: 1px solid var(--cp-border-color); box-shadow: var(--cp-shadow); }
+.directory-stats i { color: var(--cp-accent); }
 
 /* Filters */
 .cp-filter-bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 24px; }
@@ -320,10 +380,18 @@ body.sidebar-collapsed #sidebar-toggle-btn i { transform: rotate(180deg); }
 #cp-active-filter-container { display: flex; align-items: center; gap: 8px; background-color: rgba(37,99,235,0.12); color: var(--cp-accent); padding: 8px 12px; border-radius: 999px; font-size: 0.88rem; font-weight: 500; }
 #cp-clear-filter-btn { background: none; border: none; color: var(--cp-accent); font-size: 1.1rem; cursor: pointer; padding: 0; line-height: 1; }
 
+/* Results header */
+.results-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 8px 0 20px; }
+.results-title { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: -0.01em; }
+.results-subtitle { margin: 6px 0 0; color: var(--cp-secondary-text); }
+.results-meta { display: flex; align-items: center; gap: 10px; color: var(--cp-secondary-text); font-size: 0.92rem; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--cp-border-color); background: rgba(255,255,255,0.8); box-shadow: var(--cp-shadow); }
+
 /* Cards */
 .cp-list-body { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
-.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius-lg); padding: 22px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--cp-border-color); opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease-out, transform 0.4s ease-out, border-color 0.2s ease, box-shadow 0.2s ease; }
-.cp-card:hover { border-color: rgba(37,99,235,0.5); box-shadow: 0 18px 50px -30px rgba(37,99,235,0.8); }
+.cp-card { background-color: var(--cp-card-bg); border-radius: var(--cp-radius-lg); padding: 24px; box-shadow: var(--cp-shadow); display: flex; flex-direction: column; gap: 18px; border: 1px solid var(--cp-border-color); opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease-out, transform 0.4s ease-out, border-color 0.2s ease, box-shadow 0.2s ease; position: relative; overflow: hidden; }
+.cp-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(37,99,235,0.08), transparent 55%); pointer-events: none; }
+.cp-card > * { position: relative; z-index: 1; }
+.cp-card:hover { border-color: rgba(37,99,235,0.6); box-shadow: 0 24px 60px -36px rgba(37,99,235,0.9); transform: translateY(-4px); }
 .cp-card.visible { opacity: 1; transform: translateY(0); }
 .cp-card-header { display: flex; align-items: flex-start; gap: 16px; }
 .cp-card-icon { width: 52px; height: 52px; border-radius: 12px; background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(37,99,235,0.08)); display: flex; align-items: center; justify-content: center; color: var(--cp-accent); font-size: 1.6rem; flex-shrink: 0; overflow: hidden; }
@@ -370,10 +438,11 @@ body.sidebar-collapsed #sidebar-toggle-btn i { transform: rotate(180deg); }
 .skeleton-card .skeleton-button { height: 46px; margin-top: 12px; }
 
 /* Tags section */
-.cp-info-section { background-color: var(--cp-card-bg); padding: 22px; border-radius: var(--cp-radius-lg); box-shadow: var(--cp-shadow); margin-top: 36px; border: 1px solid var(--cp-border-color); }
-#cp-all-tags-section h2 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-top: 0; font-size: 1.1rem; }
+.cp-info-section { background-color: var(--cp-card-bg); padding: clamp(20px, 3vw, 28px); border-radius: var(--cp-radius-lg); box-shadow: var(--cp-shadow); margin-top: 40px; border: 1px solid var(--cp-border-color); }
+#cp-all-tags-section h2 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin: 0; font-size: clamp(1.1rem, 2vw, 1.3rem); }
+.section-hint { margin: 8px 0 0; color: var(--cp-secondary-text); font-size: 0.95rem; }
 #cp-all-tags-section .cp-chevron { transition: transform 0.3s ease; }
-#cp-all-tags-container { max-height: 1000px; opacity: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; transition: all 0.4s ease; }
+#cp-all-tags-container { max-height: 1000px; opacity: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; transition: all 0.4s ease; }
 #cp-all-tags-section.collapsed #cp-all-tags-container { max-height: 0; opacity: 0; margin-top: 0; overflow: hidden; }
 #cp-all-tags-section.collapsed .cp-chevron { transform: rotate(-90deg); }
 
@@ -552,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderListItems(projectsToRender) {
         listBody.innerHTML = '';
         if (!projectsToRender || projectsToRender.length === 0) {
-            showFeedback('No faucets match your filters.', 'fa-search');
+            showFeedback('No faucets match your filters. Try adjusting search or filters.', 'fa-search');
             paginationContainer.style.display = 'none';
             return;
         }
@@ -564,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.dataset.id = project.id;
 
             const iconHtml = project.icon
-                ? `<img src="${escapeHtml(project.icon)}" alt="${escapeHtml(project.name)}" class="cp-card-logo" onerror="this.style.display='none'; this.parentElement.querySelector('.cp-card-initial').style.display='flex';">`
+                ? `<img src="${escapeHtml(project.icon)}" alt="${escapeHtml(project.name)} logo" class="cp-card-logo" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.cp-card-initial').style.display='flex';">`
                 : '';
             const initialHtml = `<span class="cp-card-initial" ${project.icon ? 'style="display:none;"' : ''}>${escapeHtml((project.name || '?').charAt(0).toUpperCase())}</span>`;
             const host = project.host || (project.url ? (() => { try { return new URL(project.url).hostname.replace(/^www\./,''); } catch(e){ return ''; } })() : '');
@@ -572,9 +641,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const badges = [];
             if (project.platform) badges.push(`<span class="cp-badge cp-badge-platform"><i class="fas fa-laptop"></i> ${escapeHtml(project.platform)}</span>`);
             if (project.paymentProofState === 'pending') badges.push(`<span class="cp-badge cp-badge-proof-pending"><i class="fas fa-clock"></i> Proof: SOON</span>`);
-            else if (project.paymentProofState === 'link') badges.push(`<span class="cp-badge cp-badge-proof-link"><i class="fas fa-link"></i> Proof</span>`);
+            else if (project.paymentProofState === 'link') badges.push(`<span class="cp-badge cp-badge-proof-link"><i class="fas fa-link"></i> Proof Available</span>`);
             if (project.unverified) badges.push(`<span class="cp-badge cp-badge-unverified"><i class="fas fa-triangle-exclamation"></i> Unverified</span>`);
-            if (project.referralState === 'yes') badges.push(`<span class="cp-badge"><i class="fas fa-user-plus"></i> Referral</span>`);
+            if (project.referralState === 'yes') badges.push(`<span class="cp-badge"><i class="fas fa-user-plus"></i> Has Referral</span>`);
             else if (project.referralState === 'no') badges.push(`<span class="cp-badge"><i class="fas fa-user-slash"></i> No Referral</span>`);
 
             const tagsHTML = (project.displayTags && project.displayTags.length)
@@ -589,17 +658,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="cp-card-title-group">
                         <h3 class="cp-card-title">${escapeHtml(project.name)}</h3>
-                        <span class="cp-card-sub">${escapeHtml(host || project.sourceName || 'Faucet')}</span>
+                        <span class="cp-card-sub"><i class="fas fa-globe"></i> ${escapeHtml(host || project.sourceName || 'Faucet')}</span>
                     </div>
                 </div>
                 ${badges.length ? `<div class="cp-card-badges">${badges.join('')}</div>` : ''}
                 ${buildRichDetails(project)}
                 ${tagsHTML}
                 <div class="cp-card-actions">
-                    <a href="${escapeHtml(project.url || '#')}" target="_blank" rel="noopener noreferrer" class="cp-view-btn">Visit Faucet</a>
+                    <a href="${escapeHtml(project.url || '#')}" target="_blank" rel="noopener noreferrer" class="cp-view-btn"><i class="fas fa-external-link-alt"></i> Visit Faucet</a>
                     <div class="cp-card-action-buttons">
-                        <button class="cp-icon-btn cp-detail-btn" data-id="${escapeHtml(project.id)}" title="View details"><i class="fas fa-circle-info"></i></button>
-                        <button class="cp-icon-btn cp-copy-btn" data-url="${escapeHtml(project.url || '')}" title="Copy Link"><i class="fas fa-copy"></i></button>
+                        <button class="cp-icon-btn cp-detail-btn" data-id="${escapeHtml(project.id)}" title="View full details"><i class="fas fa-circle-info"></i></button>
+                        <button class="cp-icon-btn cp-copy-btn" data-url="${escapeHtml(project.url || '')}" title="Copy faucet link"><i class="fas fa-copy"></i></button>
                     </div>
                 </div>`;
             fragment.appendChild(card);
@@ -688,16 +757,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const content = document.getElementById('cp-project-detail-content');
         const host = project.host || (project.url ? (() => { try { return new URL(project.url).hostname.replace(/^www\./,''); } catch(e){ return ''; } })() : '');
         content.innerHTML = `
-            <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;">
-                <div class="cp-card-icon" style="width:64px;height:64px;font-size:1.8rem;">
-                    ${project.icon ? `<img src="${escapeHtml(project.icon)}" alt="" class="cp-card-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="cp-card-initial" style="display:none;">${escapeHtml((project.name||'?').charAt(0).toUpperCase())}</span>` : `<span class="cp-card-initial">${escapeHtml((project.name||'?').charAt(0).toUpperCase())}</span>`}
+            <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
+                <div class="cp-card-icon" style="width:72px;height:72px;font-size:2rem;">
+                    ${project.icon ? `<img src="${escapeHtml(project.icon)}" alt="${escapeHtml(project.name)} logo" class="cp-card-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="cp-card-initial" style="display:none;">${escapeHtml((project.name||'?').charAt(0).toUpperCase())}</span>` : `<span class="cp-card-initial">${escapeHtml((project.name||'?').charAt(0).toUpperCase())}</span>`}
                 </div>
-                <div style="flex:1; min-width:240px;">
-                    <h2 style="margin:0 0 6px 0;">${escapeHtml(project.name)}</h2>
-                    <p style="margin:0; color:var(--cp-secondary-text);">${escapeHtml(host)}${project.platform ? ' • ' + escapeHtml(project.platform) : ''}${project.author ? ' • by ' + escapeHtml(project.author) : ''}</p>
-                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="${escapeHtml(project.url||'#')}" target="_blank" rel="noopener noreferrer" class="cp-view-btn" style="flex:0 0 auto; padding:10px 18px;">Visit Faucet</a>
-                        <button class="cp-icon-btn cp-copy-btn" data-url="${escapeHtml(project.url||'')}" title="Copy Link"><i class="fas fa-copy"></i></button>
+                <div style="flex:1; min-width:260px;">
+                    <h2 style="margin:0 0 8px 0; font-size:clamp(1.4rem,2vw,1.8rem);">${escapeHtml(project.name)}</h2>
+                    <p style="margin:0; color:var(--cp-secondary-text); display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+                        <span><i class="fas fa-globe"></i> ${escapeHtml(host)}</span>
+                        ${project.platform ? `<span><i class="fas fa-laptop"></i> ${escapeHtml(project.platform)}</span>` : ''}
+                        ${project.author ? `<span><i class="fas fa-user"></i> ${escapeHtml(project.author)}</span>` : ''}
+                    </p>
+                    <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a href="${escapeHtml(project.url||'#')}" target="_blank" rel="noopener noreferrer" class="cp-view-btn" style="flex:0 0 auto; padding:11px 20px;"><i class="fas fa-external-link-alt"></i> Visit Faucet</a>
+                        <button class="cp-icon-btn cp-copy-btn" data-url="${escapeHtml(project.url||'')}" title="Copy faucet link"><i class="fas fa-copy"></i></button>
                     </div>
                 </div>
             </div>
@@ -748,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.cp-tag.active').forEach(t => t.classList.remove('active'));
                 tagBtn.classList.add('active');
                 applyFiltersAndSort(false);
-                document.querySelector('.main-content').scrollTop = 0;
+                document.querySelector('.main-content').scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
             const copyBtn = e.target.closest('.cp-copy-btn');
@@ -757,8 +830,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!url) return;
                 navigator.clipboard.writeText(url).then(() => {
                     const icon = copyBtn.querySelector('i');
-                    icon.classList.replace('fa-copy', 'fa-check');
-                    setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 1500);
+                    const original = icon.className;
+                    icon.className = 'fas fa-check';
+                    copyBtn.title = 'Copied!';
+                    setTimeout(() => {
+                        icon.className = original;
+                        copyBtn.title = 'Copy faucet link';
+                    }, 1500);
                 });
                 return;
             }
@@ -776,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.cp-tag.active').forEach(t => t.classList.remove('active'));
             tagBtn.classList.add('active');
             applyFiltersAndSort(false);
-            document.querySelector('.main-content').scrollTop = 0;
+            document.querySelector('.main-content').scrollTo({ top: 0, behavior: 'smooth' });
         });
         document.getElementById('cp-tags-header').addEventListener('click', () => allTagsSection.classList.toggle('collapsed'));
 
@@ -795,6 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+            if (e.key === 'r' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); buttons.pcReload.click(); }
             if (e.key === 'Escape') {
                 Object.values(modals).forEach(m => { if (m) m.style.display = 'none'; });
             }
