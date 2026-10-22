@@ -36,6 +36,11 @@ Mobile-optimized version with:
 - Fixed bottom navigation (Learn, Chat, Search, News, Settings)
 - 480px max-width on larger screens
 
+### Dashboards Hub - `themes/index.html`
+Lapse-styled index of every live dashboard. Links to the Calm desktop dashboard,
+the mobile dashboard, and the curated XLSX dashboard that is still in the workshop.
+Archived legacy themes live under `old/` and are noindex.
+
 ### Sitemap - `page/sitemap.html`
 Human-readable sitemap linking all discoverable pages.
 
@@ -63,7 +68,7 @@ Human-readable sitemap linking all discoverable pages.
 ### Storage (localStorage)
 - `cp-claimList`: Array of saved projects with notes and claim dates
 - `cp-claimGuideSeen`: Boolean flag
-- `cp-setting-color`: Accent color hex
+- `cp-setting-color`: Accent color hex (default #70E000, drives `--cp-accent`)
 - `cp-setting-font-family`: Font family string
 - `cp-setting-font-size`: Font size string
 
@@ -81,14 +86,14 @@ Faucet, MultiFaucet, AutoFaucet, Mining, Investment, TestNetFaucet, Gaming, Aird
 - Structured data: WebSite, WebApplication, BreadcrumbList (JSON-LD)
 - Open Graph: title, description, image (1200×630), locale, site_name
 - Twitter Cards: summary_large_image
-- Mobile: apple-mobile-web-app-capable, theme-color (#6A5AE0)
+- Mobile: apple-mobile-web-app-capable, theme-color (#101010)
 - Icons: favicon (16/32), apple-touch-icon, shortcut icon
-- Sitemap: `sitemap.xml` (24 URLs)
+- Sitemap: `sitemap.xml` (18 URLs)
 - Robots: `robots.txt`
 
 ## Dependencies
 
-- **Fonts:** Google Fonts (Inter, Poppins, Roboto Mono) via `display=swap`
+- **Fonts:** Google Fonts (Figtree, Fragment Mono) via `display=swap`
 - **Icons:** Font Awesome 5.15.4 (CSS, loaded non-blocking)
 - **Chat:** Minnit Chat embed
 

@@ -109,7 +109,7 @@ data class ClaimItemEntity(
 
 @Dao interface ClaimItemDao with: insert, delete, updateNotes, updateClaimDate, getAll (Flow), getById
 
-Settings stored in DataStore (Preferences): accentColor (#38B000 default), fontFamily (Inter default), fontSize (16 default)
+Settings stored in DataStore (Preferences): accentColor (#70E000 default), fontFamily (Figtree default), fontSize (16 default)
 
 ================================================================================
 UI - JETPACK COMPOSE SCREENS
@@ -117,11 +117,11 @@ UI - JETPACK COMPOSE SCREENS
 
 === 1. Main Dashboard Screen ===
 
-Header: Logo (circular, 45dp) + "iCryptos" title (Syne font, green glow) + Claim List icon + Refresh icon + Guide icon
+Header: Logo (circular, 45dp) + "iCryptos" title (Figtree font, signal glow) + Claim List icon + Refresh icon + Guide icon
 
 Source Chips Row: Horizontal LazyRow of chips: All, Earning, Investments, Casinos, Airdrops
-- Active chip: green background (#70E000), dark text
-- Inactive: card background (#0D5A2E), light text
+- Active chip: signal background (#70E000), dark text
+- Inactive: card background (#161616), light text
 
 Date Picker Row: Horizontal LazyRow of date items (10 days past to 20 days future)
 - Each item: 65dp wide, 80dp tall, rounded card showing day number + month abbreviation
@@ -157,7 +157,7 @@ Empty state: bookmark icon + "No projects saved yet."
 === 3. Settings Screen ===
 
 Accent color picker (color palette/dialog)
-Font family selector (Inter, Syne, JetBrains Mono, Arial)
+Font family selector (Figtree, Fragment Mono, Arial)
 Font size selector (Small 14, Normal 16, Large 18)
 
 === 4. Bottom Navigation ===
@@ -171,27 +171,29 @@ Search center button scrolls to top and focuses search bar
 COLOR SCHEME
 ================================================================================
 
---cp-dark-spruce: #004B23       (background)
---cp-dark-green: #006400
---cp-forest-green: #007200
---cp-pure-green: #008000
---cp-bright-fern: #38B000      (accent)
---cp-radioactive-grass: #70E000 (primary button, active states)
---cp-slime-lime: #9EF01A
---cp-chartreuse: #CCFF33        (title text, live text)
---cp-card-bg: #0D5A2E
---cp-primary-text: #E8F5E9
---cp-secondary-text: #A5D6A7
---cp-light-bg: #0A4F26
---cp-border-color: #1B6E3A
+--cp-black: #101010           (background)
+--cp-card-bg: #161616
+--cp-surface: #FFFFFF0D
+--cp-line: #FFFFFF1F
+--cp-primary-text: #FFFFFF
+--cp-secondary-text: #A3A3A3
+--cp-dark-grey: #6D6A6A
+--cp-border-color: #FFFFFF1F
+--cp-accent: #70E000          (links, active states)
+--cp-accent-hover: #9EF01A
+--cp-badge: #CCFF33           (badges, live text)
+--cp-primary-btn: #FFFFFF
+--cp-primary-btn-hover: #E8E8E8
+--cp-live-text: #70E000
 --cp-red: #FF3B3B
 --cp-green: #2ECC71
---cp-blue: #3498DB
+--cp-blue: #4DC5E5
 
 FONTS:
-- Headings: 'Syne' (sans-serif, bold 700-800)
-- Body: 'Inter' (sans-serif)
-- Mono/Data: 'JetBrains Mono' (for dates, stats)
+- Headings: 'Figtree' (sans-serif, regular 400)
+- Body: 'Figtree' (sans-serif)
+- Mono/Data: 'Fragment Mono' (for dates, stats)
+- Wordmark: 'Climate Crisis' (logo lockup only)
 
 Use Google Fonts Android library or bundle them.
 
@@ -304,7 +306,7 @@ res/
 │   ├── colors.xml
 │   └── themes.xml
 ├── drawable/ (app icon, splash)
-└── fonts/ (Inter, Syne, JetBrains Mono .ttf files)
+└── fonts/ (Figtree, Fragment Mono .ttf files)
 
 ================================================================================
 BEHAVIORAL DETAILS TO REPLICATE EXACTLY

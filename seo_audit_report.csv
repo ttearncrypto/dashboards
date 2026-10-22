@@ -11,7 +11,7 @@
 10,01,"Short/weak titles + descriptions on sitemap.html (title 32 ch), donate, games",Medium,"page/sitemap.html:6-7, page/donate.html:6-7, page/games.html:6",S,+CTR on those pages,metadata,open
 11,17,"FAQPage schema had 5 Qs (7 visible); questions not wrapped in headings",Medium,"page/faq.html:16-26",S,FAQ rich-result eligibility,schema,fixed
 12,17,"Missing BreadcrumbList + og:image + twitter on all page/ and legal/ templates",Medium,"6x page/*.html + 6x page/legal/*.html",S,breadcrumb rich result + social CTR,schema,fixed
-13,09,"IndexNow key file absent; key-file + submission docs not configured",Medium,"repo root (new <key>.txt)",S,faster Bing/Yandex indexing,config,open
+13,09,"IndexNow key file created (408d35fb4480125fc940b35a1e134937.txt); key still needs registering with Bing/Yandex",Medium,"repo root",S,faster Bing/Yandex indexing,config,open
 14,10,"og:url trailing-slash mismatch on index.html (canonical uses /dashboards/)",Low,"index.html:22",S,social share correctness,metadata,fixed
 15,02,"site.webmanifest empty name/short_name, root-absolute icons, wrong theme-color",Low,"assets/new/site.webmanifest",S,PWA install/branding signal,config,fixed
 16,18,"llms.txt / llms-full.txt references dead listing.html; sitemap count 19 wrong",Low,"llms.txt:11, llms-full.txt:39-43,89",S,AI-reader accuracy,content,fixed
@@ -19,3 +19,11 @@
 18,16,"YMYL: no static disclaimer/provenance near third-party earning offers on dashboards",Medium,"index.html, m-index.html content regions",L,trust/quality bar for finance,content,open
 19,22,"CoinGecko widget scripts load synchronously in body (CLS on hydrate)",High,"index.html:645,716,722; themes/calm.html:695,1240,1254",S,CLS + main-thread impact,performance,open
 20,24,"No VideoObject schema on pages with Odysee embeds",Low,"index.html (L450-460), m-index.html (~L495-500)",S,video rich-result eligibility,schema,open
+21,09,"Themes Hub indexed 7 now-retired theme pages that cross-link each other and the retired feed pipeline",High,"themes/index.html",S,"stops thin archive pages competing with the live dashboards",linking,fixed
+22,09,"newshub/ pages listed in sitemap.xml and linked from every page footer",High,"sitemap.xml, index.html, m-index.html, themes/**, page/**",S,"removes dead URLs from the crawl graph",config,fixed
+23,02,"Duplicate --cp-* token definitions in ColourPalette.css and m-index.html drifted apart",Medium,"assets/ColourPalette.css, m-index.html",S,"one palette for the whole site, no per-page drift",metadata,fixed
+24,01,"calm.html still rendered the old light palette against the dark Lapse brand",Medium,"themes/calm.html",M,visual consistency across every surface,content,fixed
+25,05,"theme-color meta inconsistent (#004B23, #F3E5F5) against Lapse #101010",Low,"m-index.html, themes/calm.html, assets/new/site.webmanifest",S,correct mobile browser chrome on install and in-app,config,fixed
+26,02,"old/ archive stayed crawlable and indexable after the themes were moved",High,"old/**, robots.txt",S,stops legacy pages competing in SERPs,config,fixed
+27,02,"No automated link, token, schema or copy validation before deploy",Medium,"tools/check.js, package.json",S,catches broken links and stale references at commit time,config,fixed
+28,10,"Brand docs, app spec, README and llms.txt described the retired Deep Tech-Green identity and the News/Themes Hub",Medium,"README.md, llms.txt, llms-full.txt, app.txt, assets/BrandIdentityGuide.md, page/changelog.html",S,AI-reader and contributor accuracy,content,fixed

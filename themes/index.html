@@ -1,390 +1,255 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Themes - TTEarnCrypto iCryptos Dashboards</title>
+<html lang="en">
 
-    <meta name="description" content="Browse all available iCryptos dashboard themes. Choose from Blue, Calm, Gray, Green, Old Blue, Pill, and Purple themes for your crypto earning experience.">
-    <meta name="keywords" content="crypto dashboard themes, icryptos themes, TTEarnCrypto, F9XR, blue, green, purple, calm, gray, pill, old blue">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboards - TTEarnCrypto iCryptos Dashboards</title>
+
+    <meta name="description" content="Every live iCryptos dashboard in one place. Open the mobile dashboard, the Calm desktop dashboard, or follow the curated data dashboard that is on the way.">
+    <meta name="keywords" content="crypto dashboards, icryptos, TTEarnCrypto, F9XR, mobile dashboard, calm dashboard, airdrop dashboard, faucet dashboard">
     <meta name="author" content="TTEarnCrypto">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#101010">
 
     <link rel="canonical" href="https://ttearncrypto.f9xr.org/dashboards/themes/">
 
-    <meta property="og:title" content="iCryptos Dashboard Themes">
-    <meta property="og:description" content="Choose your preferred iCryptos dashboard theme.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="iCryptos Dashboards">
+    <meta property="og:description" content="Every live iCryptos dashboard in one place.">
     <meta property="og:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     <meta property="og:url" content="https://ttearncrypto.f9xr.org/dashboards/themes/">
-    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="iCryptos Dashboards">
+    <meta name="twitter:description" content="Every live iCryptos dashboard in one place.">
+    <meta name="twitter:image" content="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
 
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     <link rel="shortcut icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
     <link rel="apple-touch-icon" href="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg">
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <link rel="stylesheet" href="../assets/view-transitions.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Fragment+Mono&display=swap" rel="stylesheet">
 
-    <script>if(window.innerWidth<=768){location.replace("../m-index.html")}</script>
-
-    <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #F8F8F8; }
-        .btn-primary-gradient { @apply px-10 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105; }
-        .btn-secondary-outline { @apply px-10 py-4 rounded-xl font-bold text-lg bg-white/80 backdrop-blur-sm border-2 border-gray-800 text-gray-800 shadow-lg transition-all duration-300 hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105; }
-        .filter-btn { @apply px-4 py-2 rounded-full text-sm font-medium border transition-colors; }
-        .filter-btn.active { @apply bg-black text-white border-black; }
-        .filter-btn:not(.active) { @apply bg-white text-gray-600 border-gray-300 hover:border-black; }
-        .kbd { @apply inline-block px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 border border-gray-300 rounded-md; }
-        .theme-card { @apply flex flex-col bg-white p-8 rounded-xl border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300; }
-        .color-swatch { @apply w-full h-24 rounded-lg mb-4 flex items-center justify-center text-white/80 text-sm font-medium; }
-    </style>
+    <link rel="stylesheet" href="../assets/view-transitions.css">
+    <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/lapse.css">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "name": "iCryptos Dashboard Themes",
+      "name": "iCryptos Dashboards",
       "url": "https://ttearncrypto.f9xr.org/dashboards/themes/",
-      "description": "Browse all available iCryptos dashboard themes."
+      "description": "Every live iCryptos dashboard in one place.",
+      "isPartOf": { "@type": "WebSite", "name": "iCryptos Dashboard", "url": "https://ttearncrypto.f9xr.org/dashboards/" }
     }
     </script>
-  <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body class="text-gray-900">
 
-    <!-- ===== HEADER ===== -->
-    <header class="fixed top-0 left-0 right-0 z-50 p-4 bg-transparent">
-        <div class="container mx-auto">
-            <div class="flex items-center w-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg p-2">
-                <a href="../index.html" class="flex items-center gap-2 flex-shrink-0 pr-4"><img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="TTEarnCrypto Logo" class="w-11 h-11 rounded-full border-2 border-white"><span class="font-bold text-xl hidden sm:block">TTEarnCrypto</span></a>
-                <div class="flex-grow flex items-center gap-3 border-l border-r border-gray-200 px-4"><i class="fas fa-search text-gray-400"></i><input type="text" id="theme-search" placeholder="Search themes..." class="w-full bg-transparent focus:outline-none text-gray-700 placeholder-gray-400 hidden md:block"></div>
-                <nav class="hidden lg:flex items-center gap-2 px-4"><a href="../index.html#dashboards" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Dashboards</a><span class="text-gray-300">|</span><a href="../index.html#resources-hub" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Resources</a><span class="text-gray-300">|</span><a href="../index.html#community" class="px-4 py-2 text-gray-600 hover:text-black font-medium">Community</a></nav>
-                <div class="flex items-center">
-                    <button id="shortcuts-toggle" class="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-black" title="Keyboard Shortcuts (?)"><i class="fas fa-keyboard"></i></button>
-                    <div class="relative ml-2" data-dropdown><button class="w-11 h-11 flex items-center justify-center border border-gray-300 rounded-full text-gray-600 hover:border-black hover:text-black transition-colors" data-dropdown-button><i class="fas fa-layer-group"></i></button><div class="absolute right-0 mt-3 w-64 bg-white rounded-lg shadow-2xl hidden text-left" data-dropdown-menu><div class="lg:hidden"><a href="../index.html#dashboards" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Dashboards</a><a href="../index.html#resources-hub" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Resources</a><a href="../index.html#community" class="block px-5 py-4 text-gray-700 hover:bg-gray-100 font-semibold">Community</a><div class="border-t border-gray-200 my-1"></div></div><p class="px-5 pt-3 pb-1 text-xs text-gray-400 font-semibold uppercase">Versions</p><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">PC Dashboard (Flagship)</a><a href="https://ttearncrypto.f9xr.org/dashboards/m-index.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-gray-700 hover:bg-gray-100 font-medium">Mobile Dashboard</a><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer" class="block px-5 py-3 text-blue-600 hover:bg-gray-100 font-medium">Download App (Beta) <i class="fas fa-download ml-1"></i></a></div></div>
-                </div>
+<body>
+<main>
+    <nav class="lp-topbar">
+        <div class="lp-bar">
+            <div class="lp-capsule">
+                <a class="t-logo" href="../index.html">iCryptos</a>
+                <nav class="lp-links" aria-label="Main">
+                    <a class="lp-link" href="../index.html">Home</a>
+                    <a class="lp-link" href="../page/sitemap.html">Sitemap</a>
+                </nav>
+                <a class="btn btn--primary" href="../m-index.html">
+                    <span class="btn-glow-wrap"><span class="btn-glow"></span></span>
+                    <span class="btn-surface"></span>
+                    <span class="btn-label">Open Mobile Dashboard</span>
+                </a>
             </div>
         </div>
-    </header>
-
-    <main>
-        <!-- ===== HERO ===== -->
-        <section id="hero" class="relative min-h-[60vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-            <div class="relative z-10 container mx-auto px-6 py-24">
-                <div class="max-w-4xl mx-auto bg-white/70 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50">
-                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900">Dashboard Themes</h1>
-                    <p class="max-w-2xl mx-auto text-xl text-gray-600 my-8">Choose the look and feel that matches your style. Each theme is a fully featured dashboard with the same powerful crypto tools underneath.</p>
-                    <a href="#themes" class="btn-primary-gradient inline-flex items-center gap-2">Browse Themes <i class="fas fa-arrow-down text-sm"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== THEMES SECTION ===== -->
-        <section id="themes" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-4">Choose Your Theme</h2>
-                <p class="text-center text-gray-600 mb-10">Search or filter to find your perfect dashboard theme.</p>
-                <div class="flex flex-col md:flex-row gap-4 mb-8">
-                    <div class="relative flex-grow">
-                        <input type="text" id="theme-search-input" placeholder="Search by name..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black">
-                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    </div>
-                    <div id="filter-buttons" class="flex items-center gap-2 flex-wrap">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="light">Light</button>
-                        <button class="filter-btn" data-filter="dark">Dark</button>
-                        <button class="filter-btn" data-filter="colorful">Colorful</button>
-                    </div>
-                </div>
-                <div id="themes-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-
-                    <!-- Blue -->
-                    <div class="theme-card" data-title="Blue Theme" data-tags="light blue">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Blue Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">A classic blue dashboard with clean typography and a focused workspace. Vanilla CSS, no Tailwind.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Light</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                        </div>
-                        <a href="blue.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Calm -->
-                    <div class="theme-card" data-title="Calm Theme" data-tags="light calm purple">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #F3E5F5, #CE93D8);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Calm Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">A focused, clutter-free dashboard with a soft lavender palette. Tailwind CSS with custom styles.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">Light</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
-                        </div>
-                        <a href="calm.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Gray -->
-                    <div class="theme-card" data-title="Gray Theme" data-tags="dark gray enterprise">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #374151, #111827);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Gray Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">Enterprise-grade dark dashboard with slate tones. Tailwind CSS with custom animations.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-gray-800 text-gray-200 px-3 py-1 rounded-full font-medium">Dark</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
-                        </div>
-                        <a href="gray.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Green -->
-                    <div class="theme-card" data-title="Green Theme" data-tags="light green colorful">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #22C55E, #15803D);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Green Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">An all-in-one green dashboard for tracking assets, earning projects, and market stats.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Light</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Colorful</span>
-                        </div>
-                        <a href="green.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Old -->
-                    <div class="theme-card" data-title="Old Blue Theme" data-tags="light blue old">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #60A5FA, #2563EB);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Old Blue Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">The original blue dashboard theme. A classic look with the familiar earning tools you love.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Light</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Legacy</span>
-                        </div>
-                        <a href="old.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Pill -->
-                    <div class="theme-card" data-title="Pill Theme" data-tags="dark pill colorful">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #1F2937, #000000);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Pill Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">Dark theme with pill-shaped UI elements and Montserrat typography. Modern and sleek.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-gray-800 text-gray-200 px-3 py-1 rounded-full font-medium">Dark</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
-                        </div>
-                        <a href="pill.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                    <!-- Purple -->
-                    <div class="theme-card" data-title="Purple Theme" data-tags="dark purple colorful">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #A855F7, #7C3AED);"><i class="fas fa-palette text-3xl"></i></div>
-                        <h3 class="text-xl font-semibold mb-2">Purple Theme</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">Premium dark dashboard with a vibrant purple palette. Montserrat typography with Tailwind.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">Dark</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">PC</span>
-                            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">Tailwind</span>
-                        </div>
-                        <a href="purple.html" class="mt-auto self-start inline-block bg-black text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">Launch <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <nav class="cp-pager" aria-label="Page navigation">
-      <a class="cp-pager-link cp-pager-prev" href="../m-index.html" rel="prev"><i data-lucide="arrow-left" aria-hidden="true"></i><span><span class="cp-pager-dir">Previous</span><span class="cp-pager-title">Mobile Dashboard</span></span></a>
-      <a class="cp-pager-home" href="../index.html"><i data-lucide="home" aria-hidden="true"></i> Home</a>
-      <a class="cp-pager-link cp-pager-next" href="blue.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Blue Theme</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
     </nav>
-  </main>
 
-    <!-- ===== FOOTER ===== -->
+    <section class="lp-hero">
+        <p class="t-eyebrow">Dashboards</p>
+        <h1 class="t-h1 balance">Pick a dashboard and start earning</h1>
+        <p class="t-body-m lp-hero-sub">Every iCryptos dashboard runs on the same verified project feed. Choose the layout that fits the screen you are on. The curated dashboard below is built on our own data sheet and is still in the workshop.</p>
+    </section>
+
+    <section class="lp-section">
+        <div class="lp-grid">
+
+            <article class="lp-card lp-card--live">
+                <div class="lp-card-head">
+                    <h2 class="lp-card-title">Calm Dashboard</h2>
+                    <span class="lp-chip lp-chip--live">Live</span>
+                </div>
+                <p class="lp-card-body">The desktop dashboard. A wide, focused workspace for browsing verified earning projects, airdrops and crypto tools, with category views and a live search.</p>
+                <div class="lp-card-foot">
+                    <span class="lp-chip">Desktop</span>
+                    <span class="lp-chip">Tailwind</span>
+                </div>
+                <div class="lp-card-foot">
+                    <a class="btn btn--primary" href="calm.html">
+                        <span class="btn-glow-wrap"><span class="btn-glow"></span></span>
+                        <span class="btn-surface"></span>
+                        <span class="btn-label">Open Calm Dashboard</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="lp-card lp-card--live">
+                <div class="lp-card-head">
+                    <h2 class="lp-card-title">Mobile Dashboard</h2>
+                    <span class="lp-chip lp-chip--live">Live</span>
+                </div>
+                <p class="lp-card-body">The phone dashboard. The same verified feed in a single column layout with fast search, tag filters and saved favourites, built to load quickly on mobile data.</p>
+                <div class="lp-card-foot">
+                    <span class="lp-chip">Mobile</span>
+                    <span class="lp-chip">Vanilla</span>
+                </div>
+                <div class="lp-card-foot">
+                    <a class="btn btn--primary" href="../m-index.html">
+                        <span class="btn-glow-wrap"><span class="btn-glow"></span></span>
+                        <span class="btn-surface"></span>
+                        <span class="btn-label">Open Mobile Dashboard</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="lp-card lp-card--disabled">
+                <div class="lp-card-head">
+                    <h2 class="lp-card-title">Curated Dashboard</h2>
+                    <span class="lp-chip lp-chip--soon">Coming soon</span>
+                </div>
+                <p class="lp-card-body">The next generation dashboard. It reads a curated data sheet instead of live blog feeds, so every project is checked, tagged and scored before it reaches the list. No feed delays and no broken links.</p>
+                <div class="lp-card-foot">
+                    <span class="lp-chip">Desktop and mobile</span>
+                    <span class="lp-chip">Curated data</span>
+                </div>
+                <div class="lp-card-foot">
+                    <span class="lp-chip lp-chip--soon">Not available yet</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="lp-section">
+        <h2 class="t-h3">Other ways in</h2>
+        <div class="lp-list">
+            <a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html">
+                <i data-lucide="monitor" aria-hidden="true"></i>
+                <span class="lp-list-name">PC Dashboard<span class="lp-list-url">/Home/earncrypto.html</span></span>
+                <span class="lp-list-tag">External</span>
+            </a>
+            <a href="../page/games.html">
+                <i data-lucide="gamepad-2" aria-hidden="true"></i>
+                <span class="lp-list-name">Browser Games<span class="lp-list-url">/dashboards/page/games.html</span></span>
+                <span class="lp-list-tag">Play</span>
+            </a>
+            <a href="../page/sitemap.html">
+                <i data-lucide="list-tree" aria-hidden="true"></i>
+                <span class="lp-list-name">HTML Sitemap<span class="lp-list-url">/dashboards/page/sitemap.html</span></span>
+                <span class="lp-list-tag">Browse</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="lp-section">
+        <div class="lp-note">
+            <p class="t-body-m">Looking for one of the older dashboard themes? They are still online for reference at <a href="../old/" class="lp-list-name">/dashboards/old/</a>, but they run on the retired feed pipeline and are no longer maintained.</p>
+        </div>
+    </section>
+
+    <nav class="cp-pager" aria-label="Page navigation">
+        <a class="cp-pager-link cp-pager-prev" href="../m-index.html" rel="prev"><i data-lucide="arrow-left" aria-hidden="true"></i><span><span class="cp-pager-dir">Previous</span><span class="cp-pager-title">Mobile Dashboard</span></span></a>
+        <a class="cp-pager-home" href="../index.html"><i data-lucide="home" aria-hidden="true"></i> Home</a>
+        <a class="cp-pager-link cp-pager-next" href="calm.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Calm Dashboard</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+    </nav>
+</main>
+
 <footer class="cp-footer" aria-label="Site footer">
     <div class="cp-footer-inner">
-      <div class="cp-footer-grid">
+        <div class="cp-footer-grid">
 
-        <div class="cp-footer-brand">
-          <a class="cp-footer-logo" href="../index.html">
-            <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
-            <span>iCryptos</span>
-          </a>
-          <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
-          <div class="cp-footer-social">
-            <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
-            <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
-            <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
-          </div>
-        </div>
-
-        <nav class="cp-footer-col" aria-label="Platform">
-          <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
-          <ul>
-            <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
-            <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
-            <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
-            <li><a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
-            <li><a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
-            <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col" aria-label="Resources">
-          <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
-          <ul>
-            <li><a href="../page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
-            <li><a href="../page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
-            <li><a href="../page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
-            <li><a href="../page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
-            <li><a href="../page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
-            <li><a href="../page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
-            <li><a href="../page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col" aria-label="Legal">
-          <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
-          <ul>
-            <li><a href="../page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
-            <li><a href="../page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
-            <li><a href="../page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
-            <li><a href="../page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
-            <li><a href="../page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
-            <li><a href="../page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
-          </ul>
-        </nav>
-
-        <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
-          <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
-          <ul>
-            <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
-          <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
-          <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
-          <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
-          <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
-          <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
-          <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
-          <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
-          </ul>
-        </nav>
-
-      </div>
-
-      <div class="cp-footer-bottom">
-        <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
-        <ul class="cp-footer-meta">
-          <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
-          <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
-          <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="../page/sitemap.html">HTML Sitemap</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-    <!-- Back to Top -->
-    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg transition-opacity opacity-0 pointer-events-none" title="Back to Top"><i class="fas fa-arrow-up"></i></a>
-
-    <!-- Shortcuts Modal -->
-    <div id="shortcuts-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md">
-            <div class="flex items-center justify-between p-4 border-b">
-                <h3 class="text-lg font-semibold"><i class="fas fa-keyboard mr-2"></i>Keyboard Shortcuts</h3>
-                <button id="shortcuts-close" class="text-gray-500 hover:text-black text-2xl">&times;</button>
+            <div class="cp-footer-brand">
+                <a class="cp-footer-logo" href="../index.html">
+                    <img src="https://i.ibb.co/zWTwqXxL/i-Cryptos-min.jpg" alt="iCryptos logo" width="38" height="38" loading="lazy" decoding="async">
+                    <span>iCryptos</span>
+                </a>
+                <p class="cp-footer-blurb">Free crypto earning, airdrops, faucets and open source dashboards, curated daily by TTEarnCrypto.</p>
+                <div class="cp-footer-social">
+                    <a href="https://t.me/+CxO1NVTowno2Y2E1" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i data-lucide="send" aria-hidden="true"></i></a>
+                    <a href="https://discord.gg/D6hAEEumtx" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord"><i data-lucide="messages-square" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/ttearncrypto" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i data-lucide="twitter" aria-hidden="true"></i></a>
+                    <a href="https://facebook.com/groups/ttearncrypto" target="_blank" rel="noopener noreferrer" title="Facebook Group" aria-label="Facebook Group"><i data-lucide="facebook" aria-hidden="true"></i></a>
+                    <a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer" title="Source code on GitHub" aria-label="Source code on GitHub"><i data-lucide="github" aria-hidden="true"></i></a>
+                </div>
             </div>
-            <div class="p-6">
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-center justify-between"><p>Open this guide</p><kbd class="kbd">?</kbd></li>
-                    <li class="flex items-center justify-between"><p>Focus on search</p><kbd class="kbd">S</kbd></li>
-                    <li class="flex items-center justify-between"><p>Close this guide</p><kbd class="kbd">Esc</kbd></li>
+
+            <nav class="cp-footer-col" aria-label="Platform">
+                <h2><i data-lucide="layers" aria-hidden="true"></i>Platform</h2>
+                <ul>
+                    <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
+                    <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
+                    <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
+                    <li><a href="index.html"><i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboards</a></li>
+                    <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
                 </ul>
-            </div>
+            </nav>
+
+            <nav class="cp-footer-col" aria-label="Resources">
+                <h2><i data-lucide="folder-tree" aria-hidden="true"></i>Resources</h2>
+                <ul>
+                    <li><a href="../page/about.html"><i data-lucide="circle-user" aria-hidden="true"></i>About</a></li>
+                    <li><a href="../page/faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i>FAQ</a></li>
+                    <li><a href="../page/changelog.html"><i data-lucide="git-branch" aria-hidden="true"></i>Changelog</a></li>
+                    <li><a href="../page/accessibility.html"><i data-lucide="accessibility" aria-hidden="true"></i>Accessibility</a></li>
+                    <li><a href="../page/contact.html"><i data-lucide="send" aria-hidden="true"></i>Contact</a></li>
+                    <li><a href="../page/donate.html"><i data-lucide="hand-coins" aria-hidden="true"></i>Donate</a></li>
+                    <li><a href="../page/sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i>HTML Sitemap</a></li>
+                </ul>
+            </nav>
+
+            <nav class="cp-footer-col" aria-label="Legal">
+                <h2><i data-lucide="scale" aria-hidden="true"></i>Legal</h2>
+                <ul>
+                    <li><a href="../page/legal/terms-of-service.html"><i data-lucide="file-text" aria-hidden="true"></i>Terms of Service</a></li>
+                    <li><a href="../page/legal/privacy-policy.html"><i data-lucide="lock" aria-hidden="true"></i>Privacy Policy</a></li>
+                    <li><a href="../page/legal/cookie-policy.html"><i data-lucide="cookie" aria-hidden="true"></i>Cookie Policy</a></li>
+                    <li><a href="../page/legal/disclaimer.html"><i data-lucide="shield-alert" aria-hidden="true"></i>Disclaimer</a></li>
+                    <li><a href="../page/legal/dmca.html"><i data-lucide="scale" aria-hidden="true"></i>DMCA</a></li>
+                    <li><a href="../page/legal/affiliate-disclosure.html"><i data-lucide="badge-percent" aria-hidden="true"></i>Affiliate Disclosure</a></li>
+                </ul>
+            </nav>
+
+            <nav class="cp-footer-col cp-footer-team" aria-label="F9XR Team">
+                <h2><i data-lucide="users" aria-hidden="true"></i>F9XR Team</h2>
+                <ul>
+                    <li><a href="https://f9xr.org" target="_blank" rel="noopener noreferrer"><i data-lucide="globe" aria-hidden="true"></i>F9XR.org</a></li>
+                    <li><a href="https://f9xr.org/articles/" target="_blank" rel="noopener noreferrer"><i data-lucide="newspaper" aria-hidden="true"></i>Articles</a></li>
+                    <li><a href="https://f9xr.org/troolify/" target="_blank" rel="noopener noreferrer"><i data-lucide="wand-sparkles" aria-hidden="true"></i>Troolify</a></li>
+                    <li><a href="https://f9xr.org/directories/" target="_blank" rel="noopener noreferrer"><i data-lucide="folder-tree" aria-hidden="true"></i>Directories</a></li>
+                    <li><a href="https://f9xr.org/seo-audit-report-skill/" target="_blank" rel="noopener noreferrer"><i data-lucide="gauge" aria-hidden="true"></i>SEO Audit Report Skill</a></li>
+                    <li><a href="https://f9xr.org/boredpup/" target="_blank" rel="noopener noreferrer"><i data-lucide="paw-print" aria-hidden="true"></i>BoredPup</a></li>
+                    <li><a href="https://f9xr.org/dev9b/" target="_blank" rel="noopener noreferrer"><i data-lucide="square-terminal" aria-hidden="true"></i>Dev9b</a></li>
+                    <li><a href="https://f9xr.org/resumio/" target="_blank" rel="noopener noreferrer"><i data-lucide="file-user" aria-hidden="true"></i>Resumio</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="cp-footer-bottom">
+            <p class="cp-footer-copy">&copy; 2026 F9XR / TTEarnCrypto. All rights reserved.</p>
+            <ul class="cp-footer-meta">
+                <li class="cp-footer-madeby"><i data-lucide="heart" aria-hidden="true"></i>Made by <a href="https://f9xr.org" target="_blank" rel="noopener noreferrer">F9XR Team</a></li>
+                <li><i data-lucide="github" aria-hidden="true"></i><a href="https://github.com/ttearncrypto/dashboards" target="_blank" rel="noopener noreferrer">Open Source at GitHub</a></li>
+                <li><i data-lucide="list-tree" aria-hidden="true"></i><a href="../page/sitemap.html">HTML Sitemap</a></li>
+            </ul>
         </div>
     </div>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Dropdown Menu Logic
-            document.addEventListener('click', e => { const isDropdownButton = e.target.matches("[data-dropdown-button]") || e.target.closest("[data-dropdown-button]"); if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return; let currentDropdown; if (isDropdownButton) { currentDropdown = e.target.closest("[data-dropdown]"); currentDropdown.querySelector('[data-dropdown-menu]').classList.toggle("hidden"); } document.querySelectorAll("[data-dropdown-menu]").forEach(menu => { if (menu.closest("[data-dropdown]") === currentDropdown) return; menu.classList.add("hidden"); }); });
-
-            // Theme Search & Filter
-            const searchInput = document.getElementById('theme-search-input');
-            const headerSearch = document.getElementById('theme-search');
-            const filterBtns = document.getElementById('filter-buttons');
-            const themeCards = document.querySelectorAll('.theme-card');
-            let currentFilter = 'all';
-
-            function filterThemes() {
-                const term = searchInput.value.toLowerCase();
-                themeCards.forEach(card => {
-                    const title = card.dataset.title.toLowerCase();
-                    const tags = card.dataset.tags.split(' ');
-                    const matchesSearch = title.includes(term);
-                    const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
-                    card.style.display = (matchesSearch && matchesFilter) ? 'flex' : 'none';
-                });
-            }
-
-            [searchInput, headerSearch].forEach(input => {
-                if (!input) return;
-                input.addEventListener('input', e => {
-                    searchInput.value = e.target.value;
-                    headerSearch.value = e.target.value;
-                    filterThemes();
-                });
-            });
-
-            filterBtns.addEventListener('click', e => {
-                if (e.target.tagName === 'BUTTON') {
-                    filterBtns.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
-                    currentFilter = e.target.dataset.filter;
-                    filterThemes();
-                }
-            });
-
-            // Back to Top
-            const backToTop = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > window.innerHeight * 0.6) {
-                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
-                } else {
-                    backToTop.classList.add('opacity-0', 'pointer-events-none');
-                }
-            });
-
-            // Shortcuts Modal
-            const shortcutsModal = document.getElementById('shortcuts-modal');
-            const shortcutsToggle = document.getElementById('shortcuts-toggle');
-            const shortcutsClose = document.getElementById('shortcuts-close');
-            const openModal = (modal) => modal.classList.remove('hidden');
-            const closeModal = (modal) => modal.classList.add('hidden');
-
-            shortcutsToggle.addEventListener('click', () => openModal(shortcutsModal));
-            shortcutsClose.addEventListener('click', () => closeModal(shortcutsModal));
-            shortcutsModal.addEventListener('click', (e) => { if (e.target === shortcutsModal) closeModal(shortcutsModal); });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal(shortcutsModal);
-                const activeEl = document.activeElement;
-                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) return;
-                switch(e.key) {
-                    case '?': e.preventDefault(); openModal(shortcutsModal); break;
-                    case 's': case 'S': e.preventDefault(); document.getElementById('theme-search-input').focus(); break;
-                }
-            });
-        });
-    </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.552.0/dist/umd/lucide.min.js" defer></script>
-  <script src="../assets/site.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.552.0/dist/umd/lucide.min.js" defer></script>
+<script src="../assets/site.js" defer></script>
 </body>
 </html>

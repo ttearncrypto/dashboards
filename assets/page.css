@@ -38,7 +38,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(0, 40, 20, 0.92);
+  background: rgba(16, 16, 16, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--cp-border-color);
@@ -94,7 +94,7 @@ a:hover {
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--cp-live-text);
-  text-shadow: 0 0 12px rgba(204, 255, 51, 0.3);
+  text-shadow: 0 0 12px rgba(112, 224, 0, 0.3);
 }
 
 .cp-page-container .cp-last-updated {
@@ -260,7 +260,7 @@ a:hover {
 .cp-contact-form input:focus,
 .cp-contact-form textarea:focus {
   border-color: var(--cp-accent);
-  box-shadow: 0 0 0 3px rgba(56, 176, 0, 0.2);
+  box-shadow: 0 0 0 3px rgba(112, 224, 0, 0.2);
 }
 
 .cp-contact-form textarea {

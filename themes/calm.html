@@ -13,7 +13,7 @@
         content="crypto dashboard, free crypto, earn bitcoin, airdrops, faucetpay, crypto investments, blockchain tools, ttearncrypto">
     <meta name="author" content="F9XR Team">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F3E5F5">
+    <meta name="theme-color" content="#101010">
     <link rel="canonical" href="https://ttearncrypto.f9xr.org/dashboards/themes/calm.html">
 
     <!-- Open Graph / Facebook -->
@@ -38,10 +38,10 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "iCryptos Dashboard",
-      "url": "https://f9xr.github.io/dashboards/themes/calm.html",
+      "url": "https://ttearncrypto.f9xr.org/dashboards/themes/calm.html",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://f9xr.github.io/dashboards/themes/calm.html?q={search_term_string}",
+        "target": "https://ttearncrypto.f9xr.org/dashboards/themes/calm.html?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -55,7 +55,7 @@
       "provider": {
         "@type": "Organization",
         "name": "F9XR Team",
-        "url": "https://f9xr.github.io"
+        "url": "https://ttearncrypto.f9xr.org"
       }
     }
     </script>
@@ -64,10 +64,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Fragment+Mono&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -84,33 +81,63 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        serif: ['Rubik', 'sans-serif'],
-                        sans: ['Rubik', 'sans-serif'],
+                        serif: ['Figtree', 'system-ui', 'sans-serif'],
+                        sans: ['Figtree', 'system-ui', 'sans-serif'],
+                        mono: ['Fragment Mono', 'ui-monospace', 'monospace'],
                     },
                     colors: {
                         brand: {
-                            bg: '#FDFCF8',      /* Warm off-white */
-                            surface: '#FFFFFF',
-                            text: '#2D2A26',    /* Softer black */
-                            muted: '#9CA3AF',
-                            accent: '#9D84B7',  /* Muted Purple */
-                            pastelPurple: '#ECD4FF',
-                            pastelPink: '#FFD4E2',
-                            pastelBlue: '#D4E8FF',
-                            pastelYellow: '#FFF4D4',
-                            pastelGreen: '#D4FFD8',
+                            bg: '#101010',      /* Lapse canvas */
+                            surface: '#161616', /* Lapse card */
+                            text: '#FFFFFF',    /* Lapse primary type */
+                            muted: '#A3A3A3',
+                            accent: '#70E000',  /* Lapse signal accent */
+                            pastelPurple: '#14300A',
+                            pastelPink: '#1F1512',
+                            pastelBlue: '#0F1A26',
+                            pastelYellow: '#1A1708',
+                            pastelGreen: '#0F1A10',
 
                             /* Card Stack Colors */
-                            stack1: '#F3E5F5',
-                            stack2: '#E1BEE7',
-                            stack3: '#CE93D8',
+                            stack1: '#141414',
+                            stack2: '#1C1C1C',
+                            stack3: '#242424',
                         },
-                        yale: '#00356B',
-                        dodger: '#1E90FF',
+                        yale: '#A3A3A3',
+                        dodger: '#9EF01A',
+
+                        /* Dark theme ramp: the light scale becomes the
+                           surface scale and the dark scale becomes type. */
+                        gray: {
+                            50: '#1A1A1A',
+                            100: '#202020',
+                            200: '#2E2E2E',
+                            300: '#3D3D3D',
+                            400: '#6D6A6A',
+                            500: '#8A8785',
+                            600: '#A3A3A3',
+                            700: '#C9C9C9',
+                            800: '#E2E2E2',
+                            900: '#FFFFFF',
+                        },
+
+                        /* Purple is retired, the accent lane takes over. */
+                        purple: {
+                            50: '#101A08',
+                            100: '#14300A',
+                            200: '#1F4A0F',
+                            300: '#2B6614',
+                            400: '#468C1F',
+                            500: '#5CB800',
+                            600: '#70E000',
+                            700: '#9EF01A',
+                            800: '#CCFF33',
+                            900: '#0B0B0B',
+                        },
                     },
                     boxShadow: {
-                        'soft': '0 2px 10px rgba(0, 0, 0, 0.03)',
-                        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.5)',
+                        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4)',
                     }
                 }
             }
@@ -119,8 +146,8 @@
 
     <style>
         body {
-            background-color: #FDFCF8;
-            color: #2D2A26;
+            background-color: #101010;
+            color: #FFFFFF;
         }
 
         /* Calm Scrollbar */
@@ -133,21 +160,21 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #E5E7EB;
+            background: #2E2E2E;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #D1D5DB;
+            background: #3D3D3D;
         }
 
         /* Stacked Card Design */
         .stacked-card {
-            background: white;
+            background: #161616;
             border-radius: 16px;
             position: relative;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #F3F4F6;
+            border: 1px solid #242424;
         }
 
         /* The "lip" effect at the bottom using pseudo elements or inner div */
@@ -164,21 +191,21 @@
 
         .stacked-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
         }
 
         /* Custom HR */
         .custom-hr {
             border: 0;
             height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(157, 132, 183, 0.4), rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(112, 224, 0, 0.4), rgba(0, 0, 0, 0));
             margin: 1.5rem 0;
         }
 
         .sidebar-hr {
             border: 0;
             height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(157, 132, 183, 0.3), rgba(0, 0, 0, 0.05));
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(112, 224, 0, 0.3), rgba(0, 0, 0, 0.05));
             margin: 1rem 1rem;
         }
 
@@ -186,8 +213,8 @@
         .calm-loader {
             width: 40px;
             height: 40px;
-            border: 3px solid #F3E5F5;
-            border-top-color: #9D84B7;
+            border: 3px solid #242424;
+            border-top-color: #70E000;
             border-radius: 50%;
             animation: spin 1s ease-in-out infinite;
         }
@@ -210,24 +237,24 @@
 
         /* Sidebar Active indicator */
         .nav-item.active {
-            background-color: #FDFCF8;
-            color: #6A1B9A;
+            background-color: #101010;
+            color: #70E000;
             font-weight: 600;
-            border: 1px solid #F3F4F6;
+            border: 1px solid #242424;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
         }
 
         /* FAQ Accordion */
         .faq-item {
-            border: 1px solid #F3F4F6;
+            border: 1px solid #242424;
             border-radius: 12px;
             overflow: hidden;
-            background: white;
+            background: #161616;
             transition: all 0.2s ease;
         }
 
         .faq-item:hover {
-            border-color: #E5E7EB;
+            border-color: #3D3D3D;
         }
 
         .faq-question {
@@ -237,7 +264,7 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            color: #2D2A26;
+            color: #FFFFFF;
         }
 
         .faq-answer {
@@ -246,7 +273,7 @@
             transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 0 1.25rem;
             opacity: 0;
-            color: #6B7280;
+            color: #A3A3A3;
             line-height: 1.6;
         }
 
@@ -263,7 +290,7 @@
 
         .faq-item.active .faq-icon {
             transform: rotate(180deg);
-            color: #9D84B7;
+            color: #70E000;
         }
 
         /* Toast Notification */
@@ -278,16 +305,16 @@
         }
 
         .toast {
-            background: white;
+            background: #161616;
             padding: 1rem 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             display: flex;
             align-items: center;
             gap: 12px;
             transform: translateX(120%);
             transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            border-left: 4px solid #9D84B7;
+            border-left: 4px solid #70E000;
             min-width: 300px;
         }
 
@@ -322,21 +349,21 @@
             font-weight: 600;
             transition: all 0.2s;
             cursor: pointer;
-            border: 1px solid #F3F4F6;
-            background: white;
-            color: #6B7280;
+            border: 1px solid #242424;
+            background: #161616;
+            color: #A3A3A3;
         }
 
         .pagination-btn:hover:not(:disabled) {
-            background: #F9FAFB;
-            color: #1F2937;
-            border-color: #E5E7EB;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            border-color: #3D3D3D;
         }
 
         .pagination-btn.active {
-            background: #9D84B7;
-            color: white;
-            border-color: #9D84B7;
+            background: #70E000;
+            color: #FFFFFF;
+            border-color: #70E000;
         }
 
         .pagination-btn:disabled {
@@ -347,7 +374,7 @@
         .progress-bar-container {
             height: 6px;
             width: 100%;
-            background: #F3F4F6;
+            background: #242424;
             border-radius: 99px;
             overflow: hidden;
             margin-bottom: 1rem;
@@ -355,13 +382,13 @@
 
         .progress-fill {
             height: 100%;
-            background-color: #9D84B7;
+            background-color: #70E000;
             transition: width 0.3s ease;
         }
 
         /* Skeleton Loader */
         .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background: linear-gradient(90deg, #202020 25%, #2A2A2A 50%, #202020 75%);
             background-size: 200% 100%;
             animation: skeleton-loading 1.5s infinite;
             border-radius: 8px;
@@ -391,8 +418,8 @@
             transform: translateX(-50%);
             width: max-content;
             max-width: 200px;
-            background: #2D2A26;
-            color: white;
+            background: #1C1C1C;
+            color: #FFFFFF;
             padding: 8px 12px;
             border-radius: 8px;
             font-size: 0.75rem;
@@ -412,7 +439,7 @@
             margin-left: -5px;
             border-width: 5px;
             border-style: solid;
-            border-color: #2D2A26 transparent transparent transparent;
+            border-color: #1C1C1C transparent transparent transparent;
         }
 
         /* Marquee Animation */
@@ -477,14 +504,14 @@
 
         /* Not Active Styling */
         .card-not-active {
-            border: 2px solid #FECACA !important;
+            border: 2px solid #7F1D1D !important;
             /* Red-200 */
-            background-color: #FEF2F2 !important;
+            background-color: #1C1012 !important;
             /* Red-50 */
         }
 
         .card-not-active .card-lip {
-            background-color: #F87171 !important;
+            background-color: #EF4444 !important;
             /* Red-400 */
         }
 
@@ -534,24 +561,24 @@
 
         /* Font Families */
         body.font-inter {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Figtree', system-ui, sans-serif;
         }
 
         body.font-serif {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Figtree', system-ui, sans-serif;
         }
 
         body.font-mono {
-            font-family: 'Courier New', monospace;
+            font-family: 'Fragment Mono', ui-monospace, monospace;
         }
 
         /* Chat Widget Details */
         details.ap-chat-container {
-            background: white;
-            border: 1px solid #E5E7EB;
+            background: #161616;
+            border: 1px solid #242424;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             margin-bottom: 2rem;
         }
 
@@ -561,7 +588,7 @@
             cursor: pointer;
             list-style: none;
             /* Hide default triangle */
-            background: #F9FAFB;
+            background: #1C1C1C;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -577,12 +604,76 @@
         details.ap-chat-container[open] summary::after {
             transform: rotate(180deg);
         }
+        /* ============================================================
+           Lapse dark overrides
+           The colour scales in the Tailwind config above handle type
+           and borders. These rules flip the surfaces that were light
+           in the calm theme and would otherwise blow out on the dark
+           Lapse canvas. Translucent whites used as glows over the
+           hero are intentionally left alone.
+           ============================================================ */
+        .bg-white {
+            background-color: #161616 !important;
+        }
+
+        .bg-white\/90 {
+            background-color: rgba(16, 16, 16, 0.92) !important;
+        }
+
+        .bg-white\/50 {
+            background-color: rgba(16, 16, 16, 0.5) !important;
+        }
+
+        .bg-gray-800 {
+            background-color: #101010 !important;
+        }
+
+        .bg-gray-900 {
+            background-color: #000000 !important;
+        }
+
+        .bg-red-50 {
+            background-color: #1C1012 !important;
+        }
+
+        .bg-red-100 {
+            background-color: #2A1418 !important;
+        }
+
+        .bg-green-50 {
+            background-color: #0F1A10 !important;
+        }
+
+        .bg-green-100 {
+            background-color: #142514 !important;
+        }
+
+        .bg-yellow-50 {
+            background-color: #1A1708 !important;
+        }
+
+        .bg-blue-100 {
+            background-color: #0F1A26 !important;
+        }
+
+        .bg-purple-50 {
+            background-color: #101A08 !important;
+        }
+
+        .bg-purple-100 {
+            background-color: #14300A !important;
+        }
+
+        html body::selection {
+            background: #70E000;
+            color: #0B0B0B;
+        }
     </style>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 
 <body
-    class="bg-brand-bg text-brand-text font-sans antialiased selection:bg-purple-100 selection:text-purple-900 transition-colors duration-300">
+    class="bg-brand-bg text-brand-text font-sans antialiased transition-colors duration-300">
 
     <!-- STICKY BANNER -->
     <div id="sticky-banner" tabindex="-1"
@@ -926,7 +1017,7 @@
                                 xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="120" cy="120" r="100" stroke="white" stroke-width="2"
                                     stroke-dasharray="10 10" />
-                                <circle cx="120" cy="120" r="60" stroke="#9D84B7" stroke-width="4" />
+                                <circle cx="120" cy="120" r="60" stroke="#70E000" stroke-width="4" />
                                 <rect x="110" y="40" width="20" height="160" fill="white" fill-opacity="0.1" />
                             </svg>
                         </div>
@@ -1344,9 +1435,9 @@
             </section>
 
             <nav class="cp-pager" aria-label="Page navigation">
-      <a class="cp-pager-link cp-pager-prev" href="green.html" rel="prev"><i data-lucide="arrow-left" aria-hidden="true"></i><span><span class="cp-pager-dir">Previous</span><span class="cp-pager-title">Green Theme</span></span></a>
+      <a class="cp-pager-link cp-pager-prev" href="../old/themes/green.html" rel="prev"><i data-lucide="arrow-left" aria-hidden="true"></i><span><span class="cp-pager-dir">Previous</span><span class="cp-pager-title">Green Theme</span></span></a>
       <a class="cp-pager-home" href="../index.html"><i data-lucide="home" aria-hidden="true"></i> Home</a>
-      <a class="cp-pager-link cp-pager-next" href="pill.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Pill Theme</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a class="cp-pager-link cp-pager-next" href="../old/themes/pill.html" rel="next"><span><span class="cp-pager-dir">Next</span><span class="cp-pager-title">Pill Theme</span></span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
     </nav>
   </main>
     </div>
@@ -2086,10 +2177,10 @@
                 // Distinct Designs
                 let lipColor = '#F87171'; // Default Red for NotActive
                 if (isActive) {
-                    if (['earning', 'investment', 'airdrops', 'casinos'].includes(state.currentId)) lipColor = '#A78BFA'; // Purple (Finance)
+                    if (['earning', 'investment', 'airdrops', 'casinos'].includes(state.currentId)) lipColor = '#9EF01A'; // Accent (Finance)
                     else if (['networks', 'appstore'].includes(state.currentId)) lipColor = '#34D399'; // Green (Ecosystem)
                     else if (['news', 'guides', 'articles'].includes(state.currentId)) lipColor = '#FBBF24'; // Yellow (Resources) 
-                    else lipColor = '#D1D5DB'; // Gray (Tools/Other)
+                    else lipColor = '#3D3D3D'; // Gray (Tools/Other)
                 }
 
                 const div = document.createElement('div');
@@ -2695,8 +2786,7 @@
             <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
             <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
             <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
-            <li><a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
-            <li><a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
+            <li><a href="../themes/index.html"><i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboards</a></li>
             <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
           </ul>
         </nav>

@@ -7,8 +7,8 @@
 - Home: https://ttearncrypto.f9xr.org/dashboards/
 - Dashboard (Desktop): https://ttearncrypto.f9xr.org/dashboards/index.html
 - Dashboard (Mobile): https://ttearncrypto.f9xr.org/dashboards/m-index.html
-- Themes Hub: https://ttearncrypto.f9xr.org/dashboards/themes/
-- News Hub: https://ttearncrypto.f9xr.org/dashboards/newshub/classic.html
+- Dashboards Hub: https://ttearncrypto.f9xr.org/dashboards/themes/
+- Calm Dashboard: https://ttearncrypto.f9xr.org/dashboards/themes/calm.html
 - Sitemap: https://ttearncrypto.f9xr.org/dashboards/page/sitemap.html
 
 ## External Sources

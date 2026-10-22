@@ -6,15 +6,21 @@ This repository contains a browser-only Single Page Application (SPA) that fetch
 **Quick highlights:**
 - **Client-side only:** No server code required; open `index.html` or serve the folder with a static server.
 - **Data sources:** Uses Blogger JSONP feeds to avoid CORS restrictions.
-- **Themes included:** See the `themes/` folder for optional templates.
+- **Dashboards included:** See the `themes/` folder for the dashboard variants.
 
-**Supported themes (in `themes/`):**
+**Supported dashboards (in `themes/`):**
+- `index.html` - The Dashboards hub, linking to every live dashboard.
+- `calm.html` - The Calm desktop dashboard.
+
+**Legacy themes (archived in `old/themes/`):**
 - `blue.html`
 - `gray.html`
 - `green.html`
 - `old.html`
 - `pill.html`
 - `purple.html`
+
+These run on the retired Blogger feed pipeline, are kept for reference only, and are marked `noindex` with `Disallow: /old/` in `robots.txt`. Do not link to them from live pages.
 
 **Contents of this README:**
 - Project overview
@@ -70,15 +76,18 @@ python3 -m http.server 8000
 
 - To add or change a feed, update the feed list in the app configuration (search for `CONFIG` inside the app script in `index.html` or the theme file you are using).
 - To change items per page, edit `CONFIG.itemsPerLoad`.
-- To add/remove UI themes, modify or add files under the `themes/` folder. Each theme is a complete HTML page using the same client-side script.
+- To add or remove a dashboard, modify or add files under the `themes/` folder. Each dashboard is a complete HTML page using the same client-side script.
+- To change colours, fonts or shape tokens, edit `assets/ColourPalette.css`. It is the single source of truth for every `--cp-*` token and is imported by `assets/site.css`, `assets/page.css` and `assets/lapse.css`.
 
 **Files & Structure**
 
-- `index.html` - Default dashboard entry point.
-- `m-index.html` - Mobile or alternative entry (if present).
-- `themes/` - Theme variants (see list above).
-- `assets/` - Static assets (icons, manifests).
-- `newshub/` - Alternative layouts or example pages.
+- `index.html` - Landing page and default dashboard entry point.
+- `m-index.html` - Mobile dashboard entry point.
+- `themes/` - Dashboards hub (`index.html`) and the Calm dashboard (`calm.html`).
+- `old/` - Archived legacy themes, noindex and disallowed for crawlers.
+- `assets/` - Static assets (icons, manifests, stylesheets, `ColourPalette.css`, `lapse.css`).
+- `page/` - Site pages, legal pages and the HTML sitemap.
+- `tools/check.js` - Repository consistency checks, run with `npm run lint`.
 
 ---
 

@@ -37,58 +37,70 @@ To deliver a zero-barrier, maximum-yield crypto earning dashboard that transform
    * "Track the Hustle. Claim the Yield."
 
 ------------------------------
-## Deep Tech-Green Color Tokens
-Your palette is designed to resemble an advanced financial operations mainframe mixed with cyberpunk energy.
+## Lapse Colour Tokens
 
-| Token Name | Hex Code | Primary Purpose in UI |
-|---|---|---|
-| Dark Spruce | #004B23 | Absolute App Background (Deep security anchor) |
-| Dark Green | #006400 | Grid modules, inactive states, table containers |
-| Forest Green | #007200 | Successful transaction rows, secondary text fields |
-| Pure Green | #008000 | Line graphs, historical upward yield charts |
-| Bright Fern | #38B000 | Hyperlinks, sub-headers, user tier borders |
-| Radioactive Grass | #70E000 | Primary CTA Buttons ("Claim Now", "Connect Wallet") |
-| Slime Lime | #9EF01A | Notification badges, active earning multiplier alerts |
-| Chartreuse | #CCFF33 | Live balance text string, live-updating counter ticker |
+Lapse is a dark, quiet canvas with monochrome type and a single signal accent.
+The live values live in `assets/ColourPalette.css`, which is the single source of
+truth for every `--cp-*` token on the site. Never hard-code a hex in a page.
+
+| Token Name | Token | Hex Code | Primary Purpose in UI |
+|---|---|---|---|
+| Black | `--cp-black` | #101010 | Absolute app background and canvas |
+| Card | `--cp-card-bg` | #161616 | Card surfaces and panels |
+| Surface | `--cp-surface` | #ffffff0d | Translucent overlays and capsules |
+| Line | `--cp-line` | #ffffff1f | Hairline borders and dividers |
+| White | `--cp-primary-text` | #ffffff | Primary type |
+| Grey | `--cp-secondary-text` | #a3a3a3 | Body copy and labels |
+| Dark Grey | `--cp-dark-grey` | #6d6a6a | Muted type, eyebrows, metadata |
+| Signal | `--cp-accent` | #70e000 | Links, active states, signal highlights |
+| Signal Hover | `--cp-accent-hover` | #9ef01a | Hover and pressed signal states |
+| Chartreuse | `--cp-badge` | #ccff33 | Live badges and counters |
+| Error | `--cp-red` | #ff3b3b | Failure and inactive states |
+
+Gradient presets are exposed as `.cp-gradient-primary`, `.cp-gradient-dark`,
+`.cp-gradient-card` and `.cp-gradient-text`. The accent glow helpers are
+`.cp-glow-green`, `.cp-glow-lime`, `.cp-glow-chartreuse` and their
+`.cp-glow-text-*` text-shadow variants.
 
 ------------------------------
 ## Complete Typography & Layout Hierarchy## 1. Typography Selection
 
-* Primary Display (Logo & Headings): Syne or Clash Display
-* Styling: Bold, wide, industrial. Gives the dashboard a punchy, undeniable tech presence.
-* System UI & Data Elements: JetBrains Mono or Share Tech Mono
+* Primary Display (Logo & Headings): Figtree
+* Styling: Clean, geometric, generous. Gives the dashboard a calm, premium presence.
+* Wordmark: Climate Crisis, used only for the logo lockup.
+* Data Elements: Fragment Mono
 * Styling: Monospaced digits. Absolutely mandatory for wallet addresses (0x71C...3a9), live-ticking balances, and transaction timestamps.
 
 ## 2. Heading Scale Example
 
-* H1 (Dashboard Header): 32pt Syne Extra Bold - Used for main screen welcomes.
-* Data Counter Numbers: 48pt JetBrains Mono Bold (Set in #CCFF33 Chartreuse).
-* Body / Label Text: 14pt Inter Regular (Set in muted silver-white for readability).
+* H1 (Dashboard Header): 56px Figtree Regular - Used for main screen welcomes.
+* Data Counter Numbers: 32px Figtree Medium (Set in #a3a3a3 Grey).
+* Body / Label Text: 16px Figtree Regular (Set in #a3a3a3 Grey for readability).
 
 ------------------------------
 ## iCryptos Interface Design Language (UI/UX)## 1. The Core Dashboard Anatomy
-The client-side UI relies heavily on high-contrast neon elements floating over an abyss of deep forest greens:
+The client-side UI relies on quiet surfaces floating over a near-black canvas, with a single signal accent reserved for what matters:
 
-* The "Glow" Architecture: Elements that represent active earnings or completed claims use an outer CSS drop-shadow glow filter (drop-shadow(0 0 8px #70e000)).
-* The Telemetry Grid: Strict borders using #006400 divide information cleanly into modules like:
+* The "Glow" Architecture: Elements that represent active earnings or completed claims use an outer CSS drop-shadow glow filter (drop-shadow(0 0 6px rgba(112, 224, 0, 0.6))).
+* The Telemetry Grid: Strict borders using `--cp-line` divide information cleanly into modules like:
 * Live Mining/Earning Speed Multiplier
    * Pending Wallet Claim Pool
    * Global Network Pool Hashrate
 
 ## 2. Micro-Interactions
 
-* The Claim Action: Clicking the "Claim Crypto" button triggers a sudden burst animation of cascading green shards, transitioning from Radioactive Grass (#70E000) to Slime Lime (#9EF01A) to show immediate software response.
+* The Claim Action: Clicking the "Claim Crypto" button triggers a subtle glow bloom, transitioning from Signal (#70e000) to Slime Lime (#9ef01a) to show immediate software response.
 
 ------------------------------
 ## Social & Ecosystem Playbook## 1. Community Channels (Discord / Telegram)
 
-* Server Branding: Deep green profile frames. Announcement templates must feature bright neon warning blocks to highlight new free reward pools.
+* Server Branding: Dark profile frames with a single green signal accent. Announcement templates must feature bright neon warning blocks to highlight new free reward pools.
 * Community Tiering: Active earners get customized server roles colored in #CCFF33 (e.g., Turbo-Earner, Whale-Sprout).
 
 ## 2. Marketing Graphic Template Formulas
 To create rapid-fire content for X (Twitter) or YouTube thumbnails:
 
-* Background: 40% opacity gradient stretching from #004B23 (Dark Spruce) to black.
+* Background: 40% opacity gradient stretching from #101010 (Black) to black.
 * Foreground Focus: A crisp vector screenshot of the iCryptos Dashboard showing a spiking balance graph line.
 * Overlaid Copy: High-impact text stating: "F9XR PROGRAM ACTIVATED: 100% FREE EARNINGS LIVE."
 

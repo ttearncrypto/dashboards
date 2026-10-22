@@ -26,7 +26,8 @@
         platform: ['Platform'],
         referralProg: ['ReferralProg', 'Referral Program', 'Referral'],
         desc: ['Desc', 'Description'],
-        paymentProof: ['PaymentProof', 'Payment Proof']
+        paymentProof: ['PaymentProof', 'Payment Proof'],
+        sisterFaucets: ['Sister Faucets', 'SisterFaucets', 'Sisters']
     };
 
     // Normalize text coming from the sheet: strip control/zero-width chars and
@@ -56,6 +57,36 @@
             .split(/[,|\n\r;]+/)
             .map(function (part) { return cleanText(part); })
             .filter(function (part) { return part !== ''; });
+    }
+
+    // Split on line breaks only. Used for columns that hold URLs, where a
+    // comma or a pipe could be part of the address itself.
+    function splitLines(value) {
+        if (!value) return [];
+        return String(value)
+            .split(/\n\r?/)
+            .map(function (part) { return cleanText(part); })
+            .filter(function (part) { return part !== ''; });
+    }
+
+    // ReferralProgram is free text in the sheet: "Yes," / "No" / a full
+    // sentence. Reduce it to a tri-state so the UI can label it.
+    function referralState(value) {
+        var text = cleanText(value || '');
+        if (!text) return 'unknown';
+        if (/^no\b/i.test(text)) return 'no';
+        if (/^yes\b/i.test(text)) return 'yes';
+        if (/\bno\b/i.test(text) && !/\bcommission\b|\breferr|\bearn\b|\byou\b/i.test(text)) return 'no';
+        return 'yes';
+    }
+
+    // PaymentProof holds either a URL or the placeholder "SOON".
+    function proofState(value) {
+        var text = cleanText(value || '');
+        if (!text) return 'unknown';
+        if (/^https?:\/\//i.test(text)) return 'link';
+        if (/^soon$/i.test(text)) return 'pending';
+        return 'pending';
     }
 
     function normalizeName(value) {
@@ -112,6 +143,8 @@
         if (platform && filterTags.indexOf(platform) === -1) filterTags.push(platform);
 
         var paymentProof = cell(row, COLUMNS.paymentProof);
+        var referralProg = cell(row, COLUMNS.referralProg);
+        var sisterFaucets = splitLines(cell(row, COLUMNS.sisterFaucets));
         var unverified = !nameRaw;
 
         return {
@@ -134,9 +167,12 @@
             minWithdrawal: cell(row, COLUMNS.minWithdrawal),
             payoutsVia: payoutsVia,
             platform: platform,
-            referralProg: cell(row, COLUMNS.referralProg),
+            referralProg: referralProg,
+            referralState: referralState(referralProg),
             desc: cell(row, COLUMNS.desc),
             paymentProof: paymentProof,
+            paymentProofState: proofState(paymentProof),
+            sisterFaucets: sisterFaucets,
             iconClass: 'fas fa-star',
             sourceName: 'Curated'
         };
@@ -219,6 +255,9 @@
                     minWithdrawal: ex.minWithdrawal,
                     payoutsVia: ex.payoutsVia,
                     referralProg: ex.referralProg,
+                    referralState: ex.referralState,
+                    paymentProofState: ex.paymentProofState,
+                    sisterFaucets: ex.sisterFaucets,
                     unverified: ex.unverified,
                     excelUrl: ex.url,
                     blogUrl: target.url
@@ -245,6 +284,9 @@
         rowsToProjects: rowsToProjects,
         mergeProjects: mergeProjects,
         splitList: splitList,
+        splitLines: splitLines,
+        referralState: referralState,
+        proofState: proofState,
         normalizeName: normalizeName,
         hostOf: hostOf,
         prettifyHost: prettifyHost

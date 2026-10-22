@@ -6,6 +6,7 @@
   <title>Changelog - iCryptos Dashboard | F9XR TTEarnCrypto</title>
   <meta name="description" content="Release history and changelog for iCryptos Dashboard. See what's new, improved, and fixed in each version.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#101010">
   <link rel="canonical" href="https://ttearncrypto.f9xr.org/dashboards/page/changelog.html">
   <meta property="og:title" content="Changelog - iCryptos Dashboard">
   <meta property="og:url" content="https://ttearncrypto.f9xr.org/dashboards/page/changelog.html">
@@ -18,7 +19,7 @@
   <link rel="stylesheet" href="../assets/page.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Fragment+Mono&display=swap" rel="stylesheet">
   <script type="application/ld+json">{
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -56,8 +57,7 @@
             <a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i><span>Mobile Dashboard<small>Fast phone layout</small></span></a>
             <div class="cp-dd-sep"></div>
             <p class="cp-dd-label">Explore</p>
-            <a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i><span>Themes Hub<small>7 dashboard themes</small></span></a>
-            <a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i><span>News Hub<small>Crypto news feeds</small></span></a>
+            <a href="../themes/index.html"><i data-lucide="layout-dashboard" aria-hidden="true"></i><span>Dashboards<small>Every live dashboard</small></span></a>
             <a href="sitemap.html"><i data-lucide="list-tree" aria-hidden="true"></i><span>HTML Sitemap<small>Every page in one list</small></span></a>
             <a href="faq.html"><i data-lucide="circle-question-mark" aria-hidden="true"></i><span>FAQ<small>Answers and guides</small></span></a>
             <a href="games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i><span>Games<small>Play while you earn</small></span></a>
@@ -88,6 +88,21 @@
 
     <h1>Changelog</h1>
     <p class="cp-last-updated">Track the evolution of iCryptos Dashboard.</p>
+
+    <div class="cp-changelog-entry">
+      <span class="cp-version">v2.8</span>  -  <span class="cp-date">October 22, 2026</span>
+      <p><strong>Lapse Rebrand and Dashboard Consolidation</strong></p>
+      <ul>
+        <li>New Lapse design system: dark canvas, monochrome type and a single signal accent, shared across every page.</li>
+        <li>New typography: Figtree for headings and body, Fragment Mono for data, Climate Crisis for the wordmark.</li>
+        <li>All colour tokens now live in one place, <code>assets/ColourPalette.css</code>, imported by every stylesheet and page.</li>
+        <li>Retired the News Hub and archived the six legacy dashboard themes under <code>old/</code>, marked noindex and disallowed for crawlers.</li>
+        <li>Rebuilt <code>themes/</code> as the Dashboards hub listing the Calm desktop dashboard, the mobile dashboard and the curated dashboard that is coming.</li>
+        <li>Recoloured the Calm desktop dashboard to Lapse and fixed its structured data host.</li>
+        <li>Removed every dead link, refreshed <code>sitemap.xml</code> and the HTML sitemap.</li>
+        <li>Added <code>tools/check.js</code> so broken links, duplicate tokens and stale references are caught before deploy.</li>
+      </ul>
+    </div>
 
     <div class="cp-changelog-entry">
       <span class="cp-version">v2.7</span>  -  <span class="cp-date">June 7, 2026</span>
@@ -164,8 +179,7 @@
             <li><a href="https://ttearncrypto.f9xr.org/Home/earncrypto.html" target="_blank" rel="noopener noreferrer"><i data-lucide="monitor" aria-hidden="true"></i>PC Dashboard</a></li>
             <li><a href="../m-index.html"><i data-lucide="smartphone" aria-hidden="true"></i>Mobile Dashboard</a></li>
             <li><a href="https://cryptoradarnews.blogspot.com/p/download-icryptos-app-android.html" target="_blank" rel="noopener noreferrer"><i data-lucide="download" aria-hidden="true"></i>Android App</a></li>
-            <li><a href="../themes/index.html"><i data-lucide="palette" aria-hidden="true"></i>Themes Hub</a></li>
-            <li><a href="../newshub/index.html"><i data-lucide="radio" aria-hidden="true"></i>News Hub</a></li>
+            <li><a href="../themes/index.html"><i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboards</a></li>
             <li><a href="../page/games.html"><i data-lucide="gamepad-2" aria-hidden="true"></i>Games</a></li>
           </ul>
         </nav>

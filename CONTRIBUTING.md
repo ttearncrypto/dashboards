@@ -30,7 +30,7 @@ npm install -g http-server
 http-server -p 8000
 ```
 
-Open `index.html` or any file under `themes/` to preview a theme.
+Open `index.html` or any file under `themes/` to preview a dashboard.
 
 ---
 

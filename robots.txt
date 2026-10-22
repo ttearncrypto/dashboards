@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+# Legacy Blogger feed dashboards. Archived for reference only, not indexed.
+Disallow: /old/
+
 # --- AI crawler governance ---
 # The site publishes ai.txt, llms.txt and llms-full.txt for AI readers,
 # so AI crawlers are currently allowed. To opt out of AI training on this
